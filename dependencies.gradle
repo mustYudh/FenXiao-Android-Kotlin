@@ -1,0 +1,41 @@
+ext {
+    versionCode = 1
+    versionName = '1.0.0'
+
+    uMengKey = ''
+    uMengChannel = ''
+    baidu = ''
+
+    applicationId = 'com.nhbs.fenxiao'
+    compileSdkVersion = 28
+    minSdkVersion = 17
+    targetSdkVersion = 22
+    appTargetSdkVersion = 26
+
+
+    rxJavaVersion = '2.1.12'
+    rxAndroidVersion = '2.0.2'
+
+    glideVersion = '4.7.1'
+    retrofitVersion = '2.4.0'
+    okhttpVersion = '3.10.0'
+
+    commonVersion='V1.0.2'
+
+    gsonVersion = '2.8.2'
+
+    appDependencies = [
+            versionCode: versionCode,
+            versionName: versionName,
+            uMengKey: uMengKey,
+            uMengChannel: uMengChannel,
+            baidu: baidu,
+
+            applicationI:applicationId,
+            compileSdkVersion: compileSdkVersion,
+            minSdkVersion: minSdkVersion,
+            targetSdkVersion: targetSdkVersion,
+            appTargetSdkVersion: appTargetSdkVersion,
+
+    ]
+}

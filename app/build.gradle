@@ -4,26 +4,213 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-android {
-    compileSdkVersion 28
-    defaultConfig {
-        applicationId "com.nhbs.fenxiao"
-        minSdkVersion 16
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+enum ApiEnvEnum {
+    DEV(0, "1"), ONLINE(1, "2"), PRE_RELEASE(2, "3")
+
+    private final int value
+    private final String name
+
+    ApiEnvEnum(int value, String name) {
+        this.value = value
+        this.name = name
     }
-    buildTypes {
+
+    int getValue() {
+        value
+    }
+
+    String getName() {
+        name
+    }
+}
+
+android {
+    def envStr = project.hasProperty('API_MODE') ? API_MODE : "DEV"
+    def appNameStr = (envStr as ApiEnvEnum).name
+
+    compileSdkVersion appDependencies.compileSdkVersion
+    defaultConfig {
+        applicationId appDependencies.applicationId
+        minSdkVersion appDependencies.minSdkVersion
+        targetSdkVersion appDependencies.targetSdkVersion
+        versionCode appDependencies.versionCode
+        versionName appDependencies.versionName
+        flavorDimensions "versionCode"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("int", "API_MODE", "${(envStr as ApiEnvEnum).value}")
+
+        manifestPlaceholders = [PACKAGE_NAME  : rootProject.ext.applicationId,
+                                APP_NAME      : appNameStr,
+                                UMENG_APPKEY  : rootProject.ext.uMengKey,
+                                UMENG_CHANNEL : rootProject.ext.uMengChannel,
+                                BAIDU_LOCATION: rootProject.ext.baidu]
+
+        ndk {
+//            abiFilters "armeabi-v7a"
+        }
+    }
+
+
+    signingConfigs {
+        debug {
+            storeFile file('../keystores/jmwh.jks')
+            storePassword 'asdfghjkl'
+            keyAlias 'jmwh'
+            keyPassword 'asdfghjkl'
+        }
         release {
+            storeFile file('../keystores/jmwh.jks')
+            storePassword 'asdfghjkl'
+            keyAlias 'jmwh'
+            keyPassword 'asdfghjkl'
+            v2SigningEnabled true
+        }
+    }
+
+
+    splits {
+        abi {
+            reset()
+            universalApk false
+//            include "armeabi-v7a"
+        }
+    }
+
+
+    productFlavors {
+        fenxiao {
+            applicationId rootProject.ext.applicationId
+            manifestPlaceholders = [PACKAGE_NAME  : rootProject.ext.applicationId,
+                                    APP_NAME      : appNameStr,
+                                    UMENG_APPKEY  : rootProject.ext.uMengKey,
+                                    UMENG_CHANNEL : rootProject.ext.uMengChannel,
+                                    BAIDU_LOCATION: rootProject.ext.baidu]
+        }
+    }
+
+
+    splits {
+        abi {
+            reset()
+            universalApk false
+//            include "armeabi-v7a"
+        }
+    }
+
+
+
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFileAbsolutePath = output.outputFileName
+            def isRelease = outputFileAbsolutePath.indexOf("release")
+            outputFileName = isRelease >= 0 ? "app-release.apk" : "app-debug.apk"
+        }
+
+        variant.outputs.all { output ->
+//            def versionCodes = ["armeabi-v7a": 1]
+            def abi = output.getFilter(com.android.build.OutputFile.ABI)
+            if (abi != null) {
+                output.versionCodeOverride = versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
+            }
+        }
+    }
+
+
+
+
+
+    buildTypes {
+
+        def defaultProguardRule = 'proguard-rules.pro'
+        def proguardBaseRule = '../proguard-rule/proguard-rules-base.pro'
+        def proguardReacNativeRule = '../proguard-rule/proguard-rules-react-native-0.46.0.pro'
+        def proguardRemoveLogRule = '../proguard-rule/proguard-rules-remove-logs.pro'
+        def proguardThirdPartServiceRule = '../proguard-rule/proguard-rules-third-part-service.pro'
+        def proguardUmengSharedRule = '../proguard-rule/proguard-rules-umeng-share.pro'
+
+        debug {
+            crunchPngs false //关闭crunchPng优化, 以加快构建
+            debuggable true
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        release {
+            productFlavors.fenxiao.signingConfig signingConfigs.release
+            debuggable false
+            minifyEnabled true
+            zipAlignEnabled true
+
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), defaultProguardRule,
+                    proguardBaseRule, proguardReacNativeRule,
+                    proguardRemoveLogRule,
+                    proguardThirdPartServiceRule,
+                    proguardUmengSharedRule
+        }
+    }
+
+
+
+    compileOptions {
+        //开启增量编译
+        incremental = true
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    def enableCruncher = { ->
+        return !isDebug()
+    }
+    //禁用cruncher, 以加速编译
+    aaptOptions {
+        cruncherEnabled = enableCruncher()
+        cruncherProcesses = 0
+    }
+
+    //在Android代码块中添加如下配置：（可优化最上图中transformClassDexBuilderForDebug的时间）
+    dexOptions {
+        preDexLibraries true
+        maxProcessCount
+        dexInProcess true
+        preDexLibraries true
+        javaMaxHeapSize "2g"
+    }
+
+    //跳过Lint和Test相关的task, 以加速编译
+    if (isDebug()) {
+        gradle.taskGraph.whenReady {
+            tasks.each { task ->
+                if (task.name.contains("Test") || task.name.contains("Lint")) {
+                    task.enabled = false
+                }
+            }
+        }
+    }
+
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            jni.srcDirs = []
         }
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(path: ':common')
+    implementation project(path: ':http-lib')
+    implementation project(path: ':bottom_tab')
+    implementation project(':share')
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
