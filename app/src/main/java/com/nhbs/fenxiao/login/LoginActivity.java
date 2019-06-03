@@ -8,6 +8,9 @@ import com.nhbs.fenxiao.login.presenter.LoginPresenter;
 import com.nhbs.fenxiao.login.presenter.LoginViewer;
 import com.yu.common.mvp.PresenterLifeCycle;
 
+/**
+ * @author yudenghao
+ */
 public class LoginActivity extends BaseBarActivity implements LoginViewer {
 
   @PresenterLifeCycle LoginPresenter presenter = new LoginPresenter(this);

@@ -9,6 +9,9 @@ import com.yu.common.toast.ToastUtils;
 import java.lang.ref.SoftReference;
 
 
+/**
+ * @author yudenghao
+ */
 public class PressHandle {
 
   private SoftReference<Activity> activity;
