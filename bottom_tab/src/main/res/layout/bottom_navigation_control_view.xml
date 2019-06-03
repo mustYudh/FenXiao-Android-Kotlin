@@ -19,6 +19,7 @@
     android:layout_width="match_parent"
     android:layout_height="0.5dp"/>
   <LinearLayout
+      clipChildren="false"
       android:id="@+id/tab_control"
       android:layout_width="match_parent"
       android:layout_height="50dp"

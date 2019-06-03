@@ -17,7 +17,7 @@ public class SplashActivity extends BaseActivity implements SplashViewer {
     private SplashPresenter mPresenter = new SplashPresenter(this);
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
-
+            mPresenter.handleCountDown();
     }
 
     @Override
