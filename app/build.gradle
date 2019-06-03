@@ -55,15 +55,15 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file('../keystores/jmwh.jks')
+            storeFile file('../keystores/fenxiao.jks')
             storePassword 'asdfghjkl'
-            keyAlias 'jmwh'
+            keyAlias 'fenxiao'
             keyPassword 'asdfghjkl'
         }
         release {
-            storeFile file('../keystores/jmwh.jks')
+            storeFile file('../keystores/fenxiao.jks')
             storePassword 'asdfghjkl'
-            keyAlias 'jmwh'
+            keyAlias 'fenxiao'
             keyPassword 'asdfghjkl'
             v2SigningEnabled true
         }

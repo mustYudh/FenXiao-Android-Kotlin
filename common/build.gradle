@@ -35,5 +35,13 @@ dependencies {
     api 'com.github.bumptech.glide:glide:3.7.0'
     api 'com.android.support:multidex:1.0.3'
     api 'jp.wasabeef:glide-transformations:2.0.1'
-
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-25'
+    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-25'
+    //RxJava
+    api 'io.reactivex.rxjava2:rxjava:2.1.12'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    //OkHttp的依赖包
+    api 'com.squareup.okhttp3:okhttp:3.10.0'
+    //Gson序列化反序列化的依赖包
+    api 'com.squareup.retrofit2:converter-gson:2.3.0'
 }
