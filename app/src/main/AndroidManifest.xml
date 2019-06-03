@@ -12,6 +12,9 @@
             android:supportsRtl="true"
             android:theme="@style/BaseTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity
+                android:name=".test.TestActivity"
+                android:screenOrientation="portrait"/>
         <activity android:name=".splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

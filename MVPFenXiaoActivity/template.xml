@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="6"
+    name="MVP for FenXiao"
+    description="自动生成分销MVP Activity模板，不支持Kotlin"
+    minApi="14"
+    minBuildApi="25">
+
+    <dependency name="android-support-v4" revision="8" />
+
+    <category value="FenXiao MVP Activity" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="activityClass"
+        name="Activity Name (自动加'Activity')"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="New"
+        help="The name of the activity class to create" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name (自动加'_view')"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="${activityToLayout(activityClass)}"
+        default="activity_"
+        help="The name of the layout to create for the activity" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.mycompany.myapp" />
+        
+    <thumbs>
+        <thumb>template_login_activity.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
