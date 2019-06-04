@@ -1,4 +1,4 @@
-package com.nhbs.fenxiao.splash.presenter;
+package com.nhbs.fenxiao.module.splash.presenter;
 
 import com.yu.common.mvp.Viewer;
 

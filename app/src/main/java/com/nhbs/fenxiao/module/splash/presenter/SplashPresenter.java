@@ -1,6 +1,6 @@
-package com.nhbs.fenxiao.splash.presenter;
+package com.nhbs.fenxiao.module.splash.presenter;
 
-import com.nhbs.fenxiao.home.HomePageActivity;
+import com.nhbs.fenxiao.module.home.HomePageActivity;
 import com.yu.common.countdown.RxCountDown;
 import com.yu.common.countdown.RxCountDownAdapter;
 import com.yu.common.framework.BaseViewPresenter;

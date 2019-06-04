@@ -11,12 +11,12 @@ import com.yu.common.utils.BarUtils;
 public abstract class BaseBarActivity extends BaseActivity {
 
     protected int getActionBarLayoutId() {
-        return R.layout.action_bar_white;
+        return R.layout.action_bar_white_web_view;
     }
 
     @Override
     protected boolean darkMode() {
-        return getActionBarLayoutId() != R.layout.action_bar_white;
+        return getActionBarLayoutId() != R.layout.action_bar_white_web_view;
     }
 
     @Override

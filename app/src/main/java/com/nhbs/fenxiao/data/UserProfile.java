@@ -10,6 +10,7 @@ public class UserProfile implements Serializable {
     private static UserProfile instance;
 
     private static final String SHARE_PREFERENCES_NAME = ".public_profile";
+    private static final String TOKEN = "token";
 
     private SharedPreferencesHelper spHelper;
 
@@ -27,6 +28,14 @@ public class UserProfile implements Serializable {
             }
         }
         return instance;
+    }
+
+    public void setToken(String token) {
+        spHelper.putString(TOKEN,token);
+    }
+
+    public String getAppToken() {
+        return spHelper.getString(TOKEN,"");
     }
 
 

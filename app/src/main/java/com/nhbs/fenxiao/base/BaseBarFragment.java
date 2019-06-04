@@ -14,7 +14,7 @@ public abstract class BaseBarFragment extends BaseFragment {
 
     protected @LayoutRes
     int getActionBarLayoutId() {
-        return R.layout.action_bar_white;
+        return R.layout.action_bar_white_web_view;
     }
 
 

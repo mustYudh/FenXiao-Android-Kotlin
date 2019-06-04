@@ -1,10 +1,10 @@
-package com.nhbs.fenxiao.splash;
+package com.nhbs.fenxiao.module.splash;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import com.nhbs.fenxiao.base.BaseActivity;
-import com.nhbs.fenxiao.splash.presenter.SplashPresenter;
-import com.nhbs.fenxiao.splash.presenter.SplashViewer;
+import com.nhbs.fenxiao.module.splash.presenter.SplashPresenter;
+import com.nhbs.fenxiao.module.splash.presenter.SplashViewer;
 import com.yu.common.mvp.PresenterLifeCycle;
 
 /**

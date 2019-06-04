@@ -7,4 +7,14 @@
         <attr name="civ_fill_color" format="color"/>
     </declare-styleable>
 
+
+
+    <declare-styleable name="BarIconContainer">
+        <attr format="reference" name="bar_icon"/>
+        <attr format="reference" name="bar_unread_icon"/>
+    </declare-styleable>
+
+
+
+
 </resources>
