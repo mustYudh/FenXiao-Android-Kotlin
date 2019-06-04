@@ -4,25 +4,27 @@
           package="com.nhbs.fenxiao">
 
     <application
-            android:name=".APP"
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="${APP_NAME}"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/BaseTheme"
-            tools:ignore="GoogleAppIndexingWarning">
+        android:name=".APP"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="${APP_NAME}"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/BaseTheme"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="label,allowBackup">
         <activity
-                android:name=".module.home.HomePageActivity"
-                android:screenOrientation="portrait"/>
+            android:name=".module.home.HomePageActivity"
+            android:screenOrientation="portrait"/>
         <activity
-                android:name=".module.login.LoginActivity"
-                android:screenOrientation="portrait"/>
+            android:name=".module.login.LoginActivity"
+            android:screenOrientation="portrait"/>
         <activity
-                android:name=".test.TestActivity"
-                android:screenOrientation="portrait"/>
-        <activity android:name=".module.web.WebViewActivity"
-                  android:screenOrientation="portrait"/>
+            android:name=".test.TestActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.web.WebViewActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".module.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
