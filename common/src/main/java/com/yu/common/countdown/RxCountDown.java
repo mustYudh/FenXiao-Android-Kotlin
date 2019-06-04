@@ -126,6 +126,9 @@ public class RxCountDown {
     }
 
     public void stop() {
+        if (isStop()) {
+            return;
+        }
         if (getDisposable() != null && !getDisposable().isDisposed()) {
             getDisposable().dispose();
         }

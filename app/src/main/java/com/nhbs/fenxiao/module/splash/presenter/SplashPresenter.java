@@ -44,7 +44,7 @@ public class SplashPresenter extends BaseViewPresenter<SplashViewer> {
   @Override public void willDestroy() {
     super.willDestroy();
     if (rxCountDown != null) {
-//      rxCountDown.stop();
+      rxCountDown.stop();
     }
   }
 }
