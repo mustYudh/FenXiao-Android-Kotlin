@@ -2,6 +2,7 @@ package com.nhbs.fenxiao.module.splash;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseActivity;
 import com.nhbs.fenxiao.module.splash.presenter.SplashPresenter;
 import com.nhbs.fenxiao.module.splash.presenter.SplashViewer;
@@ -17,6 +18,7 @@ public class SplashActivity extends BaseActivity implements SplashViewer {
     private SplashPresenter mPresenter = new SplashPresenter(this);
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
+        setContentView(R.layout.activity_splash);
             mPresenter.handleCountDown();
     }
 

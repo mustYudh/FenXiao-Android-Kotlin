@@ -18,7 +18,7 @@ public class LoginActivity extends BaseBarActivity implements LoginViewer {
 
     public static boolean pFlag = false;
     @PresenterLifeCycle
-    LoginPresenter presenter = new LoginPresenter(this);
+    private LoginPresenter mPresenter = new LoginPresenter(this);
 
     public static Intent callRedirectOtherActionIntent(Context context, String targetOther, Bundle bundle) {
         return LoginRedirectHelper.setRedirectData(context, LoginActivity.class, bundle, "",
@@ -33,7 +33,8 @@ public class LoginActivity extends BaseBarActivity implements LoginViewer {
 
     @Override
     protected void loadData() {
-
+        setTitle("测试登录页");
+        bindView(R.id.test,v -> mPresenter.login());
     }
 
     @Override

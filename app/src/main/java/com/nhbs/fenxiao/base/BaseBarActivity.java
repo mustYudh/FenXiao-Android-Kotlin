@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.nhbs.fenxiao.R;
+import com.yu.common.ui.BarIconContainer;
 import com.yu.common.utils.BarUtils;
 
 public abstract class BaseBarActivity extends BaseActivity {
@@ -29,7 +30,7 @@ public abstract class BaseBarActivity extends BaseActivity {
     @Override
     protected View onReplaceRootView(@LayoutRes int layoutResID) {
         View rootView = super.onReplaceRootView(layoutResID);
-        FrameLayout container = (FrameLayout) rootView.findViewById(R.id.action_bar_container);
+        FrameLayout container =  rootView.findViewById(R.id.action_bar_container);
         container.setVisibility(View.VISIBLE);
         View actionBar = getLayoutInflater().inflate(getActionBarLayoutId(), container, false);
         container.addView(actionBar);
@@ -39,21 +40,16 @@ public abstract class BaseBarActivity extends BaseActivity {
 
 
     private void initBack() {
-//        FrameLayout back = (FrameLayout) findViewById(R.id.back);
-//        if (back != null) {
-//            back.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    finish();
-//                }
-//            });
-//        }
+        BarIconContainer back = findViewById(R.id.action_back);
+        if (back != null) {
+            back.setOnClickListener(v -> finish());
+        }
     }
 
 
     public void setTitle(String titleName) {
         if (!TextUtils.isEmpty(titleName)) {
-            TextView title = (TextView) findViewById(R.id.title);
+            TextView title = (TextView) findViewById(R.id.action_title);
             if (title != null) {
                 title.setText(titleName);
             }

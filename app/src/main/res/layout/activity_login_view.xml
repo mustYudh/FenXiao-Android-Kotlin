@@ -12,5 +12,10 @@
       android:text="这是登录页"
       />
 
+<Button
+        android:text="模拟登陆"
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

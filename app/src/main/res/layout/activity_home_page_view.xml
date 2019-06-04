@@ -1,6 +1,32 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-</FrameLayout>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <TextView
+            android:text="这是首页"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:text="测试需要登录路由操作"
+            android:id="@+id/test1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:text="测试不需要登录路由操作"
+            android:id="@+id/test2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    <Button
+            android:text="模拟退登"
+            android:id="@+id/test3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+</LinearLayout>

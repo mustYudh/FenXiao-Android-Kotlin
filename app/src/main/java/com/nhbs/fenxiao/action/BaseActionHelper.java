@@ -16,7 +16,7 @@ import com.yu.common.toast.ToastUtils;
  * @date 2019-06-04
  */
 public class BaseActionHelper  {
-    private final static  String LINK_URL = "LINK_URL";
+    public final static  String LINK_URL = "LINK_URL";
     private static Context iContext = null;
 
 
@@ -53,6 +53,10 @@ public class BaseActionHelper  {
             return true;
         }
         return false;
+    }
+
+    public void handleAction(String action) {
+        handleAction(action,false);
     }
 
     public void handleAction(String action,boolean needLogin) {
