@@ -52,7 +52,9 @@ public class BottomNavigationControl extends LinearLayout implements TabViewCont
       tabView.setOnClickListener(new OnClickListener() {
         @Override public void onClick(View v) {
           int position = tabControlView.indexOfChild(tabView);
-          getCurrentPosition(position);
+          if (position != 2) {
+            getCurrentPosition(position);
+          }
           if (tabClickListener != null) {
             tabClickListener.onTabClickListener(position, tabView);
           }

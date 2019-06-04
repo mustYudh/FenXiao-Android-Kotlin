@@ -19,6 +19,7 @@ import com.nhbs.fenxiao.module.mine.fragment.MineFragment;
 import com.nhbs.fenxiao.module.product.fragment.ProductFragment;
 import com.nhbs.fenxiao.module.store.MiniStoreFragment;
 import com.yu.common.mvp.PresenterLifeCycle;
+import com.yu.common.toast.ToastUtils;
 import com.yu.common.utils.PressHandle;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,13 +42,16 @@ public class HomePageActivity extends BaseActivity implements HomePageViewer {
     List<TabItem> items = new ArrayList<>();
     mBottomNavigationView = bindView(R.id.navigation_view);
     items.add(new TabView(createTabView("首页", R.drawable.tab_home_selector), new HomeFragment()));
-    items.add(
-        new TabView(createTabView("商品", R.drawable.tab_product_selector), new ProductFragment()));
-    items.add(new TabView(createTabView("小店", R.drawable.tab_mini_store_selector),
-        new MiniStoreFragment()));
+    items.add(new TabView(createTabView("商品", R.drawable.tab_product_selector), new ProductFragment()));
+    items.add(new TabView(LayoutInflater.from(this).inflate(R.layout.home_center_table_layout, mBottomNavigationView, false),null));
+    items.add(new TabView(createTabView("小店", R.drawable.tab_mini_store_selector), new MiniStoreFragment()));
     items.add(new TabView(createTabView("我的", R.drawable.tab_nime_selector), new MineFragment()));
     mBottomNavigationView.initControl(this).setPagerView(items, 0);
-    mBottomNavigationView.getNavgation().setTabControlHeight(60);
+    mBottomNavigationView.getControl().setOnTabClickListener((position, view) -> {
+      if (position == 2) {
+        ToastUtils.show("弹出毛玻璃界面");
+      }
+    });
   }
 
   public View createTabView(String name, int drawable) {
@@ -59,6 +63,7 @@ public class HomePageActivity extends BaseActivity implements HomePageViewer {
     tabName.setText(name);
     return view;
   }
+
 
   @Override public void onBackPressed() {
     if (!pressHandle.handlePress(KeyEvent.KEYCODE_BACK)) {

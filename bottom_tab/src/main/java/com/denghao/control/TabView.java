@@ -31,7 +31,12 @@ public class TabView implements TabItem {
   }
 
   @Override public String getTag() {
-    return mFragment.getClass().getSimpleName();
+    if (mFragment != null) {
+      return mFragment.getClass().getSimpleName();
+    } else {
+      return "";
+    }
+
   }
 
 
