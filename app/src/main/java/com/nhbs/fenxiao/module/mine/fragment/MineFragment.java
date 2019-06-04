@@ -7,8 +7,8 @@ import android.widget.LinearLayout;
 
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseFragment;
-import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentPresenter;
-import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentViewer;
+import com.nhbs.fenxiao.module.mine.presenter.MineFragmentPresenter;
+import com.nhbs.fenxiao.module.mine.presenter.MineFragmentViewer;
 import com.nhbs.fenxiao.module.view.MyOneLineView;
 import com.yu.common.mvp.PresenterLifeCycle;
 
