@@ -83,7 +83,7 @@ public class TabController {
         Fragment fragment = tabItem.getCurrentFragment();
         String tag = tabItem.getTag();
         //if (fragment != null) {
-            tabViewControl.addViewTabView(tabItem.getView());
+            tabViewControl.addViewTabView(tabItem.getPosition());
             mBeans.add(new TabInfoBean(tag, fragment, tabItem));
         //}
     }

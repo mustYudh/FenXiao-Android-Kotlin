@@ -18,9 +18,8 @@ public interface TabViewControl {
     /**
      * 添加TabVie
      *
-     * @param view TabView
      */
-    void addViewTabView(View view);
+    void addViewTabView(int position);
 
     /**
      * 移除所有的TabView

@@ -1,7 +1,6 @@
 package com.denghao.control;
 
 import android.support.v4.app.Fragment;
-import android.view.View;
 
 /**
  * @author yudneghao
@@ -12,9 +11,13 @@ public interface TabItem {
 
   Fragment getCurrentFragment();
 
-  View getView();
+
+
+  int getPosition();
 
   String getTag();
 
   void setMessageHint(int count);
+
+
 }

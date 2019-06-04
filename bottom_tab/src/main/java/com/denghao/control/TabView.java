@@ -1,7 +1,6 @@
 package com.denghao.control;
 
 import android.support.v4.app.Fragment;
-import android.view.View;
 
 /**
  * @author yudneghao
@@ -9,25 +8,23 @@ import android.view.View;
  */
 
 public class TabView implements TabItem {
-  private View mView;
   private Fragment mFragment;
+  private int position;
 
   /**
-   * @param view 对应Fragment底部道航栏的View
    * @param fragment 当前导航栏对应的Fragment
    */
-  public TabView(View view, Fragment fragment) {
-    mView = view;
-    mFragment = fragment;
-
+  public TabView(int position, Fragment fragment) {
+    this.position = position;
+    this.mFragment = fragment;
   }
 
   @Override public Fragment getCurrentFragment() {
     return mFragment;
   }
 
-  @Override public View getView() {
-    return mView;
+  @Override public int getPosition() {
+    return position;
   }
 
   @Override public String getTag() {
@@ -36,9 +33,7 @@ public class TabView implements TabItem {
     } else {
       return "";
     }
-
   }
-
 
   @Override public void setMessageHint(int count) {
 

@@ -34,37 +34,28 @@ public class BottomNavigationControl extends LinearLayout implements TabViewCont
     frameLayout = (FrameLayout) findViewById(R.id.content_view);
   }
 
-  public void setTabControlHeight(int height) {
-    LinearLayout.LayoutParams params =
-        new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-    params.height = dp2PX(height);
-    tabControlView.setLayoutParams(params);
-  }
+
 
   @Override public FrameLayout getContentView() {
     return frameLayout;
   }
 
-  @Override public void addViewTabView(final View tabView) {
-    if (tabView != null) {
-      LinearLayout.LayoutParams params = new LayoutParams(0, LayoutParams.MATCH_PARENT, 1);
-      tabControlView.addView(tabView, params);
-      tabView.setOnClickListener(new OnClickListener() {
+  @Override public void addViewTabView(int position) {
+    tabControlView.getChildAt(position).setOnClickListener(new OnClickListener() {
         @Override public void onClick(View v) {
-          int position = tabControlView.indexOfChild(tabView);
+          int position = tabControlView.indexOfChild(v);
           if (position != 2) {
             getCurrentPosition(position);
           }
           if (tabClickListener != null) {
-            tabClickListener.onTabClickListener(position, tabView);
+            tabClickListener.onTabClickListener(position, v);
           }
         }
       });
-    }
   }
 
   @Override public void removeAllTabView() {
-    tabControlView.removeAllViews();
+    //tabControlView.removeAllViews();
   }
 
   @Override public int getCurrentPosition(int currentPosition) {
