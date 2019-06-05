@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:includeFontPadding="false"
-            android:text="赏金广告"
+            android:text="商品分类"
             android:textColor="#ff232634"
             android:textSize="12sp"
             />
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:includeFontPadding="false"
-            android:text="赏金广告"
+            android:text="活动抽奖"
             android:textColor="#ff232634"
             android:textSize="12sp"
             />
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:includeFontPadding="false"
-            android:text="赏金广告"
+            android:text="分享好友"
             android:textColor="#ff232634"
             android:textSize="12sp"
             />

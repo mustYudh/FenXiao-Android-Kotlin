@@ -14,6 +14,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="label,allowBackup">
         <activity
+            android:name=".module.home.activity.HomeProductClassifyActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".module.mine.activity.MineTeamActivity"
             android:screenOrientation="portrait"/>
         <activity
