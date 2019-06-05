@@ -32,11 +32,6 @@ public class MyOneLineView extends LinearLayout {
     private TextView tvTextContent;
 
     /**
-     * 右边的文字
-     */
-    private TextView tvRightText;
-
-    /**
      * 右边的icon 通常是箭头
      */
     private ImageView ivRightIcon;
@@ -76,7 +71,6 @@ public class MyOneLineView extends LinearLayout {
         dividerBottom = findViewById(R.id.divider_bottom);
         ivLeftIcon = (ImageView) findViewById(R.id.iv_left_icon);
         tvTextContent = (TextView) findViewById(R.id.tv_text_content);
-        tvRightText = (TextView) findViewById(R.id.tv_right_text);
         ivRightIcon = (ImageView) findViewById(R.id.iv_right_icon);
         return this;
     }
@@ -90,7 +84,6 @@ public class MyOneLineView extends LinearLayout {
     public MyOneLineView init(String textContent) {
         init();
         setTextContent(textContent);
-        setRightText("");
         showLeftIcon(false);
         return this;
     }
@@ -106,7 +99,6 @@ public class MyOneLineView extends LinearLayout {
         showDivider(false, true);
         setLeftIcon(iconRes);
         setTextContent(textContent);
-        setRightText("");
         showArrow(true);
         return this;
     }
@@ -117,9 +109,9 @@ public class MyOneLineView extends LinearLayout {
      * @param iconRes     icon图片
      * @param textContent 文字内容
      */
-    public MyOneLineView initMine(int iconRes, String textContent, String textRight, boolean showArrow) {
+    public MyOneLineView initMine(int iconRes, String textContent, boolean showArrow,boolean showBottomLine) {
         init(iconRes, textContent);
-        setRightText(textRight);
+        showDivider(false, showBottomLine);
         showArrow(showArrow);
         return this;
     }
@@ -203,6 +195,18 @@ public class MyOneLineView extends LinearLayout {
     }
 
     /**
+     * 设置下分割线的左右边距
+     *
+     * @return
+     */
+    public MyOneLineView setDividerBottomMargin(int dividerBottomLeft, int dividerBottomRight) {
+        LinearLayout.MarginLayoutParams params = (LinearLayout.MarginLayoutParams) dividerBottom.getLayoutParams();
+        params.setMargins(DensityUtils.dp2px(getContext(), dividerBottomLeft), 0, DensityUtils.dp2px(getContext(), dividerBottomRight), 0);
+        dividerBottom.setLayoutParams(params);
+        return this;
+    }
+
+    /**
      * 设置上分割线的高度
      *
      * @return
@@ -278,37 +282,6 @@ public class MyOneLineView extends LinearLayout {
      */
     public MyOneLineView setTextContentSize(int textSizeSp) {
         tvTextContent.setTextSize(textSizeSp);
-        return this;
-    }
-
-    /**
-     * 设置右边文字内容
-     *
-     * @return
-     */
-    public MyOneLineView setRightText(String rightText) {
-        tvRightText.setText(rightText);
-        return this;
-    }
-
-
-    /**
-     * 设置右边文字颜色
-     *
-     * @return
-     */
-    public MyOneLineView setRightTextColor(int colorRes) {
-        tvRightText.setTextColor(getResources().getColor(colorRes));
-        return this;
-    }
-
-    /**
-     * 设置右边文字大小
-     *
-     * @return
-     */
-    public MyOneLineView setRightTextSize(int textSize) {
-        tvRightText.setTextSize(textSize);
         return this;
     }
 

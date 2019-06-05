@@ -1,4 +1,4 @@
-package com.nhbs.fenxiao.module.mine.presenter;
+package com.nhbs.fenxiao.module.mine.fragment.presenter;
 
 import com.yu.common.mvp.Viewer;
 

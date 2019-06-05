@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.nhbs.fenxiao">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.nhbs.fenxiao">
 
-  <application
-      android:name=".APP"
-      android:allowBackup="true"
-      android:icon="@mipmap/ic_launcher"
-      android:label="${APP_NAME}"
-      android:roundIcon="@mipmap/ic_launcher_round"
-      android:supportsRtl="true"
-      android:theme="@style/BaseTheme"
-      tools:ignore="GoogleAppIndexingWarning"
-      tools:replace="label,allowBackup">
-    <activity
-        android:name=".module.home.HomePageActivity"
-        android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
-        android:launchMode="singleTask"
-        android:screenOrientation="portrait"
-        android:windowSoftInputMode="adjustNothing"/>
-    <activity
-        android:name=".module.login.LoginActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".test.TestActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.web.WebViewActivity"
-        android:screenOrientation="portrait"/>
-    <activity android:name=".module.splash.SplashActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
+    <application
+        android:name=".APP"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="${APP_NAME}"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/BaseTheme"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="label,allowBackup">
+        <activity
+            android:name=".module.mine.activity.MineTeamActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.home.HomePageActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing"/>
+        <activity
+            android:name=".module.login.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".test.TestActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.web.WebViewActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".module.splash.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
-        <category android:name="android.intent.category.LAUNCHER"/>
-      </intent-filter>
-    </activity>
-  </application>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
 
 </manifest>

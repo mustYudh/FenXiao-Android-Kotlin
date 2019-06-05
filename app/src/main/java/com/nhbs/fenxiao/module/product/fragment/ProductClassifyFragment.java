@@ -10,6 +10,7 @@ import com.nhbs.fenxiao.adapter.CommonRvAdapter;
 import com.nhbs.fenxiao.base.BaseFragment;
 import com.nhbs.fenxiao.module.product.fragment.presenter.ProductClassifyFragmentPresenter;
 import com.nhbs.fenxiao.module.product.fragment.presenter.ProductClassifyFragmentViewer;
+import com.nhbs.fenxiao.module.view.ScreenSpaceItemDecoration;
 import com.yu.common.mvp.PresenterLifeCycle;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class ProductClassifyFragment extends BaseFragment implements ProductClas
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
         rv_product = bindView(R.id.rv_product);
+        rv_product.addItemDecoration(new ScreenSpaceItemDecoration(getActivity(), 10));
         rv_product.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
         for (int i = 0; i < 10; i++) {
