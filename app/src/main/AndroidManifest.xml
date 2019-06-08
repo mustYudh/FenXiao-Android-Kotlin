@@ -14,6 +14,21 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="label,allowBackup">
         <activity
+            android:name=".module.home.fragment.RewardAdvertisingFragment"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.home.activity.RewardAdvertisingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.mine.activity.MineOrderListActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.login.VerificationCodeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.login.BindPhoneActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".module.home.activity.HomeProductClassifyActivity"
             android:screenOrientation="portrait"/>
         <activity

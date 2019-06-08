@@ -7,14 +7,16 @@ import android.widget.LinearLayout;
 
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseFragment;
+import com.nhbs.fenxiao.module.mine.activity.MineOrderListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineTeamActivity;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentPresenter;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentViewer;
 import com.nhbs.fenxiao.module.view.MyOneLineView;
+import com.yu.common.launche.LauncherHelper;
 import com.yu.common.mvp.PresenterLifeCycle;
 
 
-public class MineFragment extends BaseFragment implements MineFragmentViewer, MyOneLineView.OnRootClickListener {
+public class MineFragment extends BaseFragment implements MineFragmentViewer, MyOneLineView.OnRootClickListener, View.OnClickListener {
 
     @PresenterLifeCycle
     MineFragmentPresenter presenter = new MineFragmentPresenter(this);
@@ -58,6 +60,9 @@ public class MineFragment extends BaseFragment implements MineFragmentViewer, My
                 .setOnRootClickListener(this, 6));
 
 
+        LinearLayout ll_order = bindView(R.id.ll_order);
+        ll_order.setOnClickListener(this);
+
     }
 
 
@@ -76,6 +81,15 @@ public class MineFragment extends BaseFragment implements MineFragmentViewer, My
             case 5:
                 break;
             case 6:
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ll_order:
+                LauncherHelper.from(getActivity()).startActivity(MineOrderListActivity.class);
                 break;
         }
     }

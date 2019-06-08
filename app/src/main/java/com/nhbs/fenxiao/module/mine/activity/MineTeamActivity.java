@@ -53,13 +53,13 @@ public class MineTeamActivity extends BaseBarActivity implements MineTeamActivit
             switch (view.getId()) {
                 case R.id.ll_team_one:
                     tv_team_one.setTextColor(getResources().getColor(R.color.app_red));
-                    tv_team_two.setTextColor(getResources().getColor(R.color.app_gray));
+                    tv_team_two.setTextColor(getResources().getColor(R.color.app_ADB6C4));
                     view_one.setVisibility(View.VISIBLE);
                     view_two.setVisibility(View.INVISIBLE);
                     rv_team.setAdapter(new MineTeamRvAdapter(R.layout.item_mine_team, list, getActivity()));
                     break;
                 case R.id.ll_team_two:
-                    tv_team_one.setTextColor(getResources().getColor(R.color.app_gray));
+                    tv_team_one.setTextColor(getResources().getColor(R.color.app_ADB6C4));
                     tv_team_two.setTextColor(getResources().getColor(R.color.app_red));
                     view_one.setVisibility(View.INVISIBLE);
                     view_two.setVisibility(View.VISIBLE);

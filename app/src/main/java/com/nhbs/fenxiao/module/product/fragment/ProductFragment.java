@@ -14,6 +14,7 @@ import com.nhbs.fenxiao.base.BaseFragment;
 import com.nhbs.fenxiao.module.product.adapter.ProductViewPageAdapter;
 import com.nhbs.fenxiao.module.product.fragment.presenter.ProductFragmentPresenter;
 import com.nhbs.fenxiao.module.product.fragment.presenter.ProductFragmentViewer;
+import com.nhbs.fenxiao.utils.DensityUtils;
 import com.yu.common.mvp.PresenterLifeCycle;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -32,9 +33,9 @@ import java.util.List;
 public class ProductFragment extends BaseFragment implements ProductFragmentViewer {
     private List<String> mDataList = new ArrayList<>();
     private List<BaseFragment> fragments = new ArrayList<>();
+    private ViewPager mViewPager;
     @PresenterLifeCycle
     ProductFragmentPresenter presenter = new ProductFragmentPresenter(this);
-    private ViewPager mViewPager;
 
 
     @Override
@@ -61,7 +62,9 @@ public class ProductFragment extends BaseFragment implements ProductFragmentView
         mDataList.add("火器");
         mDataList.add("其他");
         mViewPager = bindView(R.id.view_pager);
+
         LinearLayout ll_search = bindView(R.id.ll_search);
+
 
         for (int i = 0; i < mDataList.size(); i++) {
             fragments.add(ProductClassifyFragment.newInstance(i));
@@ -126,8 +129,10 @@ public class ProductFragment extends BaseFragment implements ProductFragmentView
             @Override
             public IPagerIndicator getIndicator(Context context) {
                 LinePagerIndicator linePagerIndicator = new LinePagerIndicator(context);
-                linePagerIndicator.setMode(LinePagerIndicator.MODE_MATCH_EDGE);
+                linePagerIndicator.setMode(LinePagerIndicator.MODE_EXACTLY);
                 linePagerIndicator.setColors(Color.parseColor("#FF3E2B"));
+                linePagerIndicator.setLineWidth(DensityUtils.dp2px(getActivity(), 24));
+                linePagerIndicator.setLineHeight(DensityUtils.dp2px(getActivity(), 2));
                 return linePagerIndicator;
             }
         });

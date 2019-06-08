@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_mine_order_top"
+        android:gravity="center_vertical">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+
+            <com.yu.common.ui.CircleImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/ic_launcher_background"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:includeFontPadding="false"
+                android:text="XXXX酒吧"
+                android:textColor="#ff3b3e5a"
+                android:textSize="12sp"
+                />
+
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="8dp"
+                android:layout_marginLeft="4dp"
+                android:src="@drawable/arrow_right"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="12dp"
+            android:includeFontPadding="false"
+            android:text="卖家已发货"
+            android:textColor="#ffff2751"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

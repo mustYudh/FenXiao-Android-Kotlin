@@ -11,10 +11,10 @@ import android.widget.TextView;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarActivity;
 import com.nhbs.fenxiao.base.BaseFragment;
-import com.nhbs.fenxiao.module.home.activity.presenter.HomeProductClassifyPresenter;
-import com.nhbs.fenxiao.module.home.activity.presenter.HomeProductClassifyViewer;
-import com.nhbs.fenxiao.module.product.adapter.ProductViewPageAdapter;
-import com.nhbs.fenxiao.module.product.fragment.ProductClassifyFragment;
+import com.nhbs.fenxiao.module.home.activity.presenter.RewardAdvertisingPresenter;
+import com.nhbs.fenxiao.module.home.activity.presenter.RewardAdvertisingViewer;
+import com.nhbs.fenxiao.module.home.adapter.MineRewardListViewPageAdapter;
+import com.nhbs.fenxiao.module.home.fragment.RewardAdvertisingFragment;
 import com.nhbs.fenxiao.utils.DensityUtils;
 import com.yu.common.mvp.PresenterLifeCycle;
 
@@ -31,26 +31,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeProductClassifyActivity extends BaseBarActivity implements HomeProductClassifyViewer {
+public class RewardAdvertisingActivity extends BaseBarActivity implements RewardAdvertisingViewer {
     private List<String> mDataList = new ArrayList<>();
     private List<BaseFragment> fragments = new ArrayList<>();
     private ViewPager mViewPager;
     @PresenterLifeCycle
-    HomeProductClassifyPresenter presenter = new HomeProductClassifyPresenter(this);
+    RewardAdvertisingPresenter presenter = new RewardAdvertisingPresenter(this);
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_home_product_classify_view);
+        setContentView(R.layout.activity_reward_advertising_view);
     }
 
     @Override
     protected void loadData() {
-
-        mDataList.add("精选");
-        mDataList.add("女装");
-        mDataList.add("男装");
-        mDataList.add("美妆");
-        mDataList.add("食品");
+        mDataList.add("热门");
+        mDataList.add("招聘");
+        mDataList.add("房产");
+        mDataList.add("招商");
+        mDataList.add("金融");
         mDataList.add("居家");
         mDataList.add("鞋品");
         mDataList.add("电器");
@@ -58,18 +57,18 @@ public class HomeProductClassifyActivity extends BaseBarActivity implements Home
         mDataList.add("火器");
         mDataList.add("其他");
         mViewPager = bindView(R.id.view_pager);
+
         for (int i = 0; i < mDataList.size(); i++) {
-            fragments.add(ProductClassifyFragment.newInstance(i));
+            fragments.add(RewardAdvertisingFragment.newInstance(i + 1));
         }
         initMagicIndicator();
-
     }
 
     /**
      * 初始化tablayout
      */
     private void initMagicIndicator() {
-        ProductViewPageAdapter adapter = new ProductViewPageAdapter(getSupportFragmentManager(), mDataList, fragments);
+        MineRewardListViewPageAdapter adapter = new MineRewardListViewPageAdapter(getSupportFragmentManager(), mDataList, fragments);
         mViewPager.setAdapter(adapter);
         MagicIndicator magicIndicator = bindView(R.id.magic_indicator);
         CommonNavigator commonNavigator = new CommonNavigator(getActivity());

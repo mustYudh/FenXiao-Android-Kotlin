@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="团队推广"
-                android:textColor="@color/app_gray"
+                android:textColor="@color/app_ADB6C4"
                 android:textSize="16sp"
                 />
 

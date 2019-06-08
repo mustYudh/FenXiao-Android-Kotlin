@@ -12,16 +12,19 @@ import android.widget.LinearLayout;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.adapter.CommonRvAdapter;
 import com.nhbs.fenxiao.base.BaseFragment;
+import com.nhbs.fenxiao.module.home.activity.HomeProductClassifyActivity;
+import com.nhbs.fenxiao.module.home.activity.RewardAdvertisingActivity;
 import com.nhbs.fenxiao.module.home.fragment.presenter.HomeFragmentPresenter;
 import com.nhbs.fenxiao.module.home.fragment.presenter.HomeFragmentViewer;
 import com.nhbs.fenxiao.module.view.ScreenSpaceItemDecoration;
+import com.yu.common.launche.LauncherHelper;
 import com.yu.common.mvp.PresenterLifeCycle;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends BaseFragment implements HomeFragmentViewer {
+public class HomeFragment extends BaseFragment implements HomeFragmentViewer, View.OnClickListener {
 
     @PresenterLifeCycle
     HomeFragmentPresenter presenter = new HomeFragmentPresenter(this);
@@ -37,12 +40,17 @@ public class HomeFragment extends BaseFragment implements HomeFragmentViewer {
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
         ll_mission_root = bindView(R.id.ll_mission_root);
+        LinearLayout ll_product = bindView(R.id.ll_product);
+        LinearLayout ll_reward = bindView(R.id.ll_reward);
         rv_home = bindView(R.id.rv_home);
         EditText ed_search = bindView(R.id.ed_search);
         ed_search.setInputType(InputType.TYPE_NULL);
 
         rv_home.addItemDecoration(new ScreenSpaceItemDecoration(getActivity(), 10));
         rv_home.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
+        ll_product.setOnClickListener(this);
+        ll_reward.setOnClickListener(this);
     }
 
     @Override
@@ -60,5 +68,17 @@ public class HomeFragment extends BaseFragment implements HomeFragmentViewer {
 
         CommonRvAdapter adapter = new CommonRvAdapter(R.layout.item_common_product, list, getActivity());
         rv_home.setAdapter(adapter);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ll_product:
+                LauncherHelper.from(getActivity()).startActivity(HomeProductClassifyActivity.class);
+                break;
+            case R.id.ll_reward:
+                LauncherHelper.from(getActivity()).startActivity(RewardAdvertisingActivity.class);
+                break;
+        }
     }
 }

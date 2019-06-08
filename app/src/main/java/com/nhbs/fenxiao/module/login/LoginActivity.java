@@ -34,7 +34,6 @@ public class LoginActivity extends BaseBarActivity implements LoginViewer {
     @Override
     protected void loadData() {
         setTitle("测试登录页");
-        bindView(R.id.test,v -> mPresenter.login());
     }
 
     @Override

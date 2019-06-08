@@ -26,9 +26,9 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:minWidth="50dp"
-                android:text="生禽蛋类"
+                android:text=""
                 android:textColor="#A0A9BB"
-                android:textSize="14sp"/>
+                android:textSize="16sp"/>
 
 
         </LinearLayout>
