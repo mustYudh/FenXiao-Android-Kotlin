@@ -59,6 +59,7 @@ android {
             storePassword 'asdfghjkl'
             keyAlias 'fenxiao'
             keyPassword 'asdfghjkl'
+            v2SigningEnabled false
         }
         release {
             storeFile file('../keystores/fenxiao.jks')
