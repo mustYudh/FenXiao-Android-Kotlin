@@ -6,17 +6,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.nhbs.fenxiao.R;
+import com.nhbs.fenxiao.base.BaseBarFragment;
 import com.nhbs.fenxiao.base.BaseFragment;
 import com.nhbs.fenxiao.module.product.adapter.ProductViewPageAdapter;
 import com.nhbs.fenxiao.module.product.fragment.presenter.ProductFragmentPresenter;
 import com.nhbs.fenxiao.module.product.fragment.presenter.ProductFragmentViewer;
 import com.nhbs.fenxiao.utils.DensityUtils;
 import com.yu.common.mvp.PresenterLifeCycle;
-
+import java.util.ArrayList;
+import java.util.List;
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
@@ -26,17 +26,17 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTit
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.CommonPagerTitleView;
 
-import java.util.ArrayList;
-import java.util.List;
 
-
-public class ProductFragment extends BaseFragment implements ProductFragmentViewer {
+public class ProductFragment extends BaseBarFragment implements ProductFragmentViewer {
     private List<String> mDataList = new ArrayList<>();
     private List<BaseFragment> fragments = new ArrayList<>();
     private ViewPager mViewPager;
     @PresenterLifeCycle
-    ProductFragmentPresenter presenter = new ProductFragmentPresenter(this);
+    private ProductFragmentPresenter presenter = new ProductFragmentPresenter(this);
 
+    @Override protected int getActionBarLayoutId() {
+        return R.layout.action_bar_product_paage_fragment_layout;
+    }
 
     @Override
     protected int getContentViewId() {
@@ -63,7 +63,6 @@ public class ProductFragment extends BaseFragment implements ProductFragmentView
         mDataList.add("其他");
         mViewPager = bindView(R.id.view_pager);
 
-        LinearLayout ll_search = bindView(R.id.ll_search);
 
 
         for (int i = 0; i < mDataList.size(); i++) {

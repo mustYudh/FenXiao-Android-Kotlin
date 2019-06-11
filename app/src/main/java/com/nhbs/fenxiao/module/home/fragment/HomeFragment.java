@@ -8,10 +8,9 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.adapter.CommonRvAdapter;
-import com.nhbs.fenxiao.base.BaseFragment;
+import com.nhbs.fenxiao.base.BaseBarFragment;
 import com.nhbs.fenxiao.module.home.activity.HomeProductClassifyActivity;
 import com.nhbs.fenxiao.module.home.activity.RewardAdvertisingActivity;
 import com.nhbs.fenxiao.module.home.fragment.presenter.HomeFragmentPresenter;
@@ -19,18 +18,26 @@ import com.nhbs.fenxiao.module.home.fragment.presenter.HomeFragmentViewer;
 import com.nhbs.fenxiao.module.view.ScreenSpaceItemDecoration;
 import com.yu.common.launche.LauncherHelper;
 import com.yu.common.mvp.PresenterLifeCycle;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends BaseFragment implements HomeFragmentViewer, View.OnClickListener {
+public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer, View.OnClickListener {
 
     @PresenterLifeCycle
-    HomeFragmentPresenter presenter = new HomeFragmentPresenter(this);
+    private HomeFragmentPresenter presenter = new HomeFragmentPresenter(this);
     private LinearLayout ll_mission_root;
     private RecyclerView rv_home;
     private List<String> list = new ArrayList<>();
+
+    @Override public boolean isImmersionBar() {
+        return true;
+    }
+
+
+    @Override protected int getActionBarLayoutId() {
+        return R.layout.action_bar_home_paage_fragment_layout;
+    }
 
     @Override
     protected int getContentViewId() {

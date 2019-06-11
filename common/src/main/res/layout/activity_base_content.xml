@@ -13,17 +13,28 @@
       android:visibility="gone"
       />
   <FrameLayout
-      android:visibility="gone"
       android:id="@+id/network_error"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      >
-  </FrameLayout>
+      android:visibility="gone"
+      />
 
   <FrameLayout
-      android:id="@+id/content_container"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      />
+      >
+    <FrameLayout
+        android:id="@+id/content_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <FrameLayout
+        android:id="@+id/immersion_action_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
+  </FrameLayout>
 
 </com.yu.common.ui.RootLinearLayout>

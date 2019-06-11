@@ -4,9 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.LinearLayout;
-
 import com.nhbs.fenxiao.R;
-import com.nhbs.fenxiao.base.BaseFragment;
+import com.nhbs.fenxiao.base.BaseBarFragment;
 import com.nhbs.fenxiao.module.mine.activity.MineOrderListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineTeamActivity;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentPresenter;
@@ -16,10 +15,15 @@ import com.yu.common.launche.LauncherHelper;
 import com.yu.common.mvp.PresenterLifeCycle;
 
 
-public class MineFragment extends BaseFragment implements MineFragmentViewer, MyOneLineView.OnRootClickListener, View.OnClickListener {
+public class MineFragment extends BaseBarFragment
+    implements MineFragmentViewer, MyOneLineView.OnRootClickListener, View.OnClickListener {
 
     @PresenterLifeCycle
-    MineFragmentPresenter presenter = new MineFragmentPresenter(this);
+    private MineFragmentPresenter presenter = new MineFragmentPresenter(this);
+
+    @Override protected int getActionBarLayoutId() {
+        return R.layout.action_bar_page_fragment_mine_layout;
+    }
 
     @Override
     protected int getContentViewId() {

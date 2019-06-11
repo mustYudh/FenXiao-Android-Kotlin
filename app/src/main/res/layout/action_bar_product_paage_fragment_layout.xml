@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/action_bar_all_height"
+    android:background="@color/lb_cm_white"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/action_bar_height_top"
+    >
+
+
+  <com.nhbs.fenxiao.module.view.ClearEditText
+      android:id="@+id/ll_search"
+      android:layout_width="0dp"
+      android:layout_height="28dp"
+      android:layout_marginLeft="16dp"
+      android:layout_marginRight="8dp"
+      android:layout_weight="1"
+      android:background="@drawable/shape_search_product"
+      android:cursorVisible="true"
+      android:drawableLeft="@drawable/home_search"
+      android:drawablePadding="8dp"
+      android:hint="搜索活动"
+      android:maxLength="1"
+      android:paddingLeft="12dp"
+      android:paddingRight="12dp"
+      android:singleLine="true"
+      android:textColorHint="#3C3D5A"
+      android:textSize="14sp"
+
+      />
+
+
+</LinearLayout>
