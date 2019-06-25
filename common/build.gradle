@@ -44,4 +44,8 @@ dependencies {
     api 'com.squareup.okhttp3:okhttp:3.10.0'
     //Gson序列化反序列化的依赖包
     api 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    api 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+
 }
