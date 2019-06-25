@@ -1,6 +1,6 @@
 package com.nhbs.fenxiao.module.splash.presenter;
 
-import com.nhbs.fenxiao.module.home.HomePageActivity;
+import com.nhbs.fenxiao.module.login.LoginActivity;
 import com.yu.common.countdown.RxCountDown;
 import com.yu.common.countdown.RxCountDownAdapter;
 import com.yu.common.framework.BaseViewPresenter;
@@ -37,7 +37,7 @@ public class SplashPresenter extends BaseViewPresenter<SplashViewer> {
   }
 
   private void getHome() {
-    getLauncherHelper().startActivity(HomePageActivity.class);
+    getLauncherHelper().startActivity(LoginActivity.class);
     getActivity().finish();
   }
 
