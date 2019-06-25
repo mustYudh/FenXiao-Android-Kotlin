@@ -10,11 +10,13 @@ import android.widget.TextView;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarFragment;
 import com.nhbs.fenxiao.base.BaseFragment;
+import com.nhbs.fenxiao.module.home.StatusBarColorManager;
 import com.nhbs.fenxiao.module.product.adapter.ProductViewPageAdapter;
 import com.nhbs.fenxiao.module.product.fragment.presenter.ProductFragmentPresenter;
 import com.nhbs.fenxiao.module.product.fragment.presenter.ProductFragmentViewer;
 import com.nhbs.fenxiao.utils.DensityUtils;
 import com.yu.common.mvp.PresenterLifeCycle;
+import com.yu.common.navigation.StatusBarFontColorUtil;
 import java.util.ArrayList;
 import java.util.List;
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -138,6 +140,13 @@ public class ProductFragment extends BaseBarFragment implements ProductFragmentV
         magicIndicator.setNavigator(commonNavigator);
         ViewPagerHelper.bind(magicIndicator, mViewPager);
 
+    }
+
+
+    @Override protected void onPageInTop() {
+        super.onPageInTop();
+        StatusBarColorManager.INSTANCE.setDark(true);
+        StatusBarFontColorUtil.StatusBarLightMode(getActivity());
     }
 
 

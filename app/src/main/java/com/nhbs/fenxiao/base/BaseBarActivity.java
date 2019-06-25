@@ -16,10 +16,6 @@ public abstract class BaseBarActivity extends BaseActivity {
     return R.layout.action_bar_white_web_view;
   }
 
-  @Override protected boolean darkMode() {
-    return getActionBarLayoutId() != R.layout.action_bar_white_web_view;
-  }
-
   @Override protected void onViewCreated(View view) {
     super.onViewCreated(view);
     initBack();

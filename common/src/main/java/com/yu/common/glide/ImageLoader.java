@@ -90,7 +90,7 @@ public class ImageLoader implements ImageLoaderCommonFunc {
     return impl.getDiskCachePath(url);
   }
 
-  @Override public void blurTransformation(ImageView view, String url, CenterCrop centerCrop) {
-    impl.blurTransformation(view, url,centerCrop);
+  @Override public void blurTransformation(ImageView view, String url,int placeholderId, CenterCrop centerCrop) {
+    impl.blurTransformation(view, url,placeholderId,centerCrop);
   }
 }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarFragment;
+import com.nhbs.fenxiao.module.home.StatusBarColorManager;
 import com.nhbs.fenxiao.module.mine.activity.MineOrderListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineTeamActivity;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentPresenter;
@@ -13,7 +14,7 @@ import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentViewer;
 import com.nhbs.fenxiao.module.view.MyOneLineView;
 import com.yu.common.launche.LauncherHelper;
 import com.yu.common.mvp.PresenterLifeCycle;
-
+import com.yu.common.navigation.StatusBarFontColorUtil;
 
 public class MineFragment extends BaseBarFragment
     implements MineFragmentViewer, MyOneLineView.OnRootClickListener, View.OnClickListener {
@@ -96,5 +97,13 @@ public class MineFragment extends BaseBarFragment
                 LauncherHelper.from(getActivity()).startActivity(MineOrderListActivity.class);
                 break;
         }
+    }
+
+
+
+    @Override protected void onPageInTop() {
+        super.onPageInTop();
+        StatusBarColorManager.INSTANCE.setDark(true);
+        StatusBarFontColorUtil.StatusBarLightMode(getActivity());
     }
 }

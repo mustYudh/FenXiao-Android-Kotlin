@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseFragment;
+import com.nhbs.fenxiao.module.home.StatusBarColorManager;
+import com.yu.common.navigation.StatusBarFontColorUtil;
 
 /**
  * @author yudenghao
@@ -20,5 +22,12 @@ public class MiniStoreFragment extends BaseFragment {
 
   @Override protected void loadData() {
 
+  }
+
+
+  @Override protected void onPageInTop() {
+    super.onPageInTop();
+    StatusBarColorManager.INSTANCE.setDark(true);
+    StatusBarFontColorUtil.StatusBarLightMode(getActivity());
   }
 }

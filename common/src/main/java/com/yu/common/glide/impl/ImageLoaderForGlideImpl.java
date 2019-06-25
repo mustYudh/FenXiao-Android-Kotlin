@@ -222,10 +222,10 @@ public class ImageLoaderForGlideImpl implements ImageLoaderCommonFunc {
     return null;
   }
 
-  @Override public void blurTransformation(ImageView imageView, String source,CenterCrop centerCrop) {
+  @Override public void blurTransformation(ImageView imageView, String source,int placeholderId,CenterCrop centerCrop) {
     GlideRequest<Drawable> glide = newGlide(imageView, source);
     if (glide != null) {
-      onLoadImage(glide, imageView, source, 0, 0, centerCrop, null);
+      onLoadImage(glide, imageView, source, 0, placeholderId, centerCrop, null);
     }
   }
 }

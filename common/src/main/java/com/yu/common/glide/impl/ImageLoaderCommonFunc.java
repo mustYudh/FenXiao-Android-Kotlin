@@ -39,5 +39,5 @@ public interface ImageLoaderCommonFunc {
 
   String getDiskCachePath(String url);
 
-  void blurTransformation(ImageView view, String url, CenterCrop centerCrop);
+  void blurTransformation(ImageView view, String url, int placeholderId,CenterCrop centerCrop);
 }

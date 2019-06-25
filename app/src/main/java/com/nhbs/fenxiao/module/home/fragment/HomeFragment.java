@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.adapter.CommonRvAdapter;
 import com.nhbs.fenxiao.base.BaseBarFragment;
+import com.nhbs.fenxiao.module.home.StatusBarColorManager;
 import com.nhbs.fenxiao.module.home.activity.HomeProductClassifyActivity;
 import com.nhbs.fenxiao.module.home.activity.RewardAdvertisingActivity;
 import com.nhbs.fenxiao.module.home.fragment.presenter.HomeFragmentPresenter;
@@ -18,6 +19,7 @@ import com.nhbs.fenxiao.module.home.fragment.presenter.HomeFragmentViewer;
 import com.nhbs.fenxiao.module.view.ScreenSpaceItemDecoration;
 import com.yu.common.launche.LauncherHelper;
 import com.yu.common.mvp.PresenterLifeCycle;
+import com.yu.common.navigation.StatusBarFontColorUtil;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,4 +90,11 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
                 break;
         }
     }
+
+    @Override protected void onPageInTop() {
+        super.onPageInTop();
+        StatusBarColorManager.INSTANCE.setDark(false);
+        StatusBarFontColorUtil.statusBarDarkMode(getActivity());
+    }
+
 }
