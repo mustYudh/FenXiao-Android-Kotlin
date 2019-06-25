@@ -1,6 +1,7 @@
 package com.yu.common;
 
 import android.content.Context;
+import com.yu.common.glide.config.ImageLoaderConfig;
 import com.yu.common.ui.Res;
 
 /**
@@ -18,6 +19,7 @@ public class CommonInit {
     public static CommonInit init(Context context) {
         CONTEXT = context;
         Res.init(context);
+        ImageLoaderConfig.init(context);
         return commonInit;
     }
 
