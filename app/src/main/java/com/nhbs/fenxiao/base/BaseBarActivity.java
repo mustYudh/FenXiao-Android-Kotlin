@@ -1,5 +1,6 @@
 package com.nhbs.fenxiao.base;
 
+import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.view.View;
@@ -45,6 +46,11 @@ public abstract class BaseBarActivity extends BaseActivity {
     if (back != null) {
       back.setOnClickListener(v -> finish());
     }
+  }
+
+  public void setBackImgRes(@DrawableRes int res) {
+    BarIconContainer back = findViewById(R.id.action_back);
+    back.setImageRes(res);
   }
 
   public void setTitle(String titleName) {

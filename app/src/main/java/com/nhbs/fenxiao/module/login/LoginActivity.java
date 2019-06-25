@@ -43,6 +43,7 @@ public class LoginActivity extends BaseBarActivity implements LoginViewer, View.
   }
 
   private void initView() {
+    setBackImgRes(R.drawable.ic_cancel);
     bindView(R.id.divider).setLayerType(View.LAYER_TYPE_SOFTWARE, null);
   }
 

@@ -2,6 +2,7 @@ package com.yu.common.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ import com.yu.common.R;
  */
 public class BarIconContainer extends RelativeLayout {
 
+  private ImageView mBarIcon;
+
   public BarIconContainer(Context context) {
     this(context, null);
   }
@@ -30,14 +33,14 @@ public class BarIconContainer extends RelativeLayout {
 
     LayoutInflater.from(context).inflate(R.layout.layout_bar_icon_container, this, true);
 
-    ImageView barIcon = (ImageView) findViewById(R.id.bar_icon);
+    mBarIcon = (ImageView) findViewById(R.id.bar_icon);
     View barUnRead = findViewById(R.id.bar_unread);
 
     if (attrs != null) {
       TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.BarIconContainer);
 
       if (a.getResourceId(R.styleable.BarIconContainer_bar_icon, 0) != 0) {
-        barIcon.setImageResource(a.getResourceId(R.styleable.BarIconContainer_bar_icon, 0));
+        mBarIcon.setImageResource(a.getResourceId(R.styleable.BarIconContainer_bar_icon, 0));
       }
       if (a.getResourceId(R.styleable.BarIconContainer_bar_unread_icon, 0) != 0) {
         barUnRead.setBackgroundResource(
@@ -45,6 +48,11 @@ public class BarIconContainer extends RelativeLayout {
       }
       a.recycle();
     }
+  }
+
+
+  public void setImageRes(@DrawableRes int res) {
+    mBarIcon.setImageResource(res);
   }
 
   public void showUnRead(int count) {

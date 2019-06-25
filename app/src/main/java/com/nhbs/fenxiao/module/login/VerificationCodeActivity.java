@@ -48,6 +48,7 @@ public class VerificationCodeActivity extends BaseBarActivity
   }
 
   private void initView() {
+    setBackImgRes(R.drawable.ic_cancel);
     mNumber1 = bindView(R.id.number1);
     mNumber2 = bindView(R.id.number2);
     mNumber3 = bindView(R.id.number3);
