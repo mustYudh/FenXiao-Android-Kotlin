@@ -50,6 +50,8 @@ android {
         ndk {
 //            abiFilters "armeabi-v7a"
         }
+        renderscriptTargetApi 25
+        renderscriptSupportModeEnabled true
     }
 
 
@@ -222,4 +224,5 @@ dependencies {
     implementation 'com.github.pinguo-zhouwei:MZBannerView:v2.0.2'
     implementation 'com.github.hackware1993:MagicIndicator:1.6.0'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    implementation 'com.github.pinguo-zhouwei:EasyBlur:v1.0.0'
 }

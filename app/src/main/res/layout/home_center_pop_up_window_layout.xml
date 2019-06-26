@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:ignore="MissingDefaultResource"
-    >
-  <ImageView
-      android:id="@+id/bg"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:scaleType="centerCrop"
-      />
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingDefaultResource"
+>
+    <ImageView
+            android:id="@+id/pop_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+    />
+
+
+    <com.yu.common.ui.DelayClickImageView
+            android:id="@+id/cancel"
+            android:layout_marginBottom="21dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:src="@drawable/ic_select_city_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
 
 </FrameLayout>
