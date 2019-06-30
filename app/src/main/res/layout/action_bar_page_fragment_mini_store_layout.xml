@@ -5,20 +5,14 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="@dimen/action_bar_all_height"
-        android:background="@color/lb_cm_white"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/app_transparent"
         android:gravity="center_vertical"
         android:paddingTop="@dimen/action_bar_height_top"
 >
 
 
 
-    <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_setting"
-    />
 
     <View
             android:layout_width="0dp"
@@ -27,7 +21,7 @@
 
 
     <ImageView
-            android:tint="#2D2E38"
+            android:tint="@color/lb_cm_white"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:scaleType="centerCrop"
@@ -36,6 +30,8 @@
 
 
     <ImageView
+            android:tint="@color/lb_cm_white"
+            android:layout_marginRight="16dp"
             android:layout_width="22dp"
             android:layout_height="20dp"
             android:layout_marginLeft="18dp"
@@ -44,22 +40,25 @@
     />
 
 
-    <TextView
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="-7dp"
+    <com.yu.common.ui.BadgeView
+            android:layout_marginBottom="14dp"
+            android:layout_marginLeft="-19dp"
             android:gravity="center"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:id="@+id/iv_msg_num"
+            android:id="@+id/badge_view"
             android:layout_width="wrap_content"
             android:layout_height="14dp"
             android:layout_marginRight="4dp"
             android:background="@drawable/shape_red_point"
-            android:text="99+"
             android:textColor="@color/lb_cm_white"
             android:textSize="10sp"
             android:visibility="visible"
-    />
+            android:paddingBottom="1dp"
+            android:paddingTop="1dp"
+            android:textStyle="bold"
+            app:badge_text_background="@color/FF1370"
+            app:badge_radius="9px"
+            android:minWidth="16dp"/>
+
 </LinearLayout>
 
 

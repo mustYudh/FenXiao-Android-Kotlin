@@ -14,7 +14,10 @@
         <attr format="reference" name="bar_unread_icon"/>
     </declare-styleable>
 
-
+    <declare-styleable name="BadgeView">
+        <attr format="color" name="badge_text_background"/>
+        <attr format="dimension" name="badge_radius"/>
+    </declare-styleable>
 
 
 </resources>

@@ -17,6 +17,7 @@ import com.nhbs.fenxiao.module.product.fragment.ProductFragment;
 import com.nhbs.fenxiao.module.store.MiniStoreFragment;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.utils.PressHandle;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,35 +26,39 @@ import java.util.List;
  */
 public class HomePageActivity extends BaseActivity implements HomePageViewer {
 
-  private PressHandle pressHandle = new PressHandle(this);
+    private PressHandle pressHandle = new PressHandle(this);
 
-  @PresenterLifeCycle HomePagePresenter presenter = new HomePagePresenter(this);
-  private BottomNavigationView mBottomNavigationView;
+    @PresenterLifeCycle
+    HomePagePresenter presenter = new HomePagePresenter(this);
+    private BottomNavigationView mBottomNavigationView;
 
-  @Override protected void setView(@Nullable Bundle savedInstanceState) {
-    setContentView(R.layout.activity_home_page_view);
-  }
-
-  @Override protected void loadData() {
-    List<TabItem> items = new ArrayList<>();
-    mBottomNavigationView = bindView(R.id.navigation_view);
-    items.add(new TabView(0, new HomeFragment()));
-    items.add(new TabView(1, new ProductFragment()));
-    items.add(new TabView(2, null));
-    items.add(new TabView(3, new MiniStoreFragment()));
-    items.add(new TabView(4, new MineFragment()));
-    mBottomNavigationView.initControl(this).setPagerView(items, 0);
-    mBottomNavigationView.getControl().setOnTabClickListener((position, view) -> {
-      if (position == 2) {
-        HomeCenterPopUpWindow homePopUpWindow = new HomeCenterPopUpWindow(HomePageActivity.this);
-        homePopUpWindow.showPopupWindow();
-      }
-    });
-  }
-
-  @Override public void onBackPressed() {
-    if (!pressHandle.handlePress(KeyEvent.KEYCODE_BACK)) {
-      super.onBackPressed();
+    @Override
+    protected void setView(@Nullable Bundle savedInstanceState) {
+        setContentView(R.layout.activity_home_page_view);
     }
-  }
+
+    @Override
+    protected void loadData() {
+        List<TabItem> items = new ArrayList<>();
+        mBottomNavigationView = bindView(R.id.navigation_view);
+        items.add(new TabView(0, new HomeFragment()));
+        items.add(new TabView(1, new ProductFragment()));
+        items.add(new TabView(2, null));
+        items.add(new TabView(3, new MiniStoreFragment()));
+        items.add(new TabView(4, new MineFragment()));
+        mBottomNavigationView.initControl(this).setPagerView(items, 0);
+        mBottomNavigationView.getControl().setOnTabClickListener((position, view) -> {
+            if (position == 2) {
+                HomeCenterPopUpWindow homePopUpWindow = new HomeCenterPopUpWindow(HomePageActivity.this);
+                homePopUpWindow.showPopupWindow();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!pressHandle.handlePress(KeyEvent.KEYCODE_BACK)) {
+            super.onBackPressed();
+        }
+    }
 }
