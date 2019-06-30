@@ -10,8 +10,8 @@
     <net.lucode.hackware.magicindicator.MagicIndicator
         android:id="@+id/magic_indicator"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="5dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="16dp"
         android:overScrollMode="never"
         android:scrollbars="none"
         />

@@ -14,7 +14,7 @@ import com.nhbs.fenxiao.module.home.presenter.HomePagePresenter;
 import com.nhbs.fenxiao.module.home.presenter.HomePageViewer;
 import com.nhbs.fenxiao.module.mine.fragment.MineFragment;
 import com.nhbs.fenxiao.module.product.fragment.ProductFragment;
-import com.nhbs.fenxiao.module.store.MiniStoreFragment;
+import com.nhbs.fenxiao.module.store.fragment.MiniStoreFragment;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.utils.PressHandle;
 

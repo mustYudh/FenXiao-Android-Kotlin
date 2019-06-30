@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_white_radius_8"
+        android:paddingTop="14dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:orientation="vertical"
+        android:paddingBottom="4dp">
+
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <com.yu.common.ui.CircleImageView
+                android:layout_marginRight="8dp"
+                android:src="@drawable/ic_launcher_background"
+                android:layout_width="32dp"
+                android:layout_height="32dp"/>
+
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:text="XXXX酒吧"
+                    android:textColor="#3B3E5A"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+            <TextView
+                    android:layout_marginTop="2dp"
+                    android:drawablePadding="4dp"
+                    android:drawableLeft="@drawable/ic_location"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:text="杭州市江干区"
+                    android:textColor="#A0A9BB"
+                    android:textSize="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="78dp"/>
+
+
+    <View
+            android:background="#E9E9E9"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+
+
+    <LinearLayout
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <TextView
+                android:textSize="11sp"
+                android:textColor="#A0A9BB"
+                android:text="03月01日 6:00自动开奖"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+
+
+        <TextView
+                android:gravity="right"
+                android:textSize="11sp"
+                android:textColor="#A0A9BB"
+                android:text="02月05日 13:32:00提交"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

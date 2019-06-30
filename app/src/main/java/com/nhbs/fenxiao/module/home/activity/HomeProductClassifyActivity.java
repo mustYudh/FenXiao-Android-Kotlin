@@ -86,7 +86,6 @@ public class HomeProductClassifyActivity extends BaseBarActivity implements Home
                 // 初始化
                 final TextView titleText = commonPagerTitleView.findViewById(R.id.tv_title);
                 titleText.setText(mDataList.get(index));
-
                 commonPagerTitleView.setOnPagerTitleChangeListener(new CommonPagerTitleView.OnPagerTitleChangeListener() {
                     @Override
                     public void onSelected(int index, int totalCount) {

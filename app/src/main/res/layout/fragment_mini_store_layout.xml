@@ -7,17 +7,202 @@
 
 
     <LinearLayout
+            android:paddingTop="@dimen/action_bar_all_height"
             android:background="@drawable/ic_mini_store_top_bg"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="188dp">
-        <com.yu.common.ui.CircleImageView
+            android:layout_height="220dp">
+
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <com.yu.common.ui.CircleImageView
+                    android:layout_marginLeft="22dp"
+                    app:civ_border_width="2dp"
+                    android:src="@drawable/ic_launcher_background"
+                    app:civ_border_color="@color/lb_cm_white"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="16dp"
+            />
+
+            <LinearLayout
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:text="XXXX的小铺"
+                        android:textColor="@color/lb_cm_white"
+                        android:textSize="18sp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                <TextView
+                        android:gravity="center_vertical"
+                        android:drawablePadding="7dp"
+                        android:drawableLeft="@drawable/ic_location"
+                        android:text="XXXX市XX路"
+                        android:textColor="#DEFFFFFF"
+                        android:textSize="12sp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_marginRight="24dp"
                 android:layout_marginLeft="22dp"
-                android:layout_marginTop="48dp"
-                app:civ_border_width="2dp"
-                android:src="@drawable/ic_launcher_background"
-                app:civ_border_color="@color/lb_cm_white"
-                android:layout_width="60dp"
-                android:layout_height="60dp"/>
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+        >
+            <EditText
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:background="@null"
+                    android:enabled="false"
+                    android:textColor="@color/lb_cm_white"
+                    android:textSize="12sp"
+                    android:text="满XXX减XXXX满XXX减XXXX满XXX减XXXX满XXX……"
+                    android:layout_marginRight="9dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+
+
+            <com.yu.common.ui.DelayClickTextView
+                    android:background="@drawable/shape_home_edit_bg"
+                    android:gravity="center"
+                    android:text="编辑"
+                    android:textColor="@color/lb_cm_white"
+                    android:textSize="12sp"
+                    android:layout_width="36dp"
+                    android:layout_height="18dp"/>
+
+        </LinearLayout>
+
+
     </LinearLayout>
+
+
+    <LinearLayout
+            android:gravity="center"
+            android:layout_marginTop="-53dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/shape_white_radius_8"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="80dp">
+
+
+        <LinearLayout
+                android:layout_marginLeft="27dp"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:text="3214"
+                    android:textSize="16sp"
+                    android:textColor="@color/_3C3D5A"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_marginTop="4dp"
+                    android:textColor="#A0A9BB"
+                    android:text="总客户数(人)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:text="624"
+                    android:textSize="16sp"
+                    android:textColor="@color/_3C3D5A"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_marginTop="4dp"
+                    android:textColor="#A0A9BB"
+                    android:text="总销量(件)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:layout_marginRight="27dp"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:text="21415"
+                    android:textSize="16sp"
+                    android:textColor="@color/_3C3D5A"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_marginTop="4dp"
+                    android:textColor="#A0A9BB"
+                    android:text="总成交额(元)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/magic_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+    />
+
+
+    <android.support.v4.view.ViewPager
+            android:layout_marginTop="12dp
+"
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+    />
 
 </LinearLayout>
