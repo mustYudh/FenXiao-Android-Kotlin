@@ -1,12 +1,18 @@
 package com.nhbs.fenxiao.module.center
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
+import android.animation.TimeInterpolator
 import android.app.Activity
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Build.VERSION
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.BounceInterpolator
+import android.view.animation.DecelerateInterpolator
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.PopupWindow
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.module.home.StatusBarColorManager
@@ -26,10 +32,17 @@ class HomeCenterPopUpWindow(context: Activity) : BasePopupWindow(
     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
 ) {
     var activity: Activity? = null
+    var cancelView: ImageView? = null
+    var releaseGoods: LinearLayout? = null
+    var advertising: LinearLayout? = null
+    var releaseActivity: LinearLayout? = null
 
     init {
         isClippingEnabled = false
         activity = context
+        releaseGoods = bindView(R.id.release_goods)
+        advertising = bindView(R.id.advertising)
+        releaseActivity = bindView(R.id.activity)
         this.height = DensityUtils.getDisplayHeight(getContext())
         if (VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             try {
@@ -50,9 +63,10 @@ class HomeCenterPopUpWindow(context: Activity) : BasePopupWindow(
             .blur()
         val background = bindView<ImageView>(R.id.pop_bg)
         background.setImageBitmap(finalBitmap)
-        bindView<ImageView>(R.id.cancel) {
+        cancelView = bindView(R.id.cancel) {
             dismiss()
         }
+
     }
 
 
@@ -62,7 +76,24 @@ class HomeCenterPopUpWindow(context: Activity) : BasePopupWindow(
         } else {
             StatusBarFontColorUtil.statusBarDarkMode(activity)
         }
-        super.dismiss()
+        val array = floatArrayOf(DensityUtils.dp2px(context, 45F).toFloat(), DensityUtils.dp2px(context, 0F).toFloat())
+        showAnimator(cancelView!!, "rotation", 200, array, null) {
+            cancelView!!.visibility = View.GONE
+            bindView<LinearLayout>(R.id.top_view).visibility = View.GONE
+            StatusBarFontColorUtil.statusBarDarkMode(activity!!)
+            val array1 =
+                floatArrayOf(DensityUtils.dp2px(context, -220F).toFloat(), DensityUtils.dp2px(context, 88F).toFloat())
+            val array2 =
+                floatArrayOf(DensityUtils.dp2px(context, -220F).toFloat(), DensityUtils.dp2px(context, 88F).toFloat())
+            val array3 =
+                floatArrayOf(DensityUtils.dp2px(context, -220F).toFloat(), DensityUtils.dp2px(context, 88F).toFloat())
+            showAnimator(releaseGoods!!, "translationY", 200, array1, DecelerateInterpolator())
+            showAnimator(advertising!!, "translationY", 300, array2, DecelerateInterpolator())
+            showAnimator(releaseActivity!!, "translationY", 400, array3, DecelerateInterpolator()) {
+                super.dismiss()
+            }
+        }
+
     }
 
     override fun getBackgroundShadow(): View? {
@@ -75,8 +106,53 @@ class HomeCenterPopUpWindow(context: Activity) : BasePopupWindow(
 
 
     override fun showPopupWindow() {
+        val array = floatArrayOf(DensityUtils.dp2px(context, 0F).toFloat(), DensityUtils.dp2px(context, 45F).toFloat())
         StatusBarFontColorUtil.statusBarDarkMode(activity!!)
+        val array1 =
+            floatArrayOf(DensityUtils.dp2px(context, -88F).toFloat(), DensityUtils.dp2px(context, -220F).toFloat())
+        val array2 =
+            floatArrayOf(DensityUtils.dp2px(context, -88F).toFloat(), DensityUtils.dp2px(context, -220F).toFloat())
+        val array3 =
+            floatArrayOf(DensityUtils.dp2px(context, -88F).toFloat(), DensityUtils.dp2px(context, -220F).toFloat())
+        showAnimator(cancelView!!, "rotation", 200, array, BounceInterpolator()) {
+            showAnimator(releaseGoods!!, "translationY", 200, array1, BounceInterpolator())
+            showAnimator(advertising!!, "translationY", 300, array2, BounceInterpolator())
+            showAnimator(releaseActivity!!, "translationY", 400, array3, BounceInterpolator())
+        }
         super.showPopupWindow()
+    }
+
+
+    private fun showAnimator(
+        view: View,
+        name: String,
+        time: Long,
+        distance: FloatArray,
+        interpolator: TimeInterpolator?,
+        listener: () -> Unit? = {}
+    ) {
+        val anim = ObjectAnimator.ofFloat(view, name, *distance)
+        anim.duration = time
+        anim.interpolator = interpolator
+        anim.start()
+        anim.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(animation: Animator?) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                listener()
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+
+            }
+
+        })
     }
 
 }
