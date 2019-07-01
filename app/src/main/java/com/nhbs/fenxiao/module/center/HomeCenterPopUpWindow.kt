@@ -56,10 +56,16 @@ class HomeCenterPopUpWindow(context: Activity) : BasePopupWindow(
             }
 
         }
+        val activityView = context.window.decorView
+        activityView.isDrawingCacheEnabled = true
+        activityView.destroyDrawingCache()
+        activityView.buildDrawingCache()
+        val bmp = activityView.drawingCache
+
         val bitmap = BitmapFactory.decodeResource(activity!!.resources, R.drawable.ic_center_tab_bg)
         val finalBitmap = EasyBlur.with(activity)
-            .bitmap(bitmap) //要模糊的图片
-            .radius(10)//模糊半径
+            .bitmap(bmp) //要模糊的图片
+            .radius(15)//模糊半径
             .blur()
         val background = bindView<ImageView>(R.id.pop_bg)
         background.setImageBitmap(finalBitmap)
