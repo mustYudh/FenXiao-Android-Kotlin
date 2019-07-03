@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.LinearLayout;
+
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarFragment;
 import com.nhbs.fenxiao.module.home.StatusBarColorManager;
+import com.nhbs.fenxiao.module.mine.activity.MineGeneralizeActivity;
+import com.nhbs.fenxiao.module.mine.activity.MineIncomeActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineOrderListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineTeamActivity;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentPresenter;
@@ -17,12 +20,13 @@ import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.navigation.StatusBarFontColorUtil;
 
 public class MineFragment extends BaseBarFragment
-    implements MineFragmentViewer, MyOneLineView.OnRootClickListener, View.OnClickListener {
+        implements MineFragmentViewer, MyOneLineView.OnRootClickListener, View.OnClickListener {
 
     @PresenterLifeCycle
     private MineFragmentPresenter presenter = new MineFragmentPresenter(this);
 
-    @Override protected int getActionBarLayoutId() {
+    @Override
+    protected int getActionBarLayoutId() {
         return R.layout.action_bar_page_fragment_mine_layout;
     }
 
@@ -66,7 +70,11 @@ public class MineFragment extends BaseBarFragment
 
 
         LinearLayout ll_order = bindView(R.id.ll_order);
+        LinearLayout ll_generalize = bindView(R.id.ll_generalize);
+        LinearLayout ll_income = bindView(R.id.ll_income);
         ll_order.setOnClickListener(this);
+        ll_generalize.setOnClickListener(this);
+        ll_income.setOnClickListener(this);
 
     }
 
@@ -96,12 +104,18 @@ public class MineFragment extends BaseBarFragment
             case R.id.ll_order:
                 LauncherHelper.from(getActivity()).startActivity(MineOrderListActivity.class);
                 break;
+            case R.id.ll_generalize:
+                LauncherHelper.from(getActivity()).startActivity(MineGeneralizeActivity.class);
+                break;
+            case R.id.ll_income:
+                LauncherHelper.from(getActivity()).startActivity(MineIncomeActivity.class);
+                break;
         }
     }
 
 
-
-    @Override protected void onPageInTop() {
+    @Override
+    protected void onPageInTop() {
         super.onPageInTop();
         StatusBarColorManager.INSTANCE.setDark(true);
         StatusBarFontColorUtil.StatusBarLightMode(getActivity());

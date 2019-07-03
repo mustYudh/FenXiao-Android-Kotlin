@@ -13,9 +13,17 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="label,allowBackup">
+        <activity
+            android:name=".module.mine.activity.MineIncomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.mine.activity.MineGeneralizeActivity"
+            android:screenOrientation="portrait"/>
+
         <meta-data
             android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/file_paths" />
+            android:resource="@xml/file_paths"/>
+
         <activity
             android:name=".module.home.activity.RewardAdvertisingActivity"
             android:screenOrientation="portrait"/>
