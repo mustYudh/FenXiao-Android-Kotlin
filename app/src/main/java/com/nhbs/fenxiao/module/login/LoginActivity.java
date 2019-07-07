@@ -4,11 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarActivity;
+import com.nhbs.fenxiao.http.api.AppApiServices;
+import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber;
+import com.nhbs.fenxiao.http.utils.AesEncryptUtils;
 import com.nhbs.fenxiao.module.login.presenter.LoginPresenter;
 import com.nhbs.fenxiao.module.login.presenter.LoginViewer;
+import com.xuexiang.xhttp2.XHttpProxy;
 import com.yu.common.login.LoginRedirectHelper;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.toast.ToastUtils;
@@ -67,6 +72,17 @@ public class LoginActivity extends BaseBarActivity implements LoginViewer, View.
   @Override public void onClick(View v) {
     switch (v.getId()) {
       case R.id.next_action:
+        try {
+          XHttpProxy.proxy(AppApiServices.class)
+              .sendSems(AesEncryptUtils.encrypt("{" + "\"mobile\": \"15968170723\"}"))
+              .subscribe(new TipRequestSubscriber<Object>() {
+                @Override protected void onSuccess(Object o) {
+                    Log.e("=====>","成功");
+                }
+              });
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
         getLaunchHelper().startActivity(VerificationCodeActivity.class);
         break;
       case R.id.we_chat_login:

@@ -49,11 +49,11 @@ public class APP extends BaseApp {
 
     private String getBaseUrl() {
         if (APP.NET_TYPE == 1) {
-            return "";
+            return "http://139.180.218.55:8070";
         } else if (APP.NET_TYPE == 2) {
-            return "";
+            return "http://139.180.218.55:8070";
         } else {
-            return "";
+            return "http://139.180.218.55:8070";
         }
     }
 
