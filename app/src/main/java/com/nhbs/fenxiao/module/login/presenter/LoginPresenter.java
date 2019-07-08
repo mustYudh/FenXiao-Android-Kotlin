@@ -7,9 +7,15 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import com.nhbs.fenxiao.action.BaseActionHelper;
 import com.nhbs.fenxiao.data.UserProfile;
+import com.nhbs.fenxiao.http.api.AppApiServices;
+import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber;
 import com.nhbs.fenxiao.module.home.HomePageActivity;
+import com.nhbs.fenxiao.module.login.VerificationCodeActivity;
+import com.xuexiang.xhttp2.XHttpProxy;
 import com.yu.common.framework.BaseViewPresenter;
 import com.yu.common.launche.LauncherHelper;
+import com.yu.common.toast.ToastUtils;
+import com.yu.common.utils.PhoneUtils;
 
 /**
  * @author yudenghao
@@ -18,6 +24,24 @@ public class LoginPresenter extends BaseViewPresenter<LoginViewer> {
 
     public LoginPresenter(LoginViewer viewer) {
         super(viewer);
+    }
+
+    public void sendVerCode(String phone) {
+        if (TextUtils.isEmpty(phone)) {
+            ToastUtils.show("手机号输入不能为空");
+            return;
+        }
+        if (!PhoneUtils.isPhoneLegal(phone)) {
+            ToastUtils.show("请输入正确的手机号码");
+            return;
+        }
+        XHttpProxy.proxy(AppApiServices.class)
+                .sendSems(phone)
+                .subscribe(new TipRequestSubscriber<Object>() {
+                    @Override protected void onSuccess(Object o) {
+                        getLaunchHelper().startActivity(VerificationCodeActivity.class);
+                    }
+                });
     }
 
     public void login() {

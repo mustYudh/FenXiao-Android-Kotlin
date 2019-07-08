@@ -21,22 +21,6 @@ public class CustomDynamicInterceptor extends BaseDynamicInterceptor<CustomDynam
         return dynamicMap;
     }
 
-    /**
-     * String token = UserProfile.getInstance().getAppToken();
-     * if (isAccessToken() && !TextUtils.isEmpty(token)) {
-     * return chain
-     * .proceed(chain.request()
-     * .newBuilder()
-     * .addHeader("token", token)
-     * .build());
-     * } else {
-     * return super.intercept(chain);
-     * }
-     *
-     * @param chain
-     * @return
-     * @throws IOException
-     */
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
