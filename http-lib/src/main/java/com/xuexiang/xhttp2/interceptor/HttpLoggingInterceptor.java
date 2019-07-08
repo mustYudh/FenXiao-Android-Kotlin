@@ -17,24 +17,15 @@
 package com.xuexiang.xhttp2.interceptor;
 
 import com.xuexiang.xhttp2.utils.HttpUtils;
+import okhttp3.*;
+import okhttp3.internal.http.HttpHeaders;
+import okio.Buffer;
 
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
-
-import okhttp3.Connection;
-import okhttp3.Headers;
-import okhttp3.Interceptor;
-import okhttp3.MediaType;
-import okhttp3.Protocol;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import okhttp3.internal.http.HttpHeaders;
-import okio.Buffer;
 
 /**
  * <p>描述：设置日志拦截器</p>

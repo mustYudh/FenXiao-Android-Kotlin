@@ -1,9 +1,11 @@
 package com.nhbs.fenxiao.http.utils;
 
+import android.util.Base64;
+
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import android.util.Base64;
 
 public class AesEncryptUtils {
 
@@ -25,30 +27,32 @@ public class AesEncryptUtils {
     kgen.init(128);
     Cipher cipher = Cipher.getInstance(ALGORITHMSTR);
     cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(encryptKey.getBytes(), "AES"));
-    byte[] b = cipher.doFinal(content.getBytes("utf-8"));
-    // 采用base64算法进行转码,避免出现中文乱码
-    return  Base64.encodeToString(b, Base64.DEFAULT);
+    byte[] b = cipher.doFinal(content.getBytes("UTF-8"));
+    return  Base64.encodeToString(b, Base64.NO_WRAP);
 
   }
 
   public static String encrypt(String content) throws Exception {
     return encrypt(content, KEY);
   }
-  //public static String decrypt(String encryptStr) throws Exception {
-  //  return decrypt(encryptStr, KEY);
-  //}
 
 
-  //public static void main(String[] args) throws Exception {
-  //  Map map=new HashMap<String,String>();
-  //  map.put("mobile","13534376664");
-  //  String content = JSONObject.toJSONString(map);
-  //  System.out.println("加密前：" + content);
-  //
-  //  String encrypt = encrypt(content, KEY);
-  //  System.out.println("加密后：" + encrypt);
-  //
-  //  String decrypt = decrypt(encrypt, KEY);
-  //  System.out.println("解密后：" + decrypt);
-  //}
+
+
+
+  public static String aesEncrypt(String sSrc, String encodingFormat, String algorithm, String sKey, String ivParameter) throws Exception {
+    Cipher cipher = Cipher.getInstance(algorithm);
+    byte[] raw = sKey.getBytes(encodingFormat);
+    SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
+    //使用CBC模式，需要一个向量iv，可增加加密算法的强度
+    IvParameterSpec iv = new IvParameterSpec(ivParameter.getBytes(encodingFormat));
+    if (algorithm.contains("CBC")) {
+      cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+    } else {
+      cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
+    }
+    byte[] encrypted = cipher.doFinal(sSrc.getBytes(encodingFormat));
+    //此处使用BASE64做转码。
+    return Base64.encodeToString(encrypted, Base64.DEFAULT);
+  }
 }

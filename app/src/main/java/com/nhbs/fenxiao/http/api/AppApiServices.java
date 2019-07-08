@@ -8,6 +8,6 @@ import io.reactivex.Observable;
  * @date 2019-07-08
  */
 public interface AppApiServices {
-  @NetMethod(ParameterNames = {"requestData"},Url = "/sms/send")
+  @NetMethod(ParameterNames = {"mobile"},Url = "/sms/send")
   Observable<Object> sendSems(String params);
 }

@@ -10,7 +10,6 @@ import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarActivity;
 import com.nhbs.fenxiao.http.api.AppApiServices;
 import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber;
-import com.nhbs.fenxiao.http.utils.AesEncryptUtils;
 import com.nhbs.fenxiao.module.login.presenter.LoginPresenter;
 import com.nhbs.fenxiao.module.login.presenter.LoginViewer;
 import com.xuexiang.xhttp2.XHttpProxy;
@@ -74,7 +73,7 @@ public class LoginActivity extends BaseBarActivity implements LoginViewer, View.
       case R.id.next_action:
         try {
           XHttpProxy.proxy(AppApiServices.class)
-              .sendSems(AesEncryptUtils.encrypt("{" + "\"mobile\": \"15968170723\"}"))
+              .sendSems("15968170723")
               .subscribe(new TipRequestSubscriber<Object>() {
                 @Override protected void onSuccess(Object o) {
                     Log.e("=====>","成功");
