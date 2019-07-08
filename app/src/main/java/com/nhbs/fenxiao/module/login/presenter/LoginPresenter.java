@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import com.nhbs.fenxiao.action.BaseActionHelper;
 import com.nhbs.fenxiao.http.api.AppApiServices;
-import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber;
+import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber;
 import com.nhbs.fenxiao.module.home.HomePageActivity;
 import com.nhbs.fenxiao.module.login.VerificationCodeActivity;
 import com.xuexiang.xhttp2.XHttpProxy;
@@ -39,7 +39,7 @@ public class LoginPresenter extends BaseViewPresenter<LoginViewer> {
         }
         XHttpProxy.proxy(AppApiServices.class)
                 .sendVerCode(phone)
-                .subscribeWith(new TipRequestSubscriber<Object>() {
+                .subscribeWith(new LoadingRequestSubscriber<Object>(getActivity(),false) {
                     @Override
                     protected void onSuccess(Object o) {
                         getLaunchHelper().startActivityForResult(VerificationCodeActivity.getIntent(getActivity(), phone), VerificationCodeActivity.INPUT_VER_CODE_REQUEST);

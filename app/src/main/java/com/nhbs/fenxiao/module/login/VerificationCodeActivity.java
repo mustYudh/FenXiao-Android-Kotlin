@@ -99,12 +99,12 @@ public class VerificationCodeActivity extends BaseBarActivity
                 if (!TextUtils.isEmpty(result)) {
                     codes.add(result);
                 }
-                setCode();
+                setCode(true);
             }
         }
     }
 
-    private void setCode() {
+    private void setCode(boolean sendMsg) {
         if (codes.size() == 0) {
             mNumber1.setText("");
             mNumber2.setText("");
@@ -135,7 +135,10 @@ public class VerificationCodeActivity extends BaseBarActivity
             mNumber3.setText(codes.get(2));
             mNumber4.setText(codes.get(3));
             SoftInputMethodUtil.hideKeyboard(getActivity());
-            mPresenter.sendVerCode(getIntent().getStringExtra(PHONE_NUMBER), codes.get(0) + codes.get(1) + codes.get(2) + codes.get(3));
+            if (sendMsg) {
+                mPresenter.sendVerCode(getIntent().getStringExtra(PHONE_NUMBER), codes.get(0) + codes.get(1) + codes.get(2) + codes.get(3));
+            }
+
         }
     }
 
@@ -149,6 +152,7 @@ public class VerificationCodeActivity extends BaseBarActivity
             if (KeyEvent.ACTION_UP == event.getAction()) {
                 SoftInputMethodUtil.showKeyboard(getActivity(), true);
             }
+            setCode(false);
         }
         return false;
     }
