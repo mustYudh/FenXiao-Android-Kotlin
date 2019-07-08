@@ -1,7 +1,9 @@
 package com.nhbs.fenxiao.data;
 
 import android.content.Context;
+import android.text.TextUtils;
 import com.nhbs.fenxiao.APP;
+import com.nhbs.fenxiao.module.login.bean.LoginInfoBean;
 
 import java.io.Serializable;
 
@@ -30,12 +32,16 @@ public class UserProfile implements Serializable {
         return instance;
     }
 
+    public void appLogin(LoginInfoBean loginInfo) {
+        setToken(loginInfo.token);
+    }
+
     public void setToken(String token) {
-        spHelper.putString(TOKEN,token);
+        spHelper.putString(TOKEN, token);
     }
 
     public String getAppToken() {
-        return spHelper.getString(TOKEN,"");
+        return spHelper.getString(TOKEN, "");
     }
 
 
@@ -44,6 +50,10 @@ public class UserProfile implements Serializable {
      */
     public void clean() {
         spHelper.clear();
+    }
+
+    public boolean isLogin() {
+        return !TextUtils.isEmpty(getAppToken());
     }
 
 }

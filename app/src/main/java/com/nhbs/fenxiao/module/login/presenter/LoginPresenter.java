@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import com.nhbs.fenxiao.action.BaseActionHelper;
-import com.nhbs.fenxiao.data.UserProfile;
 import com.nhbs.fenxiao.http.api.AppApiServices;
 import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber;
 import com.nhbs.fenxiao.module.home.HomePageActivity;
@@ -36,16 +35,16 @@ public class LoginPresenter extends BaseViewPresenter<LoginViewer> {
             return;
         }
         XHttpProxy.proxy(AppApiServices.class)
-                .sendSems(phone)
+                .sendVerCode(phone)
                 .subscribe(new TipRequestSubscriber<Object>() {
-                    @Override protected void onSuccess(Object o) {
-                        getLaunchHelper().startActivity(VerificationCodeActivity.class);
+                    @Override
+                    protected void onSuccess(Object o) {
+                        getLaunchHelper().startActivityForResult(VerificationCodeActivity.getIntent(getActivity(), phone), VerificationCodeActivity.INPUT_VER_CODE_REQUEST);
                     }
                 });
     }
 
     public void login() {
-        UserProfile.getInstance().setToken("1111");
         afterLoginSuccess();
     }
 
