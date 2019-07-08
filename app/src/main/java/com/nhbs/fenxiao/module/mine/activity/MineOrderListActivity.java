@@ -46,21 +46,16 @@ public class MineOrderListActivity extends BaseBarActivity implements MineOrderL
 
     @Override
     protected void loadData() {
-        mDataList.add("热门");
-        mDataList.add("招聘");
-        mDataList.add("房产");
-        mDataList.add("招商");
-        mDataList.add("金融");
-        mDataList.add("居家");
-        mDataList.add("鞋品");
-        mDataList.add("电器");
-        mDataList.add("水汽");
-        mDataList.add("火器");
-        mDataList.add("其他");
+        setTitle("我的订单");
+        mDataList.add("全部");
+        mDataList.add("待付款");
+        mDataList.add("待发货");
+        mDataList.add("待收货");
+        mDataList.add("待评价");
         mViewPager = bindView(R.id.view_pager);
 
         for (int i = 0; i < mDataList.size(); i++) {
-            fragments.add(MineOrderListFragment.newInstance(i+1));
+            fragments.add(MineOrderListFragment.newInstance(i + 1));
         }
         initMagicIndicator();
     }
@@ -74,6 +69,7 @@ public class MineOrderListActivity extends BaseBarActivity implements MineOrderL
         mViewPager.setAdapter(adapter);
         MagicIndicator magicIndicator = bindView(R.id.magic_indicator);
         CommonNavigator commonNavigator = new CommonNavigator(getActivity());
+        commonNavigator.setAdjustMode(true);
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override
             public int getCount() {
@@ -83,7 +79,7 @@ public class MineOrderListActivity extends BaseBarActivity implements MineOrderL
             @Override
             public IPagerTitleView getTitleView(Context context, final int index) {
                 CommonPagerTitleView commonPagerTitleView = new CommonPagerTitleView(context);
-                commonPagerTitleView.setContentView(R.layout.item_top_tab_list);
+                commonPagerTitleView.setContentView(R.layout.item_top_order_list);
                 // 初始化
                 final TextView titleText = commonPagerTitleView.findViewById(R.id.tv_title);
                 titleText.setText(mDataList.get(index));

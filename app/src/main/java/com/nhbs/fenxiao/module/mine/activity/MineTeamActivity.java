@@ -33,6 +33,7 @@ public class MineTeamActivity extends BaseBarActivity implements MineTeamActivit
 
     @Override
     protected void loadData() {
+        setTitle("我的团队");
         LinearLayout ll_team_one = bindView(R.id.ll_team_one);
         LinearLayout ll_team_two = bindView(R.id.ll_team_two);
         TextView tv_team_one = bindView(R.id.tv_team_one);

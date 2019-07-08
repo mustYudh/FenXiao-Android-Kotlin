@@ -8,16 +8,19 @@ import android.widget.LinearLayout;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarFragment;
 import com.nhbs.fenxiao.module.home.StatusBarColorManager;
+import com.nhbs.fenxiao.module.mine.activity.MineAddressListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineGeneralizeActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineIncomeActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineOrderListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineTeamActivity;
+import com.nhbs.fenxiao.module.mine.activity.MineWithdrawActivity;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentPresenter;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentViewer;
 import com.nhbs.fenxiao.module.view.MyOneLineView;
 import com.yu.common.launche.LauncherHelper;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.navigation.StatusBarFontColorUtil;
+import com.yu.common.ui.DelayClickTextView;
 
 public class MineFragment extends BaseBarFragment
         implements MineFragmentViewer, MyOneLineView.OnRootClickListener, View.OnClickListener {
@@ -72,9 +75,11 @@ public class MineFragment extends BaseBarFragment
         LinearLayout ll_order = bindView(R.id.ll_order);
         LinearLayout ll_generalize = bindView(R.id.ll_generalize);
         LinearLayout ll_income = bindView(R.id.ll_income);
+        DelayClickTextView tv_withdraw = bindView(R.id.tv_withdraw);
         ll_order.setOnClickListener(this);
         ll_generalize.setOnClickListener(this);
         ll_income.setOnClickListener(this);
+        tv_withdraw.setOnClickListener(this);
 
     }
 
@@ -83,9 +88,12 @@ public class MineFragment extends BaseBarFragment
     public void onRootClick(View view) {
         switch ((int) view.getTag()) {
             case 1:
+                //团队
                 getLaunchHelper().startActivity(MineTeamActivity.class);
                 break;
             case 2:
+                //地址
+                getLaunchHelper().startActivity(MineAddressListActivity.class);
                 break;
             case 3:
                 break;
@@ -102,13 +110,20 @@ public class MineFragment extends BaseBarFragment
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_order:
+                //订单
                 LauncherHelper.from(getActivity()).startActivity(MineOrderListActivity.class);
                 break;
             case R.id.ll_generalize:
+                //推广记录
                 LauncherHelper.from(getActivity()).startActivity(MineGeneralizeActivity.class);
                 break;
             case R.id.ll_income:
+                //收入报表
                 LauncherHelper.from(getActivity()).startActivity(MineIncomeActivity.class);
+                break;
+            case R.id.tv_withdraw:
+                //提现
+                LauncherHelper.from(getActivity()).startActivity(MineWithdrawActivity.class);
                 break;
         }
     }

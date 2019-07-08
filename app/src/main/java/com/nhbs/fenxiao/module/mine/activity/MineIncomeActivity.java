@@ -38,7 +38,7 @@ public class MineIncomeActivity extends BaseActivity implements MineIncomeViewer
     private ViewPager mViewPager;
 
     @PresenterLifeCycle
-    MineIncomePresenter presenter = new MineIncomePresenter(this);
+    MineIncomePresenter mPresenter = new MineIncomePresenter(this);
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
