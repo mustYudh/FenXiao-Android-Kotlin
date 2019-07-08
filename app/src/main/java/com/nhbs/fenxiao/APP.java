@@ -3,6 +3,7 @@ package com.nhbs.fenxiao;
 import com.nhbs.fenxiao.http.interceptor.CustomDynamicInterceptor;
 import com.nhbs.fenxiao.http.interceptor.CustomExpiredInterceptor;
 import com.nhbs.fenxiao.http.interceptor.CustomLoggingInterceptor;
+import com.nhbs.fenxiao.http.interceptor.CustomResponseInterceptor;
 import com.xuexiang.xhttp2.XHttp;
 import com.xuexiang.xhttp2.XHttpSDK;
 import com.xuexiang.xhttp2.model.HttpHeaders;
@@ -37,6 +38,7 @@ public class APP extends BaseApp {
         XHttpSDK.setSubUrl(getSubUrl());
         XHttpSDK.addInterceptor(new CustomDynamicInterceptor());
         XHttpSDK.addInterceptor(new CustomExpiredInterceptor());
+        XHttpSDK.addInterceptor(new CustomResponseInterceptor());
         XHttp.getInstance().setTimeout(60000);
         XHttp.getInstance().setRetryCount(3);
         XHttp.getInstance().addCommonHeaders(getHttpHeaders());
