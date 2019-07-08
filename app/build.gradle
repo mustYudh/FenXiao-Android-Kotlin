@@ -225,4 +225,6 @@ dependencies {
     implementation 'com.github.hackware1993:MagicIndicator:1.6.0'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
     implementation 'com.github.pinguo-zhouwei:EasyBlur:v1.0.0'
+    implementation 'commons-codec:commons-codec:1.12'
+
 }
