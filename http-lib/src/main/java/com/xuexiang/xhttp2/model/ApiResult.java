@@ -69,7 +69,7 @@ public class ApiResult<T> {
      * @return
      */
     public boolean isSuccess() {
-        return getCode() == 0;
+        return getCode() == 2000;
     }
 
     @Override

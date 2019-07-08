@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/color_F3F5F8"
+              android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lb_cm_white"
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/lb_cm_white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:includeFontPadding="false"
+                android:text="收货人"
+                android:textColor="#ff9ea9bc"
+                android:textSize="14sp"
+                />
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_tongxunlu"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/lb_cm_white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:includeFontPadding="false"
+                android:text="手机号码"
+                android:textColor="#ff9ea9bc"
+                android:textSize="14sp"
+                />
+
+            <com.nhbs.fenxiao.module.view.ClearEditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:gravity="center_vertical|right"
+                android:hint="+86"
+                android:inputType="numberDecimal"
+                android:textCursorDrawable="@drawable/shape_edittext_cursor"
+                android:textSize="14sp"
+                />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/lb_cm_white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:includeFontPadding="false"
+                android:text="所在地区"
+                android:textColor="#ff9ea9bc"
+                android:textSize="14sp"
+                />
+
+            <ImageView
+                android:layout_width="7dp"
+                android:layout_height="12dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/arrow_right"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line"/>
+
+        <com.nhbs.fenxiao.module.view.ClearEditText
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:background="@null"
+            android:gravity="center_vertical|left"
+            android:hint="详细地址：如街道、小区、楼栋、单元、门牌号等"
+            android:inputType="numberDecimal"
+            android:textCursorDrawable="@drawable/shape_edittext_cursor"
+            android:textSize="14sp"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/lb_cm_white"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:includeFontPadding="false"
+            android:text="设为默认地址"
+            android:textColor="#ff9ea9bc"
+            android:textSize="14sp"
+            />
+
+        <com.yu.common.ui.DelayClickImageView
+            android:layout_width="50dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_guan"/>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_marginTop="8dp"
+        android:paddingLeft="16dp"
+        android:background="@color/lb_cm_white"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="删除收货地址"
+        android:includeFontPadding="false"
+        android:textColor="#ffff3539"
+        android:textSize="15sp"
+        />
+
+</LinearLayout>
