@@ -8,13 +8,6 @@ import com.yu.common.toast.ToastUtils;
 public abstract class TipRequestSubscriber<T> extends BaseSubscriber<T> {
 
 
-    public TipRequestSubscriber() {
-
-    }
-
-
-
-
     @Override
     protected void onStart() {
         super.onStart();

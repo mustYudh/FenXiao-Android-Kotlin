@@ -1,5 +1,6 @@
 package com.nhbs.fenxiao.module.login.presenter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -19,11 +20,13 @@ import com.yu.common.utils.PhoneUtils;
 /**
  * @author yudenghao
  */
+@SuppressLint("CheckResult")
 public class LoginPresenter extends BaseViewPresenter<LoginViewer> {
 
     public LoginPresenter(LoginViewer viewer) {
         super(viewer);
     }
+
 
     public void sendVerCode(String phone) {
         if (TextUtils.isEmpty(phone)) {
@@ -36,7 +39,7 @@ public class LoginPresenter extends BaseViewPresenter<LoginViewer> {
         }
         XHttpProxy.proxy(AppApiServices.class)
                 .sendVerCode(phone)
-                .subscribe(new TipRequestSubscriber<Object>() {
+                .subscribeWith(new TipRequestSubscriber<Object>() {
                     @Override
                     protected void onSuccess(Object o) {
                         getLaunchHelper().startActivityForResult(VerificationCodeActivity.getIntent(getActivity(), phone), VerificationCodeActivity.INPUT_VER_CODE_REQUEST);

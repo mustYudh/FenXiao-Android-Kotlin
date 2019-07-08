@@ -149,7 +149,6 @@ public class VerificationCodeActivity extends BaseBarActivity
             if (KeyEvent.ACTION_UP == event.getAction()) {
                 SoftInputMethodUtil.showKeyboard(getActivity(), true);
             }
-            setCode();
         }
         return false;
     }

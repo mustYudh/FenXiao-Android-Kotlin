@@ -1,5 +1,6 @@
 package com.nhbs.fenxiao.http.interceptor;
 
+import android.text.TextUtils;
 import com.xuexiang.xhttp2.interceptor.BaseResponseInterceptor;
 import okhttp3.MediaType;
 import okhttp3.Response;
@@ -20,8 +21,13 @@ public class CustomResponseInterceptor extends BaseResponseInterceptor {
             MediaType mediaType = responseBody.contentType();
             JSONObject jsonObject = new JSONObject(bodyString);
             JSONObject data = jsonObject.optJSONObject("data");
+            String code = jsonObject.optString("code");
             if (data == null) {
                 jsonObject.put("data", new JSONObject());
+            }
+            if (!TextUtils.isEmpty(code)) {
+                int resultCode = Integer.parseInt(code);
+                jsonObject.put("code", resultCode);
             }
             return response.newBuilder().body(ResponseBody.create(mediaType, jsonObject.toString())).build();
         } catch (Exception e) {
