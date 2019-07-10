@@ -15,8 +15,10 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import com.nhbs.fenxiao.R
+import com.nhbs.fenxiao.module.center.activity.ReleaseGoodsActivity
 import com.nhbs.fenxiao.module.home.StatusBarColorManager
 import com.nhbs.fenxiao.utils.DensityUtils
+import com.yu.common.launche.LauncherHelper
 import com.yu.common.navigation.StatusBarFontColorUtil
 import com.yu.common.windown.BasePopupWindow
 import com.zhouwei.blurlibrary.EasyBlur
@@ -30,7 +32,9 @@ class HomeCenterPopUpWindow(context: Activity) : BasePopupWindow(
     context,
     View.inflate(context, R.layout.home_center_pop_up_window_layout, null),
     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
-) {
+), View.OnClickListener {
+
+
     var activity: Activity? = null
     var cancelView: ImageView? = null
     var releaseGoods: LinearLayout? = null
@@ -40,9 +44,9 @@ class HomeCenterPopUpWindow(context: Activity) : BasePopupWindow(
     init {
         isClippingEnabled = false
         activity = context
-        releaseGoods = bindView(R.id.release_goods)
-        advertising = bindView(R.id.advertising)
-        releaseActivity = bindView(R.id.activity)
+        releaseGoods = bindView(R.id.release_goods, this)
+        advertising = bindView(R.id.advertising, this)
+        releaseActivity = bindView(R.id.activity, this)
         this.height = DensityUtils.getDisplayHeight(getContext())
         if (VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             try {
@@ -70,13 +74,14 @@ class HomeCenterPopUpWindow(context: Activity) : BasePopupWindow(
         val background = bindView<ImageView>(R.id.pop_bg)
         background.setImageBitmap(finalBitmap)
         cancelView = bindView(R.id.cancel) {
-            dismiss()
+            dismiss(null)
         }
 
     }
 
 
-    override fun dismiss() {
+
+    private fun dismiss(call: (() -> Unit)?) {
         if (StatusBarColorManager.isDark) {
             StatusBarFontColorUtil.StatusBarLightMode(activity)
         } else {
@@ -96,6 +101,7 @@ class HomeCenterPopUpWindow(context: Activity) : BasePopupWindow(
             showAnimator(releaseGoods!!, "translationY", 200, array1, DecelerateInterpolator())
             showAnimator(advertising!!, "translationY", 300, array2, DecelerateInterpolator())
             showAnimator(releaseActivity!!, "translationY", 400, array3, DecelerateInterpolator()) {
+                if(call != null) { call() }
                 super.dismiss()
             }
         }
@@ -159,6 +165,20 @@ class HomeCenterPopUpWindow(context: Activity) : BasePopupWindow(
             }
 
         })
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.release_goods -> {
+                dismiss { LauncherHelper.from(activity).startActivity(ReleaseGoodsActivity::class.java) }
+            }
+            R.id.advertising -> {
+
+            }
+            R.id.activity -> {
+
+            }
+        }
     }
 
 }

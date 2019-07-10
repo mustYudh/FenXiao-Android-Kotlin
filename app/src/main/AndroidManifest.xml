@@ -4,71 +4,74 @@
           package="com.nhbs.fenxiao">
 
     <application
-        android:name=".APP"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="${APP_NAME}"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="label,allowBackup">
+            android:name=".APP"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="${APP_NAME}"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning"
+            tools:replace="label,allowBackup">
         <activity
-            android:name=".module.mine.activity.MineWithdrawActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.center.activity.ReleaseGoodsActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.MineRedactAddressActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.mine.activity.MineWithdrawActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.MineAddressListActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.mine.activity.MineRedactAddressActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.order.activity.AffirmOrderActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.mine.activity.MineAddressListActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.MineIncomeActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.order.activity.AffirmOrderActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.MineGeneralizeActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.mine.activity.MineIncomeActivity"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name=".module.mine.activity.MineGeneralizeActivity"
+                android:screenOrientation="portrait"/>
 
         <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/file_paths"/>
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
 
         <activity
-            android:name=".module.home.activity.RewardAdvertisingActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.home.activity.RewardAdvertisingActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.MineOrderListActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.mine.activity.MineOrderListActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.login.VerificationCodeActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.login.VerificationCodeActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.login.BindPhoneActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.login.BindPhoneActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.home.activity.HomeProductClassifyActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.home.activity.HomeProductClassifyActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.mine.activity.MineTeamActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.mine.activity.MineTeamActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.home.HomePageActivity"
-            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustNothing"/>
+                android:name=".module.home.HomePageActivity"
+                android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="adjustNothing"/>
         <activity
-            android:name=".module.login.LoginActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.login.LoginActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".test.TestActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".test.TestActivity"
+                android:screenOrientation="portrait"/>
         <activity
-            android:name=".module.web.WebViewActivity"
-            android:screenOrientation="portrait"/>
+                android:name=".module.web.WebViewActivity"
+                android:screenOrientation="portrait"/>
         <activity android:name=".module.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
