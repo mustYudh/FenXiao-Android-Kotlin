@@ -58,15 +58,26 @@ public abstract class BaseBarActivity extends BaseActivity {
     }
   }
 
-  public void showBack(boolean back) {
-    //        bindView(R.id.back,back);
+  public void showLine(boolean show) {
+    bindView(R.id.action_line, show);
   }
 
+  public void showBack(boolean back) {
+    bindView(R.id.action_back, back);
+  }
+
+
+  public void setBackIcon(@DrawableRes int res) {
+    BarIconContainer icon = bindView(R.id.action_back);
+    icon.setImageRes(res);
+  }
+
+
   public void setRightMenu(CharSequence text, View.OnClickListener onClickListener) {
-    //        if (!TextUtils.isEmpty(text)) {
-    //            TextView right = bindView(R.id.right_menu, onClickListener);
-    //            right.setText(text);
-    //            right.setVisibility(View.VISIBLE);
-    //        }
+            if (!TextUtils.isEmpty(text)) {
+                TextView right = bindView(R.id.right_menu, onClickListener);
+                right.setText(text);
+                right.setVisibility(View.VISIBLE);
+            }
   }
 }

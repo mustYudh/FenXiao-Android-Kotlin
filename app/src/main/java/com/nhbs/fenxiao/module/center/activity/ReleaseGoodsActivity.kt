@@ -18,6 +18,10 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
     }
 
     override fun loadData() {
+        showLine(true)
+        setBackIcon(R.drawable.ic_close)
+        setRightMenu("保存") {
 
+        }
     }
 }

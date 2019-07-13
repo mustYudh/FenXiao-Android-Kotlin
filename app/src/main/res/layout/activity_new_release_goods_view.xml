@@ -1,9 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
->
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+      <android.support.v7.widget.RecyclerView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/lb_cm_white"
+          >
+      </android.support.v7.widget.RecyclerView>
+
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:background="@color/lb_cm_white"
+          android:orientation="vertical"
+          android:paddingLeft="16dp"
+          android:paddingRight="16dp"
+          >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="标题 品类品牌型号都是买家喜欢搜索的"
+            android:textColor="#2D2E39"
+            android:textColorHint="#A0A9BB"
+            android:textSize="15sp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/line_color"
+            />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:background="@null"
+            android:gravity="left|top"
+            android:hint="描述宝贝参数与信息"
+            android:paddingBottom="9dp"
+            android:paddingTop="9dp"
+            android:textColor="#2D2E39"
+            android:textColorHint="#A0A9BB"
+            android:textSize="14sp"
+            />
+
+
+        <com.yu.common.ui.DelayClickTextView
+            android:textSize="12sp"
+            android:drawableTint="#3B3E5A"
+            android:textColor="#3B3E5A"
+            android:drawablePadding="4dp"
+            android:text="杭州市"
+            android:drawableLeft="@drawable/ic_location"
+            android:paddingBottom="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+
+      </LinearLayout>
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+      <LinearLayout
+          android:orientation="horizontal"
+          android:layout_width="match_parent"
+          android:layout_height="40dp"
+          >
+
+      </LinearLayout>
+    </LinearLayout>
+
+
+  </ScrollView>
+
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="56dp"
+      android:background="@color/lb_cm_white"
+      >
+
+    <com.yu.common.ui.DelayClickTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/shape_login_text"
+        android:gravity="center"
+        android:text="确认发布"
+        android:textColor="@color/lb_cm_white"
+        android:textSize="16sp"
+        />
+
+  </FrameLayout>
+
+
 
 </LinearLayout>

@@ -61,7 +61,7 @@ public class APP extends BaseApp {
     }
 
     public String getSubUrl() {
-        return "";
+        return "/api";
     }
 
     public synchronized static APP getInstance() {
