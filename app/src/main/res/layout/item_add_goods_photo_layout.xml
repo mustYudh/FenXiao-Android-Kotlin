@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
+    >
+
+
+  <com.shehuan.niv.NiceImageView
+      android:id="@+id/add_photo"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:src="@drawable/ic_select_photo_btn"
+      app:corner_radius="2dp"
+      />
+
+  <com.shehuan.niv.NiceImageView
+      android:id="@+id/delete_photo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="right"
+      android:src="@drawable/ic_delete_photo"
+      android:visibility="gone"
+      />
+
+
+  <TextView
+      android:id="@+id/tag"
+      android:layout_width="match_parent"
+      android:layout_height="16dp"
+      android:layout_gravity="bottom"
+      android:background="@drawable/shape_main_photo_hint_tag"
+      android:gravity="center"
+      android:text="主图"
+      android:textColor="@color/lb_cm_white"
+      android:visibility="gone"
+      />
+
+</FrameLayout>
