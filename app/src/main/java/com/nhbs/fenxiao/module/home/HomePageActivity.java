@@ -17,7 +17,6 @@ import com.nhbs.fenxiao.module.product.fragment.ProductFragment;
 import com.nhbs.fenxiao.module.store.fragment.MiniStoreFragment;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.utils.PressHandle;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +28,9 @@ public class HomePageActivity extends BaseActivity implements HomePageViewer {
     private PressHandle pressHandle = new PressHandle(this);
 
     @PresenterLifeCycle
-    HomePagePresenter presenter = new HomePagePresenter(this);
+    private HomePagePresenter mPresenter = new HomePagePresenter(this);
     private BottomNavigationView mBottomNavigationView;
+    private HomeCenterPopUpWindow mHomePopUpWindow;
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
@@ -49,16 +49,20 @@ public class HomePageActivity extends BaseActivity implements HomePageViewer {
         mBottomNavigationView.initControl(this).setPagerView(items, 0);
         mBottomNavigationView.getControl().setOnTabClickListener((position, view) -> {
             if (position == 2) {
-                HomeCenterPopUpWindow homePopUpWindow = new HomeCenterPopUpWindow(HomePageActivity.this);
-                homePopUpWindow.showPopupWindow();
+                mHomePopUpWindow = new HomeCenterPopUpWindow(HomePageActivity.this);
+                mHomePopUpWindow.showPopupWindow();
             }
         });
     }
 
     @Override
     public void onBackPressed() {
-        if (!pressHandle.handlePress(KeyEvent.KEYCODE_BACK)) {
-            super.onBackPressed();
+        if (mHomePopUpWindow != null && mHomePopUpWindow.isShowing()) {
+            mHomePopUpWindow.dismiss();
+        } else {
+            if (!pressHandle.handlePress(KeyEvent.KEYCODE_BACK)) {
+                super.onBackPressed();
+            }
         }
     }
 }

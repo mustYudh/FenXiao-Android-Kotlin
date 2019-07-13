@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+  <android.support.v7.widget.RecyclerView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/lb_cm_white"
+      />
+
+
+  <LinearLayout
+      android:paddingRight="16dp"
+      android:paddingLeft="16dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:background="@color/lb_cm_white"
+      android:orientation="vertical"
+      android:paddingTop="13dp"
+      >
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="标题 品类品牌型号都是买家喜欢搜索的"
+        android:textColor="#2D2E39"
+        android:textColorHint="#A0A9BB"
+        android:textSize="15sp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/line_color"
+        />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:background="@null"
+        android:gravity="left|top"
+        android:hint="描述宝贝参数与信息"
+        android:paddingBottom="9dp"
+        android:paddingTop="9dp"
+        android:textColor="#2D2E39"
+        android:textColorHint="#A0A9BB"
+        android:textSize="14sp"
+        />
+
+
+    <com.yu.common.ui.DelayClickTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_location"
+        android:drawablePadding="4dp"
+        android:drawableTint="#3B3E5A"
+        android:paddingBottom="12dp"
+        android:text="杭州市"
+        android:textColor="#3B3E5A"
+        android:textSize="12sp"
+        />
+
+
+  </LinearLayout>
+
+
+</LinearLayout>
