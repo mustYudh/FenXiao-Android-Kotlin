@@ -1,11 +1,13 @@
 package com.nhbs.fenxiao.module.mine.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import com.nhbs.fenxiao.base.BaseBarActivity;
 import com.nhbs.fenxiao.module.mine.activity.presenter.MineRedactAddressPresenter;
 import com.nhbs.fenxiao.module.mine.activity.presenter.MineRedactAddressViewer;
 import com.nhbs.fenxiao.module.mine.bean.JsonBean;
+import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
 import com.nhbs.fenxiao.utils.GetJsonDataUtil;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.toast.ToastUtils;
@@ -85,12 +88,39 @@ public class MineRedactAddressActivity extends BaseBarActivity implements MineRe
 
     @Override
     protected void loadData() {
-        setTitle("编辑收货地址");
         initJsonData();
         EditText et_name = bindView(R.id.et_name);
         EditText et_mobile = bindView(R.id.et_mobile);
         EditText et_address = bindView(R.id.et_address);
         TextView tv_city = bindView(R.id.tv_city);
+        DelayClickImageView iv_type = bindView(R.id.iv_type);
+
+        String item = getIntent().getStringExtra("item");
+        if (item != null && !TextUtils.isEmpty(item)) {
+            setTitle("编辑收货地址");
+            bindView(R.id.tv_del, true);
+            Gson gson = new Gson();
+            MineAddressBean.ListBean listBean = gson.fromJson(item, MineAddressBean.ListBean.class);
+            et_name.setText(listBean.userName);
+            et_name.setSelection(et_name.getText().toString().trim().length());
+            et_mobile.setText(listBean.mobile);
+            et_mobile.setSelection(et_mobile.getText().toString().trim().length());
+            tv_city.setText(listBean.address);
+            et_address.setText(listBean.specificAddress);
+            et_address.setSelection(et_address.getText().toString().trim().length());
+            iv_type.setImageResource(listBean.status == 1 ? R.drawable.ic_guan : R.drawable.ic_kai);
+            type = listBean.type;
+            bindView(R.id.tv_commit, view -> {
+                mPresenter.userAddressEdit(et_name.getText().toString().trim(), et_mobile.getText().toString().trim(), tv_city.getText().toString().trim(), et_address.getText().toString().trim(), listBean.id, type);
+            });
+        } else {
+            setTitle("新增收货地址");
+            bindView(R.id.tv_del, false);
+            bindView(R.id.tv_commit, view -> {
+                mPresenter.userAddressAdd(et_name.getText().toString().trim(), et_mobile.getText().toString().trim(), tv_city.getText().toString().trim(), et_address.getText().toString().trim(), type);
+            });
+        }
+
         bindView(R.id.rl_city, view -> {
             if (isLoaded) {
                 showPickerView();
@@ -99,10 +129,7 @@ public class MineRedactAddressActivity extends BaseBarActivity implements MineRe
                 initJsonData();
             }
         });
-        bindView(R.id.tv_commit, view -> {
-            mPresenter.userAddressAdd(et_name.getText().toString().trim(), et_mobile.getText().toString().trim(), tv_city.getText().toString().trim(), et_address.getText().toString().trim(), type);
-        });
-        DelayClickImageView iv_type = bindView(R.id.iv_type);
+
         bindView(R.id.iv_type, view -> {
             iv_type.setImageResource(type == 0 ? R.drawable.ic_guan : R.drawable.ic_kai);
             type = type == 0 ? 1 : 0;
@@ -111,17 +138,23 @@ public class MineRedactAddressActivity extends BaseBarActivity implements MineRe
 
     @Override
     public void userAddressAddSuccess() {
-
+        Intent intent = new Intent();
+        setResult(1, intent);
+        finish();
     }
 
     @Override
     public void userAddressEditSuccess() {
-
+        Intent intent = new Intent();
+        setResult(1, intent);
+        finish();
     }
 
     @Override
     public void userAddressDelSuccess() {
-
+        Intent intent = new Intent();
+        setResult(1, intent);
+        finish();
     }
 
     private void showPickerView() {// 弹出选择器
