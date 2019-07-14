@@ -17,7 +17,8 @@ import com.yu.common.toast.ToastUtils;
 import java.io.File;
 
 @SuppressLint("CheckResult")
-public class MineOpinionPresenter extends BaseViewPresenter<MineOpinionViewer> {
+public class MineOpinionPresenter
+        extends BaseViewPresenter<MineOpinionViewer> {
 
     public MineOpinionPresenter(MineOpinionViewer viewer) {
         super(viewer);
@@ -43,7 +44,6 @@ public class MineOpinionPresenter extends BaseViewPresenter<MineOpinionViewer> {
             ToastUtils.show("请选择建议类型");
             return;
         }
-
         XHttpProxy.proxy(OtherApiServices.class)
                 .opinionAdd(context, mobile, conUrl, type)
                 .subscribeWith(new LoadingRequestSubscriber<Object>(getActivity(), false) {
@@ -61,10 +61,14 @@ public class MineOpinionPresenter extends BaseViewPresenter<MineOpinionViewer> {
                 });
     }
 
+
     public void uploadImg(File file) {
         XHttp.post("/upload")
-                .uploadFile("MultipartFile", file, (bytesWritten, contentLength, done) -> {
-                }).execute(UploadImgBean.class)
+                .baseUrl("http://139.180.218.55:8060")
+                .subUrl("/api")
+                .uploadFile("file", file, (bytesWritten, contentLength, done) -> {
+                })
+                .execute(UploadImgBean.class)
                 .compose(RxLifecycle.with(getActivity()).bindToLifecycle())
                 .subscribeWith(new ProgressLoadingSubscriber<UploadImgBean>() {
                     @Override

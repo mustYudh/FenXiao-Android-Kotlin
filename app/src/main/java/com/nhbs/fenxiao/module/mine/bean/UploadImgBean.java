@@ -1,4 +1,6 @@
 package com.nhbs.fenxiao.module.mine.bean;
 
-public class UploadImgBean {
+import java.io.Serializable;
+
+public class UploadImgBean implements Serializable {
 }

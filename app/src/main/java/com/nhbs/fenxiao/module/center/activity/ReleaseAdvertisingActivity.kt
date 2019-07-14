@@ -8,9 +8,9 @@ import com.luck.picture.lib.config.PictureConfig
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.R.drawable
 import com.nhbs.fenxiao.base.BaseBarActivity
-import com.nhbs.fenxiao.module.center.activity.presenter.ReleaseAdvertisingPresenter
-import com.nhbs.fenxiao.module.center.activity.presenter.ReleaseAdvertisingViewer
 import com.nhbs.fenxiao.module.center.adapter.AddGoodsPhotoAdapter
+import com.nhbs.fenxiao.module.center.presenter.ReleaseAdvertisingPresenter
+import com.nhbs.fenxiao.module.center.presenter.ReleaseAdvertisingViewer
 import com.nhbs.fenxiao.module.view.RecycleItemSpace
 import com.nhbs.fenxiao.utils.getCalendarPicker
 import com.nhbs.fenxiao.utils.getTime
@@ -24,7 +24,8 @@ import kotlinx.android.synthetic.main.include_layout_release_goods_top.list
 class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
 
   @PresenterLifeCycle
-  internal var mPresenter = ReleaseAdvertisingPresenter(this)
+  internal var mPresenter = ReleaseAdvertisingPresenter(
+      this)
   private val mAdapter = AddGoodsPhotoAdapter()
 
 

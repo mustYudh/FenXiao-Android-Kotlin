@@ -50,7 +50,6 @@ public class CustomLoggingInterceptor extends HttpLoggingInterceptor {
         Response.Builder builder = response.newBuilder();
         Response clone = builder.build();
         ResponseBody responseBody = clone.body();
-
         log("<-- " + clone.code() + ' ' + clone.message() + ' ' + clone.request().url() + " (" + tookMs + "ms）");
         try {
             if (HttpHeaders.hasBody(clone)) {
