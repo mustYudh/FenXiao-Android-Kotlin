@@ -176,6 +176,7 @@
 
 
         <LinearLayout
+            android:id="@+id/select_goods_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -187,7 +188,7 @@
               android:layout_width="0dp"
               android:layout_height="wrap_content"
               android:layout_weight="1"
-              android:text="邮费"
+              android:text="分类"
               android:textColor="#2D2E39"
               android:textSize="16sp"
               />

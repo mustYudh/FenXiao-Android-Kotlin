@@ -2,9 +2,6 @@ package com.nhbs.fenxiao.http.api;
 
 import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
 import com.xuexiang.xhttp2.annotation.NetMethod;
-
-import java.util.ArrayList;
-
 import io.reactivex.Observable;
 
 /**
@@ -13,7 +10,7 @@ import io.reactivex.Observable;
  */
 public interface OtherApiServices {
     @NetMethod(Url = "/userAddress/findListByUserId")
-    Observable<ArrayList<MineAddressBean>> getUserAddress();
+    Observable<MineAddressBean> getUserAddress();
 
     @NetMethod(ParameterNames = {"userName", "mobile", "address", "specificAddress","type"}, Url = "/userAddress/add")
     Observable<Object> userAddressAdd(String userName, String mobile, String address, String specificAddress,int type);

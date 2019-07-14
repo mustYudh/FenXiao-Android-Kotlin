@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/list"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/lb_cm_white"
+      android:paddingBottom="8dp"
+      android:paddingLeft="8dp"
+      android:paddingRight="8dp"
+      android:paddingTop="3dp"
+      />
+
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:background="@color/lb_cm_white"
+      android:orientation="vertical"
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp"
+      android:paddingTop="13dp"
+      >
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="标题"
+        android:textColor="#2D2E39"
+        android:textColorHint="#A0A9BB"
+        android:textSize="15sp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/line_color"
+        />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:background="@null"
+        android:gravity="left|top"
+        android:hint="宣传内容…"
+        android:paddingBottom="9dp"
+        android:paddingTop="9dp"
+        android:textColor="#2D2E39"
+        android:textColorHint="#A0A9BB"
+        android:textSize="14sp"
+        />
+
+
+    <com.yu.common.ui.DelayClickTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_location"
+        android:drawablePadding="4dp"
+        android:drawableTint="#3B3E5A"
+        android:paddingBottom="12dp"
+        android:text="杭州市"
+        android:textColor="#3B3E5A"
+        android:textSize="12sp"
+        android:visibility="gone"
+        />
+
+
+  </LinearLayout>
+
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="7dp"
+      android:background="@color/white"
+      android:gravity="center"
+      android:orientation="horizontal"
+      android:paddingBottom="9dp"
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp"
+      android:paddingTop="9dp"
+      >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="价格"
+        android:textColor="#2D2E39"
+        android:textSize="16sp"
+        />
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@null"
+        android:hint="¥0.00"
+        android:maxLines="1"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:singleLine="true"
+        android:textColor="#2D2E39"
+        android:textColorHint="#A0A9BB"
+        android:textSize="16sp"
+        />
+
+    <View
+        android:layout_width="0.5dp"
+        android:layout_height="32dp"
+        android:layout_marginRight="16dp"
+        android:background="#ECECEC"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="佣金"
+        android:textColor="#2D2E39"
+        android:textSize="16sp"
+        />
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@null"
+        android:hint="¥0.00"
+        android:maxLines="1"
+        android:paddingLeft="16dp"
+        android:singleLine="true"
+        android:textColor="#2D2E39"
+        android:textColorHint="#A0A9BB"
+        android:textSize="16sp"
+        />
+
+
+  </LinearLayout>
+
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="0.5dp"
+      android:background="@color/line_color"
+      />
+
+  <LinearLayout
+      android:id="@+id/select_goods_type"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/white"
+      android:gravity="center_vertical"
+      android:orientation="horizontal"
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp"
+      >
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="截止时间"
+        android:textColor="#2D2E39"
+        android:textSize="16sp"
+        />
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:id="@+id/select_time_btn"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+
+      <com.yu.common.ui.DelayClickTextView
+          android:id="@+id/select_time"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_marginRight="10dp"
+          android:layout_weight="1"
+          android:gravity="right|center_vertical"
+          android:textColor="#A0A9BB"
+          android:textSize="14sp"
+          tools:text="2019-06-06"
+          />
+      <com.yu.common.ui.DelayClickImageView
+          android:layout_width="12dp"
+          android:layout_height="10dp"
+          android:src="@drawable/arrow_right"
+          />
+
+    </LinearLayout>
+
+
+  </LinearLayout>
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="0.5dp"
+      android:background="@color/line_color"
+      />
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/white"
+      android:gravity="center_vertical"
+      android:orientation="horizontal"
+      android:paddingBottom="9dp"
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp"
+      android:paddingTop="9dp"
+      >
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="分类"
+        android:textColor="#2D2E39"
+        android:textSize="16sp"
+        />
+    <com.yu.common.ui.DelayClickImageView
+        android:layout_width="12dp"
+        android:layout_height="10dp"
+        android:src="@drawable/arrow_right"
+        />
+
+  </LinearLayout>
+
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="0.5dp"
+      android:background="@color/line_color"
+      />
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/white"
+      android:gravity="center_vertical"
+      android:orientation="horizontal"
+      android:paddingBottom="9dp"
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp"
+      android:paddingTop="9dp"
+      >
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="分类"
+        android:textColor="#2D2E39"
+        android:textSize="16sp"
+        />
+    <com.yu.common.ui.DelayClickImageView
+        android:layout_width="12dp"
+        android:layout_height="10dp"
+        android:src="@drawable/arrow_right"
+        />
+
+  </LinearLayout>
+
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="0.5dp"
+      android:background="@color/line_color"
+      />
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      />
+
+
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="56dp"
+      android:background="@color/lb_cm_white"
+      >
+
+    <com.yu.common.ui.DelayClickTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:background="@drawable/shape_login_text"
+        android:gravity="center"
+        android:text="发布"
+        android:textColor="@color/lb_cm_white"
+        android:textSize="16sp"
+        />
+
+  </FrameLayout>
+
+</LinearLayout>

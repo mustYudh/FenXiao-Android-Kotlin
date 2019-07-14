@@ -15,14 +15,14 @@ public class MineAddressBean {
      * type : 1
      */
 
-    public String id;
-    public String userName;
-    public String mobile;
-    public String address;
-    public String specificAddress;
-    public int status;
-    public long createTime;
-    public long updateTime;
-    public String userId;
-    public int type;
+    //public String id;
+    //public String userName;
+    //public String mobile;
+    //public String address;
+    //public String specificAddress;
+    //public int status;
+    //public long createTime;
+    //public long updateTime;
+    //public String userId;
+    //public int type;
 }

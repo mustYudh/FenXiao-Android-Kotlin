@@ -8,34 +8,28 @@ import com.luck.picture.lib.config.PictureConfig
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.R.drawable
 import com.nhbs.fenxiao.base.BaseBarActivity
+import com.nhbs.fenxiao.module.center.activity.presenter.ReleaseAdvertisingPresenter
+import com.nhbs.fenxiao.module.center.activity.presenter.ReleaseAdvertisingViewer
 import com.nhbs.fenxiao.module.center.adapter.AddGoodsPhotoAdapter
-import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
-import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsPresenter
-import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsViewer
 import com.nhbs.fenxiao.module.view.RecycleItemSpace
+import com.nhbs.fenxiao.utils.getCalendarPicker
+import com.nhbs.fenxiao.utils.getTime
 import com.nhbs.fenxiao.utils.selectPhoto
 import com.nhbs.fenxiao.utils.setGridLayoutAdapter
 import com.yu.common.mvp.PresenterLifeCycle
-import kotlinx.android.synthetic.main.activity_new_release_goods_view.check_free_mail
-import kotlinx.android.synthetic.main.activity_new_release_goods_view.check_free_mail_btn
-import kotlinx.android.synthetic.main.activity_new_release_goods_view.door_to_door_delivery
-import kotlinx.android.synthetic.main.activity_new_release_goods_view.mail
-import kotlinx.android.synthetic.main.activity_new_release_goods_view.select_goods_type
-import kotlinx.android.synthetic.main.activity_new_release_goods_view.since_the_lift
+import kotlinx.android.synthetic.main.activity_release_advertising_view.select_time
+import kotlinx.android.synthetic.main.activity_release_advertising_view.select_time_btn
 import kotlinx.android.synthetic.main.include_layout_release_goods_top.list
 
-
-class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
-
+class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
 
   @PresenterLifeCycle
-  internal var mPresenter = ReleaseGoodsPresenter(this)
+  internal var mPresenter = ReleaseAdvertisingPresenter(this)
   private val mAdapter = AddGoodsPhotoAdapter()
-  private var freeMail = false
-  private var dealWay = -1
+
 
   override fun setView(savedInstanceState: Bundle?) {
-    setContentView(R.layout.activity_new_release_goods_view)
+    setContentView(R.layout.activity_release_advertising_view)
   }
 
   override fun loadData() {
@@ -45,15 +39,15 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
 
   private fun initView() {
     showLine(true)
-    setTitle("发布")
+    setTitle("发布广告")
     setBackIcon(drawable.ic_close)
     list.addItemDecoration(RecycleItemSpace(8, 0))
     list.setGridLayoutAdapter(4, mAdapter, true)
     mAdapter.addData("")
   }
 
+
   private fun initListener() {
-//    setRightMenu("保存") {}
     mAdapter.setOnItemChildClickListener { adapter, view, position ->
       when (view.id) {
         R.id.delete_photo -> {
@@ -68,36 +62,15 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
       }
     }
 
-    check_free_mail_btn.setOnClickListener {
-      freeMail = !freeMail
-      check_free_mail.isSelected = freeMail
+    select_time_btn.setOnClickListener {
+      getCalendarPicker(activity) {
+        select_time.text = getTime(it,"yyy-MM-dd")
+      }
     }
-    since_the_lift.setOnClickListener {
-      dealWay = 1
-      since_the_lift.isSelected = true
-      door_to_door_delivery.isSelected = false
-      mail.isSelected = false
-    }
-    door_to_door_delivery.setOnClickListener {
-      dealWay = 2
-      since_the_lift.isSelected = false
-      door_to_door_delivery.isSelected = true
-      mail.isSelected = false
-    }
-    mail.setOnClickListener {
-      dealWay = 3
-      since_the_lift.isSelected = false
-      door_to_door_delivery.isSelected = false
-      mail.isSelected = true
-    }
-    select_goods_type.setOnClickListener {
-      launchHelper.startActivityForResult(SelectGoodsTypeActivity::class.java,SelectGoodsTypeActivity.SELECTED_DATA_REQUEST_DATA)
-    }
-
   }
 
 
-  override fun setReleaseGoodsImage(url: ArrayList<String>) {
+  override fun setReleaseAdvertisingImage(url: ArrayList<String>) {
     url.addAll(mAdapter.data)
     mAdapter.setNewData(url)
   }
@@ -115,12 +88,7 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
           }
           mPresenter.addNewPhoto(list)
         }
-      } else if (requestCode == SelectGoodsTypeActivity.SELECTED_DATA_REQUEST_DATA) {
-        val result = data?.getSerializableExtra(SelectGoodsTypeActivity.SELECTED_DATA) as GoodsTypeBean
       }
     }
   }
-
-
-
 }

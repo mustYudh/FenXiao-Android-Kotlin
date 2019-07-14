@@ -1,13 +1,22 @@
 package com.nhbs.fenxiao.utils
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.bigkoo.pickerview.builder.TimePickerBuilder
+import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.chad.library.adapter.base.BaseViewHolder
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
+import com.nhbs.fenxiao.R
+import com.yu.common.ui.Res
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 
 /**
  * @author yudenghao
@@ -15,8 +24,7 @@ import com.luck.picture.lib.config.PictureMimeType
  */
 
 
-fun RecyclerView.setLinearLayoutAdapter(adapter: RecyclerView.Adapter<RecyclerView.ViewHolder>,
-    noScroller: Boolean?) {
+fun RecyclerView.setLinearLayoutAdapter(adapter: RecyclerView.Adapter<BaseViewHolder>, noScroller: Boolean? = false) {
   layoutManager = object : LinearLayoutManager(context) {
     override fun canScrollVertically(): Boolean {
       return noScroller ?: super.canScrollVertically()
@@ -69,5 +77,45 @@ fun Activity.selectPhoto(max :Int? = 1) {
       .isDragFrame(false)// 是否可拖动裁剪框(固定)
       .forResult(PictureConfig.CHOOSE_REQUEST)//结果回调onActivityResult code
 }
+
+
+
+fun getCalendarPicker(context: Context, getTime: (time: Date) -> Unit) {
+  val selectedDate = Calendar.getInstance()//系统当前时间
+  val startDate = Calendar.getInstance()
+  startDate.set(2000, 1, 23)
+  val endDate = Calendar.getInstance()
+  endDate.set(2069, 2, 28)
+  val pvCustomLunar = TimePickerBuilder(context, OnTimeSelectListener { date, _ ->
+    getTime(date)
+  })
+      .setDate(selectedDate)
+      .setRangDate(startDate, endDate)
+      .setDividerColor(Res.color(R.color.line_color))
+      .setTitleColor(Res.color(R.color.material_blue_grey_800))
+      .setSubmitColor(Res.color(R.color.material_blue_grey_800))
+      .setCancelColor(Res.color(R.color.material_blue_grey_800))
+      .setTitleBgColor(Res.color(R.color.white))
+      .setBgColor(Res.color(R.color.white))
+      .setTitleSize(14)
+      .setSubCalSize(14)
+      .setContentTextSize(14)
+      .setType(booleanArrayOf(true, true, true, false, false, false))
+      .setTitleText("请选择")
+      .build()
+  pvCustomLunar.show()
+}
+
+
+
+
+@SuppressLint("SimpleDateFormat")
+fun getTime(date: Date, fmort: String): String {
+  val format = SimpleDateFormat(fmort)
+  return format.format(date)
+}
+
+
+
 
 
