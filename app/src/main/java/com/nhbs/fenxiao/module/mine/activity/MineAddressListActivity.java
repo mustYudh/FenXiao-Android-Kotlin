@@ -10,6 +10,7 @@ import com.nhbs.fenxiao.base.BaseBarActivity;
 import com.nhbs.fenxiao.module.mine.activity.presenter.MineAddressListPresenter;
 import com.nhbs.fenxiao.module.mine.activity.presenter.MineAddressListViewer;
 import com.nhbs.fenxiao.module.mine.adapter.MineAddressRvAdapter;
+import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
 import com.yu.common.mvp.PresenterLifeCycle;
 
 import java.util.ArrayList;
@@ -46,6 +47,13 @@ public class MineAddressListActivity extends BaseBarActivity implements MineAddr
 
         MineAddressRvAdapter adapter = new MineAddressRvAdapter(R.layout.item_mine_address, list, getActivity());
         mAddress.setAdapter(adapter);
+
+        mPresenter.getUserAddress();
+
+    }
+
+    @Override
+    public void getUserAddressSuccess(MineAddressBean mineAddressBean) {
 
     }
 }

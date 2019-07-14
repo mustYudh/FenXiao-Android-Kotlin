@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/lb_cm_white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:includeFontPadding="false"
+                android:text="请选择意见类型"
+                android:textColor="#ff9ea9bc"
+                android:textSize="14sp"
+                />
+
+            <ImageView
+                android:layout_width="6dp"
+                android:layout_height="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/arrow_right"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/color_line"/>
+
+        <com.nhbs.fenxiao.module.view.ClearEditText
+            android:layout_width="match_parent"
+            android:layout_height="176dp"
+            android:background="@drawable/shape_edittext"
+            android:gravity="top"
+            android:hint="亲爱的用户，请尽量详细描述您的问题，方便我们工作人员尽快处理。"
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingRight="16dp"
+            android:textColor="#9EA9BC"
+            android:textCursorDrawable="@drawable/shape_edittext_cursor"
+            android:textSize="14sp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_line"/>
+
+
+        <com.yu.common.ui.NoSlidingGridView
+            android:id="@+id/gv_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:horizontalSpacing="17dp"
+            android:numColumns="3"
+            android:padding="16dp"
+            android:verticalSpacing="17dp"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/color_line"/>
+
+        <com.nhbs.fenxiao.module.view.ClearEditText
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/shape_edittext"
+            android:gravity="center_vertical"
+            android:hint="请输入联系电话"
+            android:inputType="numberDecimal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:textColor="#9EA9BC"
+            android:textCursorDrawable="@drawable/shape_edittext_cursor"
+            android:textSize="14sp"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="175dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/shape_login_text"
+                android:gravity="center"
+                android:text="提交"
+                android:textColor="#ffffffff"
+                android:textSize="16sp"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</ScrollView>

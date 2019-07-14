@@ -31,12 +31,25 @@
                 android:textSize="14sp"
                 />
 
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+            <!--<ImageView-->
+            <!--android:layout_width="22dp"-->
+            <!--android:layout_height="22dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@drawable/ic_tongxunlu"/>-->
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_tongxunlu"/>
+                android:background="@null"
+                android:gravity="center_vertical|right"
+                android:hint="请输入收货人名称"
+                android:textColor="#9EA9BC"
+                android:textCursorDrawable="@drawable/shape_edittext_cursor"
+                android:textSize="14sp"
+                />
         </RelativeLayout>
 
         <View
@@ -60,7 +73,8 @@
                 android:textSize="14sp"
                 />
 
-            <com.nhbs.fenxiao.module.view.ClearEditText
+            <EditText
+                android:id="@+id/et_mobile"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -69,6 +83,7 @@
                 android:gravity="center_vertical|right"
                 android:hint="+86"
                 android:inputType="numberDecimal"
+                android:textColor="#9EA9BC"
                 android:textCursorDrawable="@drawable/shape_edittext_cursor"
                 android:textSize="14sp"
                 />
@@ -81,6 +96,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/rl_city"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@color/lb_cm_white">
@@ -91,6 +107,19 @@
                 android:layout_centerVertical="true"
                 android:includeFontPadding="false"
                 android:text="所在地区"
+                android:textColor="#ff9ea9bc"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:includeFontPadding="false"
+                android:text="省市区"
                 android:textColor="#ff9ea9bc"
                 android:textSize="14sp"
                 />
@@ -108,13 +137,14 @@
             android:layout_height="1dp"
             android:background="@color/color_line"/>
 
-        <com.nhbs.fenxiao.module.view.ClearEditText
+        <EditText
+            android:id="@+id/et_address"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:background="@null"
             android:gravity="center_vertical|left"
             android:hint="详细地址：如街道、小区、楼栋、单元、门牌号等"
-            android:inputType="numberDecimal"
+            android:textColor="#9EA9BC"
             android:textCursorDrawable="@drawable/shape_edittext_cursor"
             android:textSize="14sp"
             />
@@ -122,9 +152,9 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:layout_marginTop="8dp"
         android:background="@color/lb_cm_white"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
@@ -140,6 +170,7 @@
             />
 
         <com.yu.common.ui.DelayClickImageView
+            android:id="@+id/iv_type"
             android:layout_width="50dp"
             android:layout_height="24dp"
             android:layout_alignParentRight="true"
@@ -150,14 +181,14 @@
 
 
     <TextView
-        android:layout_marginTop="8dp"
-        android:paddingLeft="16dp"
-        android:background="@color/lb_cm_white"
-        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text="删除收货地址"
+        android:layout_marginTop="8dp"
+        android:background="@color/lb_cm_white"
+        android:gravity="center_vertical"
         android:includeFontPadding="false"
+        android:paddingLeft="16dp"
+        android:text="删除收货地址"
         android:textColor="#ffff3539"
         android:textSize="15sp"
         />
