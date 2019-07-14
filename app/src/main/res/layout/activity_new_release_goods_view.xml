@@ -7,11 +7,10 @@
     >
 
   <ScrollView
-      android:scrollbars="none"
-      android:overScrollMode="never"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_weight="1"
+      android:layout_height="wrap_content"
+      android:overScrollMode="never"
+      android:scrollbars="none"
       >
 
     <LinearLayout
@@ -136,21 +135,35 @@
               android:textSize="16sp"
               />
 
-          <com.yu.common.ui.DelayClickImageView
-              android:layout_width="12dp"
-              android:layout_height="12dp"
-              android:layout_marginLeft="6dp"
-              android:src="@drawable/shape_radious_selector"
-              />
 
-          <TextView
+          <LinearLayout
+              android:paddingLeft="12dp"
+              android:gravity="center_vertical"
               android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="8dp"
-              android:text="包邮"
-              android:textColor="#ffa0a9bb"
-              android:textSize="14sp"
-              />
+              android:layout_height="match_parent"
+              android:orientation="horizontal"
+              android:id="@+id/check_free_mail_btn"
+              >
+
+            <com.yu.common.ui.DelayClickImageView
+                android:id="@+id/check_free_mail"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginLeft="6dp"
+                android:src="@drawable/shape_check_selector"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="包邮"
+                android:textColor="#ffa0a9bb"
+                android:textSize="14sp"
+                />
+
+          </LinearLayout>
+
 
         </LinearLayout>
 
@@ -211,6 +224,7 @@
               android:textSize="16sp"
               />
           <com.yu.common.ui.DelayClickTextView
+              android:id="@+id/since_the_lift"
               android:layout_width="64dp"
               android:layout_height="24dp"
               android:layout_marginRight="8dp"
@@ -222,6 +236,7 @@
               />
 
           <com.yu.common.ui.DelayClickTextView
+              android:id="@+id/door_to_door_delivery"
               android:layout_width="64dp"
               android:layout_height="24dp"
               android:layout_marginRight="8dp"
@@ -233,6 +248,7 @@
               />
 
           <com.yu.common.ui.DelayClickTextView
+              android:id="@+id/mail"
               android:layout_width="64dp"
               android:layout_height="24dp"
               android:background="@drawable/shape_goods_button_selector"
@@ -338,6 +354,11 @@
     </LinearLayout>
   </ScrollView>
 
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      />
   <FrameLayout
       android:layout_width="match_parent"
       android:layout_height="56dp"
