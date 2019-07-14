@@ -3,7 +3,6 @@ package com.nhbs.fenxiao.module.center
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import com.nhbs.fenxiao.R
 import com.yu.common.windown.BasePopupWindow
 
@@ -18,7 +17,8 @@ class SetPrizePopupWindow(context: Context) : BasePopupWindow(
 ), View.OnClickListener {
 
   init {
-    bindView<RelativeLayout>(R.id.root).setOnClickListener {
+    isFocusable = true
+    bindView<View>(R.id.background).setOnClickListener {
       dismiss()
     }
   }
