@@ -11,6 +11,7 @@ import com.nhbs.fenxiao.module.home.StatusBarColorManager;
 import com.nhbs.fenxiao.module.mine.activity.MineAddressListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineGeneralizeActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineIncomeActivity;
+import com.nhbs.fenxiao.module.mine.activity.MineOpinionActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineOrderListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineTeamActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineWithdrawActivity;
@@ -100,6 +101,8 @@ public class MineFragment extends BaseBarFragment
             case 4:
                 break;
             case 5:
+                //意见反馈
+                getLaunchHelper().startActivity(MineOpinionActivity.class);
                 break;
             case 6:
                 break;
