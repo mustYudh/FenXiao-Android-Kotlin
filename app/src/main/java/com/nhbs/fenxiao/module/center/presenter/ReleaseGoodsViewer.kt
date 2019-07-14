@@ -4,5 +4,5 @@ import com.yu.common.mvp.Viewer
 
 
 interface ReleaseGoodsViewer : Viewer {
-  fun setReleaseGoodsImage(url: List<String>)
+  fun setReleaseGoodsImage(url: ArrayList<String>)
 }

@@ -35,12 +35,11 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
     list.addItemDecoration(RecycleItemSpace(8, 0))
     list.setGridLayoutAdapter(4, mAdapter, true)
     setRightMenu("保存") {}
-    mAdapter.addData(0, "")
+    mAdapter.addData("")
     mAdapter.setOnItemChildClickListener { adapter, view, position ->
       when (view.id) {
         R.id.delete_photo -> {
           adapter.remove(position)
-          mAdapter.notifyDataSetChanged()
         }
         R.id.add_photo -> {
           if (position == adapter.itemCount - 1 && TextUtils.isEmpty(
@@ -53,8 +52,9 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
   }
 
 
-  override fun setReleaseGoodsImage(url: List<String>) {
-    mAdapter.addData(mAdapter.itemCount - 1, url)
+  override fun setReleaseGoodsImage(url: ArrayList<String>) {
+    url.addAll(mAdapter.data)
+    mAdapter.setNewData(url)
   }
 
 

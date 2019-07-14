@@ -7,7 +7,7 @@ class ReleaseGoodsPresenter(viewer: ReleaseGoodsViewer) : BaseViewPresenter<Rele
     viewer) {
 
 
-  fun addNewPhoto(url: List<String>) {
+  fun addNewPhoto(url: ArrayList<String>) {
     getViewer()?.setReleaseGoodsImage(url)
   }
 }
