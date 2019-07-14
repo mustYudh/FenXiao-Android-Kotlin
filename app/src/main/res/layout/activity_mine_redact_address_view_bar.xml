@@ -62,28 +62,18 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/ll_add"
-        android:layout_width="wrap_content"
+    <com.yu.common.ui.DelayClickTextView
+        android:layout_width="50dp"
+        android:id="@+id/tv_commit"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:layout_centerHorizontal="true"
+        android:layout_marginRight="6dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        >
-
-        <com.yu.common.ui.DelayClickTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            android:gravity="center"
-            android:maxLines="1"
-            android:text="保存"
-            android:textColor="#FF3539"
-            android:textSize="16sp"
-            />
-
-    </LinearLayout>
+        android:maxLines="1"
+        android:text="保存"
+        android:textColor="#FF3539"
+        android:textSize="16sp"
+        />
 
 
 </RelativeLayout>
