@@ -52,11 +52,17 @@ public class MineOpinionPresenter extends BaseViewPresenter<MineOpinionViewer> {
                         assert getViewer() != null;
                         getViewer().opinionAddSuccess();
                     }
+
+                    @Override
+                    protected void onError(ApiException apiException) {
+                        assert getViewer() != null;
+                        getViewer().opinionAddFail();
+                    }
                 });
     }
 
     public void uploadImg(File file) {
-        XHttp.post("http://139.180.218.55:8060/api/upload")
+        XHttp.post("/upload")
                 .uploadFile("MultipartFile", file, (bytesWritten, contentLength, done) -> {
                 }).execute(UploadImgBean.class)
                 .compose(RxLifecycle.with(getActivity()).bindToLifecycle())
