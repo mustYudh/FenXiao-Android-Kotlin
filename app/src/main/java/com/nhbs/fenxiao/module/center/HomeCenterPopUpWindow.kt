@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import com.nhbs.fenxiao.R
+import com.nhbs.fenxiao.module.center.activity.ReleaseACGoodsActivity
 import com.nhbs.fenxiao.module.center.activity.ReleaseAdvertisingActivity
 import com.nhbs.fenxiao.module.center.activity.ReleaseGoodsActivity
 import com.nhbs.fenxiao.module.home.StatusBarColorManager
@@ -177,7 +178,7 @@ class HomeCenterPopUpWindow(context: Activity) : BasePopupWindow(
                 dismiss { LauncherHelper.from(activity).startActivity(ReleaseAdvertisingActivity::class.java) }
             }
             R.id.activity -> {
-
+                dismiss { LauncherHelper.from(activity).startActivity(ReleaseACGoodsActivity::class.java) }
             }
         }
     }
