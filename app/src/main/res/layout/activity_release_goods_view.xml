@@ -59,7 +59,7 @@
 
 
     <LinearLayout
-        android:id="@+id/select_goods_type"
+        android:id="@+id/first_goods"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -197,6 +197,7 @@
 
 
     <LinearLayout
+        android:id="@+id/second_goods"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -341,6 +342,7 @@
 
 
     <LinearLayout
+        android:id="@+id/last_goods"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"

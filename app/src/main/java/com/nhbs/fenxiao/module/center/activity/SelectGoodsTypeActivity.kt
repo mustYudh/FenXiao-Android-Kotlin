@@ -5,8 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseBarActivity
-import com.nhbs.fenxiao.module.center.activity.presenter.SelectGoodsTypePresenter
-import com.nhbs.fenxiao.module.center.activity.presenter.SelectGoodsTypeViewer
+import com.nhbs.fenxiao.module.center.presenter.SelectGoodsTypePresenter
+import com.nhbs.fenxiao.module.center.presenter.SelectGoodsTypeViewer
 import com.nhbs.fenxiao.module.center.adapter.SelectGoodsTypeAdapter
 import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
 import com.nhbs.fenxiao.utils.setLinearLayoutAdapter

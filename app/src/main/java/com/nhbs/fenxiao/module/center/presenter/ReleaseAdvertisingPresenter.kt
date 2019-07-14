@@ -1,4 +1,4 @@
-package com.nhbs.fenxiao.module.center.activity.presenter
+package com.nhbs.fenxiao.module.center.presenter
 
 import android.annotation.SuppressLint
 import com.yu.common.framework.BaseViewPresenter
@@ -34,7 +34,6 @@ class ReleaseAdvertisingPresenter(
   NetLoadingDialog.dismissLoading()
   super.onComplete()
   }
-
   }
   )
    */

@@ -1,4 +1,4 @@
-package com.nhbs.fenxiao.module.center.activity.presenter
+package com.nhbs.fenxiao.module.center.presenter
 
 import com.yu.common.mvp.Viewer
 

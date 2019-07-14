@@ -6,12 +6,16 @@ import android.widget.LinearLayout
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.R.id
 import com.nhbs.fenxiao.base.BaseBarActivity
+import com.nhbs.fenxiao.module.center.SetPrizePopupWindow
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsACActivityViewer
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsACPresenter
 import com.nhbs.fenxiao.utils.getCalendarPicker
 import com.nhbs.fenxiao.utils.getTime
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.activity_release_goods_view.check_free_mail_btn
+import kotlinx.android.synthetic.main.activity_release_goods_view.first_goods
+import kotlinx.android.synthetic.main.activity_release_goods_view.last_goods
+import kotlinx.android.synthetic.main.activity_release_goods_view.second_goods
 import kotlinx.android.synthetic.main.activity_release_goods_view.select_time
 import kotlinx.android.synthetic.main.activity_release_goods_view.select_time_btn
 
@@ -42,5 +46,19 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
         select_time.text = getTime(it, "yyy-MM-dd")
       }
     }
+
+    first_goods.setOnClickListener {
+      val pop = SetPrizePopupWindow(activity)
+      pop.showPopupWindow()
+    }
+    second_goods.setOnClickListener {
+      val pop = SetPrizePopupWindow(activity)
+      pop.showPopupWindow()
+    }
+    last_goods.setOnClickListener {
+      val pop = SetPrizePopupWindow(activity)
+      pop.showPopupWindow()
+    }
+
   }
 }

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#52000000"
+    >
+
+  <LinearLayout
+      android:id="@+id/container"
+      android:layout_width="match_parent"
+      android:layout_height="278dp"
+      android:layout_alignParentBottom="true"
+      android:background="@drawable/shape_top_radiu"
+      android:orientation="vertical"
+      >
+
+
+    <com.shehuan.niv.NiceImageView
+        android:id="@+id/add_photo"
+        android:layout_width="176dp"
+        android:layout_height="78dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="14dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_add_activity_bg"
+        app:corner_radius="2dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="22dp"
+        android:background="@null"
+        android:ellipsize="end"
+        android:hint="请输入奖品名"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="#2D2E39"
+        android:textColorHint="#A0A9BB"
+        android:textSize="14sp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="9dp"
+        android:background="@color/line_color"
+        />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="22dp"
+        android:background="@null"
+        android:ellipsize="end"
+        android:hint="请输入奖品数量"
+        android:inputType="number"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="#2D2E39"
+        android:textColorHint="#A0A9BB"
+        android:textSize="14sp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="9dp"
+        android:background="@color/line_color"
+        />
+
+
+    <com.yu.common.ui.DelayClickTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/shape_login_text"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/lb_cm_white"
+        android:textSize="16sp"
+        />
+
+  </LinearLayout>
+
+
+</RelativeLayout>
