@@ -77,7 +77,7 @@ public abstract class BasicActivity extends AbstractExtendsActivity {
     super.setContentView(view);
     if (darkMode()) {
       try {
-        StatusBarFontColorUtil.StatusBarLightMode(getActivity());
+        StatusBarFontColorUtil.statusBarLightMode(this);
       } catch (Exception e) {
         e.printStackTrace();
       }

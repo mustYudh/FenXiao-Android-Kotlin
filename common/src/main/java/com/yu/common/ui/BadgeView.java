@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.TabWidget;
+
 import com.yu.common.R;
 
 public class BadgeView extends AppCompatTextView {

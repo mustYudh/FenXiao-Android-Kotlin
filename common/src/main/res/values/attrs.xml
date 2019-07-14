@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CircleImageView">
-        <attr name="civ_border_width" format="dimension"/>
-        <attr name="civ_border_color" format="color"/>
-        <attr name="civ_border_overlay" format="boolean"/>
-        <attr name="civ_fill_color" format="color"/>
-    </declare-styleable>
+  <declare-styleable name="CircleImageView">
+    <attr format="dimension" name="civ_border_width"/>
+    <attr format="color" name="civ_border_color"/>
+    <attr format="boolean" name="civ_border_overlay"/>
+    <attr format="color" name="civ_fill_color"/>
+  </declare-styleable>
 
 
+  <declare-styleable name="BarIconContainer">
+    <attr format="reference" name="bar_icon"/>
+    <attr format="reference" name="bar_unread_icon"/>
+  </declare-styleable>
 
-    <declare-styleable name="BarIconContainer">
-        <attr format="reference" name="bar_icon"/>
-        <attr format="reference" name="bar_unread_icon"/>
-    </declare-styleable>
 
-    <declare-styleable name="BadgeView">
-        <attr format="color" name="badge_text_background"/>
-        <attr format="dimension" name="badge_radius"/>
-    </declare-styleable>
+  <declare-styleable name="BadgeView">
+    <attr format="color" name="badge_text_background"/>
+    <attr format="dimension" name="badge_radius"/>
+  </declare-styleable>
 
 
 </resources>

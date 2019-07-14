@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.yu.common.R;
 import com.yu.common.launche.LauncherHelper;
 import com.yu.common.utils.NetWorkUtil;
@@ -121,7 +122,6 @@ public abstract class BasicFragment extends AbstractExtendsFragment {
             loadData();
         }
     }
-
 
 
     protected boolean inFragmentPageAdapter() {

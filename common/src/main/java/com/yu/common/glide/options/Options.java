@@ -2,6 +2,10 @@ package com.yu.common.glide.options;
 
 import java.io.Serializable;
 
+/**
+ * @author chenwei
+ * @date 2018/3/21
+ */
 public class Options implements Serializable {
 
   private boolean fadeIn;

@@ -1,2 +1,1 @@
-include ':app', ':bottom_tab', ':share', ':common', ':location', ':http-lib', ':picture_library',
-    ':ucrop'
+include ':app', ':bottom_tab', ':share', ':location', ':http-lib', ':common'

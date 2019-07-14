@@ -16,10 +16,8 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.SafeKeyGenerator;
 import com.bumptech.glide.load.model.GlideUrl;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.signature.EmptySignature;
 import com.yu.common.glide.GlideApp;
@@ -72,7 +70,7 @@ public class ImageLoaderForGlideImpl implements ImageLoaderCommonFunc {
         glide = glide.circleCrop();
       }
       onLoadImage(glide, imageView, source, options.getDefaultImageResource(),
-          options.getDefaultImageResource(), null, callback);
+          options.getDefaultImageResource(), callback);
     }
   }
 
@@ -85,15 +83,14 @@ public class ImageLoaderForGlideImpl implements ImageLoaderCommonFunc {
   public void displayImage(ImageView imageView, final String source, int placeholderId, int errorId,
       @Nullable DrawableLoadedCallback callback) {
     GlideRequest<Drawable> glide = newGlide(imageView, source);
-    onLoadImage(glide, imageView, source, placeholderId, errorId, null, callback);
+    onLoadImage(glide, imageView, source, placeholderId, errorId, callback);
   }
 
   /**
    * 实现Glide加载的统一函数
    */
   protected void onLoadImage(GlideRequest<Drawable> glide, ImageView imageView, final String source,
-      int placeholderId, int errorId, CenterCrop CenterCrop,
-      @Nullable DrawableLoadedCallback callback) {
+      int placeholderId, int errorId, @Nullable DrawableLoadedCallback callback) {
     if (glide == null) {
       glide = newGlide(imageView, source);
     }
@@ -105,9 +102,6 @@ public class ImageLoaderForGlideImpl implements ImageLoaderCommonFunc {
     }
     if (errorId != 0) {
       glide = glide.error(errorId);
-    }
-    if (CenterCrop != null) {
-      glide = glide.apply(RequestOptions.bitmapTransform(CenterCrop));
     }
     if (callback != null) {
       final WeakReference<DrawableLoadedCallback> callbackWeakReference =
@@ -177,7 +171,9 @@ public class ImageLoaderForGlideImpl implements ImageLoaderCommonFunc {
   }
 
   /**
-   *
+   * @param imageView
+   * @param source
+   * @return
    */
   private @Nullable GlideRequest<Drawable> newGlide(ImageView imageView, String source) {
     if (imageView == null) {
@@ -220,12 +216,5 @@ public class ImageLoaderForGlideImpl implements ImageLoaderCommonFunc {
       e.printStackTrace();
     }
     return null;
-  }
-
-  @Override public void blurTransformation(ImageView imageView, String source,int placeholderId,CenterCrop centerCrop) {
-    GlideRequest<Drawable> glide = newGlide(imageView, source);
-    if (glide != null) {
-      onLoadImage(glide, imageView, source, 0, placeholderId, centerCrop, null);
-    }
   }
 }

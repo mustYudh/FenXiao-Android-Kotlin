@@ -2,7 +2,6 @@
 <resources>
 
   <color name="lb_cm_gray_font">#8F8F8F</color>
-  <color name="line_color">#F1F1F1</color>
   <color name="lb_cm_base_dialog_background_color">#44000000</color>
 
   <color name="lb_cm_black_font">#203264</color>

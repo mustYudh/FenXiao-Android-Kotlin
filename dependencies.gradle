@@ -8,7 +8,7 @@ ext {
 
     applicationId = 'com.nhbs.fenxiao'
     compileSdkVersion = 28
-    minSdkVersion = 17
+    minSdkVersion = 19
     targetSdkVersion = 22
     appTargetSdkVersion = 26
 

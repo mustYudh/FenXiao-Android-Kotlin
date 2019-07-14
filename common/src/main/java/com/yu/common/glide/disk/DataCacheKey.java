@@ -3,6 +3,9 @@ package com.yu.common.glide.disk;
 import com.bumptech.glide.load.Key;
 import java.security.MessageDigest;
 
+/**
+ * @author chenwei
+ */
 public class DataCacheKey implements Key {
 
   private final Key sourceKey;

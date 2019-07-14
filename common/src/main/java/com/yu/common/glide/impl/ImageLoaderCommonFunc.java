@@ -4,11 +4,14 @@ import android.graphics.Bitmap;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.yu.common.glide.callback.BitmapLoadCallback;
 import com.yu.common.glide.callback.DrawableLoadedCallback;
 import com.yu.common.glide.options.Options;
 
+/**
+ * @author chenwei
+ * @date 2017/11/8
+ */
 public interface ImageLoaderCommonFunc {
 
   void displayImage(ImageView imageView, String source);
@@ -38,6 +41,4 @@ public interface ImageLoaderCommonFunc {
   void loadBitmap(String url, BitmapLoadCallback bitmapLoadCallback);
 
   String getDiskCachePath(String url);
-
-  void blurTransformation(ImageView view, String url, int placeholderId,CenterCrop centerCrop);
 }

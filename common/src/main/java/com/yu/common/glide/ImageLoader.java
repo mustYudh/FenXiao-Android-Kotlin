@@ -4,13 +4,16 @@ import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.yu.common.glide.callback.BitmapLoadCallback;
 import com.yu.common.glide.callback.DrawableLoadedCallback;
 import com.yu.common.glide.impl.ImageLoaderCommonFunc;
 import com.yu.common.glide.impl.ImageLoaderForGlideImpl;
 import com.yu.common.glide.options.Options;
 
+/**
+ * @author chenwei
+ * @date 2017/11/8
+ */
 public class ImageLoader implements ImageLoaderCommonFunc {
 
   private static ImageLoader loader;
@@ -88,9 +91,5 @@ public class ImageLoader implements ImageLoaderCommonFunc {
 
   @Override public String getDiskCachePath(String url) {
     return impl.getDiskCachePath(url);
-  }
-
-  @Override public void blurTransformation(ImageView view, String url,int placeholderId, CenterCrop centerCrop) {
-    impl.blurTransformation(view, url,placeholderId,centerCrop);
   }
 }
