@@ -21,7 +21,7 @@ public class MineAddressListPresenter extends BaseViewPresenter<MineAddressListV
                     @Override
                     protected void onSuccess(MineAddressBean mineAddressBean) {
                         assert getViewer() != null;
-//                        getViewer().getUserAddressSuccess(mineAddressBean);
+                        getViewer().getUserAddressSuccess(mineAddressBean);
                     }
                 });
     }

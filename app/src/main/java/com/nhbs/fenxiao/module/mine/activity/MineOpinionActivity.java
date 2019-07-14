@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.view.Gravity;
 
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -14,6 +15,9 @@ import com.nhbs.fenxiao.base.BaseBarActivity;
 import com.nhbs.fenxiao.module.mine.activity.presenter.MineOpinionPresenter;
 import com.nhbs.fenxiao.module.mine.activity.presenter.MineOpinionViewer;
 import com.nhbs.fenxiao.module.mine.adapter.GridAdapter;
+import com.nhbs.fenxiao.module.mine.bean.UploadImgBean;
+import com.nhbs.fenxiao.module.view.ClearEditText;
+import com.nhbs.fenxiao.utils.DialogUtils;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.ui.NoSlidingGridView;
 
@@ -27,6 +31,8 @@ public class MineOpinionActivity extends BaseBarActivity implements MineOpinionV
     MineOpinionPresenter mPresenter = new MineOpinionPresenter(this);
     private GridAdapter adapter;
     private NoSlidingGridView gvPhoto;
+    private String type = "";
+    private DialogUtils typeDialog;
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
@@ -39,6 +45,44 @@ public class MineOpinionActivity extends BaseBarActivity implements MineOpinionV
         gvPhoto = bindView(R.id.gv_photo);
         adapter = new GridAdapter(getActivity(), allLocationSelectedPicture);
         gvPhoto.setAdapter(adapter);
+        ClearEditText mContent = bindView(R.id.et_content);
+        ClearEditText mMobile = bindView(R.id.et_mobile);
+
+        bindView(R.id.tv_commit, view -> {
+//            mPresenter.uploadImg();
+//            mPresenter.opinionAdd();
+        });
+
+        bindView(R.id.rl_type, view -> {
+            showTypeDialog();
+        });
+    }
+
+    /**
+     * 清空
+     */
+    private void showTypeDialog() {
+        typeDialog = new DialogUtils.Builder(getActivity()).view(R.layout.dialog_type)
+                .gravity(Gravity.BOTTOM)
+                .addViewOnclick(R.id.tv1, view -> {
+                    type = "购物相关";
+                })
+                .addViewOnclick(R.id.tv2, view -> {
+                    type = "提现问题";
+                })
+                .addViewOnclick(R.id.tv3, view -> {
+                    type = "信息错误";
+                })
+                .addViewOnclick(R.id.tv4, view -> {
+                    type = "友好意见";
+                })
+                .addViewOnclick(R.id.tv5, view -> {
+                    type = "其他";
+                })
+                .cancelTouchout(true)
+                .style(R.style.Dialog)
+                .build();
+        typeDialog.show();
     }
 
 
@@ -67,5 +111,20 @@ public class MineOpinionActivity extends BaseBarActivity implements MineOpinionV
                 default:
             }
         }
+    }
+
+    @Override
+    public void opinionAddSuccess() {
+
+    }
+
+    @Override
+    public void uploadImgSuccess(UploadImgBean uploadImgBean) {
+
+    }
+
+    @Override
+    public void uploadImgFail() {
+
     }
 }

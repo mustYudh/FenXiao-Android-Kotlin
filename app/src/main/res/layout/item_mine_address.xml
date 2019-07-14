@@ -18,16 +18,17 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:includeFontPadding="false"
-                android:text="在路上 17621552300"
                 android:textColor="#ff3c3e5b"
                 android:textSize="14sp"
                 />
 
             <TextView
+                android:id="@+id/tv_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -36,13 +37,13 @@
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="2dp"
                 android:maxLines="2"
-                android:text="浙江省 杭州市 滨江区 xxx小区xx栋1单元101室内地址"
                 android:textColor="#ff9ea9bc"
                 android:textSize="14sp"
                 />
         </LinearLayout>
 
-        <TextView
+        <com.yu.common.ui.DelayClickTextView
+            android:id="@+id/tv_redact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
