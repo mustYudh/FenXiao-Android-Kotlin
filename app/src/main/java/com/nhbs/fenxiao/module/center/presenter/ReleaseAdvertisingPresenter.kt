@@ -1,6 +1,8 @@
 package com.nhbs.fenxiao.module.center.presenter
 
 import android.annotation.SuppressLint
+import android.util.Log
+import com.nhbs.fenxiao.utils.oss.UploadUtils
 import com.yu.common.framework.BaseViewPresenter
 
 @SuppressLint("CheckResult")
@@ -9,6 +11,11 @@ class ReleaseAdvertisingPresenter(
 
 
   fun addNewPhoto(url: ArrayList<String>) {
+    UploadUtils.uploadFile(activity, url, "124","png") { fileList ->
+      for (result in fileList) {
+        Log.e("======>", result)
+      }
+    }
     getViewer()?.setReleaseAdvertisingImage(url)
   }
 

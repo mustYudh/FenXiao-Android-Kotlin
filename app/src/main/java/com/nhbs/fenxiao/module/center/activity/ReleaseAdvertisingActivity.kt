@@ -85,7 +85,9 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
         if (selectList != null && selectList.size > 0) {
           val list = ArrayList<String>()
           for (url in selectList) {
-            list.add(url.compressPath)
+            if (!TextUtils.isEmpty(url.compressPath)) {
+              list.add(url.compressPath)
+            }
           }
           mPresenter.addNewPhoto(list)
         }
