@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.text.TextUtils;
 import android.view.Gravity;
 
 import com.luck.picture.lib.PictureSelector;
@@ -95,6 +96,22 @@ public class MineOpinionActivity extends BaseBarActivity implements MineOpinionV
         mMobile = bindView(R.id.et_mobile);
 
         bindView(R.id.tv_commit, view -> {
+            if (TextUtils.isEmpty(type)){
+                ToastUtils.show("请选择意见类型");
+                return;
+            }
+            if (TextUtils.isEmpty(mContent.getText().toString().trim())){
+                ToastUtils.show("请填写意见内容");
+                return;
+            }
+            if (allLocationSelectedPicture.size() == 0) {
+                ToastUtils.show("请选择至少一张图片");
+                return;
+            }
+            if (TextUtils.isEmpty(mMobile.getText().toString().trim())){
+                ToastUtils.show("请填写联系人手机号码");
+                return;
+            }
             for (int i = 0; i < allLocationSelectedPicture.size(); i++) {
                 File imageFileCrmera = new File(allLocationSelectedPicture.get(i).getCompressPath());
                 /** 上传图片*/
@@ -212,7 +229,25 @@ public class MineOpinionActivity extends BaseBarActivity implements MineOpinionV
 
     @Override
     public void uploadImgSuccess(UploadImgBean uploadImgBean) {
+        if (uploadImgBean != null) {
+            imageFiles.add(uploadImgBean.url + "");
 
+            if (imageFiles.size() == allLocationSelectedPicture.size()) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        handler.sendEmptyMessage(1001);//向消息队列发送一个标记
+                    }
+                }).start();
+            }
+        } else {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    handler.sendEmptyMessage(1003);//向消息队列发送一个标记
+                }
+            }).start();
+        }
     }
 
     @Override
