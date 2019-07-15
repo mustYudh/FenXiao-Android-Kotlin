@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.google.gson.Gson;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarActivity;
@@ -53,9 +52,9 @@ public class MineAddressListActivity extends BaseBarActivity implements MineAddr
             if (mineAddressBean.rows != null && mineAddressBean.rows.size() != 0) {
                 MineAddressRvAdapter adapter = new MineAddressRvAdapter(R.layout.item_mine_address, mineAddressBean.rows, getActivity());
                 mAddress.setAdapter(adapter);
-                mAddress.addOnItemTouchListener(new OnItemChildClickListener() {
+                adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
                     @Override
-                    public void onSimpleItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                         switch (view.getId()) {
                             case R.id.tv_redact:
                                 Intent intent = new Intent(getActivity(), MineRedactAddressActivity.class);
@@ -78,7 +77,6 @@ public class MineAddressListActivity extends BaseBarActivity implements MineAddr
             case 1:
                 mPresenter.getUserAddress();
                 break;
-
         }
     }
 }

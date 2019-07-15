@@ -108,10 +108,14 @@ public class MineRedactAddressActivity extends BaseBarActivity implements MineRe
             tv_city.setText(listBean.address);
             et_address.setText(listBean.specificAddress);
             et_address.setSelection(et_address.getText().toString().trim().length());
-            iv_type.setImageResource(listBean.status == 1 ? R.drawable.ic_guan : R.drawable.ic_kai);
+            iv_type.setImageResource(listBean.type == 1 ? R.drawable.ic_guan : R.drawable.ic_kai);
             type = listBean.type;
             bindView(R.id.tv_commit, view -> {
                 mPresenter.userAddressEdit(et_name.getText().toString().trim(), et_mobile.getText().toString().trim(), tv_city.getText().toString().trim(), et_address.getText().toString().trim(), listBean.id, type);
+            });
+
+            bindView(R.id.tv_del, view -> {
+                mPresenter.userAddressDel(listBean.id);
             });
         } else {
             setTitle("新增收货地址");

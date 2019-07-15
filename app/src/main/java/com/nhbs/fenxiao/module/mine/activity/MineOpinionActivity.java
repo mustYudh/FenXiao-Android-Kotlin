@@ -1,10 +1,14 @@
 package com.nhbs.fenxiao.module.mine.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.text.TextUtils;
 import android.view.Gravity;
 
 import com.luck.picture.lib.PictureSelector;
@@ -19,10 +23,17 @@ import com.nhbs.fenxiao.module.mine.bean.UploadImgBean;
 import com.nhbs.fenxiao.module.view.ClearEditText;
 import com.nhbs.fenxiao.utils.DialogUtils;
 import com.yu.common.mvp.PresenterLifeCycle;
+import com.yu.common.toast.ToastUtils;
 import com.yu.common.ui.NoSlidingGridView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import id.zelory.compressor.Compressor;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class MineOpinionActivity extends BaseBarActivity implements MineOpinionViewer {
@@ -33,24 +44,100 @@ public class MineOpinionActivity extends BaseBarActivity implements MineOpinionV
     private NoSlidingGridView gvPhoto;
     private String type = "";
     private DialogUtils typeDialog;
+    private ArrayList<String> imageFiles = new ArrayList<>();
+    private ClearEditText mContent;
+    private ClearEditText mMobile;
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_mine_opinion_view);
     }
 
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler() {
+        @SuppressLint("CheckResult")
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            //得到这个消息标记开始处理消息
+            if (msg.what == 1001) {
+                //处理消息
+                final StringBuilder urlNo = new StringBuilder();
+                if (imageFiles.size() != 0) {
+                    for (int i = 0; i < imageFiles.size(); i++) {
+                        urlNo.append(imageFiles.get(i));
+                        if (i < imageFiles.size() - 1) {
+                            urlNo.append(";");
+                        }
+                    }
+                }
+
+                mPresenter.opinionAdd(mContent.getText().toString().trim(), mMobile.getText().toString().trim(), urlNo.toString().trim(), type);
+
+            } else if (msg.what == 1002) {
+
+                ToastUtils.show("图片压缩失败,请重试");
+            } else if (msg.what == 1003) {
+
+                imageFiles.clear();
+                ToastUtils.show("图片上传失败,请重试");
+            }
+        }
+    };
+
+    @SuppressLint("CheckResult")
     @Override
     protected void loadData() {
         setTitle("意见反馈");
         gvPhoto = bindView(R.id.gv_photo);
         adapter = new GridAdapter(getActivity(), allLocationSelectedPicture);
         gvPhoto.setAdapter(adapter);
-        ClearEditText mContent = bindView(R.id.et_content);
-        ClearEditText mMobile = bindView(R.id.et_mobile);
+        mContent = bindView(R.id.et_content);
+        mMobile = bindView(R.id.et_mobile);
 
         bindView(R.id.tv_commit, view -> {
-//            mPresenter.uploadImg();
-//            mPresenter.opinionAdd();
+            if (TextUtils.isEmpty(type)){
+                ToastUtils.show("请选择意见类型");
+                return;
+            }
+            if (TextUtils.isEmpty(mContent.getText().toString().trim())){
+                ToastUtils.show("请填写意见内容");
+                return;
+            }
+            if (allLocationSelectedPicture.size() == 0) {
+                ToastUtils.show("请选择至少一张图片");
+                return;
+            }
+            if (TextUtils.isEmpty(mMobile.getText().toString().trim())){
+                ToastUtils.show("请填写联系人手机号码");
+                return;
+            }
+            for (int i = 0; i < allLocationSelectedPicture.size(); i++) {
+                File imageFileCrmera = new File(allLocationSelectedPicture.get(i).getCompressPath());
+                /** 上传图片*/
+                new Compressor(getActivity())
+                        .compressToFileAsFlowable(imageFileCrmera)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Consumer<File>() {
+                            @Override
+                            public void accept(File file) {
+                                mPresenter.uploadImg(file);
+                            }
+                        }, new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) {
+                                throwable.printStackTrace();
+//                                        showError(throwable.getMessage());
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        handler.sendEmptyMessage(1002);//向消息队列发送一个标记
+                                    }
+                                }).start();
+                            }
+                        });
+            }
         });
 
         bindView(R.id.rl_type, view -> {
@@ -65,19 +152,39 @@ public class MineOpinionActivity extends BaseBarActivity implements MineOpinionV
         typeDialog = new DialogUtils.Builder(getActivity()).view(R.layout.dialog_type)
                 .gravity(Gravity.BOTTOM)
                 .addViewOnclick(R.id.tv1, view -> {
+                    if (typeDialog.isShowing()) {
+                        typeDialog.dismiss();
+                    }
                     type = "购物相关";
+                    bindText(R.id.tv_type, "购物相关");
                 })
                 .addViewOnclick(R.id.tv2, view -> {
+                    if (typeDialog.isShowing()) {
+                        typeDialog.dismiss();
+                    }
                     type = "提现问题";
+                    bindText(R.id.tv_type, "提现问题");
                 })
                 .addViewOnclick(R.id.tv3, view -> {
+                    if (typeDialog.isShowing()) {
+                        typeDialog.dismiss();
+                    }
                     type = "信息错误";
+                    bindText(R.id.tv_type, "信息错误");
                 })
                 .addViewOnclick(R.id.tv4, view -> {
+                    if (typeDialog.isShowing()) {
+                        typeDialog.dismiss();
+                    }
                     type = "友好意见";
+                    bindText(R.id.tv_type, "友好意见");
                 })
                 .addViewOnclick(R.id.tv5, view -> {
+                    if (typeDialog.isShowing()) {
+                        typeDialog.dismiss();
+                    }
                     type = "其他";
+                    bindText(R.id.tv_type, "其他");
                 })
                 .cancelTouchout(true)
                 .style(R.style.Dialog)
@@ -115,16 +222,43 @@ public class MineOpinionActivity extends BaseBarActivity implements MineOpinionV
 
     @Override
     public void opinionAddSuccess() {
-
+        imageFiles.clear();
+        ToastUtils.show("意见反馈成功");
+        finish();
     }
 
     @Override
     public void uploadImgSuccess(UploadImgBean uploadImgBean) {
+        if (uploadImgBean != null) {
+            imageFiles.add(uploadImgBean.url + "");
 
+            if (imageFiles.size() == allLocationSelectedPicture.size()) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        handler.sendEmptyMessage(1001);//向消息队列发送一个标记
+                    }
+                }).start();
+            }
+        } else {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    handler.sendEmptyMessage(1003);//向消息队列发送一个标记
+                }
+            }).start();
+        }
     }
 
     @Override
     public void uploadImgFail() {
+        imageFiles.clear();
+        ToastUtils.show("图片上传失败,请重试");
+    }
 
+    @Override
+    public void opinionAddFail() {
+        imageFiles.clear();
+        ToastUtils.show("意见反馈失败");
     }
 }

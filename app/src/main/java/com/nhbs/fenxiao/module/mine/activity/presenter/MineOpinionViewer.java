@@ -10,4 +10,6 @@ public interface MineOpinionViewer extends Viewer {
     void uploadImgSuccess(UploadImgBean uploadImgBean);
 
     void uploadImgFail();
+
+    void opinionAddFail();
 }
