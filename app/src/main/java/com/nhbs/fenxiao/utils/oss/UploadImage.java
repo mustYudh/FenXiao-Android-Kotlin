@@ -11,9 +11,10 @@ import com.alibaba.sdk.android.oss.common.auth.OSSCredentialProvider;
 import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider;
 import com.alibaba.sdk.android.oss.model.PutObjectRequest;
 import com.alibaba.sdk.android.oss.model.PutObjectResult;
+import com.nhbs.fenxiao.utils.oss.bean.OssConfig;
+import java.text.SimpleDateFormat;
 
 public class UploadImage {
-
 
   private static final String DOUBLE_SLASH = "//";
   private static final String SLASH = "/";
@@ -24,15 +25,19 @@ public class UploadImage {
   /**
    * 同步上传图片到阿里云
    */
-  public static PersistenceResponse uploadFile(Context context, String objectName,final String fileAbsPath) {
-    Log.e("======>文件上传","objectName:" + objectName + ",fileAbsPath:" + fileAbsPath);
-    //*********************** 构造 OSSClient ***********************
 
+  public static PersistenceResponse uploadFile(Context context, String objectName, final String fileAbsPath, OssConfig config) {
+    Log.e("======>文件上传", "objectName:" + objectName + ",fileAbsPath:" + fileAbsPath);
+    //*********************** 构造 OSSClient ***********************
     ClientConfiguration conf = new ClientConfiguration();
-    conf.setConnectionTimeout(30 * 1000); // 连接超时，默认15秒
-    conf.setSocketTimeout(30 * 1000); // socket超时，默认15秒
-    conf.setMaxConcurrentRequest(5); // 最大并发请求书，默认5个
-    conf.setMaxErrorRetry(5); // 失败后最大重试次数，默认2次
+    // 连接超时，默认15秒
+    conf.setConnectionTimeout(30 * 1000);
+    // socket超时，默认15秒
+    conf.setSocketTimeout(30 * 1000);
+    // 最大并发请求书，默认5个
+    conf.setMaxConcurrentRequest(5);
+    // 失败后最大重试次数，默认2次
+    conf.setMaxErrorRetry(5);
 
     OSSLog.disableLog();
 
@@ -43,31 +48,23 @@ public class UploadImage {
      * 图库图片以gallery_uuid.jpg命名，
      * 例：用户id为1的用户的存储路径为：maskba/1/head_uuid.jpg
      */
-
-    final String endpoint = "http://oss-cn-beijing.aliyuncs.com";
-    final String accessKeyId = "LTAIfv7eDTneohKq";
-    final String secretKeyId = "7jlQEkyUqW6EiYPktRCUmgM2ItsQpp";
-    final String securityToken = "";
-
+    final String endpoint = config.endpoint;
+    final String accessKeyId = config.accessKeyId;
+    final String secretKeyId = config.accessKeySecret;
+    final String securityToken = config.stsToken;
+    final String bucketName = config.bucketName;
     OSSCredentialProvider credentialProvider =
-        new OSSStsTokenCredentialProvider(accessKeyId, secretKeyId, securityToken);
+        new OSSStsTokenCredentialProvider(accessKeyId, secretKeyId, "");
 
     OSSClient oss = new OSSClient(context, endpoint, credentialProvider, conf);
 
     //*********************** 拼接 request url ***********************
 
-    final String bucketName = "maskball";
-
-
     final String[] splitUrlParts = endpoint.split(DOUBLE_SLASH);
 
-    String requestUrlSB = splitUrlParts[0]
-        + DOUBLE_SLASH
-        + bucketName
-        + DOT
-        + splitUrlParts[1]
-        + SLASH
-        + objectName;
+    SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+    String requestUrlSB =
+        splitUrlParts[0] + DOUBLE_SLASH + bucketName + DOT + splitUrlParts[1] + SLASH + format.format(System.currentTimeMillis()) + SLASH + System.currentTimeMillis() + objectName;
     String cloudUrl =
         putObjectFromLocalFile(oss, bucketName, objectName, fileAbsPath) ? requestUrlSB : null;
     PersistenceResponse response = new PersistenceResponse();

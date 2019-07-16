@@ -1,6 +1,7 @@
 package com.nhbs.fenxiao.http.api;
 
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean;
+import com.nhbs.fenxiao.utils.oss.bean.OssConfig;
 import com.xuexiang.xhttp2.annotation.NetMethod;
 import io.reactivex.Observable;
 
@@ -21,4 +22,6 @@ public interface AppApiServices {
     @NetMethod(ParameterNames = {"mobile", "code", "invitePeopleCode"}, Url = "/app/login")
     Observable<LoginInfoBean> login(String mobile, String code, String invitePeopleCode);
 
+    @NetMethod(Url = "/upload/param")
+    Observable<OssConfig> getOssConfig();
 }
