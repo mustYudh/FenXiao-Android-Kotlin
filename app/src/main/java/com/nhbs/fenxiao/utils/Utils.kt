@@ -6,6 +6,7 @@ import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.widget.EditText
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
 import com.chad.library.adapter.base.BaseViewHolder
@@ -13,6 +14,7 @@ import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
 import com.nhbs.fenxiao.R
+import com.yu.common.toast.ToastUtils
 import com.yu.common.ui.Res
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -115,6 +117,21 @@ fun getTime(date: Date, fmort: String): String {
   return format.format(date)
 }
 
+
+
+fun EditText.getInputText(): String {
+  return text.toString().trim()
+}
+
+
+fun showToast(text: String) {
+  ToastUtils.show(text)
+}
+
+
+fun showToast(context: Context,text: String) {
+  ToastUtils.show(context,text)
+}
 
 
 
