@@ -2,6 +2,7 @@ package com.nhbs.fenxiao.data;
 
 import android.content.Context;
 import android.text.TextUtils;
+
 import com.nhbs.fenxiao.APP;
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean;
 
@@ -13,6 +14,7 @@ public class UserProfile implements Serializable {
 
     private static final String SHARE_PREFERENCES_NAME = ".public_profile";
     private static final String TOKEN = "token";
+    private static final String ISMERCHANT = "isMerchant";
 
     private SharedPreferencesHelper spHelper;
 
@@ -34,6 +36,7 @@ public class UserProfile implements Serializable {
 
     public void appLogin(LoginInfoBean loginInfo) {
         setToken(loginInfo.token);
+        setIsMerchant(loginInfo.user.isMerchant);
     }
 
     public void setToken(String token) {
@@ -42,6 +45,14 @@ public class UserProfile implements Serializable {
 
     public String getAppToken() {
         return spHelper.getString(TOKEN, "");
+    }
+
+    public void setIsMerchant(int isMerchant) {
+        spHelper.putInt(ISMERCHANT, isMerchant);
+    }
+
+    public int getIsMerchant() {
+        return spHelper.getInt(ISMERCHANT, 0);
     }
 
 

@@ -48,25 +48,29 @@ public class MineAddressListActivity extends BaseBarActivity implements MineAddr
 
     @Override
     public void getUserAddressSuccess(MineAddressBean mineAddressBean) {
-        if (mineAddressBean != null) {
-            if (mineAddressBean.rows != null && mineAddressBean.rows.size() != 0) {
-                MineAddressRvAdapter adapter = new MineAddressRvAdapter(R.layout.item_mine_address, mineAddressBean.rows, getActivity());
-                mAddress.setAdapter(adapter);
-                adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-                    @Override
-                    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                        switch (view.getId()) {
-                            case R.id.tv_redact:
-                                Intent intent = new Intent(getActivity(), MineRedactAddressActivity.class);
-                                Gson gson = new Gson();
-                                String json = gson.toJson(adapter.getData().get(position));
-                                intent.putExtra("item", json);
-                                startActivityForResult(intent, 1);
-                                break;
-                        }
+        if (mineAddressBean != null && mineAddressBean.rows != null && mineAddressBean.rows.size() != 0) {
+            MineAddressRvAdapter adapter = new MineAddressRvAdapter(R.layout.item_mine_address, mineAddressBean.rows, getActivity());
+            mAddress.setAdapter(adapter);
+            adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+                @Override
+                public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                    switch (view.getId()) {
+                        case R.id.tv_redact:
+                            Intent intent = new Intent(getActivity(), MineRedactAddressActivity.class);
+                            Gson gson = new Gson();
+                            String json = gson.toJson(adapter.getData().get(position));
+                            intent.putExtra("item", json);
+                            startActivityForResult(intent, 1);
+                            break;
                     }
-                });
-            }
+                }
+            });
+            bindView(R.id.ll_empty, false);
+            bindView(R.id.rv_address, true);
+        } else {
+            //空页面
+            bindView(R.id.ll_empty, true);
+            bindView(R.id.rv_address, false);
         }
     }
 

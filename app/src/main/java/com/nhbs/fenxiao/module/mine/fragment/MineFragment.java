@@ -15,19 +15,23 @@ import com.nhbs.fenxiao.module.mine.activity.MineOpinionActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineOrderListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineTeamActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineWithdrawActivity;
+import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentPresenter;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentViewer;
 import com.nhbs.fenxiao.module.view.MyOneLineView;
+import com.yu.common.glide.ImageLoader;
 import com.yu.common.launche.LauncherHelper;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.navigation.StatusBarFontColorUtil;
+import com.yu.common.ui.CircleImageView;
 import com.yu.common.ui.DelayClickTextView;
 
 public class MineFragment extends BaseBarFragment
         implements MineFragmentViewer, MyOneLineView.OnRootClickListener, View.OnClickListener {
 
     @PresenterLifeCycle
-    private MineFragmentPresenter presenter = new MineFragmentPresenter(this);
+    private MineFragmentPresenter mPresenter = new MineFragmentPresenter(this);
+    private CircleImageView mHeadimg;
 
     @Override
     protected int getActionBarLayoutId() {
@@ -46,6 +50,7 @@ public class MineFragment extends BaseBarFragment
 
     @Override
     protected void loadData() {
+        mHeadimg = bindView(R.id.iv_headimg);
         LinearLayout ll_root = bindView(R.id.ll_root);
         ll_root.addView(new MyOneLineView(getActivity())
                 .initMine(R.drawable.mine_team, "我的团队", true, true).setDividerBottomMargin(48, 31)
@@ -81,6 +86,8 @@ public class MineFragment extends BaseBarFragment
         ll_generalize.setOnClickListener(this);
         ll_income.setOnClickListener(this);
         tv_withdraw.setOnClickListener(this);
+
+        mPresenter.getUserInfo();
 
     }
 
@@ -137,5 +144,15 @@ public class MineFragment extends BaseBarFragment
         super.onPageInTop();
         StatusBarColorManager.INSTANCE.setDark(true);
         StatusBarFontColorUtil.StatusBarLightMode(getActivity());
+    }
+
+    @Override
+    public void getUserInfoSuccess(MineUserInfoBean mineUserInfoBean) {
+        if (mineUserInfoBean != null) {
+            bindText(R.id.tv_name, mineUserInfoBean.nickName);
+            bindText(R.id.tv_balance, mineUserInfoBean.balance + "");
+            bindText(R.id.tv_focusnum, "关注：" + mineUserInfoBean.focusNum + "件宝贝");
+            ImageLoader.getInstance().displayImage(mHeadimg, mineUserInfoBean.headImage + "");
+        }
     }
 }
