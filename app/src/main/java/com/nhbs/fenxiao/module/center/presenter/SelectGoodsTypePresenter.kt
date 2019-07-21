@@ -20,6 +20,18 @@ class SelectGoodsTypePresenter(
                 getViewer()?.setType(goods?.rows)
           }
         })
+  }
 
+  fun getAdType() {
+    XHttpProxy.proxy(AppApiServices::class.java)
+        .getAdType()
+        .subscribeWith(object : LoadingRequestSubscriber<GoodsTypeBean>(activity,false) {
+          override fun onSuccess(goods: GoodsTypeBean?) {
+            goods?.rows?.forEach {
+              it.classify = it.name
+            }
+            getViewer()?.setType(goods?.rows)
+          }
+        })
   }
 }

@@ -225,6 +225,7 @@
           />
 
       <LinearLayout
+          android:id="@+id/select_type_1"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="@color/white"
@@ -271,6 +272,7 @@
           />
 
       <LinearLayout
+          android:id="@+id/select_type_2"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:background="@color/white"

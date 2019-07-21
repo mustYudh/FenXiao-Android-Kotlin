@@ -112,7 +112,7 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
       mail.isSelected = true
     }
     select_goods_type.setOnClickListener {
-      launchHelper.startActivityForResult(SelectGoodsTypeActivity::class.java,
+      launchHelper.startActivityForResult(SelectGoodsTypeActivity.getIntent(activity,1),
           SelectGoodsTypeActivity.SELECTED_DATA_REQUEST_DATA)
     }
 

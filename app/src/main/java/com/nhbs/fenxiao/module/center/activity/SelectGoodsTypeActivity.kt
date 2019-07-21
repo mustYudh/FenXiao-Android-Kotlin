@@ -1,6 +1,7 @@
 package com.nhbs.fenxiao.module.center.activity
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.nhbs.fenxiao.R
@@ -22,9 +23,20 @@ class SelectGoodsTypeActivity : BaseBarActivity(), SelectGoodsTypeViewer {
 
   private var adapter = SelectGoodsTypeAdapter()
 
+
+
+
   companion object {
     const val SELECTED_DATA_REQUEST_DATA = 1
+    const val SELECTED_DATA_REQUEST_DATA_1 = 2
+    const val SELECTED_DATA_REQUEST_DATA_2 = 3
+    private const val FROM_TYPE = "from_type"
     const val SELECTED_DATA = "selected_data"
+    fun getIntent(context: Context,type: Int): Intent {
+      val intent = Intent(context,SelectGoodsTypeActivity::class.java)
+      intent.putExtra(FROM_TYPE,type)
+      return intent
+    }
   }
 
 
@@ -35,7 +47,11 @@ class SelectGoodsTypeActivity : BaseBarActivity(), SelectGoodsTypeViewer {
   override fun loadData() {
     showLine(true)
     setTitle("选择类目")
-    presenter.gtGoodsType()
+    when(intent.getIntExtra(FROM_TYPE,1)) {
+      1 -> presenter.gtGoodsType()
+      2 -> presenter.getAdType()
+    }
+
     list.setLinearLayoutAdapter(adapter)
     adapter.setOnItemClickListener { adapter, _, position ->
       val intent = Intent()

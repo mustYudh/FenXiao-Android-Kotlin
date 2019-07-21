@@ -8,7 +8,10 @@ import com.luck.picture.lib.config.PictureConfig
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.R.drawable
 import com.nhbs.fenxiao.base.BaseBarActivity
+import com.nhbs.fenxiao.module.center.activity.SelectGoodsTypeActivity.Companion.SELECTED_DATA_REQUEST_DATA_1
+import com.nhbs.fenxiao.module.center.activity.SelectGoodsTypeActivity.Companion.SELECTED_DATA_REQUEST_DATA_2
 import com.nhbs.fenxiao.module.center.adapter.AddGoodsPhotoAdapter
+import com.nhbs.fenxiao.module.center.bean.Row
 import com.nhbs.fenxiao.module.center.presenter.ReleaseAdvertisingPresenter
 import com.nhbs.fenxiao.module.center.presenter.ReleaseAdvertisingViewer
 import com.nhbs.fenxiao.module.view.RecycleItemSpace
@@ -22,6 +25,10 @@ import kotlinx.android.synthetic.main.activity_release_advertising_view.commissi
 import kotlinx.android.synthetic.main.activity_release_advertising_view.price
 import kotlinx.android.synthetic.main.activity_release_advertising_view.select_time
 import kotlinx.android.synthetic.main.activity_release_advertising_view.select_time_btn
+import kotlinx.android.synthetic.main.activity_release_advertising_view.select_type_1
+import kotlinx.android.synthetic.main.activity_release_advertising_view.select_type_2
+import kotlinx.android.synthetic.main.activity_release_advertising_view.type_name1
+import kotlinx.android.synthetic.main.activity_release_advertising_view.type_name2
 import kotlinx.android.synthetic.main.include_layout_release_goods_top.list
 
 class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
@@ -73,6 +80,14 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
         select_time.text = getTime(it, "yyy-MM-dd")
       }
     }
+    select_type_1.setOnClickListener {
+      launchHelper.startActivityForResult(SelectGoodsTypeActivity.getIntent(activity, 2),
+          SELECTED_DATA_REQUEST_DATA_1)
+    }
+    select_type_2.setOnClickListener {
+      launchHelper.startActivityForResult(SelectGoodsTypeActivity.getIntent(activity, 2),
+          SELECTED_DATA_REQUEST_DATA_2)
+    }
   }
 
 
@@ -85,16 +100,26 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     if (resultCode == RESULT_OK) {
-      if (requestCode == PictureConfig.CHOOSE_REQUEST) {
-        val selectList = PictureSelector.obtainMultipleResult(data)
-        if (selectList != null && selectList.size > 0) {
-          val list = ArrayList<String>()
-          for (url in selectList) {
-            if (!TextUtils.isEmpty(url.compressPath)) {
-              list.add(url.compressPath)
+      when (requestCode) {
+        PictureConfig.CHOOSE_REQUEST -> {
+          val selectList = PictureSelector.obtainMultipleResult(data)
+          if (selectList != null && selectList.size > 0) {
+            val list = ArrayList<String>()
+            for (url in selectList) {
+              if (!TextUtils.isEmpty(url.compressPath)) {
+                list.add(url.compressPath)
+              }
             }
+            mPresenter.addNewPhoto(list)
           }
-          mPresenter.addNewPhoto(list)
+        }
+        SELECTED_DATA_REQUEST_DATA_1 -> {
+          val result = data?.getSerializableExtra(SelectGoodsTypeActivity.SELECTED_DATA) as Row
+          type_name1.text = result.classify
+        }
+        SELECTED_DATA_REQUEST_DATA_2 -> {
+          val result = data?.getSerializableExtra(SelectGoodsTypeActivity.SELECTED_DATA) as Row
+          type_name2.text = result.classify
         }
       }
     }
