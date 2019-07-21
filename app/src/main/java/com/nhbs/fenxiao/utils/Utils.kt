@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.text.InputFilter
+import android.text.TextUtils
 import android.widget.EditText
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
@@ -27,7 +28,8 @@ import java.util.Date
  */
 
 
-fun RecyclerView.setLinearLayoutAdapter(adapter: RecyclerView.Adapter<BaseViewHolder>, noScroller: Boolean? = false) {
+fun RecyclerView.setLinearLayoutAdapter(adapter: RecyclerView.Adapter<BaseViewHolder>,
+    noScroller: Boolean? = false) {
   layoutManager = object : LinearLayoutManager(context) {
     override fun canScrollVertically(): Boolean {
       return noScroller ?: super.canScrollVertically()
@@ -49,19 +51,20 @@ fun RecyclerView.setGridLayoutAdapter(count: Int,
 }
 
 
-
 fun RecyclerView.setGridLayoutAdapter(manager: GridLayoutManager,
     adapter: RecyclerView.Adapter<BaseViewHolder>) {
   layoutManager = manager
   setAdapter(adapter)
 }
 
-fun Activity.selectPhoto(max :Int? = 1) {
+fun Activity.selectPhoto(max: Int? = 1) {
   PictureSelector.create(this)
-      .openGallery(PictureMimeType.ofImage())//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+      .openGallery(
+          PictureMimeType.ofImage())//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
       .maxSelectNum(max!!)// 最大图片选择数量 int
       .imageSpanCount(4)// 每行显示个数 int
-      .selectionMode(if (max > 0)  PictureConfig.MULTIPLE else PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+      .selectionMode(
+          if (max > 0) PictureConfig.MULTIPLE else PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
       .previewImage(true)// 是否可预览图片 true or false
       .previewVideo(true)// 是否可预览视频 true or false
       .enablePreviewAudio(true) // 是否可播放音频 true or false
@@ -80,7 +83,6 @@ fun Activity.selectPhoto(max :Int? = 1) {
       .isDragFrame(false)// 是否可拖动裁剪框(固定)
       .forResult(PictureConfig.CHOOSE_REQUEST)//结果回调onActivityResult code
 }
-
 
 
 fun getCalendarPicker(context: Context, getTime: (time: Date) -> Unit) {
@@ -110,14 +112,11 @@ fun getCalendarPicker(context: Context, getTime: (time: Date) -> Unit) {
 }
 
 
-
-
 @SuppressLint("SimpleDateFormat")
 fun getTime(date: Date, fmort: String): String {
   val format = SimpleDateFormat(fmort)
   return format.format(date)
 }
-
 
 
 fun EditText.getInputText(): String {
@@ -130,10 +129,9 @@ fun showToast(text: String) {
 }
 
 
-fun showToast(context: Context,text: String) {
-  ToastUtils.show(context,text)
+fun showToast(context: Context, text: String) {
+  ToastUtils.show(context, text)
 }
-
 
 
 fun EditText.setfilters() {
@@ -153,6 +151,11 @@ fun EditText.setfilters() {
 
 }
 
+
+
+fun String?.checkTextEmpty(): Boolean {
+  return TextUtils.isEmpty(this)
+}
 
 
 

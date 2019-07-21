@@ -2,7 +2,9 @@ package com.nhbs.fenxiao.module.center.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.nhbs.fenxiao.R
@@ -87,6 +89,9 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
     check_free_mail_btn.setOnClickListener {
       freeMail = !freeMail
       check_free_mail.isSelected = freeMail
+      if (freeMail) {
+        free_mail.setText("")
+      }
     }
     since_the_lift.setOnClickListener {
       dealWay = 1
@@ -127,8 +132,26 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
       params.tagOne = goods_tag_1.getInputText()
       params.tagTwo = goods_tag_2.getInputText()
       params.mName = goods_name.getInputText()
-      mPresenter.releaseGoods(params)
+      mPresenter.releaseGoods(params,mAdapter.data as ArrayList<String>)
     }
+
+    free_mail.addTextChangedListener(object : TextWatcher {
+      override fun afterTextChanged(s: Editable?) {
+        if (freeMail && !TextUtils.isEmpty(s.toString().trim())) {
+          freeMail = false
+          check_free_mail.isSelected = freeMail
+        }
+      }
+
+      override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+      }
+
+      override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+      }
+
+    })
 
   }
 
