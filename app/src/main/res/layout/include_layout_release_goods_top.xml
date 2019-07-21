@@ -28,6 +28,7 @@
       android:paddingTop="13dp"
       >
     <EditText
+        android:id="@+id/goods_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
@@ -46,6 +47,7 @@
 
 
     <EditText
+        android:id="@+id/goods_info"
         android:layout_width="match_parent"
         android:layout_height="78dp"
         android:background="@null"

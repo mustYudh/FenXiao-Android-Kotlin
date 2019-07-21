@@ -98,13 +98,13 @@
         />
 
     <EditText
-        android:inputType="numberDecimal"
         android:id="@+id/price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@null"
         android:hint="¥0.00"
+        android:inputType="numberDecimal"
         android:maxLines="1"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
@@ -132,12 +132,12 @@
 
     <EditText
         android:id="@+id/commission"
-        android:inputType="numberDecimal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@null"
         android:hint="¥0.00"
+        android:inputType="numberDecimal"
         android:maxLines="1"
         android:paddingLeft="16dp"
         android:singleLine="true"
@@ -175,11 +175,11 @@
         android:textSize="16sp"
         />
     <LinearLayout
-        android:gravity="center_vertical"
         android:id="@+id/select_time_btn"
-        android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         >
 
@@ -230,6 +230,18 @@
         android:textColor="#2D2E39"
         android:textSize="16sp"
         />
+
+    <com.yu.common.ui.DelayClickTextView
+        android:id="@+id/type_name1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:gravity="right|center_vertical"
+        android:textColor="#A0A9BB"
+        android:textSize="14sp"
+        tools:text="裤子"
+        />
     <com.yu.common.ui.DelayClickImageView
         android:layout_width="12dp"
         android:layout_height="10dp"
@@ -264,6 +276,17 @@
         android:textColor="#2D2E39"
         android:textSize="16sp"
         />
+    <com.yu.common.ui.DelayClickTextView
+        android:id="@+id/type_name2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:gravity="right|center_vertical"
+        android:textColor="#A0A9BB"
+        android:textSize="14sp"
+        tools:text="裤子"
+        />
     <com.yu.common.ui.DelayClickImageView
         android:layout_width="12dp"
         android:layout_height="10dp"
@@ -271,7 +294,6 @@
         />
 
   </LinearLayout>
-
 
 
   <View

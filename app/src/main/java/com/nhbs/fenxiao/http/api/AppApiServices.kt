@@ -1,11 +1,15 @@
 package com.nhbs.fenxiao.http.api
 
 import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
-import com.nhbs.fenxiao.module.center.bean.ReleaseGoodsParams
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
 import com.nhbs.fenxiao.utils.oss.bean.OssConfig
 import com.xuexiang.xhttp2.annotation.NetMethod
+import com.xuexiang.xhttp2.model.ApiResult
 import io.reactivex.Observable
+import okhttp3.RequestBody
+import retrofit2.http.Body
+import retrofit2.http.Headers
+import retrofit2.http.POST
 
 /**
  * @author yudenghao
@@ -29,8 +33,9 @@ interface AppApiServices {
   fun login(mobile: String, code: String, invitePeopleCode: String): Observable<LoginInfoBean>
 
 
-  @NetMethod(ParameterNames = [],Url = "/api/merchandise/insert")
-  fun releaseGoods(params: ReleaseGoodsParams): Observable<Any>
+  @POST("/api/merchandise/insert")
+  @Headers("Content-Type: application/json", "Accept: application/json")
+  fun releaseGoods(@Body params: RequestBody): Observable<ApiResult<Any>>
 
 
   @NetMethod(Url = "/merchandiseClass/list")

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     >
 
@@ -198,6 +199,17 @@
               android:textColor="#2D2E39"
               android:textSize="16sp"
               />
+          <com.yu.common.ui.DelayClickTextView
+              android:id="@+id/type_name"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_marginRight="10dp"
+              android:layout_weight="1"
+              android:gravity="right|center_vertical"
+              android:textColor="#A0A9BB"
+              android:textSize="14sp"
+              tools:text="裤子"
+              />
           <com.yu.common.ui.DelayClickImageView
               android:layout_width="12dp"
               android:layout_height="10dp"
@@ -292,6 +304,7 @@
               />
 
           <EditText
+              android:id="@+id/goods_tag_1"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginLeft="16dp"
@@ -333,6 +346,7 @@
               />
 
           <EditText
+              android:id="@+id/goods_tag_2"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginLeft="16dp"
@@ -373,6 +387,7 @@
       >
 
     <com.yu.common.ui.DelayClickTextView
+        android:id="@+id/release"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center"

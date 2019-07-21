@@ -9,10 +9,12 @@ import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.R.drawable
 import com.nhbs.fenxiao.base.BaseBarActivity
 import com.nhbs.fenxiao.module.center.adapter.AddGoodsPhotoAdapter
-import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
+import com.nhbs.fenxiao.module.center.bean.ReleaseGoodsParams
+import com.nhbs.fenxiao.module.center.bean.Row
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsPresenter
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsViewer
 import com.nhbs.fenxiao.module.view.RecycleItemSpace
+import com.nhbs.fenxiao.utils.getInputText
 import com.nhbs.fenxiao.utils.selectPhoto
 import com.nhbs.fenxiao.utils.setGridLayoutAdapter
 import com.nhbs.fenxiao.utils.setfilters
@@ -22,10 +24,16 @@ import kotlinx.android.synthetic.main.activity_new_release_goods_view.check_free
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.commission
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.door_to_door_delivery
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.free_mail
+import kotlinx.android.synthetic.main.activity_new_release_goods_view.goods_tag_1
+import kotlinx.android.synthetic.main.activity_new_release_goods_view.goods_tag_2
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.mail
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.price
+import kotlinx.android.synthetic.main.activity_new_release_goods_view.release
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.select_goods_type
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.since_the_lift
+import kotlinx.android.synthetic.main.activity_new_release_goods_view.type_name
+import kotlinx.android.synthetic.main.include_layout_release_goods_top.goods_info
+import kotlinx.android.synthetic.main.include_layout_release_goods_top.goods_name
 import kotlinx.android.synthetic.main.include_layout_release_goods_top.list
 
 
@@ -37,6 +45,7 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
   private val mAdapter = AddGoodsPhotoAdapter()
   private var freeMail = false
   private var dealWay = -1
+  private var goodsTypeId = ""
 
   override fun setView(savedInstanceState: Bundle?) {
     setContentView(R.layout.activity_new_release_goods_view)
@@ -98,7 +107,27 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
       mail.isSelected = true
     }
     select_goods_type.setOnClickListener {
-      launchHelper.startActivityForResult(SelectGoodsTypeActivity::class.java,SelectGoodsTypeActivity.SELECTED_DATA_REQUEST_DATA)
+      launchHelper.startActivityForResult(SelectGoodsTypeActivity::class.java,
+          SelectGoodsTypeActivity.SELECTED_DATA_REQUEST_DATA)
+    }
+
+    release.setOnClickListener {
+      val params = ReleaseGoodsParams()
+      var mImages = ""
+      mAdapter.data.forEachIndexed { index, result ->
+        mImages += "$result${if (index < mAdapter.data.size - 2) "," else ""}"
+      }
+      params.mImgs = mImages
+      params.mContent = goods_info.getInputText()
+      params.mPrice = price.getInputText()
+      params.commission = commission.getInputText()
+      params.postage = free_mail.getInputText()
+      params.classId = goodsTypeId
+      params.dealWay = dealWay.toString()
+      params.tagOne = goods_tag_1.getInputText()
+      params.tagTwo = goods_tag_2.getInputText()
+      params.mName = goods_name.getInputText()
+      mPresenter.releaseGoods(params)
     }
 
   }
@@ -123,11 +152,12 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
           mPresenter.addNewPhoto(list)
         }
       } else if (requestCode == SelectGoodsTypeActivity.SELECTED_DATA_REQUEST_DATA) {
-        val result = data?.getSerializableExtra(SelectGoodsTypeActivity.SELECTED_DATA) as GoodsTypeBean
+        val result = data?.getSerializableExtra(SelectGoodsTypeActivity.SELECTED_DATA) as Row
+        type_name.text = result.classify
+        goodsTypeId = result.id
       }
     }
   }
-
 
 
 }
