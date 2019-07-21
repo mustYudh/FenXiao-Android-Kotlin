@@ -54,7 +54,7 @@ public class UploadImage {
     final String securityToken = config.stsToken;
     final String bucketName = config.bucketName;
     OSSCredentialProvider credentialProvider =
-        new OSSStsTokenCredentialProvider(accessKeyId, secretKeyId, securityToken);
+        new OSSStsTokenCredentialProvider(accessKeyId, secretKeyId, "");
 
     OSSClient oss = new OSSClient(context, endpoint, credentialProvider, conf);
 
@@ -65,22 +65,20 @@ public class UploadImage {
     SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
     String requestUrlSB =
         splitUrlParts[0] + DOUBLE_SLASH + bucketName + DOT + splitUrlParts[1] + SLASH + format.format(System.currentTimeMillis()) + SLASH + System.currentTimeMillis() + objectName;
-    String cloudUrl = putObjectFromLocalFile(oss, bucketName, objectName, fileAbsPath) ? requestUrlSB : null;
+    String cloudUrl =
+        putObjectFromLocalFile(oss, bucketName, objectName, fileAbsPath) ? requestUrlSB : null;
     PersistenceResponse response = new PersistenceResponse();
     response.cloudUrl = cloudUrl;
     response.success = !TextUtils.isEmpty(cloudUrl);
     response.fileAbsPath = fileAbsPath;
-    Log.e("======>",cloudUrl);
     return response;
   }
 
   private static boolean putObjectFromLocalFile(OSS client, String bucketName, String ObjectName,
       String uploadFilePath) {
     PutObjectRequest put = new PutObjectRequest(bucketName, ObjectName, uploadFilePath);
-    Log.e("=====>","oss初始化成功开始上传文件" + (client != null));
     try {
       PutObjectResult putResult = client.putObject(put);
-      Log.e("======>","oss状态码" + putResult.getStatusCode());
       return putResult != null && putResult.getStatusCode() == RESPONSE_SUCCESS;
     } catch (Exception e) {
       e.printStackTrace();
