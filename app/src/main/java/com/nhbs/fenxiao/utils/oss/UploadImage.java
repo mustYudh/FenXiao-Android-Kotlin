@@ -54,7 +54,7 @@ public class UploadImage {
     final String securityToken = config.stsToken;
     final String bucketName = config.bucketName;
     OSSCredentialProvider credentialProvider =
-        new OSSStsTokenCredentialProvider(accessKeyId, secretKeyId, "");
+        new OSSStsTokenCredentialProvider(accessKeyId, secretKeyId, securityToken);
 
     OSSClient oss = new OSSClient(context, endpoint, credentialProvider, conf);
 
@@ -63,8 +63,9 @@ public class UploadImage {
     final String[] splitUrlParts = endpoint.split(DOUBLE_SLASH);
 
     SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+    objectName = format.format(System.currentTimeMillis()) + SLASH + System.currentTimeMillis() + "-" + objectName;
     String requestUrlSB =
-        splitUrlParts[0] + DOUBLE_SLASH + bucketName + DOT + splitUrlParts[1] + SLASH + format.format(System.currentTimeMillis()) + SLASH + System.currentTimeMillis() + objectName;
+        splitUrlParts[0] + DOUBLE_SLASH + bucketName + DOT + splitUrlParts[1] + SLASH + objectName;
     String cloudUrl =
         putObjectFromLocalFile(oss, bucketName, objectName, fileAbsPath) ? requestUrlSB : null;
     PersistenceResponse response = new PersistenceResponse();

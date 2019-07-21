@@ -13,7 +13,7 @@ class ReleaseAdvertisingPresenter(
   fun addNewPhoto(url: ArrayList<String>) {
     UploadUtils.uploadFile(activity, url, "124","png") { fileList ->
       for (result in fileList) {
-        Log.e("======>", result)
+        Log.e("======>result", result)
       }
     }
     getViewer()?.setReleaseAdvertisingImage(url)
