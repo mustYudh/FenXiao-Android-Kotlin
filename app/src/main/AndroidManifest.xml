@@ -2,113 +2,114 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.nhbs.fenxiao">
-
-  <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-  <uses-permission android:name="android.permission.CAMERA"/>
-  <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-  <uses-permission android:name="android.permission.CALL_PHONE"/>
-  <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-  <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-
-  <application
-      android:name=".APP"
-      android:allowBackup="true"
-      android:icon="@mipmap/ic_launcher"
-      android:label="${APP_NAME}"
-      android:roundIcon="@mipmap/ic_launcher_round"
-      android:supportsRtl="true"
-      android:theme="@style/AppTheme"
-      tools:ignore="GoogleAppIndexingWarning"
-      tools:replace="label,allowBackup">
-    <activity
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    
+    <application
+        android:name=".APP"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="${APP_NAME}"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="label,allowBackup">
+        <activity
         android:name=".module.center.activity.ReleaseACGoodsActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.center.activity.ReleaseAdvertisingActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.center.activity.SelectGoodsTypeActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.mine.activity.MineOpinionActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.center.activity.ReleaseGoodsActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.mine.activity.MineWithdrawActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.mine.activity.MineRedactAddressActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.mine.activity.MineAddressListActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.order.activity.AffirmOrderActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.mine.activity.MineIncomeActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.mine.activity.MineGeneralizeActivity"
         android:screenOrientation="portrait"/>
-
-    <meta-data
+        
+        <meta-data
         android:name="android.support.FILE_PROVIDER_PATHS"
         android:resource="@xml/file_paths"/>
-
-    <activity
+        
+        
+        <activity
         android:name=".module.home.activity.RewardAdvertisingActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.mine.activity.MineOrderListActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.login.VerificationCodeActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.login.BindPhoneActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.home.activity.HomeProductClassifyActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.mine.activity.MineTeamActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.home.HomePageActivity"
         android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
         android:launchMode="singleTask"
         android:screenOrientation="portrait"
         android:windowSoftInputMode="adjustNothing"/>
-    <activity
+        <activity
         android:name=".module.login.LoginActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".test.TestActivity"
         android:screenOrientation="portrait"/>
-    <activity
+        <activity
         android:name=".module.web.WebViewActivity"
         android:screenOrientation="portrait"/>
-    <activity android:name=".module.splash.SplashActivity"
-        android:screenOrientation="portrait"
-        >
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-
-        <category android:name="android.intent.category.LAUNCHER"/>
-      </intent-filter>
-    </activity>
-  </application>
-
+        <activity android:name=".module.splash.SplashActivity"
+            android:screenOrientation="portrait"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+    
 </manifest>
