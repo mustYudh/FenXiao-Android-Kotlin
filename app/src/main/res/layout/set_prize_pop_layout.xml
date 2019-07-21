@@ -37,6 +37,7 @@
         />
 
     <EditText
+        android:id="@+id/prize_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="22dp"
@@ -63,6 +64,7 @@
 
 
     <EditText
+        android:id="@+id/prize_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -90,6 +92,7 @@
 
 
     <com.yu.common.ui.DelayClickTextView
+        android:id="@+id/commit"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center"

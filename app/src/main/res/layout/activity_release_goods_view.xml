@@ -102,16 +102,17 @@
 
 
     <LinearLayout
+        android:id="@+id/first_goods_root"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="86dp"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:visibility="gone"
         >
 
 
       <com.shehuan.niv.NiceImageView
-          android:id="@+id/add_photo"
+          android:id="@+id/first_goods_res"
           android:layout_width="144dp"
           android:layout_height="62dp"
           android:layout_marginLeft="16dp"
@@ -131,6 +132,7 @@
           >
 
         <TextView
+            android:id="@+id/first_goods_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -143,6 +145,7 @@
 
 
         <TextView
+            android:id="@+id/first_goods_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -164,6 +167,7 @@
           >
 
         <com.yu.common.ui.DelayClickTextView
+            android:id="@+id/first_goods_edit"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -171,7 +175,7 @@
             android:paddingRight="8dp"
             android:textColor="#A0A9BB"
             android:textSize="14sp"
-            tools:text="修改"
+            android:text="修改"
             />
 
         <com.yu.common.ui.DelayClickImageView
@@ -248,6 +252,7 @@
 
     <!--二等奖-->
     <LinearLayout
+        android:id="@+id/second_goods_root"
         android:layout_width="match_parent"
         android:layout_height="86dp"
         android:layout_gravity="center"
@@ -257,6 +262,7 @@
 
 
       <com.shehuan.niv.NiceImageView
+          android:id="@+id/second_goods_res"
           android:layout_width="144dp"
           android:layout_height="62dp"
           android:layout_marginLeft="16dp"
@@ -276,6 +282,7 @@
           >
 
         <TextView
+            android:id="@+id/second_goods_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -288,6 +295,7 @@
 
 
         <TextView
+            android:id="@+id/second_goods_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -309,6 +317,7 @@
           >
 
         <com.yu.common.ui.DelayClickTextView
+            android:id="@+id/second_goods_edit"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -392,6 +401,7 @@
 
 
     <LinearLayout
+        android:id="@+id/last_goods_root"
         android:layout_width="match_parent"
         android:layout_height="86dp"
         android:layout_gravity="center"
@@ -401,6 +411,7 @@
 
 
       <com.shehuan.niv.NiceImageView
+          android:id="@+id/last_goods_res"
           android:layout_width="144dp"
           android:layout_height="62dp"
           android:layout_marginLeft="16dp"
@@ -420,6 +431,7 @@
           >
 
         <TextView
+            android:id="@+id/last_goods_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -432,6 +444,7 @@
 
 
         <TextView
+            android:id="@+id/last_goods_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -453,6 +466,7 @@
           >
 
         <com.yu.common.ui.DelayClickTextView
+            android:id="@+id/last_goods_edit"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
