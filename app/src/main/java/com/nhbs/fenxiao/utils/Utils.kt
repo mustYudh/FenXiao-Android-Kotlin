@@ -6,6 +6,7 @@ import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.InputFilter
 import android.widget.EditText
 import com.bigkoo.pickerview.builder.TimePickerBuilder
 import com.bigkoo.pickerview.listener.OnTimeSelectListener
@@ -131,6 +132,25 @@ fun showToast(text: String) {
 
 fun showToast(context: Context,text: String) {
   ToastUtils.show(context,text)
+}
+
+
+
+fun EditText.setfilters() {
+  filters = arrayOf(InputFilter { source, _, _, dest, _, _ ->
+    if (source == "." && dest.toString().isEmpty()) {
+      return@InputFilter "0."
+    }
+    if (dest.toString().contains(".")) {
+      val index = dest.toString().indexOf(".")
+      val length = dest.toString().substring(index).length
+      if (length == 3) {
+        return@InputFilter ""
+      }
+    }
+    null
+  })
+
 }
 
 

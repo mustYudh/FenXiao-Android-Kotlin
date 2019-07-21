@@ -6,4 +6,11 @@ import java.io.Serializable
  * @author yudenghao
  * @date 2019-07-14
  */
-class GoodsTypeBean: Serializable
+data class GoodsTypeBean(
+    var rows: List<Row>
+): Serializable
+
+data class Row(
+    var classify: String,
+    var id: String
+) : Serializable

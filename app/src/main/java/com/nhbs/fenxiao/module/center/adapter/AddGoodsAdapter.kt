@@ -1,10 +1,10 @@
 package com.nhbs.fenxiao.module.center.adapter
 
 import android.text.TextUtils
-import android.widget.ImageView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.nhbs.fenxiao.R
+import com.shehuan.niv.NiceImageView
 import com.yu.common.glide.ImageLoader
 
 /**
@@ -24,7 +24,7 @@ class AddGoodsPhotoAdapter : BaseQuickAdapter<String, BaseViewHolder>(
         ?.setVisible(R.id.delete_photo, itemCount <= 6 && helper.layoutPosition != itemCount - 1)
         ?.setVisible(R.id.add_photo,  TextUtils.isEmpty("") && itemCount < 6)
         ?.setVisible(R.id.show_photo, itemCount <= 6 && helper.layoutPosition != itemCount - 1)
-        ?.getView<ImageView>(R.id.show_photo)
+        ?.getView<NiceImageView>(R.id.show_photo)
     if (!TextUtils.isEmpty(item)) {
       ImageLoader.getInstance().displayImage(imageView, item)
     }

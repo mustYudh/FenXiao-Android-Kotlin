@@ -15,11 +15,15 @@ import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsViewer
 import com.nhbs.fenxiao.module.view.RecycleItemSpace
 import com.nhbs.fenxiao.utils.selectPhoto
 import com.nhbs.fenxiao.utils.setGridLayoutAdapter
+import com.nhbs.fenxiao.utils.setfilters
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.check_free_mail
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.check_free_mail_btn
+import kotlinx.android.synthetic.main.activity_new_release_goods_view.commission
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.door_to_door_delivery
+import kotlinx.android.synthetic.main.activity_new_release_goods_view.free_mail
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.mail
+import kotlinx.android.synthetic.main.activity_new_release_goods_view.price
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.select_goods_type
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.since_the_lift
 import kotlinx.android.synthetic.main.include_layout_release_goods_top.list
@@ -47,6 +51,9 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
     showLine(true)
     setTitle("发布")
     setBackIcon(drawable.ic_close)
+    price.setfilters()
+    commission.setfilters()
+    free_mail.setfilters()
     list.addItemDecoration(RecycleItemSpace(8, 0))
     list.setGridLayoutAdapter(4, mAdapter, true)
     mAdapter.addData("")

@@ -1,5 +1,6 @@
 package com.nhbs.fenxiao.http.api
 
+import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
 import com.nhbs.fenxiao.module.center.bean.ReleaseGoodsParams
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
 import com.nhbs.fenxiao.utils.oss.bean.OssConfig
@@ -30,4 +31,8 @@ interface AppApiServices {
 
   @NetMethod(ParameterNames = [],Url = "/api/merchandise/insert")
   fun releaseGoods(params: ReleaseGoodsParams): Observable<Any>
+
+
+  @NetMethod(Url = "/merchandiseClass/list")
+  fun getGoodsType(): Observable<GoodsTypeBean>
 }

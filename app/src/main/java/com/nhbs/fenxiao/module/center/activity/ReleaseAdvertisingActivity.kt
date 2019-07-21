@@ -16,7 +16,10 @@ import com.nhbs.fenxiao.utils.getCalendarPicker
 import com.nhbs.fenxiao.utils.getTime
 import com.nhbs.fenxiao.utils.selectPhoto
 import com.nhbs.fenxiao.utils.setGridLayoutAdapter
+import com.nhbs.fenxiao.utils.setfilters
 import com.yu.common.mvp.PresenterLifeCycle
+import kotlinx.android.synthetic.main.activity_release_advertising_view.commission
+import kotlinx.android.synthetic.main.activity_release_advertising_view.price
 import kotlinx.android.synthetic.main.activity_release_advertising_view.select_time
 import kotlinx.android.synthetic.main.activity_release_advertising_view.select_time_btn
 import kotlinx.android.synthetic.main.include_layout_release_goods_top.list
@@ -45,6 +48,8 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
     list.addItemDecoration(RecycleItemSpace(8, 0))
     list.setGridLayoutAdapter(4, mAdapter, true)
     mAdapter.addData("")
+    price.setfilters()
+    commission.setfilters()
   }
 
 
@@ -65,7 +70,7 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
 
     select_time_btn.setOnClickListener {
       getCalendarPicker(activity) {
-        select_time.text = getTime(it,"yyy-MM-dd")
+        select_time.text = getTime(it, "yyy-MM-dd")
       }
     }
   }

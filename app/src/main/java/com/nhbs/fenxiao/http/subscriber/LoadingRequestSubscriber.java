@@ -14,13 +14,13 @@ public abstract class LoadingRequestSubscriber<T> extends BaseSubscriber<T> {
 
     public LoadingRequestSubscriber(Activity activity, boolean cancel) {
         this.activity = activity;
-        cancel = cancel;
+        this.cancel = cancel;
     }
 
     @Override
     protected void onStart() {
-        super.onStart();
         NetLoadingDialog.showLoading(activity, cancel);
+        super.onStart();
     }
 
     @Override
@@ -32,7 +32,7 @@ public abstract class LoadingRequestSubscriber<T> extends BaseSubscriber<T> {
 
     @Override
     public void onComplete() {
-        super.onComplete();
         NetLoadingDialog.dismissLoading();
+        super.onComplete();
     }
 }
