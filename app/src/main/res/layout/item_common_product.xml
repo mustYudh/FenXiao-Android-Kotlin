@@ -7,6 +7,7 @@
 
 
     <ImageView
+        android:id="@+id/iv_product"
         android:layout_width="match_parent"
         android:layout_height="194dp"
         android:scaleType="centerCrop"
@@ -14,6 +15,7 @@
 
 
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -23,19 +25,18 @@
         android:includeFontPadding="false"
         android:lineSpacingExtra="2dp"
         android:lines="2"
-        android:text="办公室沙发茶几组合现代三人位真皮办公室沙发茶几组合现代三人位真皮"
         android:textColor="#ff000000"
         android:textSize="13sp"
         />
 
 
     <TextView
+        android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="2dp"
         android:includeFontPadding="false"
-        android:text="¥998"
         android:textColor="#ffff3539"
         android:textSize="10sp"
         />
@@ -63,7 +64,8 @@
             android:textSize="11sp"/>
 
 
-        <TextView
+        <com.yu.common.ui.DelayClickTextView
+            android:id="@+id/tv_shape"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -71,7 +73,6 @@
             android:background="@drawable/shape_product_button_other"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:text="分享赚¥2.41"
             android:textColor="#ffffffff"
             android:textSize="11sp"/>
     </LinearLayout>

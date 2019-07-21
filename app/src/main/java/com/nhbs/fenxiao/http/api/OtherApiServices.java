@@ -1,6 +1,9 @@
 package com.nhbs.fenxiao.http.api;
 
 import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
+import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
+import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
+import com.nhbs.fenxiao.module.product.bean.MerchandiseClassBean;
 import com.xuexiang.xhttp2.annotation.NetMethod;
 
 import io.reactivex.Observable;
@@ -24,4 +27,18 @@ public interface OtherApiServices {
 
     @NetMethod(ParameterNames = {"context", "mobile", "conUrl", "type"}, Url = "/opinion/add")
     Observable<Object> opinionAdd(String context, String mobile, String conUrl, String type);
+
+    @NetMethod(Url = "/merchandiseClass/list")
+    Observable<MerchandiseClassBean> merchandiseClass();
+
+    @NetMethod(ParameterNames = {"classId", "pageNum", "pageSize"}, Url = "/merchandise/findMerchandiseList")
+    Observable<FindMerchandiseListBean> findMerchandiseList(String classId, int pageNum, int pageSize);
+
+    @NetMethod(ParameterNames = {"type", "pageNum", "pageSize"}, Url = "/merchandise/findMerchandiseList")
+    Observable<FindMerchandiseListBean> homeFindMerchandiseList(String type, int pageNum, int pageSize);
+
+    @NetMethod(Url = "/user/getUserInfo")
+    Observable<MineUserInfoBean> userInfo();
+
+
 }

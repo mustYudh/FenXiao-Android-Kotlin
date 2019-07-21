@@ -59,7 +59,7 @@ public class HomeProductClassifyActivity extends BaseBarActivity implements Home
         mDataList.add("其他");
         mViewPager = bindView(R.id.view_pager);
         for (int i = 0; i < mDataList.size(); i++) {
-            fragments.add(ProductClassifyFragment.newInstance(i));
+            fragments.add(ProductClassifyFragment.newInstance(i + ""));
         }
         initMagicIndicator();
 

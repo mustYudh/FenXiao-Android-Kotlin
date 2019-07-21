@@ -8,6 +8,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.adapter.CommonRvAdapter;
 import com.nhbs.fenxiao.base.BaseBarFragment;
@@ -16,28 +17,30 @@ import com.nhbs.fenxiao.module.home.activity.HomeProductClassifyActivity;
 import com.nhbs.fenxiao.module.home.activity.RewardAdvertisingActivity;
 import com.nhbs.fenxiao.module.home.fragment.presenter.HomeFragmentPresenter;
 import com.nhbs.fenxiao.module.home.fragment.presenter.HomeFragmentViewer;
+import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
 import com.nhbs.fenxiao.module.view.ScreenSpaceItemDecoration;
 import com.yu.common.launche.LauncherHelper;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.navigation.StatusBarFontColorUtil;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer, View.OnClickListener {
 
     @PresenterLifeCycle
-    private HomeFragmentPresenter presenter = new HomeFragmentPresenter(this);
+    private HomeFragmentPresenter mPresenter = new HomeFragmentPresenter(this);
     private LinearLayout ll_mission_root;
     private RecyclerView rv_home;
-    private List<String> list = new ArrayList<>();
+    private int pageNum = 1;
+    private int pageSize = 10;
 
-    @Override public boolean isImmersionBar() {
+    @Override
+    public boolean isImmersionBar() {
         return true;
     }
 
 
-    @Override protected int getActionBarLayoutId() {
+    @Override
+    protected int getActionBarLayoutId() {
         return R.layout.action_bar_home_paage_fragment_layout;
     }
 
@@ -70,13 +73,7 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
             ll_mission_root.addView(view);
         }
 
-
-        for (int i = 0; i < 10; i++) {
-            list.add("");
-        }
-
-        CommonRvAdapter adapter = new CommonRvAdapter(R.layout.item_common_product, list, getActivity());
-        rv_home.setAdapter(adapter);
+        mPresenter.getMerchandiseClassList("1", pageNum, pageSize);
     }
 
     @Override
@@ -91,10 +88,18 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
         }
     }
 
-    @Override protected void onPageInTop() {
+    @Override
+    protected void onPageInTop() {
         super.onPageInTop();
         StatusBarColorManager.INSTANCE.setDark(false);
         StatusBarFontColorUtil.statusBarDarkMode(getActivity());
     }
 
+    @Override
+    public void getMerchandiseClassListSuccess(FindMerchandiseListBean findMerchandiseListBean) {
+        if (findMerchandiseListBean != null && findMerchandiseListBean.rows != null && findMerchandiseListBean.rows.size() != 0) {
+            CommonRvAdapter adapter = new CommonRvAdapter(R.layout.item_common_product, findMerchandiseListBean.rows, getActivity());
+            rv_home.setAdapter(adapter);
+        }
+    }
 }

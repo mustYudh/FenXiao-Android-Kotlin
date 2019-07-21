@@ -31,6 +31,7 @@
 
 
                 <com.yu.common.ui.CircleImageView
+                    android:id="@+id/iv_headimg"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:layout_marginLeft="16dp"
@@ -45,21 +46,21 @@
 
 
                     <TextView
+                        android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
-                        android:text="XXXX的小铺"
                         android:textColor="#ff2d2e38"
                         android:textSize="18sp"
                         />
 
 
                     <TextView
+                        android:id="@+id/tv_focusnum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:includeFontPadding="false"
-                        android:text="关注：14件宝贝"
                         android:textColor="#ff7f8a9f"
                         android:textSize="14sp"
                         />
@@ -93,10 +94,10 @@
 
 
                     <TextView
+                        android:id="@+id/tv_balance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
-                        android:text="1,000.00"
                         android:textColor="#fffcff86"
                         android:textSize="18sp"
                         />

@@ -7,10 +7,19 @@
     >
 
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_product"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#F7F7F7"/>
+        android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_product"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F7F7F7"/>
+
+
+        <include layout="@layout/layout_empty"/>
+    </FrameLayout>
 
 </LinearLayout>
