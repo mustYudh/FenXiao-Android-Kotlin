@@ -6,665 +6,676 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-
-  <LinearLayout
+  <ScrollView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@color/white"
-      android:orientation="vertical"
-      android:paddingLeft="16dp"
-      android:paddingRight="16dp"
-      android:paddingTop="13dp"
+      android:overScrollMode="never"
+      android:scrollbars="none"
       >
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="标题"
-        android:textColor="#2D2E39"
-        android:textColorHint="#A0A9BB"
-        android:textSize="15sp"
-        />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/line_color"
-        />
-
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="119dp"
-        android:background="@null"
-        android:gravity="left|top"
-        android:hint="宣传内容…"
-        android:paddingBottom="9dp"
-        android:paddingTop="9dp"
-        android:textColor="#2D2E39"
-        android:textColorHint="#A0A9BB"
-        android:textSize="14sp"
-        />
-  </LinearLayout>
-
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      android:background="@color/white"
-      android:orientation="vertical"
-      >
-
-
     <LinearLayout
-        android:id="@+id/first_goods"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingBottom="9dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="9dp"
+        android:orientation="vertical"
         >
-      <TextView
-          android:layout_width="0dp"
+      <LinearLayout
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:text="一等奖"
-          android:textColor="#2D2E39"
-          android:textSize="16sp"
-          />
+          android:background="@color/white"
+          android:orientation="vertical"
+          android:paddingLeft="16dp"
+          android:paddingRight="16dp"
+          android:paddingTop="13dp"
+          >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="标题"
+            android:textColor="#2D2E39"
+            android:textColorHint="#A0A9BB"
+            android:textSize="15sp"
+            />
 
-      <com.yu.common.ui.DelayClickTextView
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_marginRight="8dp"
-          android:layout_weight="1"
-          android:gravity="right|center_vertical"
-          android:text="设置"
-          android:textColor="#A0A9BB"
-          android:textSize="14sp"
-          />
-      <com.yu.common.ui.DelayClickImageView
-          android:layout_width="12dp"
-          android:layout_height="10dp"
-          android:src="@drawable/arrow_right"
-          />
-
-    </LinearLayout>
-
-
-    <!--一等奖-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/line_color"
+            />
 
 
-    <LinearLayout
-        android:id="@+id/first_goods_root"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="86dp"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="119dp"
+            android:background="@null"
+            android:gravity="left|top"
+            android:hint="宣传内容…"
+            android:paddingBottom="9dp"
+            android:paddingTop="9dp"
+            android:textColor="#2D2E39"
+            android:textColorHint="#A0A9BB"
+            android:textSize="14sp"
+            />
+      </LinearLayout>
 
-
-      <com.shehuan.niv.NiceImageView
-          android:id="@+id/first_goods_res"
-          android:layout_width="144dp"
-          android:layout_height="62dp"
-          android:layout_marginLeft="16dp"
-          android:layout_marginTop="12dp"
-          android:scaleType="centerCrop"
-          android:src="@drawable/ic_add_activity_bg"
-          app:corner_radius="2dp"
-          />
 
       <LinearLayout
-          android:layout_width="0dp"
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_gravity="center_vertical"
-          android:layout_marginLeft="8dp"
-          android:layout_weight="1"
+          android:layout_marginTop="8dp"
+          android:background="@color/white"
           android:orientation="vertical"
           >
 
-        <TextView
-            android:id="@+id/first_goods_name"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:id="@+id/first_goods"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="#2D2E39"
-            android:textSize="14sp"
-            tools:text="蚕丝被"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="9dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="9dp"
+            >
+          <TextView
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text="一等奖"
+              android:textColor="#2D2E39"
+              android:textSize="16sp"
+              />
+
+          <com.yu.common.ui.DelayClickTextView
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_marginRight="8dp"
+              android:layout_weight="1"
+              android:gravity="right|center_vertical"
+              android:text="设置"
+              android:textColor="#A0A9BB"
+              android:textSize="14sp"
+              />
+          <com.yu.common.ui.DelayClickImageView
+              android:layout_width="12dp"
+              android:layout_height="10dp"
+              android:src="@drawable/arrow_right"
+              />
+
+        </LinearLayout>
+
+
+        <!--一等奖-->
+
+
+        <LinearLayout
+            android:id="@+id/first_goods_root"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            >
+
+
+          <com.shehuan.niv.NiceImageView
+              android:id="@+id/first_goods_res"
+              android:layout_width="144dp"
+              android:layout_height="62dp"
+              android:layout_marginLeft="16dp"
+              android:layout_marginTop="12dp"
+              android:scaleType="centerCrop"
+              android:src="@drawable/ic_add_activity_bg"
+              app:corner_radius="2dp"
+              />
+
+          <LinearLayout
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_vertical"
+              android:layout_marginLeft="8dp"
+              android:layout_weight="1"
+              android:orientation="vertical"
+              >
+
+            <TextView
+                android:id="@+id/first_goods_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#2D2E39"
+                android:textSize="14sp"
+                tools:text="蚕丝被"
+                />
+
+
+            <TextView
+                android:id="@+id/first_goods_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#A0A9BB"
+                android:textSize="12sp"
+                tools:text="蚕丝被"
+                />
+
+          </LinearLayout>
+
+
+          <LinearLayout
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:orientation="horizontal"
+              >
+
+            <com.yu.common.ui.DelayClickTextView
+                android:id="@+id/first_goods_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:paddingRight="8dp"
+                android:text="修改"
+                android:textColor="#A0A9BB"
+                android:textSize="14sp"
+                />
+
+            <com.yu.common.ui.DelayClickImageView
+                android:layout_width="12dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/arrow_right"
+                />
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line_color"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             />
 
 
-        <TextView
-            android:id="@+id/first_goods_count"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/second_goods"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="#A0A9BB"
-            android:textSize="12sp"
-            tools:text="蚕丝被"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="9dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="9dp"
+            >
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="二等奖"
+              android:textColor="#2D2E39"
+              android:textSize="16sp"
+              />
+
+          <com.yu.common.ui.DelayClickTextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_marginLeft="4dp"
+              android:layout_marginRight="8dp"
+              android:gravity="right|center_vertical"
+              android:text="(选填)"
+              android:textColor="#A0A9BB"
+              android:textSize="12sp"
+              />
+
+          <com.yu.common.ui.DelayClickTextView
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_marginRight="8dp"
+              android:layout_weight="1"
+              android:gravity="right|center_vertical"
+              android:text="设置"
+              android:textColor="#A0A9BB"
+              android:textSize="14sp"
+              />
+          <com.yu.common.ui.DelayClickImageView
+              android:layout_width="12dp"
+              android:layout_height="10dp"
+              android:src="@drawable/arrow_right"
+              />
+
+        </LinearLayout>
+
+
+        <!--二等奖-->
+        <LinearLayout
+            android:id="@+id/second_goods_root"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            >
+
+
+          <com.shehuan.niv.NiceImageView
+              android:id="@+id/second_goods_res"
+              android:layout_width="144dp"
+              android:layout_height="62dp"
+              android:layout_marginLeft="16dp"
+              android:layout_marginTop="12dp"
+              android:scaleType="centerCrop"
+              android:src="@drawable/ic_add_activity_bg"
+              app:corner_radius="2dp"
+              />
+
+          <LinearLayout
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_vertical"
+              android:layout_marginLeft="8dp"
+              android:layout_weight="1"
+              android:orientation="vertical"
+              >
+
+            <TextView
+                android:id="@+id/second_goods_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#2D2E39"
+                android:textSize="14sp"
+                tools:text="蚕丝被"
+                />
+
+
+            <TextView
+                android:id="@+id/second_goods_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#A0A9BB"
+                android:textSize="12sp"
+                tools:text="蚕丝被"
+                />
+
+          </LinearLayout>
+
+
+          <LinearLayout
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:orientation="horizontal"
+              >
+
+            <com.yu.common.ui.DelayClickTextView
+                android:id="@+id/second_goods_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:paddingRight="8dp"
+                android:text="修改"
+                android:textColor="#A0A9BB"
+                android:textSize="14sp"
+                />
+
+            <com.yu.common.ui.DelayClickImageView
+                android:layout_width="12dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/arrow_right"
+                />
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line_color"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             />
+
+
+        <LinearLayout
+            android:id="@+id/last_goods"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="9dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="9dp"
+            >
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="三等奖"
+              android:textColor="#2D2E39"
+              android:textSize="16sp"
+              />
+
+          <com.yu.common.ui.DelayClickTextView
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:layout_marginLeft="4dp"
+              android:layout_marginRight="8dp"
+              android:gravity="right|center_vertical"
+              android:text="(选填)"
+              android:textColor="#A0A9BB"
+              android:textSize="12sp"
+              />
+
+          <com.yu.common.ui.DelayClickTextView
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_marginRight="8dp"
+              android:layout_weight="1"
+              android:gravity="right|center_vertical"
+              android:text="设置"
+              android:textColor="#A0A9BB"
+              android:textSize="14sp"
+              />
+          <com.yu.common.ui.DelayClickImageView
+              android:layout_width="12dp"
+              android:layout_height="10dp"
+              android:src="@drawable/arrow_right"
+              />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/last_goods_root"
+            android:layout_width="match_parent"
+            android:layout_height="86dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            >
+
+
+          <com.shehuan.niv.NiceImageView
+              android:id="@+id/last_goods_res"
+              android:layout_width="144dp"
+              android:layout_height="62dp"
+              android:layout_marginLeft="16dp"
+              android:layout_marginTop="12dp"
+              android:scaleType="centerCrop"
+              android:src="@drawable/ic_add_activity_bg"
+              app:corner_radius="2dp"
+              />
+
+          <LinearLayout
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_gravity="center_vertical"
+              android:layout_marginLeft="8dp"
+              android:layout_weight="1"
+              android:orientation="vertical"
+              >
+
+            <TextView
+                android:id="@+id/last_goods_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#2D2E39"
+                android:textSize="14sp"
+                tools:text="蚕丝被"
+                />
+
+
+            <TextView
+                android:id="@+id/last_goods_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#A0A9BB"
+                android:textSize="12sp"
+                tools:text="蚕丝被"
+                />
+
+          </LinearLayout>
+
+
+          <LinearLayout
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:orientation="horizontal"
+              >
+
+            <com.yu.common.ui.DelayClickTextView
+                android:id="@+id/last_goods_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:paddingRight="8dp"
+                android:text="修改"
+                android:textColor="#A0A9BB"
+                android:textSize="14sp"
+                />
+
+            <com.yu.common.ui.DelayClickImageView
+                android:layout_width="12dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/arrow_right"
+                />
+
+          </LinearLayout>
+
+        </LinearLayout>
 
       </LinearLayout>
 
 
       <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:background="@color/white"
+          android:gravity="center_vertical"
           android:orientation="horizontal"
+          android:paddingLeft="16dp"
+          android:paddingRight="16dp"
           >
-
-        <com.yu.common.ui.DelayClickTextView
-            android:id="@+id/first_goods_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:paddingRight="8dp"
-            android:textColor="#A0A9BB"
-            android:textSize="14sp"
-            android:text="修改"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="开奖时间"
+            android:textColor="#2D2E39"
+            android:textSize="16sp"
             />
+        <LinearLayout
+            android:id="@+id/select_time_btn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
 
-        <com.yu.common.ui.DelayClickImageView
-            android:layout_width="12dp"
-            android:layout_height="10dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="16dp"
-            android:src="@drawable/arrow_right"
-            />
+          <com.yu.common.ui.DelayClickTextView
+              android:id="@+id/select_time"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_marginRight="10dp"
+              android:layout_weight="1"
+              android:gravity="right|center_vertical"
+              android:textColor="#A0A9BB"
+              android:textSize="14sp"
+              tools:text="2019-06-06"
+              />
+          <com.yu.common.ui.DelayClickImageView
+              android:layout_width="12dp"
+              android:layout_height="10dp"
+              android:src="@drawable/arrow_right"
+              />
+
+        </LinearLayout>
+
 
       </LinearLayout>
 
-    </LinearLayout>
 
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/line_color"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        />
-
-
-    <LinearLayout
-        android:id="@+id/second_goods"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingBottom="9dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="9dp"
-        >
-      <TextView
-          android:layout_width="wrap_content"
+      <LinearLayout
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="二等奖"
-          android:textColor="#2D2E39"
-          android:textSize="16sp"
-          />
+          android:layout_marginTop="8dp"
+          android:background="@color/white"
+          android:gravity="center"
+          android:orientation="horizontal"
+          android:paddingBottom="9dp"
+          android:paddingLeft="16dp"
+          android:paddingTop="9dp"
+          >
 
-      <com.yu.common.ui.DelayClickTextView
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:layout_marginLeft="4dp"
-          android:layout_marginRight="8dp"
-          android:gravity="right|center_vertical"
-          android:text="(选填)"
-          android:textColor="#A0A9BB"
-          android:textSize="12sp"
-          />
-
-      <com.yu.common.ui.DelayClickTextView
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_marginRight="8dp"
-          android:layout_weight="1"
-          android:gravity="right|center_vertical"
-          android:text="设置"
-          android:textColor="#A0A9BB"
-          android:textSize="14sp"
-          />
-      <com.yu.common.ui.DelayClickImageView
-          android:layout_width="12dp"
-          android:layout_height="10dp"
-          android:src="@drawable/arrow_right"
-          />
-
-    </LinearLayout>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="付费推广"
+            android:textColor="#2D2E39"
+            android:textSize="16sp"
+            />
 
 
-    <!--二等奖-->
-    <LinearLayout
-        android:id="@+id/second_goods_root"
-        android:layout_width="match_parent"
-        android:layout_height="86dp"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        >
+        <LinearLayout
+            android:id="@+id/check_free_mail_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="12dp"
+            android:paddingRight="16dp"
+            >
+
+          <com.yu.common.ui.DelayClickImageView
+              android:id="@+id/check_free_mail"
+              android:layout_width="12dp"
+              android:layout_height="12dp"
+              android:layout_marginLeft="6dp"
+              android:src="@drawable/shape_check_selector"
+              />
+
+        </LinearLayout>
+      </LinearLayout>
 
 
-      <com.shehuan.niv.NiceImageView
-          android:id="@+id/second_goods_res"
-          android:layout_width="144dp"
-          android:layout_height="62dp"
+      <View
+          android:id="@+id/line"
+          android:layout_width="match_parent"
+          android:layout_height="0.5dp"
           android:layout_marginLeft="16dp"
-          android:layout_marginTop="12dp"
-          android:scaleType="centerCrop"
-          android:src="@drawable/ic_add_activity_bg"
-          app:corner_radius="2dp"
+          android:layout_marginRight="16dp"
+          android:background="@color/line_color"
           />
 
       <LinearLayout
-          android:layout_width="0dp"
+          android:id="@+id/promote_root"
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_gravity="center_vertical"
-          android:layout_marginLeft="8dp"
-          android:layout_weight="1"
-          android:orientation="vertical"
+          android:background="@color/white"
+          android:gravity="center"
+          android:orientation="horizontal"
+          android:paddingBottom="9dp"
+          android:paddingLeft="16dp"
+          android:paddingRight="16dp"
+          android:paddingTop="9dp"
+          android:visibility="gone"
           >
-
         <TextView
-            android:id="@+id/second_goods_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
+            android:text="推广费用"
+            android:textColor="#2D2E39"
+            android:textSize="16sp"
+            />
+
+        <EditText
+            android:id="@+id/promotion_costs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="¥0.00"
             android:maxLines="1"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:singleLine="true"
             android:textColor="#2D2E39"
-            android:textSize="14sp"
-            tools:text="蚕丝被"
+            android:textColorHint="#A0A9BB"
+            android:textSize="16sp"
             />
 
-
-        <TextView
-            android:id="@+id/second_goods_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="#A0A9BB"
-            android:textSize="12sp"
-            tools:text="蚕丝被"
-            />
-
-      </LinearLayout>
-
-
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:orientation="horizontal"
-          >
-
-        <com.yu.common.ui.DelayClickTextView
-            android:id="@+id/second_goods_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:paddingRight="8dp"
-            android:textColor="#A0A9BB"
-            android:textSize="14sp"
-            tools:text="修改"
-            />
-
-        <com.yu.common.ui.DelayClickImageView
-            android:layout_width="12dp"
-            android:layout_height="10dp"
-            android:layout_gravity="center"
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="32dp"
             android:layout_marginRight="16dp"
-            android:src="@drawable/arrow_right"
+            android:background="#ECECEC"
             />
 
-      </LinearLayout>
-
-    </LinearLayout>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/line_color"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        />
-
-
-    <LinearLayout
-        android:id="@+id/last_goods"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingBottom="9dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="9dp"
-        >
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="三等奖"
-          android:textColor="#2D2E39"
-          android:textSize="16sp"
-          />
-
-      <com.yu.common.ui.DelayClickTextView
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:layout_marginLeft="4dp"
-          android:layout_marginRight="8dp"
-          android:gravity="right|center_vertical"
-          android:text="(选填)"
-          android:textColor="#A0A9BB"
-          android:textSize="12sp"
-          />
-
-      <com.yu.common.ui.DelayClickTextView
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_marginRight="8dp"
-          android:layout_weight="1"
-          android:gravity="right|center_vertical"
-          android:text="设置"
-          android:textColor="#A0A9BB"
-          android:textSize="14sp"
-          />
-      <com.yu.common.ui.DelayClickImageView
-          android:layout_width="12dp"
-          android:layout_height="10dp"
-          android:src="@drawable/arrow_right"
-          />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/last_goods_root"
-        android:layout_width="match_parent"
-        android:layout_height="86dp"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        >
-
-
-      <com.shehuan.niv.NiceImageView
-          android:id="@+id/last_goods_res"
-          android:layout_width="144dp"
-          android:layout_height="62dp"
-          android:layout_marginLeft="16dp"
-          android:layout_marginTop="12dp"
-          android:scaleType="centerCrop"
-          android:src="@drawable/ic_add_activity_bg"
-          app:corner_radius="2dp"
-          />
-
-      <LinearLayout
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_vertical"
-          android:layout_marginLeft="8dp"
-          android:layout_weight="1"
-          android:orientation="vertical"
-          >
 
         <TextView
-            android:id="@+id/last_goods_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
+            android:text="佣金"
+            android:textColor="#2D2E39"
+            android:textSize="16sp"
+            />
+
+        <EditText
+            android:id="@+id/commission"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="¥0.00"
             android:maxLines="1"
+            android:paddingLeft="16dp"
             android:singleLine="true"
             android:textColor="#2D2E39"
-            android:textSize="14sp"
-            tools:text="蚕丝被"
-            />
-
-
-        <TextView
-            android:id="@+id/last_goods_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="#A0A9BB"
-            android:textSize="12sp"
-            tools:text="蚕丝被"
+            android:textColorHint="#A0A9BB"
+            android:textSize="16sp"
             />
 
       </LinearLayout>
-
-
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:orientation="horizontal"
-          >
-
-        <com.yu.common.ui.DelayClickTextView
-            android:id="@+id/last_goods_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:paddingRight="8dp"
-            android:textColor="#A0A9BB"
-            android:textSize="14sp"
-            tools:text="修改"
-            />
-
-        <com.yu.common.ui.DelayClickImageView
-            android:layout_width="12dp"
-            android:layout_height="10dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="16dp"
-            android:src="@drawable/arrow_right"
-            />
-
-      </LinearLayout>
-
     </LinearLayout>
-
-  </LinearLayout>
-
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      android:background="@color/white"
-      android:gravity="center_vertical"
-      android:orientation="horizontal"
-      android:paddingLeft="16dp"
-      android:paddingRight="16dp"
-      >
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="开奖时间"
-        android:textColor="#2D2E39"
-        android:textSize="16sp"
-        />
-    <LinearLayout
-        android:id="@+id/select_time_btn"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        >
-
-      <com.yu.common.ui.DelayClickTextView
-          android:id="@+id/select_time"
-          android:layout_width="0dp"
-          android:layout_height="match_parent"
-          android:layout_marginRight="10dp"
-          android:layout_weight="1"
-          android:gravity="right|center_vertical"
-          android:textColor="#A0A9BB"
-          android:textSize="14sp"
-          tools:text="2019-06-06"
-          />
-      <com.yu.common.ui.DelayClickImageView
-          android:layout_width="12dp"
-          android:layout_height="10dp"
-          android:src="@drawable/arrow_right"
-          />
-
-    </LinearLayout>
-
-
-  </LinearLayout>
-
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      android:background="@color/white"
-      android:gravity="center"
-      android:orientation="horizontal"
-      android:paddingBottom="9dp"
-      android:paddingLeft="16dp"
-      android:paddingTop="9dp"
-      >
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="付费推广"
-        android:textColor="#2D2E39"
-        android:textSize="16sp"
-        />
-
-
-    <LinearLayout
-        android:id="@+id/check_free_mail_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="12dp"
-        android:paddingRight="16dp"
-        >
-
-      <com.yu.common.ui.DelayClickImageView
-          android:id="@+id/check_free_mail"
-          android:layout_width="12dp"
-          android:layout_height="12dp"
-          android:layout_marginLeft="6dp"
-          android:src="@drawable/shape_check_selector"
-          />
-
-    </LinearLayout>
-  </LinearLayout>
-
-
-  <View
-      android:id="@+id/line"
-      android:layout_width="match_parent"
-      android:layout_height="0.5dp"
-      android:layout_marginLeft="16dp"
-      android:layout_marginRight="16dp"
-      android:background="@color/line_color"
-      />
-
-  <LinearLayout
-      android:id="@+id/promote_root"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@color/white"
-      android:gravity="center"
-      android:orientation="horizontal"
-      android:paddingBottom="9dp"
-      android:paddingLeft="16dp"
-      android:paddingRight="16dp"
-      android:paddingTop="9dp"
-      android:visibility="gone"
-      >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="推广费用"
-        android:textColor="#2D2E39"
-        android:textSize="16sp"
-        />
-
-    <EditText
-        android:id="@+id/promotion_costs"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@null"
-        android:hint="¥0.00"
-        android:maxLines="1"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:singleLine="true"
-        android:textColor="#2D2E39"
-        android:textColorHint="#A0A9BB"
-        android:textSize="16sp"
-        />
-
-    <View
-        android:layout_width="0.5dp"
-        android:layout_height="32dp"
-        android:layout_marginRight="16dp"
-        android:background="#ECECEC"
-        />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="佣金"
-        android:textColor="#2D2E39"
-        android:textSize="16sp"
-        />
-
-    <EditText
-        android:id="@+id/commission"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@null"
-        android:hint="¥0.00"
-        android:maxLines="1"
-        android:paddingLeft="16dp"
-        android:singleLine="true"
-        android:textColor="#2D2E39"
-        android:textColorHint="#A0A9BB"
-        android:textSize="16sp"
-        />
-
-  </LinearLayout>
-
+  </ScrollView>
 
   <View
       android:layout_width="match_parent"
