@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 enum ApiEnvEnum {
-    DEV(0, "1"), ONLINE(1, "2"), PRE_RELEASE(2, "3")
+    DEV(0, "传传"), ONLINE(1, "传传"), PRE_RELEASE(2, "传传")
 
     private final int value
     private final String name
