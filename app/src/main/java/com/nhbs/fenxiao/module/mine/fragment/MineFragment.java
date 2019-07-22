@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.denghao.control.view.utils.UpdataCurrentFragment;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarFragment;
 import com.nhbs.fenxiao.module.home.StatusBarColorManager;
@@ -28,7 +29,8 @@ import com.yu.common.ui.CircleImageView;
 import com.yu.common.ui.DelayClickTextView;
 
 public class MineFragment extends BaseBarFragment
-        implements MineFragmentViewer, MyOneLineView.OnRootClickListener, View.OnClickListener {
+        implements MineFragmentViewer, MyOneLineView.OnRootClickListener, View.OnClickListener,
+    UpdataCurrentFragment {
 
     @PresenterLifeCycle
     private MineFragmentPresenter mPresenter = new MineFragmentPresenter(this);
@@ -159,5 +161,9 @@ public class MineFragment extends BaseBarFragment
                 mHeadimg.setImageResource(R.drawable.ic_launcher_background);
             }
         }
+    }
+
+    @Override public void update(Bundle bundle) {
+        loadData();
     }
 }

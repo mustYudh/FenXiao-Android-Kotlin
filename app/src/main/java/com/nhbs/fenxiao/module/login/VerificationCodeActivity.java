@@ -162,4 +162,9 @@ public class VerificationCodeActivity extends BaseBarActivity
         setResult(Activity.RESULT_OK);
         finish();
     }
+
+    @Override public void loginFailed() {
+        codes.clear();
+        setCode(false);
+    }
 }

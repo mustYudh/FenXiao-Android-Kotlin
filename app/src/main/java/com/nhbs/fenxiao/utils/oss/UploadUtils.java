@@ -2,9 +2,11 @@ package com.nhbs.fenxiao.utils.oss;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import com.nhbs.fenxiao.http.api.AppApiServices;
 import com.nhbs.fenxiao.http.loading.NetLoadingDialog;
 import com.nhbs.fenxiao.http.subscriber.NoTipRequestSubscriber;
 import com.nhbs.fenxiao.utils.oss.bean.OssConfig;
+import com.xuexiang.xhttp2.XHttpProxy;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
@@ -23,9 +25,9 @@ import java.util.ArrayList;
 public class UploadUtils {
   public static void uploadFile(Activity context, ArrayList<String> fileUrl, String fileName, String fileType, GetUploadResult callBack) {
 
-    //XHttpProxy.proxy(AppApiServices.class).getOssConfig()
-    //    .subscribeWith(new NoTipRequestSubscriber<OssConfig>() {
-    //      @Override protected void onSuccess(OssConfig config) {
+    XHttpProxy.proxy(AppApiServices.class).getOssConfig()
+        .subscribeWith(new NoTipRequestSubscriber<OssConfig>() {
+          @Override protected void onSuccess(OssConfig config) {
             final int[] position = { 0 };
             ArrayList<String> fileList = new ArrayList<>();
             Observable.fromIterable(fileUrl)
@@ -69,8 +71,8 @@ public class UploadUtils {
                     NetLoadingDialog.dismissLoading();
                   }
                 });
-          //}
-        //});
+          }
+        });
   }
 
   public interface GetUploadResult {

@@ -44,4 +44,8 @@ interface AppApiServices {
 
   @NetMethod(Url = "/advertisingType/list")
   fun getAdType(): Observable<GoodsTypeBean>
+
+
+  @NetMethod(Url = "/app/winXinlogin")
+  fun wechatLogin(openId: String, nickName: String, headImg: String): Observable<LoginInfoBean>
 }

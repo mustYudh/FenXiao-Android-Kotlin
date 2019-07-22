@@ -2,8 +2,8 @@ ext {
     versionCode = 1
     versionName = '1.0.0'
 
-    uMengKey = ''
-    uMengChannel = ''
+    uMengKey = '5d1afe890cafb29716000c51'
+    uMengChannel = 'fenxiao'
     baidu = ''
 
     applicationId = 'com.nhbs.fenxiao'

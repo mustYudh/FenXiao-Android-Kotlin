@@ -6,4 +6,6 @@ import com.yu.common.mvp.Viewer;
 public interface VerificationCodeViewer extends Viewer {
 
   void  loginSuccess();
+
+  void loginFailed();
 }

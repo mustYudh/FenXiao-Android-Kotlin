@@ -7,6 +7,7 @@ import com.nhbs.fenxiao.http.api.AppApiServices;
 import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber;
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean;
 import com.xuexiang.xhttp2.XHttpProxy;
+import com.xuexiang.xhttp2.exception.ApiException;
 import com.yu.common.framework.BaseViewPresenter;
 
 
@@ -31,7 +32,15 @@ public class VerificationCodePresenter extends BaseViewPresenter<VerificationCod
                             UserProfile.getInstance().appLogin(loginInfoBean);
                             getViewer().loginSuccess();
                         }
+
+                      @Override protected void onError(ApiException apiException) {
+                        super.onError(apiException);
+                        assert getViewer() != null;
+                        getViewer().loginFailed();
+                      }
                     });
+
+
 
         }
     }
