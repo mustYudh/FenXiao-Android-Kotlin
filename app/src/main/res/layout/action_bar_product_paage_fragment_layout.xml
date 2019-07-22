@@ -3,12 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/action_bar_all_height"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/lb_cm_white"
     android:gravity="center"
     android:orientation="horizontal"
     android:paddingTop="@dimen/action_bar_height_top"
     >
 
+  <LinearLayout
+      android:id="@+id/action_bar_left_actions"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_marginLeft="2dp"
+      android:visibility="gone"
+      android:gravity="center_vertical|left"
+      android:orientation="horizontal"
+      >
+
+    <com.yu.common.ui.BarIconContainer
+        android:id="@+id/action_back"
+        android:layout_width="48dp"
+        android:layout_height="@dimen/action_bar_height"
+        app:bar_icon="@drawable/ic_back_arrow_black"
+        />
+
+
+  </LinearLayout>
 
   <com.nhbs.fenxiao.module.view.ClearEditText
       android:id="@+id/ll_search"

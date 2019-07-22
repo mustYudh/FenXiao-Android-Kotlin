@@ -2,6 +2,7 @@ package com.nhbs.fenxiao.module.mine.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -152,7 +153,11 @@ public class MineFragment extends BaseBarFragment
             bindText(R.id.tv_name, mineUserInfoBean.nickName);
             bindText(R.id.tv_balance, mineUserInfoBean.balance + "");
             bindText(R.id.tv_focusnum, "关注：" + mineUserInfoBean.focusNum + "件宝贝");
-            ImageLoader.getInstance().displayImage(mHeadimg, mineUserInfoBean.headImage + "");
+            if (mineUserInfoBean.headImage != null && !TextUtils.isEmpty(mineUserInfoBean.headImage)) {
+                ImageLoader.getInstance().displayImage(mHeadimg, mineUserInfoBean.headImage + "");
+            } else {
+                mHeadimg.setImageResource(R.drawable.ic_launcher_background);
+            }
         }
     }
 }

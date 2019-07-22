@@ -14,6 +14,7 @@ import com.nhbs.fenxiao.base.BaseFragment;
 import com.nhbs.fenxiao.module.home.activity.presenter.HomeProductClassifyPresenter;
 import com.nhbs.fenxiao.module.home.activity.presenter.HomeProductClassifyViewer;
 import com.nhbs.fenxiao.module.product.adapter.ProductViewPageAdapter;
+import com.nhbs.fenxiao.module.product.bean.MerchandiseClassBean;
 import com.nhbs.fenxiao.module.product.fragment.ProductClassifyFragment;
 import com.nhbs.fenxiao.utils.DensityUtils;
 import com.yu.common.mvp.PresenterLifeCycle;
@@ -36,7 +37,7 @@ public class HomeProductClassifyActivity extends BaseBarActivity implements Home
     private List<BaseFragment> fragments = new ArrayList<>();
     private ViewPager mViewPager;
     @PresenterLifeCycle
-    HomeProductClassifyPresenter presenter = new HomeProductClassifyPresenter(this);
+    HomeProductClassifyPresenter mPresenter = new HomeProductClassifyPresenter(this);
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
@@ -44,24 +45,22 @@ public class HomeProductClassifyActivity extends BaseBarActivity implements Home
     }
 
     @Override
+    protected int getActionBarLayoutId() {
+        return R.layout.action_bar_product_paage_fragment_layout;
+    }
+
+    @Override
     protected void loadData() {
 
-        mDataList.add("精选");
-        mDataList.add("女装");
-        mDataList.add("男装");
-        mDataList.add("美妆");
-        mDataList.add("食品");
-        mDataList.add("居家");
-        mDataList.add("鞋品");
-        mDataList.add("电器");
-        mDataList.add("水汽");
-        mDataList.add("火器");
-        mDataList.add("其他");
         mViewPager = bindView(R.id.view_pager);
-        for (int i = 0; i < mDataList.size(); i++) {
-            fragments.add(ProductClassifyFragment.newInstance(i + ""));
-        }
-        initMagicIndicator();
+
+
+        mPresenter.getMerchandiseClass();
+
+        bindView(R.id.action_bar_left_actions, true);
+        bindView(R.id.action_bar_left_actions, view -> {
+            finish();
+        });
 
     }
 
@@ -129,5 +128,17 @@ public class HomeProductClassifyActivity extends BaseBarActivity implements Home
         magicIndicator.setNavigator(commonNavigator);
         ViewPagerHelper.bind(magicIndicator, mViewPager);
 
+    }
+
+    @Override
+    public void getMerchandiseClassSuccess(MerchandiseClassBean merchandiseClassBean) {
+        if (merchandiseClassBean != null && merchandiseClassBean.rows != null && merchandiseClassBean.rows.size() != 0) {
+            for (int i = 0; i < merchandiseClassBean.rows.size(); i++) {
+                mDataList.add(merchandiseClassBean.rows.get(i).classify);
+                fragments.add(ProductClassifyFragment.newInstance(merchandiseClassBean.rows.get(i).id));
+            }
+
+            initMagicIndicator();
+        }
     }
 }
