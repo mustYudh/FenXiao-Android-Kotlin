@@ -82,7 +82,7 @@ public class WebViewActivity extends BaseBarActivity {
     @SuppressLint("JavascriptInterface")
     private void initJs() {
         webJs = new WebJs(this, webView);
-        webView.addJavascriptInterface(webJs, "android");
+        webView.addJavascriptInterface(webJs, "js");
     }
 
     private void initLeftClose() {
