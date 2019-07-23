@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarActivity;
 import com.yu.common.ui.ProgressWebViewLayout;
@@ -47,6 +49,9 @@ public class WebViewActivity extends BaseBarActivity {
         ProgressWebViewLayout webViewLayout = bindView(R.id.webViewLayout);
 
         webView = webViewLayout.getWebView();
+        WebSettings webSettings = webView.getSettings();
+        //修改用户标识
+        webSettings.setUserAgentString(webSettings.getUserAgentString() + "#cc/android#");
         webView.setDownloadListener(new WebViewDownLoadListener(getActivity()));
         webView.setWebChromeClient(new ProgressWebChromeClient(webViewLayout.getProgressBar()) {
             @Override

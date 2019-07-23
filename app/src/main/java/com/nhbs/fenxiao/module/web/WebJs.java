@@ -1,6 +1,7 @@
 package com.nhbs.fenxiao.module.web;
 
 import android.app.Activity;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
@@ -21,7 +22,7 @@ public class WebJs extends BaseWebJs {
 
     //去店铺首页
     @JavascriptInterface
-    public void backShop() {
-
+    public void backShop(String json) {
+        Log.e("aaaaa", json + "");
     }
 }
