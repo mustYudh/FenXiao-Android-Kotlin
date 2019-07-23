@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -51,7 +52,9 @@ public class WebViewActivity extends BaseBarActivity {
         webView = webViewLayout.getWebView();
         WebSettings webSettings = webView.getSettings();
         //修改用户标识
-        webSettings.setUserAgentString(webSettings.getUserAgentString() + "#cc/android#");
+        String userAgentString = webSettings.getUserAgentString();
+        webSettings.setUserAgentString(userAgentString + "#cc/android#");
+        Log.e("ua",webSettings.getUserAgentString());
         webView.setDownloadListener(new WebViewDownLoadListener(getActivity()));
         webView.setWebChromeClient(new ProgressWebChromeClient(webViewLayout.getProgressBar()) {
             @Override
