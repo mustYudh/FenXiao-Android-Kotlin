@@ -186,22 +186,55 @@
     </LinearLayout>
 
 
-    <net.lucode.hackware.magicindicator.MagicIndicator
+
+    <com.yu.common.ui.DelayClickTextView
+        android:visibility="gone"
+        android:id="@+id/tv_open_store"
+        android:layout_width="115dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/shape_open_store"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="我要开店"
+        android:textColor="#fffe2c55"
+        android:textSize="14sp"
+        />
+
+    <TextView
+        android:id="@+id/tv_open_store_hint"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:includeFontPadding="false"
+        android:text="您没有小店，请先开店"
+        android:textColor="#ffa0a9bb"
+        android:textSize="12sp"
+        />
+
+
+        <net.lucode.hackware.magicindicator.MagicIndicator
             android:id="@+id/magic_indicator"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:overScrollMode="never"
             android:scrollbars="none"
-    />
+            />
 
 
-    <android.support.v4.view.ViewPager
+        <android.support.v4.view.ViewPager
             android:layout_marginTop="12dp"
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
-    />
+            />
+
+
+
 
 </LinearLayout>

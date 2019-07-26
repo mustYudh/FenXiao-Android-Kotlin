@@ -3,24 +3,20 @@ package com.nhbs.fenxiao.module.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
-
 import com.denghao.control.TabItem;
 import com.denghao.control.TabView;
 import com.denghao.control.view.BottomNavigationView;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseActivity;
-import com.nhbs.fenxiao.data.UserProfile;
 import com.nhbs.fenxiao.module.center.HomeCenterPopUpWindow;
 import com.nhbs.fenxiao.module.home.fragment.HomeFragment;
 import com.nhbs.fenxiao.module.home.presenter.HomePagePresenter;
 import com.nhbs.fenxiao.module.home.presenter.HomePageViewer;
 import com.nhbs.fenxiao.module.mine.fragment.MineFragment;
 import com.nhbs.fenxiao.module.product.fragment.ProductFragment;
-import com.nhbs.fenxiao.module.store.fragment.MiniOpenStoreFragment;
 import com.nhbs.fenxiao.module.store.fragment.MiniStoreFragment;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.utils.PressHandle;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +44,7 @@ public class HomePageActivity extends BaseActivity implements HomePageViewer {
         items.add(new TabView(0, new HomeFragment()));
         items.add(new TabView(1, new ProductFragment()));
         items.add(new TabView(2, null));
-        items.add(new TabView(3, UserProfile.getInstance().getIsMerchant() == 0 ? new MiniOpenStoreFragment() : new MiniStoreFragment()));
+        items.add(new TabView(3, new MiniStoreFragment()));
         items.add(new TabView(4, new MineFragment()));
         mBottomNavigationView.initControl(this).setPagerView(items, 0);
         mBottomNavigationView.getControl().setOnTabClickListener((position, view) -> {

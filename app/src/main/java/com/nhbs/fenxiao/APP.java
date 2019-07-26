@@ -19,6 +19,7 @@ public class APP extends BaseApp {
     public static final int NET_TYPE = BuildConfig.API_MODE;
     public static final boolean DEBUG = APP.NET_TYPE == 0;
     private static APP instance;
+
     @Override
     public void onCreate() {
         APP.instance = this;
@@ -52,11 +53,11 @@ public class APP extends BaseApp {
 
     private String getBaseUrl() {
         if (APP.NET_TYPE == 1) {
-            return "http://139.180.218.55:8070";
+            return "http://bapi.novobus.cn";
         } else if (APP.NET_TYPE == 2) {
-            return "http://139.180.218.55:8070";
+            return "http://bapi.novobus.cn";
         } else {
-            return "http://139.180.218.55:8070";
+            return "http://bapi.novobus.cn";
         }
     }
 

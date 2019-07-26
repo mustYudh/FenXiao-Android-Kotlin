@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarActivity;
 import com.yu.common.ui.ProgressWebViewLayout;
@@ -47,6 +50,11 @@ public class WebViewActivity extends BaseBarActivity {
         ProgressWebViewLayout webViewLayout = bindView(R.id.webViewLayout);
 
         webView = webViewLayout.getWebView();
+        WebSettings webSettings = webView.getSettings();
+        //修改用户标识
+        String userAgentString = webSettings.getUserAgentString();
+        webSettings.setUserAgentString(userAgentString + "#cc/android#");
+        Log.e("ua",webSettings.getUserAgentString());
         webView.setDownloadListener(new WebViewDownLoadListener(getActivity()));
         webView.setWebChromeClient(new ProgressWebChromeClient(webViewLayout.getProgressBar()) {
             @Override
@@ -74,7 +82,7 @@ public class WebViewActivity extends BaseBarActivity {
     @SuppressLint("JavascriptInterface")
     private void initJs() {
         webJs = new WebJs(this, webView);
-        webView.addJavascriptInterface(webJs, "android");
+        webView.addJavascriptInterface(webJs, "js");
     }
 
     private void initLeftClose() {
