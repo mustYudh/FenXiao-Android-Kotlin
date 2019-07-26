@@ -79,4 +79,12 @@ class BindPhonePresenter(viewer: BindPhoneViewer) : BaseViewPresenter<BindPhoneV
   }
 
 
+  override fun willDestroy() {
+    super.willDestroy()
+    if (timer != null) {
+      timer!!.dispose()
+      timer = null
+    }
+  }
+
 }

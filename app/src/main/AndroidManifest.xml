@@ -51,6 +51,17 @@
                 android:resource="@xml/picker_file_paths"/>
         </provider>
         <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTransParentTheme"/>
+        <activity
         android:name=".module.center.activity.ReleaseACGoodsActivity"
         android:screenOrientation="portrait"/>
         <activity

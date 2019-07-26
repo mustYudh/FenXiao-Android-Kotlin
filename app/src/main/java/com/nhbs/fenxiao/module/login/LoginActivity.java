@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarActivity;
-import com.nhbs.fenxiao.http.loading.NetLoadingDialog;
 import com.nhbs.fenxiao.module.login.presenter.LoginPresenter;
 import com.nhbs.fenxiao.module.login.presenter.LoginViewer;
 import com.umeng.socialize.UMShareAPI;
@@ -88,7 +87,6 @@ public class LoginActivity extends BaseBarActivity
         boolean installWeChat =
             UMShareAPI.get(getActivity()).isInstall(getActivity(), SHARE_MEDIA.WEIXIN);
         if (installWeChat) {
-          NetLoadingDialog.showLoading(getActivity(), false);
           mAuthLoginHelp.login(SHARE_MEDIA.WEIXIN);
         } else {
           ToastUtils.show("请先安装微信");
@@ -107,7 +105,7 @@ public class LoginActivity extends BaseBarActivity
   }
 
   @Override public void onStart(SHARE_MEDIA media) {
-
+    //NetLoadingDialog.showLoading(getActivity(), false);
   }
 
   @Override public void onComplete(SHARE_MEDIA media, int i, Map<String, String> map) {
