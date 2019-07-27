@@ -15,9 +15,9 @@ public class RewardAdvertisingFragmentPresenter extends BaseViewPresenter<Reward
         super(viewer);
     }
 
-    public void getFindAdvertisingList(String type, int pageNum, int pageSize) {
+    public void getFindAdvertisingList(String typeId, int pageNum, int pageSize) {
         XHttpProxy.proxy(OtherApiServices.class)
-                .findAdvertisingList(type, pageNum, pageSize)
+                .findAdvertisingList(typeId, pageNum, pageSize)
                 .subscribeWith(new LoadingRequestSubscriber<HomeFindAdvertisingListBean>(getActivity(), false) {
                     @Override
                     protected void onSuccess(HomeFindAdvertisingListBean homeFindAdvertisingListBean) {

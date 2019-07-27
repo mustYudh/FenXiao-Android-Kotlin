@@ -51,8 +51,8 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"province", "city", "district"}, Url = "/advertising/getHotAdvertise")
     Observable<HomeHotAdvertiseBean> getHotAdvertise(String province, String city, String district);
 
-    @NetMethod(ParameterNames = {"type", "pageNum", "pageSize"}, Url = "/advertising/findAdvertising")
-    Observable<HomeFindAdvertisingListBean> findAdvertisingList(String type, int pageNum, int pageSize);
+    @NetMethod(ParameterNames = {"typeId", "pageNum", "pageSize"}, Url = "/advertising/findAdvertising")
+    Observable<HomeFindAdvertisingListBean> findAdvertisingList(String typeId, int pageNum, int pageSize);
 
     @NetMethod(Url = "/advertisingType/list")
     Observable<AdvertisingTypeBean> advertisingType();

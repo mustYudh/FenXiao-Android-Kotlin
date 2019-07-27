@@ -123,7 +123,7 @@ public class RewardAdvertisingActivity extends BaseBarActivity implements Reward
         if (advertisingTypeBean != null && advertisingTypeBean.rows != null && advertisingTypeBean.rows.size() != 0) {
             for (int i = 0; i < advertisingTypeBean.rows.size(); i++) {
                 mDataList.add(advertisingTypeBean.rows.get(i).name);
-                fragments.add(RewardAdvertisingFragment.newInstance(advertisingTypeBean.rows.get(i).id));
+                fragments.add(RewardAdvertisingFragment.newInstance(advertisingTypeBean.rows.get(i).id + ""));
             }
             initMagicIndicator();
         }

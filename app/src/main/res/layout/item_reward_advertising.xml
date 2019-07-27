@@ -13,6 +13,7 @@
 
 
         <com.yu.common.ui.CircleImageView
+            android:id="@+id/iv_icon"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="16dp"
@@ -29,6 +30,7 @@
 
 
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -41,6 +43,7 @@
 
 
             <TextView
+                android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -52,6 +55,7 @@
 
 
             <TextView
+                android:id="@+id/tv_share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
