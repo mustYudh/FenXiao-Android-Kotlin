@@ -14,6 +14,7 @@ import com.nhbs.fenxiao.base.BaseFragment;
 import com.nhbs.fenxiao.module.home.activity.presenter.RewardAdvertisingPresenter;
 import com.nhbs.fenxiao.module.home.activity.presenter.RewardAdvertisingViewer;
 import com.nhbs.fenxiao.module.home.adapter.MineRewardListViewPageAdapter;
+import com.nhbs.fenxiao.module.home.bean.AdvertisingTypeBean;
 import com.nhbs.fenxiao.module.home.fragment.RewardAdvertisingFragment;
 import com.nhbs.fenxiao.utils.DensityUtils;
 import com.yu.common.mvp.PresenterLifeCycle;
@@ -36,7 +37,7 @@ public class RewardAdvertisingActivity extends BaseBarActivity implements Reward
     private List<BaseFragment> fragments = new ArrayList<>();
     private ViewPager mViewPager;
     @PresenterLifeCycle
-    RewardAdvertisingPresenter presenter = new RewardAdvertisingPresenter(this);
+    RewardAdvertisingPresenter mPresenter = new RewardAdvertisingPresenter(this);
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
@@ -45,23 +46,9 @@ public class RewardAdvertisingActivity extends BaseBarActivity implements Reward
 
     @Override
     protected void loadData() {
-        mDataList.add("热门");
-        mDataList.add("招聘");
-        mDataList.add("房产");
-        mDataList.add("招商");
-        mDataList.add("金融");
-        mDataList.add("居家");
-        mDataList.add("鞋品");
-        mDataList.add("电器");
-        mDataList.add("水汽");
-        mDataList.add("火器");
-        mDataList.add("其他");
+        setTitle("赏金广告");
         mViewPager = bindView(R.id.view_pager);
-
-        for (int i = 0; i < mDataList.size(); i++) {
-            fragments.add(RewardAdvertisingFragment.newInstance(i + 1));
-        }
-        initMagicIndicator();
+        mPresenter.getAdvertisingType();
     }
 
     /**
@@ -129,5 +116,16 @@ public class RewardAdvertisingActivity extends BaseBarActivity implements Reward
         magicIndicator.setNavigator(commonNavigator);
         ViewPagerHelper.bind(magicIndicator, mViewPager);
 
+    }
+
+    @Override
+    public void getAdvertisingTypeSuccess(AdvertisingTypeBean advertisingTypeBean) {
+        if (advertisingTypeBean != null && advertisingTypeBean.rows != null && advertisingTypeBean.rows.size() != 0) {
+            for (int i = 0; i < advertisingTypeBean.rows.size(); i++) {
+                mDataList.add(advertisingTypeBean.rows.get(i).name);
+                fragments.add(RewardAdvertisingFragment.newInstance(advertisingTypeBean.rows.get(i).id));
+            }
+            initMagicIndicator();
+        }
     }
 }
