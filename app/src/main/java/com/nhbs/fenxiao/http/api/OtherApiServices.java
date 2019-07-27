@@ -1,5 +1,10 @@
 package com.nhbs.fenxiao.http.api;
 
+import com.nhbs.fenxiao.module.home.bean.AdvertisingTypeBean;
+import com.nhbs.fenxiao.module.home.bean.HomeBannerBean;
+import com.nhbs.fenxiao.module.home.bean.HomeFindActivtyListBean;
+import com.nhbs.fenxiao.module.home.bean.HomeFindAdvertisingListBean;
+import com.nhbs.fenxiao.module.home.bean.HomeHotAdvertiseBean;
 import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
 import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
 import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
@@ -39,6 +44,21 @@ public interface OtherApiServices {
 
     @NetMethod(Url = "/user/getUserInfo")
     Observable<MineUserInfoBean> userInfo();
+
+    @NetMethod(Url = "/banner/lists")
+    Observable<HomeBannerBean> bannerList();
+
+    @NetMethod(ParameterNames = {"province", "city", "district"}, Url = "/advertising/getHotAdvertise")
+    Observable<HomeHotAdvertiseBean> getHotAdvertise(String province, String city, String district);
+
+    @NetMethod(ParameterNames = {"type", "pageNum", "pageSize"}, Url = "/advertising/findAdvertising")
+    Observable<HomeFindAdvertisingListBean> findAdvertisingList(String type, int pageNum, int pageSize);
+
+    @NetMethod(Url = "/advertisingType/list")
+    Observable<AdvertisingTypeBean> advertisingType();
+
+    @NetMethod(ParameterNames = {"pageNum", "pageSize"}, Url = "/activity/findActivtyPage")
+    Observable<HomeFindActivtyListBean> findActivtyList(int pageNum, int pageSize);
 
 
 }
