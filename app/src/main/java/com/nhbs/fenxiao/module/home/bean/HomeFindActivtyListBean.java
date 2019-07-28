@@ -50,6 +50,7 @@ public class HomeFindActivtyListBean {
         public String aName;
         public String firstPrizeName;
         public String id;
+        public String headerImage;
         public int status;
     }
 }

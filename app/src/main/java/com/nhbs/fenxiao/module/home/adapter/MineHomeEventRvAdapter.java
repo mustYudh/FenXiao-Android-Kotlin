@@ -34,11 +34,10 @@ public class MineHomeEventRvAdapter extends BaseQuickAdapter<HomeFindActivtyList
         helper.setText(R.id.tv_first, item.firstPrizeName);
         helper.setText(R.id.tv_second, item.accessitName);
         helper.setText(R.id.tv_third, item.thirdPrizeName);
-        helper.setText(R.id.tv_content, item.aName);
+        helper.setText(R.id.tv_content, item.content);
+        helper.setText(R.id.tv_title, item.aName);
         helper.setText(R.id.tv_time, DateUtil.formatDateAndTime(item.drawTime) + "自动开奖");
 
-//        ImageLoader.getInstance().displayImage(iv_icon,item.);
-//        helper.setText(R.id.)
-
+        ImageLoader.getInstance().displayImage(iv_icon, item.headerImage, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
     }
 }
