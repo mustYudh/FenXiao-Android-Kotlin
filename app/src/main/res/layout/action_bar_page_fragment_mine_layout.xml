@@ -2,64 +2,70 @@
 
 
 <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/action_bar_all_height"
-        android:background="@color/lb_cm_white"
-        android:gravity="center_vertical"
-        android:paddingTop="@dimen/action_bar_height_top"
->
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/action_bar_all_height"
+    android:background="@color/lb_cm_white"
+    android:gravity="center_vertical"
+    android:paddingTop="@dimen/action_bar_height_top"
+    >
 
 
+    <LinearLayout
+        android:id="@+id/ll_setting"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="6dp"
+        android:gravity="center">
 
-    <ImageView
+        <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="16dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_setting"
-    />
+            android:src="@drawable/ic_setting"/>
+
+    </LinearLayout>
 
     <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
 
     <ImageView
-            android:tint="#2D2E38"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_black_scan"
-    />
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_black_scan"
+        android:tint="#2D2E38"
+        />
 
 
     <ImageView
-            android:layout_width="22dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="18dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_black_msg"
-    />
+        android:layout_width="22dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="18dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_black_msg"
+        />
 
 
     <TextView
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="-7dp"
-            android:gravity="center"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:id="@+id/iv_msg_num"
-            android:layout_width="wrap_content"
-            android:layout_height="14dp"
-            android:layout_marginRight="4dp"
-            android:background="@drawable/shape_red_point"
-            android:text="99+"
-            android:textColor="@color/lb_cm_white"
-            android:textSize="10sp"
-            android:visibility="visible"
-    />
+        android:id="@+id/iv_msg_num"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_marginLeft="-7dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/shape_red_point"
+        android:gravity="center"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:text="99+"
+        android:textColor="@color/lb_cm_white"
+        android:textSize="10sp"
+        android:visibility="visible"
+        />
 </LinearLayout>
 
 
