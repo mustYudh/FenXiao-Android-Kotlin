@@ -47,10 +47,13 @@ interface AppApiServices {
   fun getAdType(): Observable<GoodsTypeBean>
 
 
-  @NetMethod(Url = "/app/winXinlogin")
-  fun wechatLogin(openId: String, nickName: String, headImg: String): Observable<LoginInfoBean>
+  @POST("/api/app/winXinlogin")
+  fun weChatLogin(@Body body: RequestBody): Observable<ApiResult<LoginInfoBean>>
 
 
   @NetMethod(Url ="/userShop/shopDetail")
   fun getShopInfo(): Observable<ShopInfoBean>
+
+  @POST("/app/winXinRegister")
+  fun weChatRegister(@Body params: RequestBody): Observable<Any>
 }
