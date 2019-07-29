@@ -55,5 +55,5 @@ interface AppApiServices {
   fun getShopInfo(): Observable<ShopInfoBean>
 
   @POST("/app/winXinRegister")
-  fun weChatRegister(@Body params: RequestBody): Observable<Any>
+  fun weChatRegister(@Body params: RequestBody): Observable<ApiResult<Any>>
 }

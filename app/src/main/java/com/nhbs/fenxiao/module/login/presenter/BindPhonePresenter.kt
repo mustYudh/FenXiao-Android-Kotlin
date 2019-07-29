@@ -8,15 +8,10 @@ import com.nhbs.fenxiao.http.api.AppApiServices
 import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber
 import com.nhbs.fenxiao.module.home.HomePageActivity
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
-import com.nhbs.fenxiao.module.login.bean.WeChatRegisterParams
 import com.nhbs.fenxiao.utils.showToast
-import com.xuexiang.xhttp2.XHttp
 import com.xuexiang.xhttp2.XHttpProxy
-import com.xuexiang.xhttp2.model.ApiResult
-import com.xuexiang.xhttp2.utils.HttpUtils
 import com.yu.common.framework.BaseViewPresenter
 import com.yu.common.utils.PhoneUtils
-import com.yu.common.utils.RxSchedulerUtils
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -59,7 +54,7 @@ class BindPhonePresenter(viewer: BindPhoneViewer) : BaseViewPresenter<BindPhoneV
   }
 
 
-  fun login(phone: String, code: String,params: WeChatRegisterParams) {
+  fun login(phone: String, code: String/*,params: WeChatRegisterParams*/) {
     if (TextUtils.isEmpty(phone)) {
       showToast("手机号输入不能为空")
       return
@@ -83,16 +78,16 @@ class BindPhonePresenter(viewer: BindPhoneViewer) : BaseViewPresenter<BindPhoneV
             }
           })
 
-    XHttp.custom(AppApiServices::class.java)
-        .weChatRegister(HttpUtils.getJsonRequestBody(params))
-        .compose(RxSchedulerUtils._io_main_o<ApiResult<Any>>())
-        .subscribeWith(object : LoadingRequestSubscriber<ApiResult<Any>>(activity, false) {
-          override fun onSuccess(t: ApiResult<Any>?) {
-            TODO(
-                "not implemented") //To change body of created functions use File | Settings | File Templates.
-          }
-
-        })
+//    XHttp.custom(AppApiServices::class.java)
+//        .weChatRegister(HttpUtils.getJsonRequestBody(params))
+//        .compose(RxSchedulerUtils._io_main_o<ApiResult<Any>>())
+//        .subscribeWith(object : LoadingRequestSubscriber<ApiResult<Any>>(activity, false) {
+//          override fun onSuccess(t: ApiResult<Any>?) {
+//            TODO(
+//                "not implemented") //To change body of created functions use File | Settings | File Templates.
+//          }
+//
+//        })
   }
 
 
