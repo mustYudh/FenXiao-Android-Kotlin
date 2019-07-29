@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.view.ViewPager
+import android.widget.EditText
 import android.widget.TextView
 import com.denghao.control.view.utils.UpdataCurrentFragment
 import com.nhbs.fenxiao.R
@@ -11,13 +12,17 @@ import com.nhbs.fenxiao.base.BaseBarFragment
 import com.nhbs.fenxiao.data.UserProfile
 import com.nhbs.fenxiao.module.home.StatusBarColorManager
 import com.nhbs.fenxiao.module.store.adapter.MiniStoreGoodsPageAdapter
+import com.nhbs.fenxiao.module.store.bean.ShopInfoBean
 import com.nhbs.fenxiao.module.store.presenter.MiniStorePresenter
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreViewer
 import com.nhbs.fenxiao.module.web.WebViewActivity
 import com.nhbs.fenxiao.utils.DensityUtils
+import com.nhbs.fenxiao.utils.checkTextEmpty
 import com.yu.common.mvp.PresenterLifeCycle
 import com.yu.common.navigation.StatusBarFontColorUtil
 import com.yu.common.ui.BadgeView
+import kotlinx.android.synthetic.main.fragment_mini_store_layout.describes
+import kotlinx.android.synthetic.main.fragment_mini_store_layout.edit
 import kotlinx.android.synthetic.main.fragment_mini_store_layout.tv_open_store
 import net.lucode.hackware.magicindicator.MagicIndicator
 import net.lucode.hackware.magicindicator.ViewPagerHelper
@@ -69,6 +74,10 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
       launchHelper.startActivity(WebViewActivity.callIntent(activity, "",
           "http://app.novobus.cn/openstore?token=" + UserProfile.getInstance().appToken))
     }
+    edit.setOnClickListener {
+      describes.isEnabled = true
+    }
+
   }
 
   private fun initTab() {
@@ -141,7 +150,19 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
 
 
   override fun loadData() {
+    mPresenter.getShopInfo()
 
+  }
+
+
+  override fun setShopInfo(info: ShopInfoBean?) {
+    bindText<TextView>(R.id.province, info?.province)
+    bindText<TextView>(R.id.shopName, info?.shopName)
+    bindText<EditText>(R.id.describes, info?.describes)
+    bindView<EditText>(R.id.describes_root, !info?.describes.checkTextEmpty())
+    bindText<TextView>(R.id.usersNum, info?.usersNum.toString())
+    bindText<TextView>(R.id.ordersNum, info?.ordersNum.toString())
+    bindText<TextView>(R.id.priceNum, info?.priceNum.toString())
   }
 
 

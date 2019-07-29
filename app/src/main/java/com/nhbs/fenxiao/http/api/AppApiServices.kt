@@ -2,6 +2,7 @@ package com.nhbs.fenxiao.http.api
 
 import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
+import com.nhbs.fenxiao.module.store.bean.ShopInfoBean
 import com.nhbs.fenxiao.utils.oss.bean.OssConfig
 import com.xuexiang.xhttp2.annotation.NetMethod
 import com.xuexiang.xhttp2.model.ApiResult
@@ -48,4 +49,8 @@ interface AppApiServices {
 
   @NetMethod(Url = "/app/winXinlogin")
   fun wechatLogin(openId: String, nickName: String, headImg: String): Observable<LoginInfoBean>
+
+
+  @NetMethod(Url ="/userShop/shopDetail")
+  fun getShopInfo(): Observable<ShopInfoBean>
 }
