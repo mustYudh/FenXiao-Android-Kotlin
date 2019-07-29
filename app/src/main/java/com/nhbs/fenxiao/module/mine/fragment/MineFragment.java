@@ -15,6 +15,7 @@ import com.nhbs.fenxiao.module.mine.activity.MineGeneralizeActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineIncomeActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineOpinionActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineOrderListActivity;
+import com.nhbs.fenxiao.module.mine.activity.MineSettingsActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineTeamActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineWithdrawActivity;
 import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
@@ -30,7 +31,7 @@ import com.yu.common.ui.DelayClickTextView;
 
 public class MineFragment extends BaseBarFragment
         implements MineFragmentViewer, MyOneLineView.OnRootClickListener, View.OnClickListener,
-    UpdataCurrentFragment {
+        UpdataCurrentFragment {
 
     @PresenterLifeCycle
     private MineFragmentPresenter mPresenter = new MineFragmentPresenter(this);
@@ -54,6 +55,7 @@ public class MineFragment extends BaseBarFragment
     @Override
     protected void loadData() {
         mHeadimg = bindView(R.id.iv_headimg);
+        LinearLayout ll_setting = bindView(R.id.ll_setting);
         LinearLayout ll_root = bindView(R.id.ll_root);
         ll_root.addView(new MyOneLineView(getActivity())
                 .initMine(R.drawable.mine_team, "我的团队", true, true).setDividerBottomMargin(48, 31)
@@ -89,6 +91,7 @@ public class MineFragment extends BaseBarFragment
         ll_generalize.setOnClickListener(this);
         ll_income.setOnClickListener(this);
         tv_withdraw.setOnClickListener(this);
+        ll_setting.setOnClickListener(this);
 
         mPresenter.getUserInfo();
 
@@ -138,6 +141,10 @@ public class MineFragment extends BaseBarFragment
                 //提现
                 LauncherHelper.from(getActivity()).startActivity(MineWithdrawActivity.class);
                 break;
+            case R.id.ll_setting:
+                //设置
+                LauncherHelper.from(getActivity()).startActivity(MineSettingsActivity.class);
+                break;
         }
     }
 
@@ -163,7 +170,8 @@ public class MineFragment extends BaseBarFragment
         }
     }
 
-    @Override public void update(Bundle bundle) {
+    @Override
+    public void update(Bundle bundle) {
         loadData();
     }
 }

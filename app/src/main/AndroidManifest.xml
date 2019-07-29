@@ -30,6 +30,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="label,allowBackup">
         <activity
+            android:name=".module.mine.activity.MineSettingsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".module.home.activity.HomeEventActivity"
             android:screenOrientation="portrait"/>
 
@@ -61,16 +64,14 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@style/AppTransParentTheme"/>
         <activity
-        android:name=".module.center.activity.ReleaseACGoodsActivity"
-        android:screenOrientation="portrait"/>
-
+            android:name=".module.center.activity.ReleaseACGoodsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".module.center.activity.ReleaseAdvertisingActivity"
             android:screenOrientation="portrait"/>
