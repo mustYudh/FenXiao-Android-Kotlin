@@ -9,6 +9,7 @@ import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
 import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
 import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseClassBean;
+import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
 import com.xuexiang.xhttp2.annotation.NetMethod;
 
 import io.reactivex.Observable;
@@ -59,6 +60,9 @@ public interface OtherApiServices {
 
     @NetMethod(ParameterNames = {"pageNum", "pageSize"}, Url = "/activity/findActivtyPage")
     Observable<HomeFindActivtyListBean> findActivtyList(int pageNum, int pageSize);
+
+    @NetMethod(ParameterNames = {"id"}, Url = "/merchandise/merchandiseDetail")
+    Observable<MerchandiseDetailBean> merchandiseDetail(String id);
 
 
 }

@@ -30,6 +30,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="label,allowBackup">
         <activity
+            android:name=".module.product.activity.ProductDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".module.mine.activity.MineSettingsActivity"
             android:screenOrientation="portrait"/>
         <activity

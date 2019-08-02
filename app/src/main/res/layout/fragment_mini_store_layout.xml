@@ -8,258 +8,260 @@
     >
 
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="220dp"
-      android:background="@drawable/ic_mini_store_top_bg"
-      android:orientation="vertical"
-      android:paddingTop="@dimen/action_bar_all_height"
-      >
-
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="220dp"
+        android:background="@drawable/ic_mini_store_top_bg"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/action_bar_all_height"
         >
 
 
-      <com.yu.common.ui.CircleImageView
-          android:layout_width="60dp"
-          android:layout_height="60dp"
-          android:layout_marginLeft="22dp"
-          android:layout_marginRight="16dp"
-          android:src="@drawable/ic_launcher_background"
-          app:civ_border_color="@color/lb_cm_white"
-          app:civ_border_width="2dp"
-          />
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center_vertical"
-          android:orientation="vertical"
-          >
-        <TextView
-            android:id="@+id/shopName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text="XXXX的小铺"
-            android:textColor="@color/lb_cm_white"
-            android:textSize="18sp"
-            />
+            android:orientation="horizontal"
+            >
 
 
-        <TextView
-            android:id="@+id/province"
+            <com.yu.common.ui.CircleImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/ic_launcher_background"
+                app:civ_border_color="@color/lb_cm_white"
+                app:civ_border_width="2dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/shopName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="XXXX的小铺"
+                    android:textColor="@color/lb_cm_white"
+                    android:textSize="18sp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/province"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_location"
+                    android:drawablePadding="7dp"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="XXXX市XX路"
+                    android:textColor="#DEFFFFFF"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/describes_root"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_location"
-            android:drawablePadding="7dp"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:text="XXXX市XX路"
-            android:textColor="#DEFFFFFF"
-            android:textSize="12sp"
-            />
-      </LinearLayout>
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="24dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            >
+
+            <EditText
+                android:id="@+id/describes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="9dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:ellipsize="end"
+                android:enabled="false"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="满XXX减XXXX满XXX减XXXX满XXX减XXXX满XXX……"
+                android:textColor="@color/lb_cm_white"
+                android:textSize="12sp"
+                />
+
+
+            <com.yu.common.ui.DelayClickTextView
+                android:id="@+id/edit"
+                android:layout_width="36dp"
+                android:layout_height="18dp"
+                android:background="@drawable/shape_home_edit_bg"
+                android:gravity="center"
+                android:text="编辑"
+                android:textColor="@color/lb_cm_white"
+                android:textSize="12sp"
+                />
+
+        </LinearLayout>
 
 
     </LinearLayout>
 
+
     <LinearLayout
-        android:id="@+id/describes_root"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="-53dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/shape_white_radius_8"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="27dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/usersNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/_3C3D5A"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="总客户数(人)"
+                android:textColor="#A0A9BB"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/ordersNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/_3C3D5A"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="总销量(件)"
+                android:textColor="#A0A9BB"
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="27dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/priceNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="@color/_3C3D5A"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="总成交额(元)"
+                android:textColor="#A0A9BB"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <com.yu.common.ui.DelayClickTextView
+        android:id="@+id/tv_open_store"
+        android:layout_width="115dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/shape_open_store"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="我要开店"
+        android:textColor="#fffe2c55"
+        android:textSize="14sp"
         android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/tv_open_store_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:includeFontPadding="false"
+        android:text="您没有小店，请先开店"
+        android:textColor="#ffa0a9bb"
+        android:textSize="12sp"
+        android:visibility="gone"
+        />
+
+
+    <net.lucode.hackware.magicindicator.MagicIndicator
+        android:id="@+id/magic_indicator"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="22dp"
-        android:layout_marginRight="24dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        />
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="12dp"
-        android:orientation="horizontal"
-        >
-      <EditText
-          android:id="@+id/describes"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginRight="9dp"
-          android:layout_weight="1"
-          android:background="@null"
-          android:ellipsize="end"
-          android:enabled="false"
-          android:maxLines="1"
-          android:singleLine="true"
-          android:text="满XXX减XXXX满XXX减XXXX满XXX减XXXX满XXX……"
-          android:textColor="@color/lb_cm_white"
-          android:textSize="12sp"
-          />
-
-
-      <com.yu.common.ui.DelayClickTextView
-          android:id="@+id/edit"
-          android:layout_width="36dp"
-          android:layout_height="18dp"
-          android:background="@drawable/shape_home_edit_bg"
-          android:gravity="center"
-          android:text="编辑"
-          android:textColor="@color/lb_cm_white"
-          android:textSize="12sp"
-          />
-
-    </LinearLayout>
-
-
-  </LinearLayout>
-
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="80dp"
-      android:layout_marginLeft="16dp"
-      android:layout_marginRight="16dp"
-      android:layout_marginTop="-53dp"
-      android:background="@drawable/shape_white_radius_8"
-      android:gravity="center"
-      android:orientation="horizontal"
-      >
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="27dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        >
-
-      <TextView
-          android:id="@+id/usersNum"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="3214"
-          android:textColor="@color/_3C3D5A"
-          android:textSize="16sp"
-          />
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="4dp"
-          android:text="总客户数(人)"
-          android:textColor="#A0A9BB"
-          />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical"
-        >
-
-      <TextView
-          android:id="@+id/ordersNum"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="624"
-          android:textColor="@color/_3C3D5A"
-          android:textSize="16sp"
-          />
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="4dp"
-          android:text="总销量(件)"
-          android:textColor="#A0A9BB"
-          />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginRight="27dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        >
-
-      <TextView
-          android:id="@+id/priceNum"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="21415"
-          android:textColor="@color/_3C3D5A"
-          android:textSize="16sp"
-          />
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="4dp"
-          android:text="总成交额(元)"
-          android:textColor="#A0A9BB"
-          />
-    </LinearLayout>
-
-  </LinearLayout>
-
-
-  <com.yu.common.ui.DelayClickTextView
-      android:id="@+id/tv_open_store"
-      android:layout_width="115dp"
-      android:layout_height="32dp"
-      android:layout_gravity="center_horizontal"
-      android:layout_marginTop="80dp"
-      android:background="@drawable/shape_open_store"
-      android:gravity="center"
-      android:includeFontPadding="false"
-      android:text="我要开店"
-      android:textColor="#fffe2c55"
-      android:textSize="14sp"
-      android:visibility="gone"
-      />
-
-  <TextView
-      android:id="@+id/tv_open_store_hint"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:layout_marginTop="10dp"
-      android:includeFontPadding="false"
-      android:text="您没有小店，请先开店"
-      android:textColor="#ffa0a9bb"
-      android:textSize="12sp"
-      android:visibility="gone"
-      />
-
-
-  <net.lucode.hackware.magicindicator.MagicIndicator
-      android:id="@+id/magic_indicator"
-      android:layout_width="match_parent"
-      android:layout_height="50dp"
-      android:layout_marginLeft="5dp"
-      android:overScrollMode="never"
-      android:scrollbars="none"
-      />
-
-
-  <android.support.v4.view.ViewPager
-      android:id="@+id/view_pager"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_marginTop="12dp"
-      android:overScrollMode="never"
-      />
+        android:overScrollMode="never"
+        />
 
 
 </LinearLayout>
