@@ -39,6 +39,11 @@ interface AppApiServices {
   fun releaseGoods(@Body params: RequestBody): Observable<ApiResult<Any>>
 
 
+  @POST("/api/advertising/insert")
+  @Headers("Content-Type: application/json", "Accept: application/json")
+  fun releaseAD(@Body params: RequestBody): Observable<ApiResult<Any>>
+
+
   @NetMethod(Url = "/merchandiseClass/list")
   fun getGoodsType(): Observable<GoodsTypeBean>
 

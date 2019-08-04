@@ -14,19 +14,24 @@ import com.nhbs.fenxiao.base.BaseBarActivity
 import com.nhbs.fenxiao.module.center.activity.SelectGoodsTypeActivity.Companion.SELECTED_DATA_REQUEST_DATA_1
 import com.nhbs.fenxiao.module.center.activity.SelectGoodsTypeActivity.Companion.SELECTED_DATA_REQUEST_DATA_2
 import com.nhbs.fenxiao.module.center.adapter.AddGoodsPhotoAdapter
+import com.nhbs.fenxiao.module.center.bean.ReleaseAdParams
 import com.nhbs.fenxiao.module.center.bean.Row
 import com.nhbs.fenxiao.module.center.presenter.ReleaseAdvertisingPresenter
 import com.nhbs.fenxiao.module.center.presenter.ReleaseAdvertisingViewer
 import com.nhbs.fenxiao.module.view.RecycleItemSpace
 import com.nhbs.fenxiao.utils.PickerViewUtils
 import com.nhbs.fenxiao.utils.getCalendarPicker
+import com.nhbs.fenxiao.utils.getInputText
 import com.nhbs.fenxiao.utils.getTime
 import com.nhbs.fenxiao.utils.selectPhoto
 import com.nhbs.fenxiao.utils.setGridLayoutAdapter
 import com.nhbs.fenxiao.utils.setfilters
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.activity_release_advertising_view.commission
+import kotlinx.android.synthetic.main.activity_release_advertising_view.input_content
+import kotlinx.android.synthetic.main.activity_release_advertising_view.input_title
 import kotlinx.android.synthetic.main.activity_release_advertising_view.price
+import kotlinx.android.synthetic.main.activity_release_advertising_view.release_ad
 import kotlinx.android.synthetic.main.activity_release_advertising_view.select_time
 import kotlinx.android.synthetic.main.activity_release_advertising_view.select_time_btn
 import kotlinx.android.synthetic.main.activity_release_advertising_view.select_type_1
@@ -40,7 +45,7 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
   @PresenterLifeCycle
   internal var mPresenter = ReleaseAdvertisingPresenter(this)
   private val mAdapter = AddGoodsPhotoAdapter()
-
+  private var params = ReleaseAdParams()
 
   override fun setView(savedInstanceState: Bundle?) {
     setContentView(R.layout.activity_release_advertising_view)
@@ -88,9 +93,18 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
     select_type_1.setOnClickListener {
       PickerViewUtils.showSelectCity(activity) { province, city, district ->
         type_name1.text = province + city + district
+        params.province = province
+        params.city = city
+        params.district = district
       }
-
-
+    }
+    release_ad.setOnClickListener {
+      params.title = input_title.getInputText()
+      params.content = input_content.getInputText()
+      params.grossSpread = price.getInputText()
+      params.pvSpread = commission.getInputText()
+      params.endTime = select_time.text.toString().trim()
+      mPresenter.releaseAD(params,mAdapter.data as ArrayList<String>)
     }
   }
 
@@ -108,6 +122,7 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
           it.selected = false
         }
         item.selected = true
+        params.typeId = item.id
         setType(rows)
       }
     }
