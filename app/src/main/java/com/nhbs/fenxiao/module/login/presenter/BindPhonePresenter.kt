@@ -1,10 +1,12 @@
 package com.nhbs.fenxiao.module.login.presenter
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.text.TextUtils
 import com.nhbs.fenxiao.data.UserProfile
 import com.nhbs.fenxiao.http.api.AppApiServices
 import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber
+import com.nhbs.fenxiao.module.home.HomePageActivity
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
 import com.nhbs.fenxiao.utils.showToast
 import com.xuexiang.xhttp2.XHttpProxy
@@ -37,7 +39,7 @@ class BindPhonePresenter(viewer: BindPhoneViewer) : BaseViewPresenter<BindPhoneV
         .sendVerCode(phone)
         .subscribeWith(object : LoadingRequestSubscriber<Any>(activity, false) {
           override fun onSuccess(o: Any) {
-            showToast("发送成功")
+            showToast("获取验证码成功")
             if (timer == null) {
               timer = Observable.interval(0, 1, TimeUnit.SECONDS)
                   .take(60)
@@ -52,7 +54,7 @@ class BindPhonePresenter(viewer: BindPhoneViewer) : BaseViewPresenter<BindPhoneV
   }
 
 
-  fun login(phone: String, code: String) {
+  fun login(phone: String, code: String/*,params: WeChatRegisterParams*/) {
     if (TextUtils.isEmpty(phone)) {
       showToast("手机号输入不能为空")
       return
@@ -65,17 +67,27 @@ class BindPhonePresenter(viewer: BindPhoneViewer) : BaseViewPresenter<BindPhoneV
       showToast("验证码输入不能为空")
       return
     }
-    if (!TextUtils.isEmpty(code)) {
-      XHttpProxy.proxy(AppApiServices::class.java).login(phone, code, "")
+      XHttpProxy.proxy(AppApiServices::class.java)
+          .login(phone, code, "")
           .subscribeWith(object : LoadingRequestSubscriber<LoginInfoBean>(activity, false) {
             override fun onSuccess(loginInfoBean: LoginInfoBean) {
-              assert(getViewer() != null)
               UserProfile.getInstance().appLogin(loginInfoBean)
-
+              launchHelper.startActivity(HomePageActivity::class.java)
+              activity.setResult(Activity.RESULT_OK)
+              activity.finish()
             }
           })
 
-    }
+//    XHttp.custom(AppApiServices::class.java)
+//        .weChatRegister(HttpUtils.getJsonRequestBody(params))
+//        .compose(RxSchedulerUtils._io_main_o<ApiResult<Any>>())
+//        .subscribeWith(object : LoadingRequestSubscriber<ApiResult<Any>>(activity, false) {
+//          override fun onSuccess(t: ApiResult<Any>?) {
+//            TODO(
+//                "not implemented") //To change body of created functions use File | Settings | File Templates.
+//          }
+//
+//        })
   }
 
 

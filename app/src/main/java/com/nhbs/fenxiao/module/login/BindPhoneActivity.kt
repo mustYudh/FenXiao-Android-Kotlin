@@ -26,9 +26,9 @@ class BindPhoneActivity : BaseBarActivity(), BindPhoneViewer {
   }
 
   override fun loadData() {
-
+    setTitle("绑定手机号")
     login.setOnClickListener {
-      mPresenter.login(phone_number.getInputText(),input_ver_code.getInputText())
+      mPresenter.login(phone_number.getInputText(), input_ver_code.getInputText())
     }
     send_ver_code.setOnClickListener {
       mPresenter.sendVerCode(phone_number.getInputText())
@@ -39,11 +39,11 @@ class BindPhoneActivity : BaseBarActivity(), BindPhoneViewer {
 
   @SuppressLint("SetTextI18n")
   override fun sendVerCodeSuccess(time: Long) {
-    if(59 - time > 0) {
-      send_ver_code.text =  "重新发送 ($time)"
+    if (time < 59) {
+      send_ver_code.text = "重新发送 (${59 - time})"
     } else {
       send_ver_code.text = "发送验证码"
     }
-    send_ver_code.isEnabled = (59 - time).equals(0)
+    send_ver_code.isEnabled = time.equals(59)
   }
 }

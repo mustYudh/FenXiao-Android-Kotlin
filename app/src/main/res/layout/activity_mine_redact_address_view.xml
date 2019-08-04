@@ -36,7 +36,7 @@
             <!--android:layout_height="22dp"-->
             <!--android:layout_alignParentRight="true"-->
             <!--android:layout_centerVertical="true"-->
-            <!--android:src="@drawable/ic_tongxunlu"/>-->
+            <!--android:src="@drawable/ic_tong_xun_lu"/>-->
             <EditText
                 android:id="@+id/et_name"
                 android:layout_width="wrap_content"

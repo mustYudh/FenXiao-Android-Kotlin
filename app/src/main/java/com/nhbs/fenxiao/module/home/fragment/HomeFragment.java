@@ -153,7 +153,7 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
             mBanner.setDuration(500);
             mBanner.setDelayedTime(3000);
             mBanner.setCanLoop(true);
-            mBanner.setPages(xbanner, () -> new BannerViewHolder());
+            mBanner.setPages(xbanner, BannerViewHolder::new);
             mBanner.start();
         }
     }
