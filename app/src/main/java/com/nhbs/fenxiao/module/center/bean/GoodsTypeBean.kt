@@ -13,5 +13,6 @@ data class GoodsTypeBean(
 data class Row(
     var name: String,
     var classify: String,
-    var id: String
+    var id: String,
+    var selected: Boolean
 ) : Serializable

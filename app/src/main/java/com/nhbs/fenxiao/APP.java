@@ -4,6 +4,7 @@ import com.nhbs.fenxiao.http.interceptor.CustomDynamicInterceptor;
 import com.nhbs.fenxiao.http.interceptor.CustomExpiredInterceptor;
 import com.nhbs.fenxiao.http.interceptor.CustomLoggingInterceptor;
 import com.nhbs.fenxiao.http.interceptor.CustomResponseInterceptor;
+import com.nhbs.fenxiao.utils.PickerViewUtils;
 import com.xuexiang.xhttp2.XHttp;
 import com.xuexiang.xhttp2.XHttpSDK;
 import com.xuexiang.xhttp2.model.HttpHeaders;
@@ -26,6 +27,7 @@ public class APP extends BaseApp {
         super.onCreate();
         CommonInit.init(this);
         ShareAuthSDK.init(this, DEBUG);
+        PickerViewUtils.INSTANCE.initJsonData(this);
         initHttp();
     }
 

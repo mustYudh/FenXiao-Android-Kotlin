@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -240,7 +241,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="分类"
+            android:text="推广区域"
             android:textColor="#2D2E39"
             android:textSize="16sp"
             />
@@ -254,7 +255,7 @@
             android:gravity="right|center_vertical"
             android:textColor="#A0A9BB"
             android:textSize="14sp"
-            tools:text="裤子"
+            tools:text="杭州"
             />
         <com.yu.common.ui.DelayClickImageView
             android:layout_width="12dp"
@@ -271,50 +272,39 @@
           android:background="@color/line_color"
           />
 
-      <LinearLayout
-          android:id="@+id/select_type_2"
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:paddingLeft="16dp"
+          android:paddingTop="18dp"
+          android:text="类型"
+          android:textColor="#2D2E39"
+          android:textSize="16sp"
+          />
+
+      <com.google.android.flexbox.FlexboxLayout
+          android:id="@+id/tag_root"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:background="@color/white"
-          android:gravity="center_vertical"
-          android:orientation="horizontal"
-          android:paddingBottom="9dp"
-          android:paddingLeft="16dp"
-          android:paddingRight="16dp"
-          android:paddingTop="9dp"
+          android:layout_marginBottom="3dp"
+          android:layout_marginLeft="16dp"
+          android:layout_marginTop="8dp"
+          android:clickable="false"
+          app:alignContent="flex_start"
+          app:alignItems="center"
+          app:flexDirection="row"
+          app:flexWrap="wrap"
           >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="分类"
-            android:textColor="#2D2E39"
-            android:textSize="16sp"
-            />
-        <com.yu.common.ui.DelayClickTextView
-            android:id="@+id/type_name2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:gravity="right|center_vertical"
-            android:textColor="#A0A9BB"
-            android:textSize="14sp"
-            tools:text="裤子"
-            />
-        <com.yu.common.ui.DelayClickImageView
-            android:layout_width="12dp"
-            android:layout_height="10dp"
-            android:src="@drawable/arrow_right"
-            />
 
-      </LinearLayout>
+      </com.google.android.flexbox.FlexboxLayout>
     </LinearLayout>
   </ScrollView>
 
   <View
       android:layout_width="match_parent"
       android:layout_height="0dp"
+      android:layout_marginTop="47dp"
       android:layout_weight="1"
       />
 
