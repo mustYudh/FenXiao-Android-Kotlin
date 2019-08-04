@@ -10,9 +10,11 @@ import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.R.id
 import com.nhbs.fenxiao.base.BaseBarActivity
 import com.nhbs.fenxiao.module.center.SetPrizePopupWindow
+import com.nhbs.fenxiao.module.center.bean.ReleaseActivityParams
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsACActivityViewer
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsACPresenter
 import com.nhbs.fenxiao.utils.getCalendarPicker
+import com.nhbs.fenxiao.utils.getInputText
 import com.nhbs.fenxiao.utils.getTime
 import com.nhbs.fenxiao.utils.oss.UploadUtils
 import com.yu.common.glide.ImageLoader
@@ -32,6 +34,7 @@ import kotlinx.android.synthetic.main.activity_release_goods_view.last_goods_nam
 import kotlinx.android.synthetic.main.activity_release_goods_view.last_goods_res
 import kotlinx.android.synthetic.main.activity_release_goods_view.last_goods_root
 import kotlinx.android.synthetic.main.activity_release_goods_view.promotion_costs
+import kotlinx.android.synthetic.main.activity_release_goods_view.release_ac_goods
 import kotlinx.android.synthetic.main.activity_release_goods_view.second_goods
 import kotlinx.android.synthetic.main.activity_release_goods_view.second_goods_count
 import kotlinx.android.synthetic.main.activity_release_goods_view.second_goods_edit
@@ -48,6 +51,7 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
   private var pop1: SetPrizePopupWindow? = null
   private var pop2: SetPrizePopupWindow? = null
   private var pop3: SetPrizePopupWindow? = null
+  private var params = ReleaseActivityParams()
 
   private var selectPromote = false
 
@@ -57,13 +61,14 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
   }
 
   override fun loadData() {
-    title = "发布活动"
+    setTitle("发布活动")
     initListener()
   }
 
   private fun initListener() {
     check_free_mail_btn.setOnClickListener {
       selectPromote = !selectPromote
+      params.isGeneralize = if (selectPromote) 0 else 1
       check_free_mail_btn.isSelected = selectPromote
       bindView<View>(id.line, selectPromote)
       bindView<LinearLayout>(id.promote_root, selectPromote)
@@ -83,6 +88,9 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
       ImageLoader.getInstance().displayImage(first_goods_res, it.prizeRes)
       first_goods_name.text = it.prizeName
       first_goods_count.text = it.prizeCount
+      params.firstPrizeImgs = it.prizeRes
+      params.firstPrizeName = it.prizeName
+      params.firstPrizeNum = it.prizeCount.toInt()
     }
 
     pop2 = SetPrizePopupWindow(activity) {
@@ -91,6 +99,9 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
       ImageLoader.getInstance().displayImage(second_goods_res, it.prizeRes)
       second_goods_name.text = it.prizeName
       second_goods_count.text = it.prizeCount
+      params.accessitImgs = it.prizeRes
+      params.accessitName = it.prizeName
+      params.accessitNum = it.prizeCount.toInt()
     }
     pop3 = SetPrizePopupWindow(activity) {
       last_goods.visibility = View.GONE
@@ -98,6 +109,9 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
       ImageLoader.getInstance().displayImage(last_goods_res, it.prizeRes)
       last_goods_name.text = it.prizeName
       last_goods_count.text = it.prizeCount
+      params.thirdPrizeImgs = it.prizeRes
+      params.thirdPrizeName = it.prizeName
+      params.thirdPrizeNum = it.prizeCount.toInt()
     }
 
 
@@ -121,6 +135,11 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
     }
     last_goods_edit.setOnClickListener {
       pop3?.showPopupWindow()
+    }
+    release_ac_goods.setOnClickListener {
+      params.grossSpread = promotion_costs.getInputText()
+      params.pvPrice = commission.getInputText()
+      presenter.releaseActivity(params)
     }
   }
 

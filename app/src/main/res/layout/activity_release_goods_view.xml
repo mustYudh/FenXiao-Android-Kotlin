@@ -691,6 +691,7 @@
       >
 
     <com.yu.common.ui.DelayClickTextView
+        android:id="@+id/release_ac_goods"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center"

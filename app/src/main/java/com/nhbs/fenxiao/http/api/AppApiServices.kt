@@ -56,9 +56,13 @@ interface AppApiServices {
   fun weChatLogin(@Body body: RequestBody): Observable<ApiResult<LoginInfoBean>>
 
 
-  @NetMethod(Url ="/userShop/shopDetail")
+  @NetMethod(Url = "/userShop/shopDetail")
   fun getShopInfo(): Observable<ShopInfoBean>
 
   @POST("/app/winXinRegister")
   fun weChatRegister(@Body params: RequestBody): Observable<ApiResult<Any>>
+
+  @POST("/api/activity/insert")
+  @Headers("Content-Type: application/json", "Accept: application/json")
+  fun releaseActivity(@Body params: RequestBody): Observable<ApiResult<Any>>
 }

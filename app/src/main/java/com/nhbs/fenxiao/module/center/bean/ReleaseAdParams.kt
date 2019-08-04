@@ -9,7 +9,7 @@ import java.io.Serializable
  * @date 2019-08-04
  */
 class ReleaseAdParams : Serializable {
-  var type: Int = 1
+  var type: String = "1"
   var title: String? = null
   var content: String? = null
   var imgs: String? = null
