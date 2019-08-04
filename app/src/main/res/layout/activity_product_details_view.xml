@@ -36,6 +36,7 @@
 
 
                 <com.yu.common.ui.DelayClickTextView
+                    android:id="@+id/tv_apply"
                     android:layout_width="61dp"
                     android:layout_height="20dp"
                     android:layout_gravity="right|bottom"
@@ -381,6 +382,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_buy"
             android:layout_width="102dp"
             android:layout_height="match_parent"
             android:layout_marginTop="6dp"
