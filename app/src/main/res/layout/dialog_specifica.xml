@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="97dp"
+        android:gravity="center_vertical">
+
+
+        <com.shehuan.niv.NiceImageView
+            android:id="@+id/iv_product"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/ic_placeholder"
+            app:corner_radius="2dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="@string/text_null"
+                android:textColor="#ffff3539"
+                android:textSize="13sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_specification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:includeFontPadding="false"
+                android:text="请选择：尺寸 颜色"
+                android:textColor="#ffa0a9bb"
+                android:textSize="12sp"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:includeFontPadding="false"
+        android:text="交易方式"
+        android:textColor="#ff3c3d5a"
+        android:textSize="12sp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp">
+
+        <com.yu.common.ui.DelayClickTextView
+            android:id="@+id/tv_label1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_specification_normal"
+            android:gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="5dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="5dp"
+            android:text="自提"
+            android:textColor="#A0A9BB"
+            android:textSize="13sp"
+            />
+
+        <com.yu.common.ui.DelayClickTextView
+            android:id="@+id/tv_label2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/shape_specification_normal"
+            android:gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="5dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="5dp"
+            android:text="送货上门"
+            android:textColor="#A0A9BB"
+            android:textSize="13sp"
+            />
+
+        <com.yu.common.ui.DelayClickTextView
+            android:id="@+id/tv_label3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/shape_specification_normal"
+            android:gravity="center"
+            android:paddingLeft="12dp"
+            android:paddingTop="5dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="5dp"
+            android:text="邮寄"
+            android:textColor="#A0A9BB"
+            android:textSize="13sp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:includeFontPadding="false"
+        android:text="交易方式"
+        android:textColor="#ff3c3d5a"
+        android:textSize="12sp"
+        />
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/flexboxLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_start"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:includeFontPadding="false"
+        android:text="交易方式"
+        android:textColor="#ff3c3d5a"
+        android:textSize="12sp"
+        />
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/flexboxLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_start"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:includeFontPadding="false"
+            android:text="购买数量"
+            android:textColor="#ff3c3d5a"
+            android:textSize="12sp"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal">
+
+            <com.yu.common.ui.DelayClickTextView
+                android:id="@+id/tv_jian"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="#EBEBEB"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="-"
+                android:textColor="#A0A9BB"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_num"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:background="#EBEBEB"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="1"
+                android:textColor="#3C3D5A"
+                android:textSize="14sp"
+                />
+
+            <com.yu.common.ui.DelayClickTextView
+                android:id="@+id/tv_add"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="#EBEBEB"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="+"
+                android:textColor="#A0A9BB"
+                android:textSize="14sp"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.yu.common.ui.DelayClickTextView
+        android:id="@+id/tv_commit"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/shape_red_radius_16"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="#ffffffff"
+        android:textSize="16sp"
+        />
+</LinearLayout>

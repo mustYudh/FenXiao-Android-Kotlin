@@ -6,4 +6,6 @@ import com.yu.common.mvp.Viewer;
 
 public interface ProductDetailsViewer extends Viewer {
     void getMerchandiseDetailSuccess(MerchandiseDetailBean merchandiseDetailBean);
+
+    void agentMerchandiseSuccess(MerchandiseDetailBean merchandiseDetailBean);
 }
