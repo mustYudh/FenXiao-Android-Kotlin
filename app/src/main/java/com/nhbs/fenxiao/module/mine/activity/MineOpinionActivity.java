@@ -145,9 +145,6 @@ public class MineOpinionActivity extends BaseBarActivity implements MineOpinionV
         });
     }
 
-    /**
-     * 清空
-     */
     private void showTypeDialog() {
         typeDialog = new DialogUtils.Builder(getActivity()).view(R.layout.dialog_type)
                 .gravity(Gravity.BOTTOM)

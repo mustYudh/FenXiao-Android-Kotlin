@@ -58,4 +58,5 @@ public class MerchandiseDetailBean {
     public String typeName;
     public Object affiliationShopName;
     public Object userName;
+    public Integer isAgent;
 }

@@ -7,12 +7,18 @@ import com.nhbs.fenxiao.module.home.bean.HomeFindAdvertisingListBean;
 import com.nhbs.fenxiao.module.home.bean.HomeHotAdvertiseBean;
 import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
 import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
+import com.nhbs.fenxiao.module.order.bean.CreateUserOrderBean;
+import com.nhbs.fenxiao.module.order.bean.FirstAddressBean;
 import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseClassBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
 import com.xuexiang.xhttp2.annotation.NetMethod;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
 
 /**
  * @author yudneghao
@@ -30,6 +36,9 @@ public interface OtherApiServices {
 
     @NetMethod(ParameterNames = {"id"}, Url = "/userAddress/del")
     Observable<Object> userAddressDel(String id);
+
+    @NetMethod(Url = "/userAddress/firstAddress")
+    Observable<FirstAddressBean> getFirstAddress();
 
     @NetMethod(ParameterNames = {"context", "mobile", "conUrl", "type"}, Url = "/opinion/add")
     Observable<Object> opinionAdd(String context, String mobile, String conUrl, String type);
@@ -64,5 +73,10 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"id"}, Url = "/merchandise/merchandiseDetail")
     Observable<MerchandiseDetailBean> merchandiseDetail(String id);
 
+    @NetMethod(ParameterNames = {"id"}, Url = "/merchandise/agentMerchandise")
+    Observable<Object> agentMerchandise(String id);
 
+    @POST("/api/create/userOrder")
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    Observable<CreateUserOrderBean> createUserOrder(@Body RequestBody requestBody);
 }

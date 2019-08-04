@@ -23,6 +23,7 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_address"
                 android:layout_width="match_parent"
                 android:layout_height="81dp"
                 android:layout_marginLeft="12dp"
@@ -53,6 +54,7 @@
                         android:gravity="center_vertical">
 
                         <TextView
+                            android:id="@+id/tv_nick_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:includeFontPadding="false"
@@ -63,6 +65,7 @@
 
 
                         <TextView
+                            android:id="@+id/tv_mobile"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
@@ -74,6 +77,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tv_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
@@ -97,6 +101,7 @@
                     android:src="@drawable/ic_arrow_right"/>
             </LinearLayout>
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -112,6 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="18dp"
+                    android:layout_marginBottom="18dp"
                     android:gravity="center_vertical">
 
 
@@ -149,21 +155,53 @@
                 </LinearLayout>
 
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:descendantFocusability="blocksDescendants">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    >
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_goods"
-                        android:layout_width="match_parent"
+
+                    <ImageView
+                        android:id="@+id/iv_product"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ic_placeholder"/>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:nestedScrollingEnabled="false"/>
+                        android:layout_marginLeft="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:id="@+id/tv_product"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="@string/text_null"
+                            android:textColor="#ff3b3e5a"
+                            android:textSize="14sp"
+                            />
 
-                </RelativeLayout>
+                        <TextView
+                            android:id="@+id/tv_specification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/text_null"
+                            android:textColor="#ffa2abbc"
+                            android:textSize="12sp"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -181,6 +219,53 @@
                         android:textColor="#ff3c3d5a"
                         android:textSize="13sp"
                         />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="16dp"
+                        android:orientation="horizontal">
+
+                        <com.yu.common.ui.DelayClickTextView
+                            android:id="@+id/tv_jian"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="#EBEBEB"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="-"
+                            android:textColor="#A0A9BB"
+                            android:textSize="14sp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_num"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginRight="2dp"
+                            android:background="#EBEBEB"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="1"
+                            android:textColor="#3C3D5A"
+                            android:textSize="14sp"
+                            />
+
+                        <com.yu.common.ui.DelayClickTextView
+                            android:id="@+id/tv_add"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:background="#EBEBEB"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="+"
+                            android:textColor="#A0A9BB"
+                            android:textSize="14sp"
+                            />
+                    </LinearLayout>
                 </RelativeLayout>
 
                 <LinearLayout
@@ -200,6 +285,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_dealway"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -321,7 +407,8 @@
             />
 
 
-        <TextView
+        <com.yu.common.ui.DelayClickTextView
+            android:id="@+id/tv_commit"
             android:layout_width="124dp"
             android:layout_height="40dp"
             android:layout_marginLeft="16dp"
