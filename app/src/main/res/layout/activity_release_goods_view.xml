@@ -27,6 +27,7 @@
           android:paddingTop="13dp"
           >
         <EditText
+            android:id="@+id/activity_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -45,6 +46,7 @@
 
 
         <EditText
+            android:id="@+id/activity_content"
             android:layout_width="match_parent"
             android:layout_height="119dp"
             android:background="@null"

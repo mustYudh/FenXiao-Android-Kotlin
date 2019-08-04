@@ -114,7 +114,9 @@ public class LoginActivity extends BaseBarActivity
 
   @Override public void onComplete(SHARE_MEDIA media, int i, Map<String, String> map) {
     String openId = map.get("openid");
-    mPresenter.loginWeChat(openId);
+    String name = map.get("name");
+    String iconUrl = map.get("iconurl");
+    mPresenter.loginWeChat(openId,name,iconUrl);
   }
 
   @Override public void onError(SHARE_MEDIA media, int i, Throwable throwable) {

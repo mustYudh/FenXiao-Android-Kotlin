@@ -54,7 +54,7 @@ import com.yu.common.utils.RxSchedulerUtils;
         });
   }
 
-  public void loginWeChat(String openId) {
+  public void loginWeChat(String openId,String name,String iconUrl) {
     XHttp.custom(AppApiServices.class)
         .weChatLogin(PostParams.createParams().put("openId", openId).creatBody())
         .compose(RxSchedulerUtils.<ApiResult<LoginInfoBean>>_io_main_o())

@@ -19,6 +19,8 @@ import com.nhbs.fenxiao.utils.getTime
 import com.nhbs.fenxiao.utils.oss.UploadUtils
 import com.yu.common.glide.ImageLoader
 import com.yu.common.mvp.PresenterLifeCycle
+import kotlinx.android.synthetic.main.activity_release_goods_view.activity_content
+import kotlinx.android.synthetic.main.activity_release_goods_view.activity_title
 import kotlinx.android.synthetic.main.activity_release_goods_view.check_free_mail_btn
 import kotlinx.android.synthetic.main.activity_release_goods_view.commission
 import kotlinx.android.synthetic.main.activity_release_goods_view.first_goods
@@ -137,6 +139,9 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
       pop3?.showPopupWindow()
     }
     release_ac_goods.setOnClickListener {
+      params.aName = activity_title.getInputText()
+      params.content = activity_content.getInputText()
+      params.drawTime = select_time.text.toString().trim()
       params.grossSpread = promotion_costs.getInputText()
       params.pvPrice = commission.getInputText()
       presenter.releaseActivity(params)

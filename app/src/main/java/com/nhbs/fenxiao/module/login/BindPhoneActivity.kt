@@ -21,6 +21,11 @@ class BindPhoneActivity : BaseBarActivity(), BindPhoneViewer {
   @PresenterLifeCycle
   internal var mPresenter = BindPhonePresenter(this)
 
+  companion object {
+//    String name,String iconUrl
+//    const val name
+  }
+
   override fun setView(savedInstanceState: Bundle?) {
     setContentView(R.layout.activity_bind_phone_view)
   }
