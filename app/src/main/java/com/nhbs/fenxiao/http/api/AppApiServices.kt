@@ -1,5 +1,6 @@
 package com.nhbs.fenxiao.http.api
 
+import com.nhbs.fenxiao.data.UserProfile
 import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
 import com.nhbs.fenxiao.module.store.bean.ShopInfoBean
@@ -9,6 +10,7 @@ import com.xuexiang.xhttp2.model.ApiResult
 import io.reactivex.Observable
 import okhttp3.RequestBody
 import retrofit2.http.Body
+import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
@@ -36,12 +38,12 @@ interface AppApiServices {
 
   @POST("/api/merchandise/insert")
   @Headers("Content-Type: application/json", "Accept: application/json")
-  fun releaseGoods(@Body params: RequestBody): Observable<ApiResult<Any>>
+  fun releaseGoods(@Body params: RequestBody,@Header("token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
 
 
   @POST("/api/advertising/insert")
-  @Headers("Content-Type: application/json", "Accept: application/json")
-  fun releaseAD(@Body params: RequestBody): Observable<ApiResult<Any>>
+  @Headers("Content-Type: application/json;charset=UTF-8", "Accept: application/json")
+  fun releaseAD(@Body params: RequestBody,@Header("token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
 
 
   @NetMethod(Url = "/merchandiseClass/list")
@@ -64,5 +66,5 @@ interface AppApiServices {
 
   @POST("/api/activity/insert")
   @Headers("Content-Type: application/json", "Accept: application/json")
-  fun releaseActivity(@Body params: RequestBody): Observable<ApiResult<Any>>
+  fun releaseActivity(@Body params: RequestBody,@Header("token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
 }
