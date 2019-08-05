@@ -62,6 +62,14 @@ public class MineAddressListActivity extends BaseBarActivity implements MineAddr
                             intent.putExtra("item", json);
                             startActivityForResult(intent, 1);
                             break;
+                        case R.id.ll_root:
+                            Intent intentAddress = new Intent();
+                            Gson gsonAddress = new Gson();
+                            String jsonAddress = gsonAddress.toJson(adapter.getData().get(position));
+                            intentAddress.putExtra("item", jsonAddress);
+                            setResult(1, intentAddress);
+                            finish();
+                            break;
                     }
                 }
             });

@@ -6,9 +6,11 @@ public class CreateOrderParams {
     public String type;
     public String price;
     public String addressId;
-    public String number;
+    public Integer number;
     public String color;
     public String size;
     public String dealWay;
+    public String postage;
+    public String delivery;
 
 }

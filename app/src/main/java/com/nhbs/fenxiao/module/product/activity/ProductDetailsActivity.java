@@ -85,10 +85,13 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
                 initBanner(Arrays.asList(split));
             }
             bindText(R.id.tv_title, merchandiseDetailBean.mName + "");
+            bindText(R.id.tv_price, "¥"+merchandiseDetailBean.mPrice);
             bindText(R.id.tv_content, merchandiseDetailBean.mContent + "");
             bindText(R.id.tv_commission, "分享赚¥" + merchandiseDetailBean.commission + "");
             bindText(R.id.tv_bug_price, "¥" + merchandiseDetailBean.commission);
             bindText(R.id.tv_share_price, "¥" + merchandiseDetailBean.commission);
+            bindText(R.id.tv_song_huo, "送货上门:¥" + merchandiseDetailBean.delivery);
+            bindText(R.id.tv_you_fei, "快递: ¥" + merchandiseDetailBean.postage);
 
             bindView(R.id.tv_apply, view -> {
                 if (merchandiseDetailBean.isAgent != null && merchandiseDetailBean.isAgent == 0) {
@@ -225,7 +228,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
             Bundle bundle = new Bundle();
             bundle.putString("MERCHANDISEDETAILBEAN", gson.toJson(merchandiseDetailBean));
             bundle.putString("DEALWAY", dealWay + "");
-            bundle.putString("NUMBER", number + "");
+            bundle.putInt("NUMBER", number);
             bundle.putString("ONETAG", oneTag);
             bundle.putString("TWOTAG", twoTag);
             getLaunchHelper().startActivity(AffirmOrderActivity.class, bundle);

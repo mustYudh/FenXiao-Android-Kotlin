@@ -23,5 +23,6 @@ public class MineAddressRvAdapter extends BaseQuickAdapter<MineAddressBean.ListB
         helper.setText(R.id.tv_content, item.userName + " " + item.address);
         helper.setText(R.id.tv_address, item.specificAddress);
         helper.addOnClickListener(R.id.tv_redact);
+        helper.addOnClickListener(R.id.ll_root);
     }
 }

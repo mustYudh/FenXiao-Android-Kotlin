@@ -9,6 +9,7 @@ import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
 import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
 import com.nhbs.fenxiao.module.order.bean.CreateUserOrderBean;
 import com.nhbs.fenxiao.module.order.bean.FirstAddressBean;
+import com.nhbs.fenxiao.module.order.bean.PayInfo;
 import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseClassBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
@@ -17,6 +18,7 @@ import com.xuexiang.xhttp2.annotation.NetMethod;
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
@@ -78,5 +80,9 @@ public interface OtherApiServices {
 
     @POST("/api/create/userOrder")
     @Headers({"Content-Type: application/json", "Accept: application/json"})
-    Observable<CreateUserOrderBean> createUserOrder(@Body RequestBody requestBody);
+    Observable<CreateUserOrderBean> createUserOrder(@Body RequestBody requestBody, @Header("token") String token);
+
+    @NetMethod(ParameterNames = {"orderId","type","payWay"}, Url = "/user/toPay")
+    Observable<PayInfo> userToPay(String orderId,String type,String payWay);
+
 }
