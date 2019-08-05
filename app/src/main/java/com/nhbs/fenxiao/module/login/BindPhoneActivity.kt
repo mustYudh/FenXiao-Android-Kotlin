@@ -1,10 +1,13 @@
 package com.nhbs.fenxiao.module.login
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseBarActivity
+import com.nhbs.fenxiao.module.login.bean.WeChatRegisterParams
 import com.nhbs.fenxiao.module.login.presenter.BindPhonePresenter
 import com.nhbs.fenxiao.module.login.presenter.BindPhoneViewer
 import com.nhbs.fenxiao.utils.getInputText
@@ -22,8 +25,15 @@ class BindPhoneActivity : BaseBarActivity(), BindPhoneViewer {
   internal var mPresenter = BindPhonePresenter(this)
 
   companion object {
-//    String name,String iconUrl
-//    const val name
+
+    private const val REQUEST_PARAMS = "name"
+
+
+    fun getIntent(context: Context, params: WeChatRegisterParams): Intent {
+      val intent = Intent(context, BindPhoneActivity::class.java)
+      intent.putExtra(REQUEST_PARAMS, params)
+      return intent
+    }
   }
 
   override fun setView(savedInstanceState: Bundle?) {
@@ -32,8 +42,12 @@ class BindPhoneActivity : BaseBarActivity(), BindPhoneViewer {
 
   override fun loadData() {
     setTitle("绑定手机号")
+    val params: WeChatRegisterParams = intent.getSerializableExtra(
+        REQUEST_PARAMS) as WeChatRegisterParams
     login.setOnClickListener {
-      mPresenter.login(phone_number.getInputText(), input_ver_code.getInputText())
+      params.mobile = phone_number.getInputText()
+      params.code = input_ver_code.getInputText()
+      mPresenter.login(phone_number.getInputText(), input_ver_code.getInputText(), params)
     }
     send_ver_code.setOnClickListener {
       mPresenter.sendVerCode(phone_number.getInputText())

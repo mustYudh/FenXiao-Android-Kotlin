@@ -16,6 +16,7 @@ import com.nhbs.fenxiao.module.login.BindPhoneActivity;
 import com.nhbs.fenxiao.module.login.LoginActivity;
 import com.nhbs.fenxiao.module.login.VerificationCodeActivity;
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean;
+import com.nhbs.fenxiao.module.login.bean.WeChatRegisterParams;
 import com.xuexiang.xhttp2.XHttp;
 import com.xuexiang.xhttp2.XHttpProxy;
 import com.xuexiang.xhttp2.model.ApiResult;
@@ -62,10 +63,13 @@ import com.yu.common.utils.RxSchedulerUtils;
             new LoadingRequestSubscriber<ApiResult<LoginInfoBean>>(getActivity(), false) {
               @Override protected void onSuccess(ApiResult<LoginInfoBean> bean) {
                 if (bean.getCode() == 7000) {
-                  getLauncherHelper().startActivityForResult(BindPhoneActivity.class,
+                  WeChatRegisterParams params = new WeChatRegisterParams(openId,name,iconUrl,"","","");
+                  getLauncherHelper().startActivityForResult(BindPhoneActivity.Companion.getIntent(getActivity(),params),
                       LoginActivity.BIND_PHONE_SUCCESS_REQUEST_CODE);
                 } else if (bean.getCode() == 2000) {
                   UserProfile.getInstance().appLogin(bean.getData());
+                  getActivity().setResult(Activity.RESULT_OK);
+                  getActivity().finish();
                 }
               }
             });

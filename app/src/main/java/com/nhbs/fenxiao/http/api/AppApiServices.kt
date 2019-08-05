@@ -62,7 +62,7 @@ interface AppApiServices {
   fun getShopInfo(): Observable<ShopInfoBean>
 
   @POST("/app/winXinRegister")
-  fun weChatRegister(@Body params: RequestBody): Observable<ApiResult<Any>>
+  fun weChatRegister(@Body params: RequestBody): Observable<ApiResult<LoginInfoBean>>
 
   @POST("/api/activity/insert")
   @Headers("Content-Type: application/json", "Accept: application/json")

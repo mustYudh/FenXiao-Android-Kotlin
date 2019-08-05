@@ -10,5 +10,5 @@ final public class Key {
 
 
   public static final String QQ_APPID = "";
-  public static final String QQ_APP_KEY = "";
+  public static final String QQ_APP_KEY = "";v
 }
