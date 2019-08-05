@@ -106,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:includeFontPadding="false"
-                    android:text="¥4.2"
+                    android:text="@string/text_null"
                     android:textColor="#ffff3539"
                     android:textSize="13sp"
                     />

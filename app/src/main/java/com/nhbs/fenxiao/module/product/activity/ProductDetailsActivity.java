@@ -85,6 +85,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
                 initBanner(Arrays.asList(split));
             }
             bindText(R.id.tv_title, merchandiseDetailBean.mName + "");
+            bindText(R.id.tv_price, "¥"+merchandiseDetailBean.mPrice);
             bindText(R.id.tv_content, merchandiseDetailBean.mContent + "");
             bindText(R.id.tv_commission, "分享赚¥" + merchandiseDetailBean.commission + "");
             bindText(R.id.tv_bug_price, "¥" + merchandiseDetailBean.commission);

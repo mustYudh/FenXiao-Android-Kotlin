@@ -59,7 +59,7 @@ public class PayUtils {
             if (checkAliPayInstalled(context)) {
                 final Runnable payRunnable = () -> {
                     PayTask aliPay = new PayTask(context);
-                    Map<String, String> result = aliPay.payV2(info.order, true);
+                    Map<String, String> result = aliPay.payV2(info.result, true);
                     PayResult payResult = new PayResult(result);
                     context.runOnUiThread(() -> {
                         String resultStatus = payResult.getResultStatus();

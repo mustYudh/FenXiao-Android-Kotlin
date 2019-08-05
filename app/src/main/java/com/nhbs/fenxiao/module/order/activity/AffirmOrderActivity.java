@@ -292,13 +292,16 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
         tv_commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPresenter.userToPay(createUserOrderBean.data.orderId, "2", type + "");
+                mPresenter.userToPay(createUserOrderBean.data.id, "2", type + "");
             }
         });
     }
 
     @Override
     public void userToPaySuccess(PayInfo payInfo) {
+        if (payDialog.isShowing()) {
+            payDialog.dismiss();
+        }
         PayUtils.getInstance().pay(getActivity(), type, payInfo)
                 .getPayResult(new PayUtils.PayCallBack() {
                     @Override

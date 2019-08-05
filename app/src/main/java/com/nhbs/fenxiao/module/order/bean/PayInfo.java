@@ -27,5 +27,5 @@ public class PayInfo implements Serializable {
     public String prepayid;
     public String sign;
     public String timestamp;
-    public String order;
+    public String result;
 }
