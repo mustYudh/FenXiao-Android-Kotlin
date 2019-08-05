@@ -44,10 +44,13 @@ public class MerchandiseDetailBean {
     public BigDecimal mPrice;
     public BigDecimal commission;
     public BigDecimal postage;
+    public BigDecimal delivery;
     public String classId;
     public int dealWay;
     public String tagOne;
+    public String tagOneName;
     public String tagTwo;
+    public String tagTwoName;
     public int status;
     public Object type;
     public String auditReason;

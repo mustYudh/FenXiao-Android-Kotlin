@@ -123,7 +123,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
         android:includeFontPadding="false"
-        android:text="交易方式"
+        android:text="尺寸"
         android:textColor="#ff3c3d5a"
         android:textSize="12sp"
         />
@@ -148,7 +148,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
         android:includeFontPadding="false"
-        android:text="交易方式"
+        android:text="颜色分类"
         android:textColor="#ff3c3d5a"
         android:textSize="12sp"
         />

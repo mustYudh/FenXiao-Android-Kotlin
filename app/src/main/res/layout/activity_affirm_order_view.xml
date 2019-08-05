@@ -58,7 +58,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:includeFontPadding="false"
-                            android:text="张三"
+                            android:text="@string/text_null"
                             android:textColor="#ff2d2e39"
                             android:textSize="16sp"
                             />
@@ -70,7 +70,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:includeFontPadding="false"
-                            android:text="150XXXXXXXX"
+                            android:text="@string/text_null"
                             android:textColor="#ffa0a9bb"
                             android:textSize="12sp"
                             />
@@ -85,7 +85,7 @@
                         android:includeFontPadding="false"
                         android:lineSpacingExtra="2dp"
                         android:maxLines="2"
-                        android:text="浙江省杭州市XXXXXXXXXXXXXXXXXX XXX901室"
+                        android:text="@string/text_null"
                         android:textColor="#ff2d2e39"
                         android:textSize="13sp"
                         />
@@ -99,6 +99,112 @@
                     android:layout_height="10dp"
                     android:layout_marginRight="16dp"
                     android:src="@drawable/ic_arrow_right"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_address_empty"
+                android:layout_width="match_parent"
+                android:layout_height="81dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/shape_white_radius_8"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="16dp"
+                    android:src="@drawable/ic_order_location"/>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginRight="64dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="您还未设置收货地址"
+                        android:textColor="#FF3539"
+                        android:textSize="16sp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:ellipsize="end"
+                        android:includeFontPadding="false"
+                        android:text="请先前往设置"
+                        android:textColor="#2D2E39"
+                        android:textSize="13sp"
+                        />
+
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:layout_width="6dp"
+                    android:layout_height="10dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@drawable/ic_arrow_right"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_address_ziti"
+                android:layout_width="match_parent"
+                android:layout_height="81dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/shape_white_radius_8"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="16dp"
+                    android:src="@drawable/ic_order_location"/>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginRight="64dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="您选择了自提商品"
+                        android:textColor="#FF3539"
+                        android:textSize="16sp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:includeFontPadding="false"
+                        android:text="无需设置售后地址，请前往商家处提货"
+                        android:textColor="#2D2E39"
+                        android:textSize="13sp"
+                        />
+                </LinearLayout>
             </LinearLayout>
 
 
@@ -346,6 +452,7 @@
                     android:layout_marginBottom="24dp">
 
                     <TextView
+                        android:id="@+id/tv_num_product"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
@@ -357,8 +464,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
                         android:includeFontPadding="false"
-                        android:text="小计¥188.00"
+                        android:text="小计"
+                        android:textColor="#ff444761"
+                        android:textSize="16sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="¥188.00"
                         android:textColor="#FF3539"
                         android:textSize="22sp"
                         />
@@ -379,12 +497,13 @@
         android:gravity="center_vertical|right">
 
         <TextView
+            android:id="@+id/tv_num_bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="共1件"
             android:textColor="#ffa2abbc"
-            android:textSize="16sp"
+            android:textSize="13sp"
             />
 
         <TextView
@@ -398,6 +517,7 @@
             />
 
         <TextView
+            android:id="@+id/tv_price_bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
