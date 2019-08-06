@@ -18,7 +18,7 @@ public class MiniOpenStoreAuditRecordsFragment extends BaseBarFragment implement
 
     @Override
     protected int getContentViewId() {
-        return R.layout.fragment_mini_open_store_view;
+        return R.layout.fragment_mini_open_audit_records_view;
     }
 
     @Override

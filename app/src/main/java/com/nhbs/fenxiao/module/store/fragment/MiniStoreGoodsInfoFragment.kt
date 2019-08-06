@@ -23,8 +23,9 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
 
 
   private var selectedType = 0
-  private var timeStart = true
-  private var selectedOtherTab = false
+  private var selectedOther = true
+
+  private var timeType = 0
 
   @PresenterLifeCycle
   private val mPresenter = MiniStoreGoodsInfoPresenter(this)
@@ -69,24 +70,28 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
   private fun setTabSelectedView(pickerType: Int) {
     when (pickerType) {
       0 -> {
-        timeStart = !timeStart
         picker_time.isSelected = true
-        time_picker.rotation = if (timeStart) 180f else 0F
+        time_picker.rotation = 180f
         count.isSelected = false
         type.isSelected = false
-        selectedOtherTab = false
+        if (selectedOther) {
+
+        } else {
+
+        }
+        selectedOther = false
       }
       1 -> {
         picker_time.isSelected = false
         count.isSelected = true
         type.isSelected = false
-        selectedOtherTab = true
+        selectedOther = true
       }
       2 -> {
         picker_time.isSelected = false
         count.isSelected = false
         type.isSelected = true
-        selectedOtherTab = true
+        selectedOther = true
       }
     }
   }
