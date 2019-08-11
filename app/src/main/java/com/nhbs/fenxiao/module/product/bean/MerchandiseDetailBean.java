@@ -62,4 +62,9 @@ public class MerchandiseDetailBean {
     public Object affiliationShopName;
     public Object userName;
     public Integer isAgent;
+    public String shopImage;
+    public String shareNum;
+    public String province;
+    public String city;
+    public String district;
 }

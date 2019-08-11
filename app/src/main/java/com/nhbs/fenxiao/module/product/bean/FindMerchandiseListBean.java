@@ -47,7 +47,7 @@ public class FindMerchandiseListBean {
         public int dealWay;
         public long createTime;
         public String tagOne;
-        public int commission;
+        public String commission;
         public String mTitle;
         public String id;
         public String shopId;

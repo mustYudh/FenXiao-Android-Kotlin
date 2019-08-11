@@ -9,6 +9,7 @@ import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
 import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
 import com.nhbs.fenxiao.module.order.bean.CreateUserOrderBean;
 import com.nhbs.fenxiao.module.order.bean.FirstAddressBean;
+import com.nhbs.fenxiao.module.order.bean.MineOrderListBean;
 import com.nhbs.fenxiao.module.order.bean.PayInfo;
 import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseClassBean;
@@ -82,7 +83,11 @@ public interface OtherApiServices {
     @Headers({"Content-Type: application/json", "Accept: application/json"})
     Observable<CreateUserOrderBean> createUserOrder(@Body RequestBody requestBody, @Header("token") String token);
 
-    @NetMethod(ParameterNames = {"orderId","type","payWay"}, Url = "/user/toPay")
-    Observable<PayInfo> userToPay(String orderId,String type,String payWay);
+    @NetMethod(ParameterNames = {"orderId", "type", "payWay"}, Url = "/user/toPay")
+    Observable<PayInfo> userToPay(String orderId, String type, String payWay);
+
+    @NetMethod(ParameterNames = {"pageNum", "pageSize", "type", "status"}, Url = "/order/queryMyOrders")
+    Observable<MineOrderListBean> queryMyOrders(String pageNum, String pageSize, String type, String status);
+
 
 }

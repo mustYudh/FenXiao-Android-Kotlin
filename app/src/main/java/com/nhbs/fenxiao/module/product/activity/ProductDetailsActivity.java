@@ -29,6 +29,7 @@ import com.shehuan.niv.NiceImageView;
 import com.yu.common.glide.ImageLoader;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.toast.ToastUtils;
+import com.yu.common.ui.CircleImageView;
 import com.yu.common.ui.DelayClickTextView;
 import com.yu.common.ui.Res;
 import com.yu.common.utils.DensityUtil;
@@ -54,6 +55,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
     private int number = 1;
     private String oneTag = "";
     private String twoTag = "";
+    private CircleImageView iv_shop;
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
@@ -71,7 +73,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
         assert bundle != null;
         merchandise_id = bundle.getString("MERCHANDISE_ID");
         mBanner = bindView(R.id.banner);
-
+        iv_shop = bindView(R.id.iv_shop);
         bindView(R.id.action_bar_left_actions, view -> finish());
 
         mPresenter.getMerchandiseDetail(merchandise_id);
@@ -85,8 +87,11 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
                 initBanner(Arrays.asList(split));
             }
             bindText(R.id.tv_title, merchandiseDetailBean.mName + "");
-            bindText(R.id.tv_price, "¥"+merchandiseDetailBean.mPrice);
+            bindText(R.id.tv_price, "¥" + merchandiseDetailBean.mPrice);
             bindText(R.id.tv_content, merchandiseDetailBean.mContent + "");
+            bindText(R.id.tv_share, "分享了" + merchandiseDetailBean.shareNum + "次");
+            bindText(R.id.tv_shop_name, merchandiseDetailBean.shopName + "");
+            bindText(R.id.tv_shop_address, merchandiseDetailBean.province + merchandiseDetailBean.city + "");
             bindText(R.id.tv_commission, "分享赚¥" + merchandiseDetailBean.commission + "");
             bindText(R.id.tv_bug_price, "¥" + merchandiseDetailBean.commission);
             bindText(R.id.tv_share_price, "¥" + merchandiseDetailBean.commission);
@@ -103,6 +108,8 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
 
 
             bindView(R.id.ll_buy, view -> showTypeDialog(merchandiseDetailBean, merchandiseDetailBean.tagOne, merchandiseDetailBean.tagTwo));
+
+            ImageLoader.getInstance().displayImage(iv_shop, merchandiseDetailBean.shopImage, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
         }
     }
 
@@ -176,7 +183,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
         flexboxLayout.removeAllViews();
         flexboxLayout2.removeAllViews();
         if (tabOne != null && !TextUtils.isEmpty(tabOne)) {
-            String[] split = tabOne.split("\\\\");
+            String[] split = tabOne.split("\\/");
             oneList.clear();
             for (int i = 0; i < split.length; i++) {
                 SpecificationBean specificationBean = new SpecificationBean();
@@ -190,7 +197,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
         }
 
         if (tabTwo != null && !TextUtils.isEmpty(tabTwo)) {
-            String[] split = tabTwo.split("\\\\");
+            String[] split = tabTwo.split("\\/");
             twoList.clear();
             for (int i = 0; i < split.length; i++) {
                 SpecificationBean specificationBean = new SpecificationBean();
