@@ -3,7 +3,6 @@ package com.nhbs.fenxiao.module.store.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
-
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarFragment;
 import com.nhbs.fenxiao.data.UserProfile;
@@ -12,8 +11,7 @@ import com.nhbs.fenxiao.module.store.presenter.MiniOpenStoreFragmentViewer;
 import com.nhbs.fenxiao.module.web.WebViewActivity;
 import com.yu.common.mvp.PresenterLifeCycle;
 
-
-public class MiniOpenStoreFragment extends BaseBarFragment implements MiniOpenStoreFragmentViewer {
+public class MiniOpenStoreAuditRecordsFragment extends BaseBarFragment implements MiniOpenStoreFragmentViewer {
 
     @PresenterLifeCycle
     MiniOpenStoreFragmentPresenter mPresenter = new MiniOpenStoreFragmentPresenter(this);

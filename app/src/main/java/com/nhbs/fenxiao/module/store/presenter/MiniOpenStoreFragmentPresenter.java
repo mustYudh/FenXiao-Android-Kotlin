@@ -1,4 +1,4 @@
-package com.nhbs.fenxiao.module.store.fragment.presenter;
+package com.nhbs.fenxiao.module.store.presenter;
 
 import com.yu.common.framework.BaseViewPresenter;
 

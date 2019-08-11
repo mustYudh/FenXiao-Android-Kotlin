@@ -10,6 +10,10 @@ import com.nhbs.fenxiao.module.store.bean.MiniStoreGoodsInfoBaen
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreGoodsInfoPresenter
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreGoodsInfoViewer
 import com.yu.common.mvp.PresenterLifeCycle
+import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.count
+import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.picker_time
+import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.time_picker
+import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.type
 
 /**
  * @author yudneghao
@@ -18,27 +22,72 @@ import com.yu.common.mvp.PresenterLifeCycle
 class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
 
 
-    @PresenterLifeCycle
-    private val mPresenter = MiniStoreGoodsInfoPresenter(this)
-    private var mRecyclerView: RecyclerView? = null
-    private var adapter = MiniStoreGoodsInfoAdapter()
+  private var selectedType = 0
+  private var timeStart = true
+  private var selectedOtherTab = false
 
-    override fun getContentViewId(): Int {
-        return R.layout.fragment_mini_store_goods_layout
+  @PresenterLifeCycle
+  private val mPresenter = MiniStoreGoodsInfoPresenter(this)
+  private var mRecyclerView: RecyclerView? = null
+  private var adapter = MiniStoreGoodsInfoAdapter()
+
+  override fun getContentViewId(): Int {
+    return R.layout.fragment_mini_store_goods_layout
+  }
+
+  override fun setView(savedInstanceState: Bundle?) {
+    mRecyclerView = bindView(R.id.recycler_view)
+    picker_time.isSelected = selectedType == 0
+    time_picker.rotation = 0f
+    mRecyclerView?.layoutManager = LinearLayoutManager(activity)
+    mRecyclerView?.adapter = adapter
+    initListener()
+  }
+
+  private fun initListener() {
+    picker_time.setOnClickListener {
+      setTabSelectedView(0)
     }
-
-    override fun setView(savedInstanceState: Bundle?) {
-        mRecyclerView = bindView(R.id.recycler_view)
-        mRecyclerView?.layoutManager = LinearLayoutManager(activity)
-        mRecyclerView?.adapter = adapter
+    count.setOnClickListener {
+      setTabSelectedView(1)
     }
-
-    override fun loadData() {
-            mPresenter.getGoodsInfoList()
+    type.setOnClickListener {
+      setTabSelectedView(2)
     }
+  }
+
+  override fun loadData() {
+    mPresenter.getGoodsInfoList()
+  }
 
 
-    override fun setGoodsInfoList(list: List<MiniStoreGoodsInfoBaen>) {
-        adapter.setNewData(list)
+  override fun setGoodsInfoList(list: List<MiniStoreGoodsInfoBaen>) {
+    adapter.setNewData(list)
+  }
+
+
+  private fun setTabSelectedView(pickerType: Int) {
+    when (pickerType) {
+      0 -> {
+        timeStart = !timeStart
+        picker_time.isSelected = true
+        time_picker.rotation = if (timeStart) 180f else 0F
+        count.isSelected = false
+        type.isSelected = false
+        selectedOtherTab = false
+      }
+      1 -> {
+        picker_time.isSelected = false
+        count.isSelected = true
+        type.isSelected = false
+        selectedOtherTab = true
+      }
+      2 -> {
+        picker_time.isSelected = false
+        count.isSelected = false
+        type.isSelected = true
+        selectedOtherTab = true
+      }
     }
+  }
 }
