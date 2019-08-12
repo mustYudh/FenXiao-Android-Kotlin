@@ -55,7 +55,7 @@ public class MineOrderListActivity extends BaseBarActivity implements MineOrderL
         mViewPager = bindView(R.id.view_pager);
 
         for (int i = 0; i < mDataList.size(); i++) {
-            fragments.add(MineOrderListFragment.newInstance(i + 1));
+            fragments.add(MineOrderListFragment.newInstance(i - 1));
         }
         initMagicIndicator();
     }

@@ -28,6 +28,7 @@ import com.nhbs.fenxiao.utils.PayUtils;
 import com.yu.common.glide.ImageLoader;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.toast.ToastUtils;
+import com.yu.common.ui.CircleImageView;
 import com.yu.common.ui.DelayClickTextView;
 
 import java.math.BigDecimal;
@@ -41,7 +42,7 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
     AffirmOrderPresenter mPresenter = new AffirmOrderPresenter(this);
     private int number;
     private DialogUtils payDialog;
-
+    private CircleImageView iv_shop;
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_affirm_order_view);
@@ -58,7 +59,7 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
         number = bundle.getInt("NUMBER");
         String onetag = bundle.getString("ONETAG");
         String twotag = bundle.getString("TWOTAG");
-
+        iv_shop = bindView(R.id.iv_shop);
         if (dealway != null && "1".equals(dealway)) {
             //自提
             bindView(R.id.ll_address, false);
@@ -84,7 +85,9 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
 
 
         bindText(R.id.tv_num, number + "");
-
+        bindText(R.id.tv_shop_name, merchandiseDetailBean.shopName + "");
+        bindText(R.id.tv_shop_address, merchandiseDetailBean.province + merchandiseDetailBean.city + "");
+        ImageLoader.getInstance().displayImage(iv_shop, merchandiseDetailBean.shopImage, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
         bindView(R.id.tv_commit, new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -8,17 +8,19 @@ import java.io.Serializable
  * @author yudneghao
  * @date 2019-07-20
  */
-class ReleaseGoodsParams: Serializable {
+class ReleaseGoodsParams : Serializable {
   var mImgs: String? = null
   var mContent: String? = null
   var mPrice: String? = null
   var commission: String? = null
   var postage: String? = null
   var classId: String? = null
-  var dealWay: String? = null
+  var dealWay: String? = "-1"
   var tagOne: String? = null
   var tagTwo: String? = null
   var mName: String? = null
+  var tagOneName: String? = "null"
+  var tagTwoName: String? = "null"
 
   fun checkEmpty(): Boolean {
     if (mImgs.checkTextEmpty()) {

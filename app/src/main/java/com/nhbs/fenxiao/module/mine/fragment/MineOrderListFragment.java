@@ -11,6 +11,7 @@ import com.nhbs.fenxiao.module.mine.adapter.MineOrderListRvAdapter;
 import com.nhbs.fenxiao.module.mine.bean.MineLocalOrderBean;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineOrderListFragmentPresenter;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineOrderListFragmentViewer;
+import com.nhbs.fenxiao.module.order.bean.MineOrderListBean;
 import com.yu.common.mvp.PresenterLifeCycle;
 
 import java.util.ArrayList;
@@ -20,8 +21,12 @@ import java.util.List;
 public class MineOrderListFragment extends BaseFragment implements MineOrderListFragmentViewer {
     private List<MineLocalOrderBean> list = new ArrayList<>();
     @PresenterLifeCycle
-    MineOrderListFragmentPresenter presenter = new MineOrderListFragmentPresenter(this);
+    MineOrderListFragmentPresenter mPresenter = new MineOrderListFragmentPresenter(this);
     private int order_type;
+    private int pageNum = 1;
+    private int pageSize = 10;
+    private MineOrderListRvAdapter adapter;
+    private RecyclerView rv_list;
 
     @Override
     protected int getContentViewId() {
@@ -49,28 +54,31 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
             order_type = bundle.getInt("ORDER_TYPE");
         }
 
-        RecyclerView rv_list = bindView(R.id.rv_list);
+        rv_list = bindView(R.id.rv_list);
         rv_list.setLayoutManager(new LinearLayoutManager(getActivity()));
-        for (int i = 0; i < order_type; i++) {
-            MineLocalOrderBean mineLocalOrderTitleBean = new MineLocalOrderBean();
-
-            mineLocalOrderTitleBean.itemType = 0;
-            list.add(mineLocalOrderTitleBean);
 
 
-            for (int j = 0; j < 3; j++) {
-                MineLocalOrderBean mineLocalOrderGoodsBean = new MineLocalOrderBean();
-                mineLocalOrderGoodsBean.itemType = 1;
-                list.add(mineLocalOrderGoodsBean);
+        adapter = new MineOrderListRvAdapter(R.layout.item_order_title, getActivity());
+        rv_list.setAdapter(adapter);
+
+        mPresenter.getMineOrder(pageNum + "", pageSize + "", "2", order_type + "");
+    }
+
+    @Override
+    public void getMineOrderSuccess(MineOrderListBean mineOrderListBean) {
+        if (mineOrderListBean != null && mineOrderListBean.rows != null && mineOrderListBean.rows.size() != 0) {
+            if (pageNum > 1) {
+                adapter.addData(mineOrderListBean.rows);
+            } else {
+                adapter.setNewData(mineOrderListBean.rows);
             }
 
-
-            MineLocalOrderBean mineLocalOrderButtonBean = new MineLocalOrderBean();
-            mineLocalOrderButtonBean.itemType = 2;
-            list.add(mineLocalOrderButtonBean);
+            bindView(R.id.ll_empty, false);
+            bindView(R.id.rv_list, true);
+        } else {
+            //空页面
+            bindView(R.id.ll_empty, true);
+            bindView(R.id.rv_list, false);
         }
-
-        MineOrderListRvAdapter adapter = new MineOrderListRvAdapter(list, getActivity());
-        rv_list.setAdapter(adapter);
     }
 }

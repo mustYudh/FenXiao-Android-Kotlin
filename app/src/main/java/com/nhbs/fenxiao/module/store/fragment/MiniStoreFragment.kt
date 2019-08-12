@@ -150,7 +150,10 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
 
 
   override fun loadData() {
-    mPresenter.getShopInfo()
+    if (UserProfile.getInstance().isMerchant == 1) {
+      mPresenter.getShopInfo()
+    }
+
 
   }
 
