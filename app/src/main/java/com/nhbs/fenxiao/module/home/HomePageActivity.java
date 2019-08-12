@@ -37,6 +37,9 @@ public class HomePageActivity extends BaseActivity implements HomePageViewer {
         setContentView(R.layout.activity_home_page_view);
     }
 
+
+
+
     @Override
     protected void loadData() {
         List<TabItem> items = new ArrayList<>();
