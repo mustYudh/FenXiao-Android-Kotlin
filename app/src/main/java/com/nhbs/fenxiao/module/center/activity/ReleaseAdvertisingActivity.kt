@@ -87,6 +87,7 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
 
     select_time_btn.setOnClickListener {
       getCalendarPicker(activity) {
+        params.endTime = it.time.toString()
         select_time.text = getTime(it, "yyy-MM-dd")
       }
     }
@@ -103,7 +104,6 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
       params.content = input_content.getInputText()
       params.grossSpread = price.getInputText()
       params.pvSpread = commission.getInputText()
-      params.endTime = select_time.text.toString().trim()
       mPresenter.releaseAD(params,mAdapter.data as ArrayList<String>)
     }
   }

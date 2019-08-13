@@ -83,6 +83,7 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
     }
     select_time_btn.setOnClickListener {
       getCalendarPicker(activity) {
+        params.drawTime = it.time.toString()
         select_time.text = getTime(it, "yyy-MM-dd")
       }
     }
@@ -143,7 +144,6 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
     release_ac_goods.setOnClickListener {
       params.aName = activity_title.getInputText()
       params.content = activity_content.getInputText()
-      params.drawTime = select_time.text.toString().trim()
       params.grossSpread = promotion_costs.getInputText()
       params.pvPrice = commission.getInputText()
       presenter.releaseActivity(params)
