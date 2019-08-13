@@ -159,6 +159,7 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
 
 
   override fun setShopInfo(info: ShopInfoBean?) {
+    bindView<TextView>(R.id.province, info?.province.checkTextEmpty())
     bindText<TextView>(R.id.province, info?.province)
     bindText<TextView>(R.id.shopName, info?.shopName)
     bindText<EditText>(R.id.describes, info?.describes)

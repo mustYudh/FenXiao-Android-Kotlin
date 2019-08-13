@@ -38,7 +38,7 @@ class SetPrizePopupWindow(context: Activity, callBack: (info: PrizeInfo) -> Unit
       val info = PrizeInfo()
       info.prizeRes = prizeRes
       info.prizeName = bindView<EditText>(R.id.prize_name).getInputText()
-      info.prizeCount = "奖品数量：${bindView<EditText>(R.id.prize_count).getInputText()}"
+      info.prizeCount = "${bindView<EditText>(R.id.prize_count).getInputText()}"
       if (info.checkEmpty()) {
         callBack(info)
         dismiss()

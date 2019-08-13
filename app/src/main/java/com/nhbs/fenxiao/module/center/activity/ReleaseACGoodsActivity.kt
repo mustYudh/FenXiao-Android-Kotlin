@@ -1,5 +1,6 @@
 package com.nhbs.fenxiao.module.center.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -67,6 +68,7 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
     initListener()
   }
 
+  @SuppressLint("SetTextI18n")
   private fun initListener() {
     check_free_mail_btn.setOnClickListener {
       selectPromote = !selectPromote
@@ -89,7 +91,7 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
       first_goods_root.visibility = View.VISIBLE
       ImageLoader.getInstance().displayImage(first_goods_res, it.prizeRes)
       first_goods_name.text = it.prizeName
-      first_goods_count.text = it.prizeCount
+      first_goods_count.text = "奖品数量：${it.prizeCount}"
       params.firstPrizeImgs = it.prizeRes
       params.firstPrizeName = it.prizeName
       params.firstPrizeNum = it.prizeCount.toInt()
@@ -100,7 +102,7 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
       second_goods_root.visibility = View.VISIBLE
       ImageLoader.getInstance().displayImage(second_goods_res, it.prizeRes)
       second_goods_name.text = it.prizeName
-      second_goods_count.text = it.prizeCount
+      second_goods_count.text = "奖品数量：${it.prizeCount}"
       params.accessitImgs = it.prizeRes
       params.accessitName = it.prizeName
       params.accessitNum = it.prizeCount.toInt()
@@ -110,7 +112,7 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
       last_goods_root.visibility = View.VISIBLE
       ImageLoader.getInstance().displayImage(last_goods_res, it.prizeRes)
       last_goods_name.text = it.prizeName
-      last_goods_count.text = it.prizeCount
+      last_goods_count.text = "奖品数量：${it.prizeCount}"
       params.thirdPrizeImgs = it.prizeRes
       params.thirdPrizeName = it.prizeName
       params.thirdPrizeNum = it.prizeCount.toInt()
