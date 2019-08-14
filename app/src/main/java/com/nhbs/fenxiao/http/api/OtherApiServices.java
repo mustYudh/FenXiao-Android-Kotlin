@@ -1,5 +1,7 @@
 package com.nhbs.fenxiao.http.api;
 
+import com.nhbs.fenxiao.module.home.bean.AdvertisingInfoBean;
+import com.nhbs.fenxiao.module.home.bean.AdvertisingShareBean;
 import com.nhbs.fenxiao.module.home.bean.AdvertisingTypeBean;
 import com.nhbs.fenxiao.module.home.bean.HomeBannerBean;
 import com.nhbs.fenxiao.module.home.bean.HomeFindActivtyListBean;
@@ -14,6 +16,7 @@ import com.nhbs.fenxiao.module.order.bean.PayInfo;
 import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseClassBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
+import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.xuexiang.xhttp2.annotation.NetMethod;
 
 import io.reactivex.Observable;
@@ -89,5 +92,16 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"pageNum", "pageSize", "type", "status"}, Url = "/order/queryMyOrders")
     Observable<MineOrderListBean> queryMyOrders(String pageNum, String pageSize, String type, String status);
 
+    @NetMethod(ParameterNames = {"id"}, Url = "/advertising/advertiseShare")
+    Observable<AdvertisingShareBean> advertiseShare(String id);
+
+    @NetMethod(ParameterNames = {"id"}, Url = "/advertising/getAdvertiseInfo")
+    Observable<AdvertisingInfoBean> getAdvertiseInfo(String id);
+
+    @NetMethod(ParameterNames = {"id"}, Url = "/merchandise/shareMerchandise")
+    Observable<ShareMerchandiseBean> shareMerchandise(String id);
+
+    @NetMethod(ParameterNames = {"id"}, Url = "/activity/activityShare")
+    Observable<ShareMerchandiseBean> activityShare(String id);
 
 }

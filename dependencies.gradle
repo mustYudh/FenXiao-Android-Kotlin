@@ -2,7 +2,7 @@ ext {
     versionCode = 1
     versionName = '1.0.0'
 
-    uMengKey = '5d1afe890cafb29716000c51'
+    uMengKey = '5d528a403fc19583e600071b'
     uMengChannel = 'fenxiao'
     baidu = ''
 
