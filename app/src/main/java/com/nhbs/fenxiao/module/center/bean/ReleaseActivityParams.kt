@@ -25,6 +25,9 @@ class ReleaseActivityParams : Serializable {
   var isGeneralize: Int? = 0
   var grossSpread: String? = null
   var pvPrice: String? = null
+  var province: String? = null
+  var city: String? = null
+  var district: String? = null
 
 
   fun checkParams(): Boolean {
@@ -38,6 +41,10 @@ class ReleaseActivityParams : Serializable {
     }
     if (drawTime.checkTextEmpty()) {
       showToast("请选择开奖时间")
+      return false
+    }
+    if (province.checkTextEmpty() && city.checkTextEmpty() && district.checkTextEmpty()) {
+      showToast("请选择推广区域")
       return false
     }
     return true

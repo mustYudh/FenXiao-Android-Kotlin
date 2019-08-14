@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +8,8 @@
     >
   <ScrollView
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_marginBottom="56dp"
       android:overScrollMode="never"
       android:scrollbars="none"
       >
@@ -555,6 +556,48 @@
 
 
       <LinearLayout
+          android:id="@+id/select_type_1"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          android:background="@color/white"
+          android:gravity="center_vertical"
+          android:orientation="horizontal"
+          android:paddingBottom="9dp"
+          android:paddingLeft="16dp"
+          android:paddingRight="16dp"
+          android:paddingTop="9dp"
+          >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="推广区域"
+            android:textColor="#2D2E39"
+            android:textSize="16sp"
+            />
+
+        <com.yu.common.ui.DelayClickTextView
+            android:id="@+id/type_name1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:gravity="right|center_vertical"
+            android:textColor="#A0A9BB"
+            android:textSize="14sp"
+            tools:text="杭州"
+            />
+        <com.yu.common.ui.DelayClickImageView
+            android:layout_width="12dp"
+            android:layout_height="10dp"
+            android:src="@drawable/arrow_right"
+            />
+
+      </LinearLayout>
+
+
+      <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="8dp"
@@ -635,6 +678,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:hint="¥0.00"
+            android:inputType="numberDecimal"
             android:maxLines="1"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
@@ -667,6 +711,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:hint="¥0.00"
+            android:inputType="numberDecimal"
             android:maxLines="1"
             android:paddingLeft="16dp"
             android:singleLine="true"
@@ -679,16 +724,11 @@
     </LinearLayout>
   </ScrollView>
 
-  <View
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1"
-      />
-
 
   <FrameLayout
       android:layout_width="match_parent"
       android:layout_height="56dp"
+      android:layout_alignParentBottom="true"
       android:background="@color/lb_cm_white"
       >
 
@@ -708,4 +748,4 @@
 
   </FrameLayout>
 
-</LinearLayout>
+</RelativeLayout>

@@ -14,12 +14,16 @@ import com.nhbs.fenxiao.module.center.SetPrizePopupWindow
 import com.nhbs.fenxiao.module.center.bean.ReleaseActivityParams
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsACActivityViewer
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsACPresenter
+import com.nhbs.fenxiao.utils.PickerViewUtils
 import com.nhbs.fenxiao.utils.getCalendarPicker
 import com.nhbs.fenxiao.utils.getInputText
 import com.nhbs.fenxiao.utils.getTime
 import com.nhbs.fenxiao.utils.oss.UploadUtils
+import com.nhbs.fenxiao.utils.setfilters
 import com.yu.common.glide.ImageLoader
 import com.yu.common.mvp.PresenterLifeCycle
+import kotlinx.android.synthetic.main.activity_release_advertising_view.select_type_1
+import kotlinx.android.synthetic.main.activity_release_advertising_view.type_name1
 import kotlinx.android.synthetic.main.activity_release_goods_view.activity_content
 import kotlinx.android.synthetic.main.activity_release_goods_view.activity_title
 import kotlinx.android.synthetic.main.activity_release_goods_view.check_free_mail_btn
@@ -65,6 +69,8 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
 
   override fun loadData() {
     setTitle("发布活动")
+    promotion_costs.setfilters()
+    commission.setfilters()
     initListener()
   }
 
@@ -147,6 +153,16 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
       params.grossSpread = promotion_costs.getInputText()
       params.pvPrice = commission.getInputText()
       presenter.releaseActivity(params)
+    }
+
+
+    select_type_1.setOnClickListener {
+      PickerViewUtils.showSelectCity(activity) { province, city, district ->
+        type_name1.text = province + city + district
+        params.province = province
+        params.city = city
+        params.district = district
+      }
     }
   }
 
