@@ -30,6 +30,12 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="label,allowBackup">
         <activity
+            android:name=".module.home.activity.AwardDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.home.activity.AdvertisingShareActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".module.product.activity.ProductDetailsActivity"
             android:screenOrientation="portrait"/>
         <activity
