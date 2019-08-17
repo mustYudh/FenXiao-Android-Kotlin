@@ -3,6 +3,7 @@ package com.nhbs.fenxiao.module.store.fragment
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseFragment
 import com.nhbs.fenxiao.module.store.adapter.MiniStoreGoodsInfoAdapter
@@ -12,6 +13,7 @@ import com.nhbs.fenxiao.module.store.presenter.MiniStoreGoodsInfoViewer
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.count
 import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.picker_time
+import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.select_type
 import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.time_picker
 import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.type
 
@@ -42,6 +44,7 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
     time_picker.rotation = 0f
     mRecyclerView?.layoutManager = LinearLayoutManager(activity)
     mRecyclerView?.adapter = adapter
+    select_type.visibility = View.VISIBLE
     initListener()
   }
 

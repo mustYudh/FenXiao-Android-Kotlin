@@ -3,7 +3,7 @@ package com.nhbs.fenxiao.module.store.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.nhbs.fenxiao.module.store.fragment.MiniOpenStoreAuditRecordsFragment
+import com.nhbs.fenxiao.module.store.fragment.AuditRecordsFragment
 import com.nhbs.fenxiao.module.store.fragment.MiniStoreActivityFragment
 import com.nhbs.fenxiao.module.store.fragment.MiniStoreGoodsInfoFragment
 
@@ -16,7 +16,7 @@ class MiniStoreGoodsPageAdapter(fm: FragmentManager) : FragmentStatePagerAdapter
     return when (position) {
       0 -> MiniStoreGoodsInfoFragment()
       1 -> MiniStoreActivityFragment()
-      else -> MiniOpenStoreAuditRecordsFragment()
+      else -> AuditRecordsFragment()
     }
 
   }
