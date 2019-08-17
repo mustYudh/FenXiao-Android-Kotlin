@@ -8,7 +8,6 @@
     >
   <LinearLayout
       android:id="@+id/select_type"
-      android:visibility="gone"
       android:layout_width="match_parent"
       android:layout_height="44dp"
       android:layout_marginLeft="16dp"
@@ -16,6 +15,7 @@
       android:background="@drawable/shape_white_radius_8"
       android:gravity="center_vertical"
       android:orientation="horizontal"
+      android:visibility="gone"
       >
 
     <com.yu.common.ui.DelayClickTextView
@@ -29,12 +29,12 @@
         />
 
     <ImageView
+        android:src="@drawable/ic_time_picker_down"
         android:id="@+id/time_picker"
         android:layout_width="6dp"
         android:layout_height="9dp"
         android:layout_marginLeft="4dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_time_picker"
         />
 
     <com.yu.common.ui.DelayClickTextView
@@ -50,17 +50,35 @@
         />
 
 
-    <com.yu.common.ui.DelayClickTextView
-        android:id="@+id/type"
+    <LinearLayout
+        android:id="@+id/type_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="22dp"
-        android:gravity="right"
-        android:text="设置分类"
-        android:textColor="@color/picker_text_color"
-        android:textSize="14sp"
-        />
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+      <com.yu.common.ui.DelayClickImageView
+          android:id="@+id/type_icon"
+          android:layout_width="12dp"
+          android:layout_height="12dp"
+          android:src="@drawable/type_selector"
+          />
+
+      <com.yu.common.ui.DelayClickTextView
+          android:id="@+id/type"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="4dp"
+          android:layout_marginRight="22dp"
+          android:gravity="right"
+          android:text="设置分类"
+          android:textColor="@color/picker_text_color"
+          android:textSize="14sp"
+          />
+
+
+    </LinearLayout>
 
 
   </LinearLayout>

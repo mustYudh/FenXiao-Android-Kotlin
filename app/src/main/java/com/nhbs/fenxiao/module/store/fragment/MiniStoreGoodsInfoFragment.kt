@@ -16,6 +16,8 @@ import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.picker_ti
 import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.select_type
 import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.time_picker
 import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.type
+import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.type_btn
+import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.type_icon
 
 /**
  * @author yudneghao
@@ -25,9 +27,9 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
 
 
   private var selectedType = 0
-  private var selectedOther = true
 
   private var timeType = 0
+  private var timeSelected = true
 
   @PresenterLifeCycle
   private val mPresenter = MiniStoreGoodsInfoPresenter(this)
@@ -55,7 +57,7 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
     count.setOnClickListener {
       setTabSelectedView(1)
     }
-    type.setOnClickListener {
+    type_btn.setOnClickListener {
       setTabSelectedView(2)
     }
   }
@@ -74,27 +76,32 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
     when (pickerType) {
       0 -> {
         picker_time.isSelected = true
-        time_picker.rotation = 180f
         count.isSelected = false
         type.isSelected = false
-        if (selectedOther) {
-
-        } else {
-
+        type_icon.isSelected = false
+        if (timeSelected) {
+          timeType = if (timeType == 0) 1 else 0
         }
-        selectedOther = false
+        time_picker.setImageResource(
+            if (timeType == 0) R.drawable.ic_time_picker_down else R.drawable.ic_time_picker_up)
+        timeSelected = true
+
       }
       1 -> {
         picker_time.isSelected = false
         count.isSelected = true
         type.isSelected = false
-        selectedOther = true
+        type_icon.isSelected = false
+        time_picker.setImageResource(R.drawable.ic_time_picker_normal)
+        timeSelected = false
       }
       2 -> {
         picker_time.isSelected = false
         count.isSelected = false
         type.isSelected = true
-        selectedOther = true
+        type_icon.isSelected = true
+        time_picker.setImageResource(R.drawable.ic_time_picker_normal)
+        timeSelected = false
       }
     }
   }
