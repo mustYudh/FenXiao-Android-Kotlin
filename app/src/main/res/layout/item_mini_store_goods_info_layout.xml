@@ -15,75 +15,90 @@
     android:paddingTop="14dp"
     >
 
-
   <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="83dp"
       android:orientation="horizontal"
       >
 
-    <com.yu.common.ui.CircleImageView
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginRight="8dp"
-        android:src="@drawable/ic_launcher_background"
-        />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+      <com.yu.common.ui.DelayClickImageView
+          android:id="@+id/list"
+          android:layout_width="64dp"
+          android:layout_height="64dp"
+          android:layout_marginBottom="7dp"
+          android:layout_marginRight="12dp"
+          android:layout_marginTop="12dp"
+          android:src="@mipmap/ic_launcher"
+          />
+      <TextView
+          android:layout_width="36dp"
+          android:layout_height="14dp"
+          android:layout_gravity="bottom|right"
+          android:layout_marginBottom="12dp"
+          android:layout_marginRight="12dp"
+          android:background="#57000000"
+          android:gravity="center"
+          android:text="上架中"
+          android:textColor="@color/white"
+          android:textSize="10sp"
+          />
+
+    </FrameLayout>
 
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         >
-
       <TextView
-          android:id="@+id/name"
-          android:layout_width="wrap_content"
+          android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:ellipsize="end"
-          android:maxLines="1"
-          android:singleLine="true"
-          tools:text="XXXX酒吧"
-          android:textColor="#3B3E5A"
+          android:layout_marginRight="32dp"
+          android:layout_marginTop="14dp"
+          android:text="办公室沙发茶几组合现代三人位真皮"
+          android:textColor="#3C3D5A"
           android:textSize="14sp"
           />
 
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1"
+          android:gravity="bottom"
+          android:orientation="horizontal"
+          android:paddingBottom="7dp"
+          >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¥234"
+            android:textColor="#FF3539"
+            android:textSize="12sp"
+            />
 
-      <TextView
-          android:id="@+id/address"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="2dp"
-          android:drawableLeft="@drawable/ic_location"
-          android:drawablePadding="4dp"
-          android:ellipsize="end"
-          android:maxLines="1"
-          android:singleLine="true"
-          tools:text="杭州市江干区"
-          android:textColor="#A0A9BB"
-          android:textSize="10sp"
-          />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:paddingRight="12dp"
+            android:text="总销量:25"
+            android:textColor="#A0A9BB"
+            android:textSize="12sp"
+            />
+
+
+      </LinearLayout>
+
     </LinearLayout>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textColor="#FF2751"
-        android:textSize="11sp"
-        tools:text="未通过"
-        />
   </LinearLayout>
-
-
-  <android.support.v7.widget.RecyclerView
-      android:id="@+id/list"
-      android:layout_width="match_parent"
-      android:layout_height="78dp"
-      />
 
 
   <View
@@ -103,31 +118,61 @@
 
     <TextView
         android:id="@+id/time"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_gravity="center"
         android:ellipsize="end"
         android:maxLines="1"
         android:singleLine="true"
-        android:text="03月01日 6:00自动开奖"
+        android:text="添加 "
         android:textColor="#A0A9BB"
-        tools:textSize="11sp"
+        tools:textSize="12sp"
         />
-
 
     <TextView
-        android:id="@+id/commit_time"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_weight="1"
+        android:text="2019/05/01"
+        android:textColor="#3C3D5A"
+        android:textSize="12sp"
+        />
+
+
+    <com.yu.common.ui.DelayClickTextView
+        android:id="@+id/commit_time"
+        android:layout_width="65dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/ic_button_bg"
         android:ellipsize="end"
-        android:gravity="right"
+        android:gravity="center"
         android:maxLines="1"
         android:singleLine="true"
-        android:text="02月05日 13:32:00提交"
-        android:textColor="#A0A9BB"
-        tools:textSize="11sp"
+        android:text="下架"
+        android:textColor="#7F8A9F"
+        tools:textSize="13sp"
         />
+
+
+    <com.yu.common.ui.DelayClickTextView
+        android:layout_width="65dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/ic_button_bg"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="编辑"
+        android:textColor="#7F8A9F"
+        tools:textSize="13sp"
+        />
+
 
   </LinearLayout>
 
