@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseFragment
+import com.nhbs.fenxiao.module.store.activity.WithdrawalActivity
+import kotlinx.android.synthetic.main.fragment_income_assets_layout.withdrawal
 
 /**
  * @author yudneghao
@@ -26,7 +28,7 @@ class IncomeAssetsFragment : BaseFragment() {
   }
 
   override fun getContentViewId(): Int {
-      return R.layout.fragment_income_assets_layout
+    return R.layout.fragment_income_assets_layout
   }
 
   override fun setView(savedInstanceState: Bundle?) {
@@ -34,7 +36,9 @@ class IncomeAssetsFragment : BaseFragment() {
   }
 
   override fun loadData() {
-
+    withdrawal.setOnClickListener {
+      launchHelper.startActivity(WithdrawalActivity::class.java)
+    }
   }
 
 }

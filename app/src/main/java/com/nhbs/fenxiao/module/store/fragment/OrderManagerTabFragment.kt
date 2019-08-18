@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.fragment_order_tab_manager.list
 import kotlinx.android.synthetic.main.fragment_order_tab_manager.status_root
 
 
-
 /**
  * @author yudneghao
  * @date 2019-08-18
@@ -21,8 +20,10 @@ import kotlinx.android.synthetic.main.fragment_order_tab_manager.status_root
 
 class OrderManagerTabFragment : BaseFragment() {
   private var position: Int = 0
-  private var adapter = OrderListAdapter()
-
+  val adapter0 = OrderListAdapter(0)
+  val adapter1 = OrderListAdapter(1)
+  val adapter2 = OrderListAdapter(2)
+  val adapter3 = OrderListAdapter(3)
 
   override fun getContentViewId(): Int {
     return com.nhbs.fenxiao.R.layout.fragment_order_tab_manager
@@ -34,7 +35,8 @@ class OrderManagerTabFragment : BaseFragment() {
 
   override fun loadData() {
     for (item in 0..3) {
-      val statusTab = LayoutInflater.from(activity!!).inflate(com.nhbs.fenxiao.R.layout.item_goods_status,
+      val statusTab = LayoutInflater.from(activity!!).inflate(
+          com.nhbs.fenxiao.R.layout.item_goods_status,
           status_root, false)
       val statusRoot: LinearLayout = statusTab.findViewById(com.nhbs.fenxiao.R.id.tba_root)
       val text: TextView = statusTab.findViewById(com.nhbs.fenxiao.R.id.text)
@@ -78,12 +80,29 @@ class OrderManagerTabFragment : BaseFragment() {
           text.isSelected = i == item
           count.isSelected = i == item
           position = i
+          when(position) {
+            0 -> {
+              list.setLinearLayoutAdapter(adapter0)
+            }
+            1 -> {
+              list.setLinearLayoutAdapter(adapter1)
+            }
+            2 -> {
+              list.setLinearLayoutAdapter(adapter2)
+            }
+            3 -> {
+              list.setLinearLayoutAdapter(adapter3)
+            }
+          }
         }
       }
     }
 
-    list.setLinearLayoutAdapter(adapter)
-    adapter.addData(OrderListBean())
+    list.setLinearLayoutAdapter(adapter0)
+    adapter0.addData(OrderListBean())
+    adapter1.addData(OrderListBean())
+    adapter2.addData(OrderListBean())
+    adapter3.addData(OrderListBean())
   }
 
 

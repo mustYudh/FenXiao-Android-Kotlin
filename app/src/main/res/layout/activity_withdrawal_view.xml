@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+  <LinearLayout
+      android:layout_marginTop="8dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/white"
+      android:orientation="vertical"
+      >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        >
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:paddingBottom="9dp"
+          android:paddingTop="9dp"
+          android:text="到账支付宝"
+          android:textColor="#ff2d2e39"
+          android:textSize="16sp"
+          />
+
+      <EditText
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="21dp"
+          android:layout_marginRight="21dp"
+          android:layout_weight="1"
+          android:background="@null"
+          android:hint="请输入支付宝账号"
+          android:textColor="#A0A9BB"
+          android:textSize="15sp"
+          />
+
+
+      <com.yu.common.ui.DelayClickImageView
+          android:layout_width="6dp"
+          android:layout_height="10dp"
+          android:layout_gravity="center"
+          android:scaleType="centerCrop"
+          android:src="@drawable/ic_gary_right_arrow"
+          />
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/line_color"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        >
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:paddingBottom="9dp"
+          android:paddingTop="9dp"
+          android:text="提现金额"
+          android:textColor="#ff2d2e39"
+          android:textSize="16sp"
+          />
+
+      <EditText
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="35dp"
+          android:layout_marginRight="21dp"
+          android:layout_weight="1"
+          android:background="@null"
+          android:hint="请输入提现金额"
+          android:inputType="numberDecimal"
+          android:textColor="#A0A9BB"
+          android:textSize="15sp"
+          />
+
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="全部提现"
+          android:textColor="#ffff2d48"
+          android:textSize="15sp"
+          />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/line_color"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="4dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="4dp"
+        android:text="提现需支付5%手续费"
+        android:textColor="#ffa0a9bb"
+        android:textSize="11sp"
+        />
+
+
+  </LinearLayout>
+
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:paddingLeft="16dp"
+      android:text="预计24小时内到账，实际以到账时间为准"
+      android:textColor="#ffa0a9bb"
+      android:textSize="11sp"
+      />
+
+
+  <com.yu.common.ui.DelayClickTextView
+      android:id="@+id/next_action"
+      android:layout_width="match_parent"
+      android:layout_height="44dp"
+      android:layout_marginLeft="24dp"
+      android:layout_marginRight="24dp"
+      android:layout_marginTop="16dp"
+      android:background="@drawable/shape_login_text"
+      android:gravity="center"
+      android:text="提现"
+      android:textColor="#ffffffff"
+      android:textSize="14sp"
+      />
+
+
+</LinearLayout>

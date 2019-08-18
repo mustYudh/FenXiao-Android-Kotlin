@@ -30,6 +30,12 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="label,allowBackup">
         <activity
+            android:name=".module.store.activity.WithdrawalInfoActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.store.activity.WithdrawalActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".module.store.activity.OrderManagerActivity"
             android:screenOrientation="portrait"/>
         <activity
