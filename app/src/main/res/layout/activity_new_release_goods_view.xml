@@ -250,7 +250,7 @@
               android:background="@drawable/shape_goods_button_selector"
               android:gravity="center"
               android:text="自提"
-              android:textColor="@color/home_tab_text_coloor"
+              android:textColor="@color/home_tab_text_color"
               android:textSize="13sp"
               />
 
@@ -262,7 +262,7 @@
               android:background="@drawable/shape_goods_button_selector"
               android:gravity="center"
               android:text="送货上门"
-              android:textColor="@color/home_tab_text_coloor"
+              android:textColor="@color/home_tab_text_color"
               android:textSize="13sp"
               />
 
@@ -273,7 +273,7 @@
               android:background="@drawable/shape_goods_button_selector"
               android:gravity="center"
               android:text="邮寄"
-              android:textColor="@color/home_tab_text_coloor"
+              android:textColor="@color/home_tab_text_color"
               android:textSize="13sp"
               />
 

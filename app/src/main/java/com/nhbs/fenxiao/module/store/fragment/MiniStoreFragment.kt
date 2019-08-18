@@ -11,6 +11,7 @@ import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseBarFragment
 import com.nhbs.fenxiao.data.UserProfile
 import com.nhbs.fenxiao.module.home.StatusBarColorManager
+import com.nhbs.fenxiao.module.store.activity.OrderManagerActivity
 import com.nhbs.fenxiao.module.store.adapter.MiniStoreGoodsPageAdapter
 import com.nhbs.fenxiao.module.store.bean.ShopInfoBean
 import com.nhbs.fenxiao.module.store.presenter.MiniStorePresenter
@@ -23,6 +24,7 @@ import com.yu.common.navigation.StatusBarFontColorUtil
 import com.yu.common.ui.BadgeView
 import kotlinx.android.synthetic.main.fragment_mini_store_layout.describes
 import kotlinx.android.synthetic.main.fragment_mini_store_layout.edit
+import kotlinx.android.synthetic.main.fragment_mini_store_layout.order_manager
 import kotlinx.android.synthetic.main.fragment_mini_store_layout.tv_open_store
 import net.lucode.hackware.magicindicator.MagicIndicator
 import net.lucode.hackware.magicindicator.ViewPagerHelper
@@ -70,14 +72,21 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
     tabTitles.add("活动")
     tabTitles.add("审核记录")
     initTab()
-    tv_open_store.setOnClickListener {
-      launchHelper.startActivity(WebViewActivity.callIntent(activity, "",
-          "http://app.novobus.cn/openstore?token=" + UserProfile.getInstance().appToken))
-    }
+    initListener()
     edit.setOnClickListener {
       describes.isEnabled = true
     }
 
+  }
+
+  private fun initListener() {
+    tv_open_store.setOnClickListener {
+      launchHelper.startActivity(WebViewActivity.callIntent(activity, "",
+          "http://app.novobus.cn/openstore?token=" + UserProfile.getInstance().appToken))
+    }
+    order_manager.setOnClickListener {
+      launchHelper.startActivity(OrderManagerActivity::class.java)
+    }
   }
 
   private fun initTab() {
@@ -124,7 +133,8 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
         val linePagerIndicator = LinePagerIndicator(context)
         linePagerIndicator.mode = LinePagerIndicator.MODE_EXACTLY
         linePagerIndicator.setColors(Color.parseColor("#FF3E2B"))
-        linePagerIndicator.lineWidth = DensityUtils.dp2px(activity!!, 24f).toFloat()
+        linePagerIndicator.roundRadius = 4F
+        linePagerIndicator.lineWidth = DensityUtils.dp2px(activity!!, 40f).toFloat()
         linePagerIndicator.lineHeight = DensityUtils.dp2px(activity!!, 2f).toFloat()
         return linePagerIndicator
       }

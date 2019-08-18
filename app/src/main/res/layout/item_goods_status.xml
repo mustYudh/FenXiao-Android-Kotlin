@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tba_root"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@drawable/shape_white_selector"
+    android:gravity="center"
+    android:orientation="vertical"
+    >
+
+
+  <com.yu.common.ui.DelayClickTextView
+      android:id="@+id/count"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="0"
+      android:textColor="@color/home_tab_text_color"
+      android:textSize="20sp"
+      />
+
+  <com.yu.common.ui.DelayClickTextView
+      android:id="@+id/text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@color/home_tab_text_color"
+      android:textSize="12sp"
+      />
+
+</LinearLayout>
