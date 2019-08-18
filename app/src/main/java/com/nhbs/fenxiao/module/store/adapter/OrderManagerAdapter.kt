@@ -3,7 +3,7 @@ package com.nhbs.fenxiao.module.store.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.nhbs.fenxiao.module.store.fragment.OrderManagerFragment
+import com.nhbs.fenxiao.module.store.fragment.OrderManagerTabFragment
 
 /**
  * @author yudneghao
@@ -13,7 +13,7 @@ class OrderManagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
 
   override fun getItem(p0: Int): Fragment {
-    return OrderManagerFragment()
+    return OrderManagerTabFragment()
   }
 
   override fun getCount(): Int {

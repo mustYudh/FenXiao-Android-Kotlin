@@ -1,31 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     >
 
-  <LinearLayout
-      android:id="@+id/status_root"
+
+  <EditText
       android:layout_width="match_parent"
-      android:layout_height="72dp"
-      android:layout_marginTop="8dp"
-      android:orientation="horizontal"
-      >
-  </LinearLayout>
+      android:layout_height="32dp"
+      android:layout_marginLeft="16dp"
+      android:layout_marginRight="16dp"
+      android:layout_marginTop="12dp"
+      android:background="@drawable/shape_edit_bg"
+      android:drawableLeft="@drawable/home_search"
+      android:drawablePadding="8dp"
+      android:ellipsize="end"
+      android:gravity="center_vertical"
+      android:hint="商品|订单号|手机号|姓名"
+      android:paddingBottom="6dp"
+      android:paddingLeft="12dp"
+      android:paddingRight="12dp"
+      android:paddingTop="6dp"
+      android:textColorHint="#A0A9BB"
+      />
 
-  <com.scwang.smartrefresh.layout.SmartRefreshLayout
+
+  <android.support.design.widget.TabLayout
+      android:id="@+id/magic_indicator"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      >
+      android:layout_height="50dp"
+      android:background="@color/white"
+      android:overScrollMode="never"
+      android:scrollbars="none"
+      app:tabBackground="@android:color/transparent"
+      app:tabIndicatorColor="@color/transparent"
+      app:tabIndicatorHeight="4dp"
+      app:tabRippleColor="@android:color/transparent"
+      />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-  </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
+  <android.support.v4.view.ViewPager
+      android:id="@+id/view_pager"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:overScrollMode="never"
+      />
 
 </LinearLayout>
+
+
+
+
+
