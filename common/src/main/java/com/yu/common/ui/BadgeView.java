@@ -54,7 +54,7 @@ public class BadgeView extends AppCompatTextView {
         }
     }
 
-    private void setBackground(float dipRadius, int badgeColor) {
+    public void setBackground(float dipRadius, int badgeColor) {
         int radius = dip2Px(dipRadius);
         float[] radiusArray =
                 new float[]{radius, radius, radius, radius, radius, radius, radius, radius};

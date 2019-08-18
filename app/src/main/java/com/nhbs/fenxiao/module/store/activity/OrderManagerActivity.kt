@@ -1,11 +1,13 @@
 package com.nhbs.fenxiao.module.store.activity
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.design.widget.TabLayout.OnTabSelectedListener
 import android.support.design.widget.TabLayout.Tab
 import android.support.v4.view.ViewPager
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.R.layout
@@ -14,6 +16,7 @@ import com.nhbs.fenxiao.module.store.activity.presenter.OrderManagerPresenter
 import com.nhbs.fenxiao.module.store.activity.presenter.OrderManagerViewer
 import com.nhbs.fenxiao.module.store.adapter.OrderManagerAdapter
 import com.yu.common.mvp.PresenterLifeCycle
+import com.yu.common.ui.BadgeView
 import com.yu.common.ui.ProxyDrawable
 import com.yu.common.ui.Res
 import com.yu.common.utils.DensityUtil
@@ -27,7 +30,7 @@ class OrderManagerActivity : BaseBarActivity(), OrderManagerViewer, OnTabSelecte
   private var mViewPager: ViewPager? = null
   private var mTabLayout: TabLayout? = null
   private var mAdapter: OrderManagerAdapter? = null
-
+  private var mBadgeViews: ArrayList<BadgeView>? = null
 
   override fun getActionBarLayoutId(): Int {
     return layout.order_manager_title_bar_layout
@@ -88,6 +91,8 @@ class OrderManagerActivity : BaseBarActivity(), OrderManagerViewer, OnTabSelecte
         tab.customView = view
       }
     }
+    initBadgeViews()
+    setUpTabBadge()
   }
 
 
@@ -113,4 +118,33 @@ class OrderManagerActivity : BaseBarActivity(), OrderManagerViewer, OnTabSelecte
   override fun loadData() {
 
   }
+
+
+  private fun initBadgeViews() {
+    if (mBadgeViews == null) {
+      mBadgeViews = ArrayList()
+      for (i in 0 until 2) {
+        val tmp = BadgeView(activity)
+        tmp.setBadgeMargin(110, 8, 0, 0)
+        tmp.setPadding(10, 1, 10, 1)
+        tmp.textSize = 10F
+        tmp.setBackground(DensityUtil.dip2px(4F).toFloat(), Color.parseColor("#FF2751"))
+        tmp.setTextColor(Color.parseColor("#FFFFFF"))
+        mBadgeViews?.add(tmp)
+      }
+    }
+  }
+
+  private fun setUpTabBadge() {
+    for (i in 0 until 2) {
+      mBadgeViews?.get(i)?.setTargetView((mTabLayout?.getChildAt(0) as ViewGroup).getChildAt(i))
+      if (i == 0) {
+        mBadgeViews?.get(i)?.text = 12.toString()
+      } else {
+        mBadgeViews?.get(i)?.text = "99+"
+      }
+
+    }
+  }
+
 }
