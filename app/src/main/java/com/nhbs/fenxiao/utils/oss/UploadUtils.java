@@ -34,7 +34,7 @@ public class UploadUtils {
                 .flatMap(
                     (Function<String, ObservableSource<PersistenceResponse>>) url ->
                         Observable.just(url)
-                            .map(selectFileUrl -> UploadImage.uploadFile(context, fileName + position[0] + "." + fileType, selectFileUrl,new OssConfig())))
+                            .map(selectFileUrl -> UploadImage.uploadFile(context, fileName + position[0] + "." + fileType, selectFileUrl,config)))
                 .subscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<PersistenceResponse>() {
