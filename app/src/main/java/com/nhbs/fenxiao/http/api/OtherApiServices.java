@@ -49,7 +49,7 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"context", "mobile", "conUrl", "type"}, Url = "/opinion/add")
     Observable<Object> opinionAdd(String context, String mobile, String conUrl, String type);
 
-    @NetMethod(Url = "/merchandiseClass/list")
+    @NetMethod(Url = "/merchandiseClass/rows")
     Observable<MerchandiseClassBean> merchandiseClass();
 
     @NetMethod(ParameterNames = {"classId", "pageNum", "pageSize"}, Url = "/merchandise/findMerchandiseList")
@@ -70,7 +70,7 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"typeId", "pageNum", "pageSize"}, Url = "/advertising/findAdvertising")
     Observable<HomeFindAdvertisingListBean> findAdvertisingList(String typeId, int pageNum, int pageSize);
 
-    @NetMethod(Url = "/advertisingType/list")
+    @NetMethod(Url = "/advertisingType/rows")
     Observable<AdvertisingTypeBean> advertisingType();
 
     @NetMethod(ParameterNames = {"pageNum", "pageSize"}, Url = "/activity/findActivtyPage")

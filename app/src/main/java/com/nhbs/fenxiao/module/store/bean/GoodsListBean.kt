@@ -1,6 +1,7 @@
 package com.nhbs.fenxiao.module.store.bean
 
 import java.io.Serializable
+import java.math.BigDecimal
 
 /**
  * @author yudenghao
@@ -9,14 +10,14 @@ import java.io.Serializable
 class GoodsListBean : Serializable {
 
   /**
-   * list : [{"mPrice":100,"affiliationShopId":"","mContent":"进口服饰","typeName":null,"shopName":null,"updateTime":1561613662356,"tagTwo":"气质","userId":"","postage":10,"classId":"1","dealWay":1,"tagOne":"进口","createTime":1561613662356,"mTitle":"进口服饰","commission":2,"id":"03a98c3fce1e440d9adf3ca10d67cfc8","shopId":"1","mName":"进口服饰","affiliationShopName":null,"mImgs":"https://imgsa.baidu.com/news/q%3D100/sign=4bf9145b4910b912b9c1f2fef3fffcb5/f636afc379310a5535f18d14b94543a98326107c.jpg","status":1}]
+   * rows : [{"mPrice":100,"affiliationShopId":"","mContent":"进口服饰","typeName":null,"shopName":null,"updateTime":1561613662356,"tagTwo":"气质","userId":"","postage":10,"classId":"1","dealWay":1,"tagOne":"进口","createTime":1561613662356,"mTitle":"进口服饰","commission":2,"id":"03a98c3fce1e440d9adf3ca10d67cfc8","shopId":"1","mName":"进口服饰","affiliationShopName":null,"mImgs":"https://imgsa.baidu.com/news/q%3D100/sign=4bf9145b4910b912b9c1f2fef3fffcb5/f636afc379310a5535f18d14b94543a98326107c.jpg","status":1}]
    * isFirstPage : true
    * pageNum : 1
    */
 
   val isFirstPage: Boolean = false
   val pageNum: Int = 0
-  val list: List<ListBean>? = null
+  val rows: List<ListBean>? = null
 
 
   class ListBean : Serializable {
@@ -44,7 +45,7 @@ class GoodsListBean : Serializable {
      * status : 1
      */
 
-    val mPrice: Int = 0
+    val mPrice: BigDecimal? = null
     val affiliationShopId: String? = null
     val mContent: String? = null
     val typeName: Any? = null
@@ -58,7 +59,7 @@ class GoodsListBean : Serializable {
     val tagOne: String? = null
     val createTime: Long = 0
     val mTitle: String? = null
-    val commission: Int = 0
+    val commission: BigDecimal? = null
     val id: String? = null
     val shopId: String? = null
     val mName: String? = null

@@ -149,10 +149,6 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
       badgeView.setBadgeCount(99)
       mMagicIndicator = bindView(R.id.magic_indicator)
       mViewPager = bindView(R.id.view_pager)
-      tabTitles.add("商品")
-      tabTitles.add("活动")
-      tabTitles.add("审核记录")
-      initTab()
       initListener()
       edit.setOnClickListener {
         describes.isEnabled = true
@@ -162,7 +158,10 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
 
 
   override fun loadData() {
-
+    tabTitles.add("商品")
+    tabTitles.add("活动")
+    tabTitles.add("审核记录")
+    initTab()
   }
 
 

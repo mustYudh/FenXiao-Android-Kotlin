@@ -9,4 +9,6 @@ import com.yu.common.mvp.Viewer
  */
 interface MiniStoreGoodsInfoViewer: Viewer {
     fun setGoodsInfoList(list: List<ListBean>?)
+
+    fun pullDownGoodsSuccess(position: Int)
 }

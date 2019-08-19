@@ -11,6 +11,7 @@ import com.nhbs.fenxiao.module.store.bean.GetGoodsParams
 import com.nhbs.fenxiao.module.store.bean.GoodsListBean.ListBean
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreGoodsInfoPresenter
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreGoodsInfoViewer
+import com.nhbs.fenxiao.utils.showToast
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.count
@@ -30,8 +31,6 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
 
   private var selectedType = 0
 
-  private var timeType = 0
-  private var timeSelected = true
 
   @PresenterLifeCycle
   private val mPresenter = MiniStoreGoodsInfoPresenter(this)
@@ -41,6 +40,9 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
 
   private var params = GetGoodsParams()
   private var pageNum: Int = 1
+
+  private var orderTypeTime = 1
+  private var orderTypeOther = -1
 
   override fun getContentViewId(): Int {
     return R.layout.fragment_mini_store_goods_layout
@@ -79,11 +81,35 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
       params.pageNum = pageNum++
       mPresenter.getGoodsList(params, refreshLayout, 1)
     }
+    adapter.setOnItemChildClickListener { adapter, view, position ->
+      val data = adapter.data[position] as ListBean
+      when (view.id) {
+        R.id.edit_goods -> {
+
+        }
+        R.id.shelves_goods -> {
+          mPresenter.pullDownGoods(data.id!!,position)
+        }
+      }
+    }
   }
 
 
   override fun setGoodsInfoList(list: List<ListBean>?) {
-    adapter.setNewData(list)
+    if (list != null && list.size > 0) {
+      if (pageNum == 1) {
+        adapter.setNewData(list)
+      } else {
+        adapter.addData(list)
+      }
+    } else {
+      if (pageNum == 1) {
+        adapter.emptyView = View.inflate(activity, R.layout.empty_layout, null)
+      }
+
+    }
+
+
   }
 
 
@@ -94,30 +120,46 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
         count.isSelected = false
         type.isSelected = false
         type_icon.isSelected = false
-        if (timeSelected) {
-          timeType = if (timeType == 0) 1 else 0
-        }
         time_picker.setImageResource(
-            if (timeType == 0) R.drawable.ic_time_picker_down else R.drawable.ic_time_picker_up)
-        timeSelected = true
+            if (orderTypeTime == 1) R.drawable.ic_time_picker_down else R.drawable.ic_time_picker_up)
+        if (orderTypeOther == -1) {
+          orderTypeTime = if (orderTypeTime == 1) 2 else 1
+          time_picker.setImageResource(
+              if (orderTypeTime == 1) R.drawable.ic_time_picker_down else R.drawable.ic_time_picker_up)
+          params.orderType = orderTypeTime
+          mPresenter.getGoodsList(params, null, 0)
+        } else {
+          orderTypeOther = -1
+        }
 
       }
       1 -> {
+        orderTypeOther = 2
         picker_time.isSelected = false
         count.isSelected = true
         type.isSelected = false
         type_icon.isSelected = false
         time_picker.setImageResource(R.drawable.ic_time_picker_normal)
-        timeSelected = false
+        params.orderType = orderTypeOther
+        mPresenter.getGoodsList(params, null, 0)
       }
       2 -> {
+        orderTypeOther = 3
         picker_time.isSelected = false
         count.isSelected = false
         type.isSelected = true
         type_icon.isSelected = true
         time_picker.setImageResource(R.drawable.ic_time_picker_normal)
-        timeSelected = false
+
       }
     }
+  }
+
+  override fun pullDownGoodsSuccess(position: Int) {
+    showToast("下架成功")
+    adapter.remove(position)
+//    if (adapter.data.size == 0) {
+//      adapter.emptyView = View.inflate(activity, R.layout.empty_layout, null)
+//    }
   }
 }

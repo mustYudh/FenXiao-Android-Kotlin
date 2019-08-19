@@ -18,7 +18,7 @@
       android:visibility="gone"
       >
 
-    <com.yu.common.ui.DelayClickTextView
+    <TextView
         android:id="@+id/picker_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

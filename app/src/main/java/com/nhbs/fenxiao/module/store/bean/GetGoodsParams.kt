@@ -11,5 +11,5 @@ class GetGoodsParams : Serializable {
   var pageSize: Int? = 10
   var type: String? = "0"
   var classId: String? = ""
-  var orderType: String? = "1"
+  var orderType: Int? = 1
 }

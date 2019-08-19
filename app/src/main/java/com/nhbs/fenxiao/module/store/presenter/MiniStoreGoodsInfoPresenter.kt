@@ -3,11 +3,14 @@ package com.nhbs.fenxiao.module.store.presenter
 import android.annotation.SuppressLint
 import com.nhbs.fenxiao.http.api.AppApiServices
 import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber
+import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber
 import com.nhbs.fenxiao.module.store.bean.GetGoodsParams
 import com.nhbs.fenxiao.module.store.bean.GoodsListBean
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.xuexiang.xhttp2.XHttp
+import com.xuexiang.xhttp2.XHttpProxy
 import com.xuexiang.xhttp2.exception.ApiException
+import com.xuexiang.xhttp2.model.ApiResult
 import com.xuexiang.xhttp2.utils.HttpUtils
 import com.yu.common.framework.BaseViewPresenter
 import com.yu.common.utils.RxSchedulerUtils
@@ -24,10 +27,11 @@ class MiniStoreGoodsInfoPresenter(viewer: MiniStoreGoodsInfoViewer) :
   fun getGoodsList(params: GetGoodsParams, refreshLayout: RefreshLayout?, type: Int) {
     XHttp.custom(AppApiServices::class.java)
         .getGoodsList(HttpUtils.getJsonRequestBody(params))
-        .compose(RxSchedulerUtils._io_main_o<GoodsListBean>())
-        .subscribeWith(object : LoadingRequestSubscriber<GoodsListBean>(activity, false) {
-          override fun onSuccess(result: GoodsListBean?) {
-            val data = result?.list
+        .compose(RxSchedulerUtils._io_main_o<ApiResult<GoodsListBean>>())
+        .subscribeWith(object : LoadingRequestSubscriber<ApiResult<GoodsListBean>>(activity!!,
+            false) {
+          override fun onSuccess(result: ApiResult<GoodsListBean>?) {
+            val data = result?.data?.rows
             getViewer()?.setGoodsInfoList(data)
             if (refreshLayout != null) {
               if (type == 0) {
@@ -54,6 +58,17 @@ class MiniStoreGoodsInfoPresenter(viewer: MiniStoreGoodsInfoViewer) :
             }
           }
         })
+  }
+
+
+  fun pullDownGoods(id: String,position: Int) {
+    XHttpProxy.proxy(AppApiServices::class.java)
+        .pullDownGoods(id).subscribeWith(object :TipRequestSubscriber<Any>() {
+          override fun onSuccess(t: Any?) {
+            getViewer()?.pullDownGoodsSuccess(position)
+          }
+
+        } )
   }
 
 }
