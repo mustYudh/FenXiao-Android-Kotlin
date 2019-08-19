@@ -83,7 +83,7 @@
 
   </LinearLayout>
   <com.scwang.smartrefresh.layout.SmartRefreshLayout
-      android:id="@+id/smart"
+      android:id="@+id/refresh"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:layout_marginTop="8dp"

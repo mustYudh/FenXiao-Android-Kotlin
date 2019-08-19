@@ -7,9 +7,11 @@ import android.view.View
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseFragment
 import com.nhbs.fenxiao.module.store.adapter.MiniStoreGoodsInfoAdapter
-import com.nhbs.fenxiao.module.store.bean.MiniStoreGoodsInfoBaen
+import com.nhbs.fenxiao.module.store.bean.GetGoodsParams
+import com.nhbs.fenxiao.module.store.bean.GoodsListBean.ListBean
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreGoodsInfoPresenter
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreGoodsInfoViewer
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.count
 import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.picker_time
@@ -35,6 +37,10 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
   private val mPresenter = MiniStoreGoodsInfoPresenter(this)
   private var mRecyclerView: RecyclerView? = null
   private var adapter = MiniStoreGoodsInfoAdapter()
+  private var refresh: SmartRefreshLayout? = null
+
+  private var params = GetGoodsParams()
+  private var pageNum: Int = 1
 
   override fun getContentViewId(): Int {
     return R.layout.fragment_mini_store_goods_layout
@@ -63,11 +69,20 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
   }
 
   override fun loadData() {
-    mPresenter.getGoodsInfoList()
+    refresh = bindView(R.id.refresh)
+    mPresenter.getGoodsList(params, null, 0)
+    refresh?.setOnRefreshListener { refreshLayout ->
+      params.pageNum = 0
+      mPresenter.getGoodsList(params, refreshLayout, 0)
+    }
+    refresh?.setOnLoadMoreListener { refreshLayout ->
+      params.pageNum = pageNum++
+      mPresenter.getGoodsList(params, refreshLayout, 1)
+    }
   }
 
 
-  override fun setGoodsInfoList(list: List<MiniStoreGoodsInfoBaen>) {
+  override fun setGoodsInfoList(list: List<ListBean>?) {
     adapter.setNewData(list)
   }
 
