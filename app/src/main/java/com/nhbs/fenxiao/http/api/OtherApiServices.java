@@ -49,7 +49,7 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"context", "mobile", "conUrl", "type"}, Url = "/opinion/add")
     Observable<Object> opinionAdd(String context, String mobile, String conUrl, String type);
 
-    @NetMethod(Url = "/merchandiseClass/rows")
+    @NetMethod(Url = "/merchandiseClass/list")
     Observable<MerchandiseClassBean> merchandiseClass();
 
     @NetMethod(ParameterNames = {"classId", "pageNum", "pageSize"}, Url = "/merchandise/findMerchandiseList")
