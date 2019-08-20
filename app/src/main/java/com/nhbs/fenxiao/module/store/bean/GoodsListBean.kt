@@ -66,6 +66,7 @@ class GoodsListBean : Serializable {
     val affiliationShopName: Any? = null
     val mImgs: String? = null
     val status: Int = 0
+    var number: Int = 0
 
   }
 }

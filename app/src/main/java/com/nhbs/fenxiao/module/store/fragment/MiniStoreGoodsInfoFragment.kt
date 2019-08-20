@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.mylhyl.circledialog.CircleDialog
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseFragment
 import com.nhbs.fenxiao.module.store.adapter.MiniStoreGoodsInfoAdapter
@@ -88,7 +89,15 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
 
         }
         R.id.shelves_goods -> {
-          mPresenter.pullDownGoods(data.id!!,position)
+          CircleDialog.Builder()
+              .setTitle("温馨提示")
+              .setText("\n确定下架该商品吗?\n")
+              .setPositive("确定") {
+                mPresenter.pullDownGoods(data.id!!, position)
+              }.setNegative("取消", null)
+              .show(fragmentManager)
+
+
         }
       }
     }
@@ -158,8 +167,8 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
   override fun pullDownGoodsSuccess(position: Int) {
     showToast("下架成功")
     adapter.remove(position)
-//    if (adapter.data.size == 0) {
-//      adapter.emptyView = View.inflate(activity, R.layout.empty_layout, null)
-//    }
+    if (adapter.data.size == 0) {
+      adapter.emptyView = View.inflate(activity, R.layout.empty_layout, null)
+    }
   }
 }

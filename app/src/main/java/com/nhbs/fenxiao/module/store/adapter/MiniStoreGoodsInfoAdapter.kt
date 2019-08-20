@@ -19,6 +19,7 @@ class MiniStoreGoodsInfoAdapter :
     ImageLoader.getInstance().displayImage(helper?.getView(R.id.goods_image),
         item?.mImgs)
     helper?.setText(R.id.title, item?.mTitle)?.setText(R.id.price, "¥${item?.mPrice?.getMoney()}")
+        ?.setText(R.id.goods_number, "总销量:${item?.number}")
         ?.setText(R.id.commit_time, item?.createTime?.getTime())?.addOnClickListener(
             R.id.shelves_goods)
         ?.addOnClickListener(R.id.edit_goods)
