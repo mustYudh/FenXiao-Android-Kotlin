@@ -182,6 +182,7 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
 
   override fun getGoodsInfo(info: GoodsInfoBean?) {
     editGoods = true
+    release.text = "确认修改"
     goods_name.setText(info?.mTitle)
     goods_info.setText(info?.mContent)
     price.setText(info?.mPrice?.getMoney())
