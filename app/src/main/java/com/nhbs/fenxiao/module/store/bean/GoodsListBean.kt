@@ -48,12 +48,12 @@ class GoodsListBean : Serializable {
     val mPrice: BigDecimal? = null
     val affiliationShopId: String? = null
     val mContent: String? = null
-    val typeName: Any? = null
-    val shopName: Any? = null
+    val typeName: String? = null
+    val shopName: String? = null
     val updateTime: Long = 0
     val tagTwo: String? = null
     val userId: String? = null
-    val postage: Int = 0
+    val postage: BigDecimal? = null
     val classId: String? = null
     val dealWay: Int = 0
     val tagOne: String? = null
