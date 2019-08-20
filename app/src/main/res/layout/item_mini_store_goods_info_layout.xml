@@ -26,13 +26,13 @@
         android:layout_height="wrap_content"
         >
       <com.yu.common.ui.DelayClickImageView
-          android:id="@+id/list"
+          android:id="@+id/goods_image"
           android:layout_width="64dp"
           android:layout_height="64dp"
           android:layout_marginBottom="7dp"
           android:layout_marginRight="12dp"
           android:layout_marginTop="12dp"
-          android:src="@mipmap/ic_launcher"
+          android:scaleType="centerCrop"
           />
       <TextView
           android:layout_width="36dp"
@@ -56,13 +56,14 @@
         android:orientation="vertical"
         >
       <TextView
+          android:id="@+id/title"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginRight="32dp"
           android:layout_marginTop="14dp"
-          android:text="办公室沙发茶几组合现代三人位真皮"
           android:textColor="#3C3D5A"
           android:textSize="14sp"
+          tools:text="办公室沙发茶几组合现代三人位真皮"
           />
 
       <LinearLayout
@@ -74,14 +75,16 @@
           android:paddingBottom="7dp"
           >
         <TextView
+            android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¥234"
             android:textColor="#FF3539"
             android:textSize="12sp"
+            tools:text="¥234"
             />
 
         <TextView
+            android:id="@+id/goods_number"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -130,18 +133,19 @@
         />
 
     <TextView
+        android:id="@+id/commit_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:text="2019/05/01"
         android:textColor="#3C3D5A"
         android:textSize="12sp"
+        tools:text="2019/05/01"
         />
 
 
     <com.yu.common.ui.DelayClickTextView
-        android:id="@+id/commit_time"
+        android:id="@+id/shelves_goods"
         android:layout_width="65dp"
         android:layout_height="28dp"
         android:layout_marginBottom="6dp"
@@ -158,6 +162,7 @@
 
 
     <com.yu.common.ui.DelayClickTextView
+        android:id="@+id/edit_goods"
         android:layout_width="65dp"
         android:layout_height="28dp"
         android:layout_marginBottom="6dp"

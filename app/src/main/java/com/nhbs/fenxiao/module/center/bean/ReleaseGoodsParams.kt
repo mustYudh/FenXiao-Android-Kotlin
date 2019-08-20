@@ -10,6 +10,7 @@ import java.io.Serializable
  */
 class ReleaseGoodsParams : Serializable {
   var mImgs: String? = null
+  var id: String? = ""
   var mContent: String? = null
   var mPrice: String? = null
   var commission: String? = null
@@ -19,8 +20,8 @@ class ReleaseGoodsParams : Serializable {
   var tagOne: String? = null
   var tagTwo: String? = null
   var mName: String? = null
-  var tagOneName: String? = "null"
-  var tagTwoName: String? = "null"
+  var tagOneName: String? = null
+  var tagTwoName: String? = null
 
   fun checkEmpty(): Boolean {
     if (mImgs.checkTextEmpty()) {
@@ -47,7 +48,7 @@ class ReleaseGoodsParams : Serializable {
       showToast("请选择商品类别")
       return false
     }
-    if (dealWay.checkTextEmpty() || classId.equals("-1")) {
+    if (dealWay.checkTextEmpty() || dealWay.equals("-1")) {
       showToast("请选择交易方式")
       return false
     }

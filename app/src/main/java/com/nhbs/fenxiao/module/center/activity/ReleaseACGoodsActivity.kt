@@ -14,6 +14,7 @@ import com.nhbs.fenxiao.module.center.SetPrizePopupWindow
 import com.nhbs.fenxiao.module.center.bean.ReleaseActivityParams
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsACActivityViewer
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsACPresenter
+import com.nhbs.fenxiao.module.store.bean.GoodsListBean.GoodsInfoBean
 import com.nhbs.fenxiao.utils.PickerViewUtils
 import com.nhbs.fenxiao.utils.getCalendarPicker
 import com.nhbs.fenxiao.utils.getInputText
@@ -53,6 +54,7 @@ import kotlinx.android.synthetic.main.activity_release_goods_view.select_time_bt
 
 class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
 
+
   @PresenterLifeCycle
   internal var presenter = ReleaseGoodsACPresenter(this)
   private var pop1: SetPrizePopupWindow? = null
@@ -66,6 +68,7 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
   override fun setView(savedInstanceState: Bundle?) {
     setContentView(R.layout.activity_release_goods_view)
   }
+
 
   override fun loadData() {
     setTitle("发布活动")
@@ -165,6 +168,8 @@ class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
       }
     }
   }
+
+
 
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

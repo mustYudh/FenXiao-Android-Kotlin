@@ -1,5 +1,6 @@
 package com.nhbs.fenxiao.module.center.activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -15,8 +16,10 @@ import com.nhbs.fenxiao.module.center.bean.ReleaseGoodsParams
 import com.nhbs.fenxiao.module.center.bean.Row
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsPresenter
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsViewer
+import com.nhbs.fenxiao.module.store.bean.GoodsListBean.GoodsInfoBean
 import com.nhbs.fenxiao.module.view.RecycleItemSpace
 import com.nhbs.fenxiao.utils.getInputText
+import com.nhbs.fenxiao.utils.getMoney
 import com.nhbs.fenxiao.utils.selectPhoto
 import com.nhbs.fenxiao.utils.setGridLayoutAdapter
 import com.nhbs.fenxiao.utils.setfilters
@@ -48,6 +51,17 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
   private var freeMail = false
   private var dealWay = -1
   private var goodsTypeId = ""
+  private var editGoods = false
+  private var id: String? = ""
+
+  companion object {
+    private const val GOODS_INFO = "goods_info"
+    fun getIntent(context: Context, goods: GoodsInfoBean): Intent {
+      val intent = Intent(context, ReleaseGoodsActivity::class.java)
+      intent.putExtra(GOODS_INFO, goods)
+      return intent
+    }
+  }
 
   override fun setView(savedInstanceState: Bundle?) {
     setContentView(R.layout.activity_new_release_goods_view)
@@ -56,6 +70,11 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
   override fun loadData() {
     initView()
     initListener()
+    val goodsInfo = intent.getSerializableExtra(GOODS_INFO)
+    if (goodsInfo != null) {
+      getGoodsInfo(goodsInfo as GoodsInfoBean)
+    }
+
   }
 
   private fun initView() {
@@ -112,7 +131,7 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
       mail.isSelected = true
     }
     select_goods_type.setOnClickListener {
-      launchHelper.startActivityForResult(SelectGoodsTypeActivity.getIntent(activity,1),
+      launchHelper.startActivityForResult(SelectGoodsTypeActivity.getIntent(activity, 1),
           SelectGoodsTypeActivity.SELECTED_DATA_REQUEST_DATA)
     }
 
@@ -120,7 +139,7 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
       val params = ReleaseGoodsParams()
       var mImages = ""
       mAdapter.data.forEachIndexed { index, result ->
-        mImages += "$result${if (index < mAdapter.data.size - 2) "," else ""}"
+        mImages += "$result${if (index < mAdapter.data.size - 1) "," else ""}"
       }
       params.mImgs = mImages
       params.mContent = goods_info.getInputText()
@@ -132,7 +151,13 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
       params.tagOne = goods_tag_1.getInputText()
       params.tagTwo = goods_tag_2.getInputText()
       params.mName = goods_name.getInputText()
-      mPresenter.releaseGoods(params,mAdapter.data as ArrayList<String>)
+      params.id = id
+      if (editGoods) {
+        mPresenter.editGoodsInfo(params, mAdapter.data as ArrayList<String>)
+      } else {
+        mPresenter.releaseGoods(params, mAdapter.data as ArrayList<String>)
+      }
+
     }
 
     free_mail.addTextChangedListener(object : TextWatcher {
@@ -152,6 +177,28 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
       }
 
     })
+
+  }
+
+  override fun getGoodsInfo(info: GoodsInfoBean?) {
+    editGoods = true
+    release.text = "确认修改"
+    goods_name.setText(info?.mTitle)
+    goods_info.setText(info?.mContent)
+    price.setText(info?.mPrice?.getMoney())
+    commission.setText(info?.commission?.getMoney())
+    free_mail.setText(info?.postage?.getMoney())
+    check_free_mail.isSelected = TextUtils.isEmpty(info?.postage?.getMoney())
+    type_name.text = info?.typeName
+    since_the_lift.isSelected = info?.dealWay == 1
+    door_to_door_delivery.isSelected = info?.dealWay == 2
+    mail.isSelected = info?.dealWay == 3
+    goods_tag_1.setText(info?.tagOne)
+    goods_tag_2.setText(info?.tagTwo)
+    dealWay = info?.dealWay!!
+    goodsTypeId = info.classId!!
+    id = info?.id
+    setReleaseGoodsImage(ArrayList(info.mImgs?.split(",")))
 
   }
 
