@@ -7,9 +7,10 @@ import android.view.View
 import com.mylhyl.circledialog.CircleDialog
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseFragment
+import com.nhbs.fenxiao.module.center.activity.ReleaseGoodsActivity
 import com.nhbs.fenxiao.module.store.adapter.MiniStoreGoodsInfoAdapter
 import com.nhbs.fenxiao.module.store.bean.GetGoodsParams
-import com.nhbs.fenxiao.module.store.bean.GoodsListBean.ListBean
+import com.nhbs.fenxiao.module.store.bean.GoodsListBean.GoodsInfoBean
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreGoodsInfoPresenter
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreGoodsInfoViewer
 import com.nhbs.fenxiao.utils.showToast
@@ -83,10 +84,10 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
       mPresenter.getGoodsList(params, refreshLayout, 1)
     }
     adapter.setOnItemChildClickListener { adapter, view, position ->
-      val data = adapter.data[position] as ListBean
+      val data = adapter.data[position] as GoodsInfoBean
       when (view.id) {
         R.id.edit_goods -> {
-
+          launchHelper.startActivity(ReleaseGoodsActivity.getIntent(activity!!, data))
         }
         R.id.shelves_goods -> {
           CircleDialog.Builder()
@@ -104,7 +105,7 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
   }
 
 
-  override fun setGoodsInfoList(list: List<ListBean>?) {
+  override fun setGoodsInfoList(list: List<GoodsInfoBean>?) {
     if (list != null && list.size > 0) {
       if (pageNum == 1) {
         adapter.setNewData(list)

@@ -17,10 +17,10 @@ class GoodsListBean : Serializable {
 
   val isFirstPage: Boolean = false
   val pageNum: Int = 0
-  val rows: List<ListBean>? = null
+  val rows: List<GoodsInfoBean>? = null
 
 
-  class ListBean : Serializable {
+  class GoodsInfoBean : Serializable {
     /**
      * mPrice : 100
      * affiliationShopId :
