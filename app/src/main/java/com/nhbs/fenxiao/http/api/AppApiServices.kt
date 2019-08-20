@@ -53,7 +53,7 @@ interface AppApiServices {
   fun getGoodsType(): Observable<GoodsTypeBean>
 
 
-  @NetMethod(Url = "/advertisingType/rows")
+  @NetMethod(Url = "/advertisingType/list")
   fun getAdType(): Observable<GoodsTypeBean>
 
 
