@@ -82,4 +82,10 @@ interface AppApiServices {
   @NetMethod(Url = "/merchandise/pullDown", ParameterNames = ["id"])
   fun pullDownGoods(id: String): Observable<Any>
 
+
+
+  @POST("/api/merchandise/update")
+  @Headers("Content-Type: application/json", "Accept: application/json")
+  fun editeGoods(@Body params: RequestBody, @Header(
+      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
 }

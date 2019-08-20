@@ -8,7 +8,7 @@ import com.yu.common.mvp.Viewer
  * @date 2019-06-30
  */
 interface MiniStoreGoodsInfoViewer: Viewer {
-    fun setGoodsInfoList(list: List<GoodsInfoBean>?)
+    fun setGoodsInfoList(list: List<GoodsInfoBean>?,isPickerTime: Boolean)
 
     fun pullDownGoodsSuccess(position: Int)
 }

@@ -24,7 +24,7 @@ class MiniStoreGoodsInfoPresenter(viewer: MiniStoreGoodsInfoViewer) :
     BaseViewPresenter<MiniStoreGoodsInfoViewer>(viewer) {
 
 
-  fun getGoodsList(params: GetGoodsParams, refreshLayout: RefreshLayout?, type: Int) {
+  fun getGoodsList(params: GetGoodsParams, refreshLayout: RefreshLayout?, type: Int,isPickerTime: Boolean? = false) {
     XHttp.custom(AppApiServices::class.java)
         .getGoodsList(HttpUtils.getJsonRequestBody(params))
         .compose(RxSchedulerUtils._io_main_o<ApiResult<GoodsListBean>>())
@@ -32,7 +32,7 @@ class MiniStoreGoodsInfoPresenter(viewer: MiniStoreGoodsInfoViewer) :
             false) {
           override fun onSuccess(result: ApiResult<GoodsListBean>?) {
             val data = result?.data?.rows
-            getViewer()?.setGoodsInfoList(data)
+            getViewer()?.setGoodsInfoList(data,isPickerTime!!)
             if (refreshLayout != null) {
               if (type == 0) {
                 refreshLayout.finishRefresh()

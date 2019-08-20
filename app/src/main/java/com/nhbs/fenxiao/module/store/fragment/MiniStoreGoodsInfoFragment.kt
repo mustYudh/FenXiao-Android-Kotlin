@@ -42,7 +42,7 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
 
   private var params = GetGoodsParams()
   private var pageNum: Int = 1
-
+  private var timePickerData: List<GoodsInfoBean>? = null
   private var orderTypeTime = 1
   private var orderTypeOther = -1
 
@@ -74,7 +74,7 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
 
   override fun loadData() {
     refresh = bindView(R.id.refresh)
-    mPresenter.getGoodsList(params, null, 0)
+    mPresenter.getGoodsList(params, null, 0, true)
     refresh?.setOnRefreshListener { refreshLayout ->
       params.pageNum = 0
       mPresenter.getGoodsList(params, refreshLayout, 0)
@@ -105,7 +105,7 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
   }
 
 
-  override fun setGoodsInfoList(list: List<GoodsInfoBean>?) {
+  override fun setGoodsInfoList(list: List<GoodsInfoBean>?, isPickerTime: Boolean) {
     if (list != null && list.size > 0) {
       if (pageNum == 1) {
         adapter.setNewData(list)
@@ -116,10 +116,10 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
       if (pageNum == 1) {
         adapter.emptyView = View.inflate(activity, R.layout.empty_layout, null)
       }
-
     }
-
-
+    if (isPickerTime) {
+      timePickerData = adapter.data
+    }
   }
 
 
@@ -137,8 +137,9 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
           time_picker.setImageResource(
               if (orderTypeTime == 1) R.drawable.ic_time_picker_down else R.drawable.ic_time_picker_up)
           params.orderType = orderTypeTime
-          mPresenter.getGoodsList(params, null, 0)
+          mPresenter.getGoodsList(params, null, 0, true)
         } else {
+          adapter.setNewData(timePickerData)
           orderTypeOther = -1
         }
 

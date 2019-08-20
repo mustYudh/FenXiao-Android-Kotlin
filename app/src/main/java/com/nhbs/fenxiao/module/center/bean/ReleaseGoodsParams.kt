@@ -10,6 +10,7 @@ import java.io.Serializable
  */
 class ReleaseGoodsParams : Serializable {
   var mImgs: String? = null
+  var id: String? = ""
   var mContent: String? = null
   var mPrice: String? = null
   var commission: String? = null

@@ -79,6 +79,7 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
   private fun initTab() {
     mPagerAdapter = MiniStoreGoodsPageAdapter(childFragmentManager)
     mViewPager?.adapter = mPagerAdapter
+    mViewPager?.offscreenPageLimit = 3
     val commonNavigator = CommonNavigator(activity)
     commonNavigator.adapter = object : CommonNavigatorAdapter() {
       override fun getCount(): Int {
