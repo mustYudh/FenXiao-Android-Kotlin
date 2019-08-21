@@ -409,7 +409,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:includeFontPadding="false"
-                android:text="自买省"
+                android:text="立即购买"
                 android:textColor="#ffffffff"
                 android:textSize="10sp"
                 />

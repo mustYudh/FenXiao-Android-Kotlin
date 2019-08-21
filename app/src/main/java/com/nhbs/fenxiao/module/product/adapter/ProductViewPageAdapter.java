@@ -2,7 +2,7 @@ package com.nhbs.fenxiao.module.product.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.nhbs.fenxiao.base.BaseFragment;
 
@@ -17,7 +17,7 @@ import java.util.List;
  * </pre>
  */
 
-public class ProductViewPageAdapter extends FragmentPagerAdapter {
+public class ProductViewPageAdapter extends FragmentStatePagerAdapter {
     private List<String> list;
     private List<BaseFragment> fragments;
 

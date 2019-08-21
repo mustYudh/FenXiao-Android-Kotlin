@@ -64,7 +64,7 @@ interface AppApiServices {
   @NetMethod(Url = "/userShop/shopDetail")
   fun getShopInfo(): Observable<ShopInfoBean>
 
-  @POST("/app/winXinRegister")
+  @POST("/api/app/winXinRegister")
   fun weChatRegister(@Body params: RequestBody): Observable<ApiResult<LoginInfoBean>>
 
   @POST("/api/activity/insert")

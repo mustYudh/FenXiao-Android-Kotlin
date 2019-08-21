@@ -32,20 +32,20 @@ public class HomeFindActivtyListBean {
          */
 
         public String firstPrizeImgs;
-        public int firstPrizeNum;
-        public int thirdPrizeNum;
+        public String firstPrizeNum;
+        public String thirdPrizeNum;
         public long drawTime;
-        public int grossSpread;
+        public String grossSpread;
         public String thirdPrizeImgs;
         public String userId;
         public String content;
         public String thirdPrizeName;
-        public int pvPrice;
+        public String pvPrice;
         public String accessitImgs;
-        public int accessitNum;
+        public String accessitNum;
         public String accessitName;
         public long createTime;
-        public int isGeneralize;
+        public String isGeneralize;
         public String lotteryWinner;
         public String aName;
         public String firstPrizeName;

@@ -70,6 +70,7 @@ public class ProductFragment extends BaseBarFragment implements ProductFragmentV
      */
     private void initMagicIndicator() {
         ProductViewPageAdapter adapter = new ProductViewPageAdapter(getChildFragmentManager(), mDataList, fragments);
+        mViewPager.setOffscreenPageLimit(fragments.size());
         mViewPager.setAdapter(adapter);
         MagicIndicator magicIndicator = bindView(R.id.magic_indicator);
         CommonNavigator commonNavigator = new CommonNavigator(getActivity());

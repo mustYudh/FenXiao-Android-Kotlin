@@ -70,7 +70,7 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"typeId", "pageNum", "pageSize"}, Url = "/advertising/findAdvertising")
     Observable<HomeFindAdvertisingListBean> findAdvertisingList(String typeId, int pageNum, int pageSize);
 
-    @NetMethod(Url = "/advertisingType/rows")
+    @NetMethod(Url = "/advertisingType/list")
     Observable<AdvertisingTypeBean> advertisingType();
 
     @NetMethod(ParameterNames = {"pageNum", "pageSize"}, Url = "/activity/findActivtyPage")

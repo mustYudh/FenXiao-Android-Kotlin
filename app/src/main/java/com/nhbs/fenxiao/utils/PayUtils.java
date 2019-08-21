@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.nhbs.fenxiao.module.order.bean.PayInfo;
 import com.nhbs.fenxiao.module.order.bean.PayResult;
+import com.nhbs.fenxiao.module.order.bean.WxPayInfo;
 import com.nhbs.fenxiao.wxapi.WXPayEntryActivity;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.umeng.socialize.UMShareAPI;
@@ -21,6 +22,7 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.yu.common.countdown.RxCountDown;
 import com.yu.common.countdown.RxCountDownAdapter;
 import com.yu.common.toast.ToastUtils;
+import com.yu.share.WXPayUtils;
 
 import java.util.Map;
 
@@ -82,15 +84,15 @@ public class PayUtils {
             try {
                 PayReq request = new PayReq();
                 Gson gson = new Gson();
-//                WxPayInfo wxInfo = gson.fromJson(info.order, WxPayInfo.class);
-//                request.appId = wxInfo.appid;
-//                request.partnerId = wxInfo.partnerid;
-//                request.prepayId = wxInfo.prepayid;
-//                request.packageValue = wxInfo.packageX;
-//                request.nonceStr = wxInfo.noncestr;
-//                request.timeStamp = wxInfo.timestamp;
-//                request.sign = wxInfo.sign;
-//                WXPayUtils.getInstance(context).sendRequest(request);
+                WxPayInfo wxInfo = gson.fromJson(info.result, WxPayInfo.class);
+                request.appId = wxInfo.appId;
+                request.partnerId = wxInfo.partnerId;
+                request.prepayId = wxInfo.prepayId;
+                request.packageValue = wxInfo.packageValue;
+                request.nonceStr = wxInfo.nonceStr;
+                request.timeStamp = wxInfo.timeStamp;
+                request.sign = wxInfo.sign;
+                WXPayUtils.getInstance(context).sendRequest(request);
             } catch (JsonSyntaxException e) {
                 e.printStackTrace();
             }

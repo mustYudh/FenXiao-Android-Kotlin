@@ -57,6 +57,7 @@ public class MineFragment extends BaseBarFragment
         mHeadimg = bindView(R.id.iv_headimg);
         LinearLayout ll_setting = bindView(R.id.ll_setting);
         LinearLayout ll_root = bindView(R.id.ll_root);
+        ll_root.removeAllViews();
         ll_root.addView(new MyOneLineView(getActivity())
                 .initMine(R.drawable.mine_team, "我的团队", true, true).setDividerBottomMargin(48, 31)
                 .setOnRootClickListener(this, 1));
