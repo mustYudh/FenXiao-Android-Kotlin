@@ -18,6 +18,8 @@ import com.luck.picture.lib.config.PictureMimeType
 import com.nhbs.fenxiao.R
 import com.yu.common.toast.ToastUtils
 import com.yu.common.ui.Res
+import java.math.BigDecimal
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -156,6 +158,19 @@ fun EditText.setfilters() {
 fun String?.checkTextEmpty(): Boolean {
   return TextUtils.isEmpty(this)
 }
+
+fun BigDecimal.getMoney(): String {
+  val df = DecimalFormat("###.##")
+  return df.format(this)
+}
+
+
+@SuppressLint("SimpleDateFormat")
+fun Long.getTime(): String {
+  val dateFormat =  SimpleDateFormat("yyyy/MM/dd")
+  return dateFormat.format(this)
+}
+
 
 
 

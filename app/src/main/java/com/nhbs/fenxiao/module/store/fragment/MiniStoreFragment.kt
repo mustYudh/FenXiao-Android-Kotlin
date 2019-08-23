@@ -50,7 +50,6 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
   private var mMagicIndicator: MagicIndicator? = null
   private var mViewPager: ViewPager? = null
   private var mPagerAdapter: MiniStoreGoodsPageAdapter? = null
-
   override fun getActionBarLayoutId(): Int {
     return R.layout.action_bar_page_fragment_mini_store_layout
   }
@@ -64,18 +63,6 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
   }
 
   override fun setView(savedInstanceState: Bundle?) {
-    val badgeView = bindView<BadgeView>(R.id.badge_view)
-    badgeView.setBadgeCount(99)
-    mMagicIndicator = bindView(R.id.magic_indicator)
-    mViewPager = bindView(R.id.view_pager)
-    tabTitles.add("商品")
-    tabTitles.add("活动")
-    tabTitles.add("审核记录")
-    initTab()
-    initListener()
-    edit.setOnClickListener {
-      describes.isEnabled = true
-    }
 
   }
 
@@ -92,6 +79,7 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
   private fun initTab() {
     mPagerAdapter = MiniStoreGoodsPageAdapter(childFragmentManager)
     mViewPager?.adapter = mPagerAdapter
+    mViewPager?.offscreenPageLimit = 3
     val commonNavigator = CommonNavigator(activity)
     commonNavigator.adapter = object : CommonNavigatorAdapter() {
       override fun getCount(): Int {
@@ -156,21 +144,31 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
     bindView<TextView>(R.id.tv_open_store_hint, !isMerchant)
     bindView<MagicIndicator>(R.id.magic_indicator, isMerchant)
     bindView<ViewPager>(R.id.view_pager, isMerchant)
+    if (UserProfile.getInstance().isMerchant == 1) {
+      mPresenter.getShopInfo()
+    }
   }
 
 
   override fun loadData() {
-    if (UserProfile.getInstance().isMerchant == 1) {
-      mPresenter.getShopInfo()
+    val badgeView = bindView<BadgeView>(R.id.badge_view)
+    badgeView.setBadgeCount(99)
+    mMagicIndicator = bindView(R.id.magic_indicator)
+    mViewPager = bindView(R.id.view_pager)
+    tabTitles.add("商品")
+    tabTitles.add("活动")
+    tabTitles.add("审核记录")
+    initTab()
+    initListener()
+    edit.setOnClickListener {
+      describes.isEnabled = true
     }
-
-
   }
 
 
   override fun setShopInfo(info: ShopInfoBean?) {
     bindView<TextView>(R.id.province, info?.province.checkTextEmpty())
-    bindText<TextView>(R.id.province, info?.province)
+    bindText<TextView>(R.id.province, "${info?.province}${info?.city}${info?.district}")
     bindText<TextView>(R.id.shopName, info?.shopName)
     bindText<EditText>(R.id.describes, info?.describes)
     bindView<EditText>(R.id.describes_root, !info?.describes.checkTextEmpty())

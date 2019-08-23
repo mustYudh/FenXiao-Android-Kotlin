@@ -3,6 +3,7 @@ package com.nhbs.fenxiao.http.api
 import com.nhbs.fenxiao.data.UserProfile
 import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
+import com.nhbs.fenxiao.module.store.bean.GoodsListBean
 import com.nhbs.fenxiao.module.store.bean.ShopInfoBean
 import com.nhbs.fenxiao.utils.oss.bean.OssConfig
 import com.xuexiang.xhttp2.annotation.NetMethod
@@ -38,12 +39,14 @@ interface AppApiServices {
 
   @POST("/api/merchandise/insert")
   @Headers("Content-Type: application/json", "Accept: application/json")
-  fun releaseGoods(@Body params: RequestBody,@Header("token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
+  fun releaseGoods(@Body params: RequestBody, @Header(
+      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
 
 
   @POST("/api/advertising/insert")
   @Headers("Content-Type: application/json;charset=UTF-8", "Accept: application/json")
-  fun releaseAD(@Body params: RequestBody,@Header("token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
+  fun releaseAD(@Body params: RequestBody, @Header(
+      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
 
 
   @NetMethod(Url = "/merchandiseClass/list")
@@ -66,5 +69,23 @@ interface AppApiServices {
 
   @POST("/api/activity/insert")
   @Headers("Content-Type: application/json", "Accept: application/json")
-  fun releaseActivity(@Body params: RequestBody,@Header("token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
+  fun releaseActivity(@Body params: RequestBody, @Header(
+      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
+
+
+  @POST("/api/merchandise/findMerchandiseList")
+  @Headers("Content-Type: application/json", "Accept: application/json")
+  fun getGoodsList(@Body params: RequestBody, @Header(
+      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<GoodsListBean>>
+
+
+  @NetMethod(Url = "/merchandise/pullDown", ParameterNames = ["id"])
+  fun pullDownGoods(id: String): Observable<Any>
+
+
+
+  @POST("/api/merchandise/update")
+  @Headers("Content-Type: application/json", "Accept: application/json")
+  fun editeGoods(@Body params: RequestBody, @Header(
+      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
 }

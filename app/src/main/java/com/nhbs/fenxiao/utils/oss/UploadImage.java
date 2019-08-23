@@ -27,6 +27,9 @@ public class UploadImage {
    */
 
   public static PersistenceResponse uploadFile(Context context, String objectName, final String fileAbsPath, OssConfig config) {
+    if (TextUtils.isEmpty(fileAbsPath)) {
+        return new PersistenceResponse();
+    }
     Log.e("======>文件上传", "objectName:" + objectName + ",fileAbsPath:" + fileAbsPath);
     //*********************** 构造 OSSClient ***********************
     ClientConfiguration conf = new ClientConfiguration();

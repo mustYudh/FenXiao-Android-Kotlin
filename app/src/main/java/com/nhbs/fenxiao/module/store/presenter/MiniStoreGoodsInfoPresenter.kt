@@ -1,20 +1,74 @@
 package com.nhbs.fenxiao.module.store.presenter
 
-import com.nhbs.fenxiao.module.store.bean.MiniStoreGoodsInfoBaen
+import android.annotation.SuppressLint
+import com.nhbs.fenxiao.http.api.AppApiServices
+import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber
+import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber
+import com.nhbs.fenxiao.module.store.bean.GetGoodsParams
+import com.nhbs.fenxiao.module.store.bean.GoodsListBean
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.xuexiang.xhttp2.XHttp
+import com.xuexiang.xhttp2.XHttpProxy
+import com.xuexiang.xhttp2.exception.ApiException
+import com.xuexiang.xhttp2.model.ApiResult
+import com.xuexiang.xhttp2.utils.HttpUtils
 import com.yu.common.framework.BaseViewPresenter
+import com.yu.common.utils.RxSchedulerUtils
 
 /**
  * @author yudneghao
  * @date 2019-06-30
  */
+@SuppressLint("CheckResult")
 class MiniStoreGoodsInfoPresenter(viewer: MiniStoreGoodsInfoViewer) :
     BaseViewPresenter<MiniStoreGoodsInfoViewer>(viewer) {
 
-    fun getGoodsInfoList() {
-        val list = ArrayList<MiniStoreGoodsInfoBaen>()
-        for (i in 0..20) {
-            list.add(MiniStoreGoodsInfoBaen())
-        }
-        getViewer()?.setGoodsInfoList(list)
-    }
+
+  fun getGoodsList(params: GetGoodsParams, refreshLayout: RefreshLayout?, type: Int,isPickerTime: Boolean? = false) {
+    XHttp.custom(AppApiServices::class.java)
+        .getGoodsList(HttpUtils.getJsonRequestBody(params))
+        .compose(RxSchedulerUtils._io_main_o<ApiResult<GoodsListBean>>())
+        .subscribeWith(object : LoadingRequestSubscriber<ApiResult<GoodsListBean>>(activity!!,
+            false) {
+          override fun onSuccess(result: ApiResult<GoodsListBean>?) {
+            val data = result?.data?.rows
+            getViewer()?.setGoodsInfoList(data,isPickerTime!!)
+            if (refreshLayout != null) {
+              if (type == 0) {
+                refreshLayout.finishRefresh()
+                if (data == null || data.size == 0) {
+                  refreshLayout.finishRefreshWithNoMoreData()
+                }
+              } else {
+                refreshLayout.finishLoadMore()
+                refreshLayout.finishLoadMoreWithNoMoreData()
+              }
+            }
+          }
+
+          override fun onError(apiException: ApiException?) {
+            super.onError(apiException)
+            if (refreshLayout != null) {
+              if (type == 0) {
+                refreshLayout.finishRefresh()
+                refreshLayout.finishRefreshWithNoMoreData()
+              } else {
+                refreshLayout.finishLoadMore()
+              }
+            }
+          }
+        })
+  }
+
+
+  fun pullDownGoods(id: String,position: Int) {
+    XHttpProxy.proxy(AppApiServices::class.java)
+        .pullDownGoods(id).subscribeWith(object :TipRequestSubscriber<Any>() {
+          override fun onSuccess(t: Any?) {
+            getViewer()?.pullDownGoodsSuccess(position)
+          }
+
+        } )
+  }
+
 }

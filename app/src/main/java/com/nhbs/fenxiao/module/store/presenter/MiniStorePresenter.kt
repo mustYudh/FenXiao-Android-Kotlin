@@ -15,16 +15,16 @@ import com.yu.common.framework.BaseViewPresenter
 class MiniStorePresenter(viewer: MiniStoreViewer) : BaseViewPresenter<MiniStoreViewer>(viewer) {
 
 
-
   fun getShopInfo() {
     XHttpProxy.proxy(AppApiServices::class.java)
         .getShopInfo()
         .subscribeWith(object : TipRequestSubscriber<ShopInfoBean>() {
           override fun onSuccess(t: ShopInfoBean?) {
-          getViewer()?.setShopInfo(t)
+            getViewer()?.setShopInfo(t)
           }
 
         })
   }
+
 
 }
