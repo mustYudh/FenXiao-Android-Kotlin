@@ -27,7 +27,6 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginRight="8dp"
-        android:src="@drawable/ic_launcher_background"
         />
 
 
@@ -69,7 +68,8 @@
     </LinearLayout>
 
 
-    <TextView
+    <com.yu.common.ui.DelayClickTextView
+        android:id="@+id/info"
         android:layout_gravity="center"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
@@ -125,7 +125,6 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             app:corner_radius="5dp"
-            android:src="@mipmap/ic_launcher"
             />
 
         <TextView
@@ -176,7 +175,6 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             app:corner_radius="5dp"
-            android:src="@mipmap/ic_launcher"
             />
 
         <TextView
@@ -224,7 +222,6 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             app:corner_radius="5dp"
-            android:src="@mipmap/ic_launcher"
             />
 
         <TextView

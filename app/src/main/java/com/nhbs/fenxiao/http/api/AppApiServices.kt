@@ -3,6 +3,7 @@ package com.nhbs.fenxiao.http.api
 import com.nhbs.fenxiao.data.UserProfile
 import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
+import com.nhbs.fenxiao.module.store.bean.ActivityListInfo
 import com.nhbs.fenxiao.module.store.bean.GoodsListBean
 import com.nhbs.fenxiao.module.store.bean.ShopInfoBean
 import com.nhbs.fenxiao.utils.oss.bean.OssConfig
@@ -83,9 +84,12 @@ interface AppApiServices {
   fun pullDownGoods(id: String): Observable<Any>
 
 
-
   @POST("/api/merchandise/update")
   @Headers("Content-Type: application/json", "Accept: application/json")
-  fun editeGoods(@Body params: RequestBody, @Header(
+  fun editGoods(@Body params: RequestBody, @Header(
       "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
+
+
+  @NetMethod(ParameterNames = ["pageNum", "pageSize"], Url = "/activity/MyActivtyPage")
+  fun getMyActivityList(pageNum: Int? = 0, pageSize: Int? = 10): Observable<ActivityListInfo>
 }

@@ -8,5 +8,5 @@ import com.yu.common.mvp.Viewer
  * @date 2019-06-30
  */
 interface MiniStoreActivityInfoViewer: Viewer {
-    fun setGoodsInfoList(list: List<MiniStoreActivityBean>)
+    fun setActivityInfoList(list: List<MiniStoreActivityBean>?)
 }

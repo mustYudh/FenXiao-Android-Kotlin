@@ -86,7 +86,7 @@ class ReleaseGoodsPresenter(viewer: ReleaseGoodsViewer) : BaseViewPresenter<Rele
 
   private fun edit(params: ReleaseGoodsParams) {
     XHttp.custom(AppApiServices::class.java)
-        .editeGoods(HttpUtils.getJsonRequestBody(params))
+        .editGoods(HttpUtils.getJsonRequestBody(params))
         .compose(RxSchedulerUtils._io_main_o<ApiResult<Any>>())
         .subscribeWith(object : LoadingRequestSubscriber<ApiResult<Any>>(activity, false) {
           override fun onSuccess(t: ApiResult<Any>?) {
