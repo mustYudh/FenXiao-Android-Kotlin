@@ -10,6 +10,7 @@ import com.nhbs.fenxiao.module.store.adapter.MiniStoreActivityAdapter
 import com.nhbs.fenxiao.module.store.bean.MiniStoreActivityBean
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreActivityInfoPresenter
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreActivityInfoViewer
+import com.nhbs.fenxiao.utils.showToast
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.refresh
 
@@ -49,6 +50,9 @@ class MiniStoreActivityFragment : BaseFragment(), MiniStoreActivityInfoViewer {
     refresh?.setOnLoadMoreListener { refreshLayout ->
       pageNum++
       mPresenter.getActivityList(pageNum, refreshLayout, 1)
+    }
+    adapter.setOnItemChildClickListener { adapter, view, position ->
+      showToast(position.toString())
     }
   }
 

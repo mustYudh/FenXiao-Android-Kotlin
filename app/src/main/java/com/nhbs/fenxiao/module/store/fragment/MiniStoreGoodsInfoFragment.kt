@@ -68,7 +68,8 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
       setTabSelectedView(1)
     }
     type_btn.setOnClickListener {
-      setTabSelectedView(2)
+//      setTabSelectedView(2)
+      
     }
   }
 
