@@ -28,19 +28,19 @@ public class MineOrderListBean {
          * status : 1
          */
 
-        public int receivingTime;
+        public String receivingTime;
         public String orderId;
         public String totalPrice;
         public String mobile;
-        public long updateTime;
+        public String updateTime;
         public String title;
-        public int type;
+        public String type;
         public String userName;
         public String userId;
         public String addressId;
-        public int number;
+        public String number;
         public String expressNumber;
-        public long createTime;
+        public String createTime;
         public String price;
         public String id;
         public String shopId;

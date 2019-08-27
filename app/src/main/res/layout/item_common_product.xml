@@ -53,7 +53,8 @@
         android:orientation="horizontal">
 
 
-        <TextView
+        <com.yu.common.ui.DelayClickTextView
+            android:id="@+id/tv_agency"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -66,7 +67,7 @@
 
 
         <com.yu.common.ui.DelayClickTextView
-            android:id="@+id/tv_shape"
+            android:id="@+id/tv_share"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"

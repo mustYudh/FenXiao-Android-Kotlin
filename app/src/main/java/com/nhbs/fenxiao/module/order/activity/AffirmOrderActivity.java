@@ -43,6 +43,7 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
     private int number;
     private DialogUtils payDialog;
     private CircleImageView iv_shop;
+
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_affirm_order_view);
@@ -77,7 +78,7 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
         }
         bindText(R.id.tv_product, merchandiseDetailBean.mName);
         TextView tv_specification = bindView(R.id.tv_specification);
-        if (!TextUtils.isEmpty(twotag)) {
+        if (twotag != null && !TextUtils.isEmpty(twotag)) {
             tv_specification.setText("分类:" + onetag + ";" + twotag);
         } else {
             tv_specification.setText("分类:" + onetag);
@@ -127,16 +128,23 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
         bindText(R.id.tv_num_bottom, "共" + number + "件");
         switch (dealway) {
             case "1":
-                bindText(R.id.tv_price, "¥" + (merchandiseDetailBean.mPrice.multiply(num)));
-                bindText(R.id.tv_price_bottom, "¥" + (merchandiseDetailBean.mPrice.multiply(num)));
+                if (merchandiseDetailBean.mPrice != null) {
+                    bindText(R.id.tv_price, "¥" + (merchandiseDetailBean.mPrice.multiply(num)));
+                    bindText(R.id.tv_price_bottom, "¥" + (merchandiseDetailBean.mPrice.multiply(num)));
+                }
+
                 break;
             case "2":
-                bindText(R.id.tv_price, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.delivery)));
-                bindText(R.id.tv_price_bottom, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.delivery)));
+                if (merchandiseDetailBean.mPrice != null && merchandiseDetailBean.delivery != null) {
+                    bindText(R.id.tv_price, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.delivery)));
+                    bindText(R.id.tv_price_bottom, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.delivery)));
+                }
                 break;
             case "3":
-                bindText(R.id.tv_price, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.postage)));
-                bindText(R.id.tv_price_bottom, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.postage)));
+                if (merchandiseDetailBean.mPrice != null && merchandiseDetailBean.postage != null) {
+                    bindText(R.id.tv_price, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.postage)));
+                    bindText(R.id.tv_price_bottom, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.postage)));
+                }
                 break;
         }
         bindText(R.id.tv_num, number + "");

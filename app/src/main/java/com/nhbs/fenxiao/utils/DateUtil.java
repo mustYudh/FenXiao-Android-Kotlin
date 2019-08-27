@@ -23,7 +23,7 @@ public class DateUtil {
     }
 
     public static String formatTime(long lefttime) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.CHINA);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
         String sDateTime = sdf.format(lefttime);
         return sDateTime;
     }

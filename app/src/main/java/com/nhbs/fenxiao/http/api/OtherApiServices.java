@@ -12,11 +12,16 @@ import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
 import com.nhbs.fenxiao.module.order.bean.CreateUserOrderBean;
 import com.nhbs.fenxiao.module.order.bean.FirstAddressBean;
 import com.nhbs.fenxiao.module.order.bean.MineOrderListBean;
+import com.nhbs.fenxiao.module.order.bean.OrderDetailsBean;
 import com.nhbs.fenxiao.module.order.bean.PayInfo;
 import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
+import com.nhbs.fenxiao.module.product.bean.FindMyShopMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseClassBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
+import com.nhbs.fenxiao.module.product.bean.ProductCommentBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
+import com.nhbs.fenxiao.module.product.bean.ShopOtherUserDetailBean;
+import com.nhbs.fenxiao.module.store.bean.UserShopShareBean;
 import com.xuexiang.xhttp2.annotation.NetMethod;
 
 import io.reactivex.Observable;
@@ -103,5 +108,24 @@ public interface OtherApiServices {
 
     @NetMethod(ParameterNames = {"id"}, Url = "/activity/activityShare")
     Observable<ShareMerchandiseBean> activityShare(String id);
+
+    @NetMethod(ParameterNames = {"orderId"}, Url = "/order/orderInfoDetail")
+    Observable<OrderDetailsBean> orderInfoDetail(String orderId);
+
+    @NetMethod(ParameterNames = {"pageNum", "pageSize", "shopId"}, Url = "/merchandise/findMyShopMerchandiseList")
+    Observable<FindMyShopMerchandiseListBean> findMyShopMerchandiseList(String pageNum, String pageSize, String shopId);
+
+    @NetMethod(ParameterNames = {"targetId", "content"}, Url = "/create/comment")
+    Observable<ProductCommentBean> productComment(String targetId, String content);
+
+    @NetMethod(ParameterNames = {"shopId"}, Url = "/userShop/shopOtherUserDetail")
+    Observable<ShopOtherUserDetailBean> shopOtherUserDetail(String shopId);
+
+    @NetMethod(ParameterNames = {"id"}, Url = "/userShop/userShareShop")
+    Observable<UserShopShareBean> userShareShop(String id);
+
+    @NetMethod(ParameterNames = {"orderId"}, Url = "/order/confirmGoods")
+    Observable<Object> confirmGoods(String orderId);
+
 
 }

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import com.nhbs.fenxiao.http.api.OtherApiServices;
 import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber;
 import com.nhbs.fenxiao.module.order.bean.MineOrderListBean;
+import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
 import com.xuexiang.xhttp2.XHttpProxy;
 import com.yu.common.framework.BaseViewPresenter;
 
@@ -23,6 +24,18 @@ public class MineOrderListFragmentPresenter extends BaseViewPresenter<MineOrderL
                     protected void onSuccess(MineOrderListBean mineOrderListBean) {
                         assert getViewer() != null;
                         getViewer().getMineOrderSuccess(mineOrderListBean);
+                    }
+                });
+    }
+
+    public void confirmGoods(String id) {
+        XHttpProxy.proxy(OtherApiServices.class)
+                .confirmGoods(id)
+                .subscribeWith(new LoadingRequestSubscriber<Object>(getActivity(), false) {
+                    @Override
+                    protected void onSuccess(Object o) {
+                        assert getViewer() != null;
+                        getViewer().confirmGoodsSuccess();
                     }
                 });
     }

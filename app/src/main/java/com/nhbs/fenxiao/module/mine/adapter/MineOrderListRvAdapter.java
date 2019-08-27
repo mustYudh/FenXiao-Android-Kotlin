@@ -1,14 +1,19 @@
 package com.nhbs.fenxiao.module.mine.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.google.gson.Gson;
 import com.nhbs.fenxiao.R;
+import com.nhbs.fenxiao.module.order.activity.OrderDetailsActivity;
 import com.nhbs.fenxiao.module.order.bean.MineOrderListBean;
+import com.nhbs.fenxiao.module.product.activity.CommentProductActivity;
 import com.yu.common.glide.ImageLoader;
+import com.yu.common.launche.LauncherHelper;
 import com.yu.common.ui.CircleImageView;
 
 public class MineOrderListRvAdapter extends BaseQuickAdapter<MineOrderListBean.RowsBean, BaseViewHolder> {
@@ -74,5 +79,23 @@ public class MineOrderListRvAdapter extends BaseQuickAdapter<MineOrderListBean.R
                 helper.setText(R.id.tv_status, "售后/退货");
                 break;
         }
+        //评价
+        helper.getView(R.id.tv_label5).setOnClickListener(view -> {
+            Gson gson = new Gson();
+            String toJson = gson.toJson(item);
+            Bundle bundle = new Bundle();
+            bundle.putString("ORDER_INFO", toJson);
+            LauncherHelper.from(context).startActivity(CommentProductActivity.class, bundle);
+        });
+        //确认收货
+        helper.addOnClickListener(R.id.tv_label8);
+        //提醒发货
+        helper.addOnClickListener(R.id.tv_label4);
+
+        helper.getView(R.id.ll_root).setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("ORDER_ID", item.id);
+            LauncherHelper.from(context).startActivity(OrderDetailsActivity.class, bundle);
+        });
     }
 }
