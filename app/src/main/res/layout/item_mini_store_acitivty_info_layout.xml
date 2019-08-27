@@ -87,6 +87,7 @@
 
 
   <TextView
+      android:id="@+id/content"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
@@ -107,6 +108,7 @@
       >
 
     <LinearLayout
+        android:id="@+id/first_root"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -120,9 +122,9 @@
           >
 
         <com.shehuan.niv.NiceImageView
-            android:id="@+id/iv_first"
+            android:id="@+id/first_prize_img"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
             android:scaleType="centerCrop"
             app:corner_radius="5dp"
             />
@@ -144,6 +146,7 @@
       </FrameLayout>
 
       <TextView
+          android:id="@+id/first_prize_name"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="4dp"
@@ -156,6 +159,7 @@
 
 
     <LinearLayout
+        android:id="@+id/access_it_root"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="9dp"
@@ -171,8 +175,9 @@
           >
 
         <com.shehuan.niv.NiceImageView
+            android:id="@+id/access_it_img"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
             android:scaleType="centerCrop"
             app:corner_radius="5dp"
             />
@@ -194,6 +199,7 @@
       </FrameLayout>
 
       <TextView
+          android:id="@+id/access_it_name"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="4dp"
@@ -205,6 +211,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/last_root"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -218,8 +225,9 @@
           >
 
         <com.shehuan.niv.NiceImageView
+            android:id="@+id/third_prize_img"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
             android:scaleType="centerCrop"
             app:corner_radius="5dp"
             />
@@ -241,6 +249,7 @@
       </FrameLayout>
 
       <TextView
+          android:id="@+id/third_prize_name"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginTop="4dp"
@@ -271,7 +280,7 @@
 
 
     <TextView
-        android:id="@+id/time"
+        android:id="@+id/draw_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -285,7 +294,8 @@
 
 
     <TextView
-        android:id="@+id/commit_time"
+        android:visibility="gone"
+        android:id="@+id/create_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

@@ -7,5 +7,5 @@ import java.io.Serializable
  * @date 2019-08-26
  */
 class ActivityListInfo : Serializable {
-  val rows: List<MiniStoreActivityBean>? = null
+  var rows: List<MiniStoreActivityBean>? = null
 }

@@ -1,10 +1,13 @@
 package com.nhbs.fenxiao.module.store.bean
 
+import java.io.Serializable
+import java.math.BigDecimal
+
 /**
  * @author yudenghao
  * @date 2019-08-26
  */
-class MiniStoreActivityBean {
+class MiniStoreActivityBean : Serializable{
 
   /**
    * firstPrizeImgs : http://nhbs.oss-cn-beijing.aliyuncs.com/03.jpg
@@ -34,29 +37,29 @@ class MiniStoreActivityBean {
    * status : 3
    */
 
-  private val firstPrizeImgs: String? = null
-  private val firstPrizeNum: Int = 0
-  private val city: String? = null
-  private val drawTime: Long = 0
-  private val thirdPrizeImgs: String? = null
-  private val content: String? = null
-  private val thirdPrizeName: String? = null
-  private val pvPrice: Int = 0
-  private val accessitImgs: String? = null
-  private val province: String? = null
-  private val accessitName: String? = null
-  private val headerImage: String? = null
-  private val isGeneralize: Int = 0
-  private val lotteryWinner: String? = null
-  private val firstPrizeName: String? = null
-  private val id: String? = null
-  private val town: String? = null
-  private val thirdPrizeNum: Int = 0
-  private val grossSpread: Int = 0
-  private val userId: String? = null
-  private val accessitNum: Int = 0
-  private val createTime: Long = 0
-  private val aName: String? = null
-  private val district: String? = null
-  private val status: Int = 0
+   var firstPrizeImgs: String? = null
+   var firstPrizeNum: Int = 0
+   var city: String? = null
+   var drawTime: Long = 0
+   var thirdPrizeImgs: String? = null
+   var content: String? = null
+   var thirdPrizeName: String? = null
+   var pvPrice: BigDecimal? = null
+   var accessitImgs: String? = null
+   var province: String? = null
+   var accessitName: String? = null
+   var headerImage: String? = null
+   var isGeneralize: Int = 0
+   var lotteryWinner: String? = null
+   var firstPrizeName: String? = null
+   var id: String? = null
+   var town: String? = null
+   var thirdPrizeNum: BigDecimal? = null
+   var grossSpread: BigDecimal? = null
+   var userId: String? = null
+   var accessitNum: Int = 0
+   var createTime: Long = 0
+   var aName: String? = null
+   var district: String? = null
+   var status: Int = 0
 }
