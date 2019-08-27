@@ -38,14 +38,14 @@ public class FindMerchandiseListBean {
         public String mContent;
         public String typeName;
         public String shopName;
-        public long updateTime;
+        public String updateTime;
         public String tagTwo;
-        public int type;
+        public String type;
         public String userId;
-        public int postage;
+        public String postage;
         public String classId;
-        public int dealWay;
-        public long createTime;
+        public String dealWay;
+        public String createTime;
         public String tagOne;
         public String commission;
         public String mTitle;
@@ -54,6 +54,7 @@ public class FindMerchandiseListBean {
         public String mName;
         public String affiliationShopName;
         public String mImgs;
-        public int status;
+        public String status;
+        public String isAgent;
     }
 }

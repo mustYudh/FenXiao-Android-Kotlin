@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -24,11 +25,18 @@ import com.nhbs.fenxiao.module.home.bean.HomeHotAdvertiseBean;
 import com.nhbs.fenxiao.module.home.fragment.presenter.HomeFragmentPresenter;
 import com.nhbs.fenxiao.module.home.fragment.presenter.HomeFragmentViewer;
 import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
+import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.nhbs.fenxiao.module.view.ScreenSpaceItemDecoration;
+import com.nhbs.fenxiao.utils.DialogUtils;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.yu.common.glide.ImageLoader;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.navigation.StatusBarFontColorUtil;
+import com.yu.common.toast.ToastUtils;
 import com.yu.common.ui.CircleImageView;
+import com.yu.share.ShareHelp;
+import com.yu.share.SharesBean;
+import com.yu.share.callback.ShareCallback;
 import com.zhouwei.mzbanner.MZBannerView;
 
 import java.util.List;
@@ -43,6 +51,8 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
     private int pageNum = 1;
     private int pageSize = 10;
     private MZBannerView mBanner;
+    private CommonRvAdapter adapter;
+    private DialogUtils shareDialog;
 
     @Override
     public boolean isImmersionBar() {
@@ -73,7 +83,8 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
 
         rv_home.addItemDecoration(new ScreenSpaceItemDecoration(getActivity(), 10));
         rv_home.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-
+        adapter = new CommonRvAdapter(R.layout.item_common_product, getActivity());
+        rv_home.setAdapter(adapter);
         ll_product.setOnClickListener(this);
         ll_reward.setOnClickListener(this);
         ll_activity.setOnClickListener(this);
@@ -111,8 +122,22 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
     @Override
     public void getMerchandiseClassListSuccess(FindMerchandiseListBean findMerchandiseListBean) {
         if (findMerchandiseListBean != null && findMerchandiseListBean.rows != null && findMerchandiseListBean.rows.size() != 0) {
-            CommonRvAdapter adapter = new CommonRvAdapter(R.layout.item_common_product, findMerchandiseListBean.rows, getActivity());
-            rv_home.setAdapter(adapter);
+            adapter.setNewData(findMerchandiseListBean.rows);
+            adapter.setOnItemDetailsDoCilckListener(new CommonRvAdapter.OnItemOperateListener() {
+                @Override
+                public void onItemDetailsAgencyClick(FindMerchandiseListBean.RowsBean item) {
+                    if (item.isAgent != null && "0".equals(item.isAgent)) {
+                        mPresenter.agentMerchandise(item);
+                    } else {
+                        ToastUtils.show("您已经代理过了");
+                    }
+                }
+
+                @Override
+                public void onItemDetailsShareClick(String id) {
+                    mPresenter.advertiseShare(id);
+                }
+            });
         }
     }
 
@@ -141,6 +166,97 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
                 ll_mission_root.addView(view);
             }
         }
+    }
+
+    @Override
+    public void advertiseShareSuccess(ShareMerchandiseBean shareMerchandiseBean) {
+        if (shareMerchandiseBean != null) {
+            showShareDialog(shareMerchandiseBean);
+        } else {
+            ToastUtils.show("分享数据出问题了~");
+        }
+    }
+
+    @Override
+    public void agentMerchandiseSuccess(FindMerchandiseListBean.RowsBean item) {
+        ToastUtils.show("代理成功");
+        item.isAgent = "1";
+    }
+
+    private void showShareDialog(ShareMerchandiseBean shareMerchandiseBean) {
+        SharesBean sharesBean = new SharesBean();
+        sharesBean.content = shareMerchandiseBean.mContent;
+        sharesBean.iconUrl = shareMerchandiseBean.mImgs;
+        sharesBean.targetUrl = shareMerchandiseBean.shareUrl;
+        sharesBean.title = shareMerchandiseBean.mTitle;
+        ShareHelp shareHelp = new ShareHelp(getActivity());
+
+        shareDialog = new DialogUtils.Builder(getActivity()).view(R.layout.dialog_share)
+                .gravity(Gravity.BOTTOM)
+                .cancelTouchout(true)
+                .style(R.style.Dialog)
+                .addViewOnclick(R.id.ll_save, view -> {
+                    if (shareDialog.isShowing()) {
+                        shareDialog.dismiss();
+                    }
+                })
+                .addViewOnclick(R.id.ll_link, view -> {
+                    if (shareDialog.isShowing()) {
+                        shareDialog.dismiss();
+                    }
+                })
+                .addViewOnclick(R.id.ll_friend, view -> {
+                    if (shareDialog.isShowing()) {
+                        shareDialog.dismiss();
+                    }
+                    sharesBean.type = SHARE_MEDIA.WEIXIN_CIRCLE;
+                    shareHelp.share(sharesBean);
+                })
+                .addViewOnclick(R.id.ll_wx, view -> {
+                    if (shareDialog.isShowing()) {
+                        shareDialog.dismiss();
+                    }
+                    sharesBean.type = SHARE_MEDIA.WEIXIN;
+                    shareHelp.share(sharesBean);
+                })
+                .addViewOnclick(R.id.ll_weibo, view -> {
+                    if (shareDialog.isShowing()) {
+                        shareDialog.dismiss();
+                    }
+                    sharesBean.type = SHARE_MEDIA.SINA;
+                    shareHelp.share(sharesBean);
+                })
+                .addViewOnclick(R.id.ll_qq, view -> {
+                    if (shareDialog.isShowing()) {
+                        shareDialog.dismiss();
+                    }
+                    sharesBean.type = SHARE_MEDIA.QQ;
+                    shareHelp.share(sharesBean);
+                })
+                .build();
+        shareDialog.show();
+
+        shareHelp.callback(new ShareCallback() {
+            @Override
+            public void onShareStart(SHARE_MEDIA shareMedia) {
+
+            }
+
+            @Override
+            public void onShareSuccess(SHARE_MEDIA media) {
+
+            }
+
+            @Override
+            public void onShareFailed(SHARE_MEDIA media, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onShareCancel(SHARE_MEDIA shareMedia) {
+
+            }
+        });
     }
 
     /**

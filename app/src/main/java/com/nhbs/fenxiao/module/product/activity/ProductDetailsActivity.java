@@ -105,7 +105,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
             bindText(R.id.tv_you_fei, "快递: ¥" + merchandiseDetailBean.postage);
 
             bindView(R.id.tv_apply, view -> {
-                if (merchandiseDetailBean.isAgent != null && merchandiseDetailBean.isAgent == 0) {
+                if (merchandiseDetailBean.isAgent != null && "0".equals(merchandiseDetailBean.isAgent)) {
                     mPresenter.agentMerchandise(merchandise_id, merchandiseDetailBean);
                 } else {
                     ToastUtils.show("您已经代理过了");
@@ -118,6 +118,14 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
             ImageLoader.getInstance().displayImage(iv_shop, merchandiseDetailBean.shopImage, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
 
             bindView(R.id.ll_share, view -> mPresenter.advertiseShare(merchandise_id));
+
+            bindView(R.id.rl_shop, view -> {
+                if (merchandiseDetailBean.shopId != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("SHOP_ID", merchandiseDetailBean.shopId);
+                    getLaunchHelper().startActivity(ProductShopDetailsActivity.class, bundle);
+                }
+            });
         }
     }
 
@@ -145,7 +153,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
         tv_add.setOnClickListener(view -> {
             number++;
             tv_num.setText(number + "");
-            if (!TextUtils.isEmpty(twoTag)) {
+            if (twoTag != null && !TextUtils.isEmpty(twoTag)) {
                 tv_specification.setText(oneTag + "," + twoTag + "  x" + number);
             } else {
                 tv_specification.setText(oneTag + "  x" + number);
@@ -159,7 +167,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
             }
             number--;
             tv_num.setText(number + "");
-            if (!TextUtils.isEmpty(twoTag)) {
+            if (twoTag != null && !TextUtils.isEmpty(twoTag)) {
                 tv_specification.setText(oneTag + "," + twoTag + "  x" + number);
             } else {
                 tv_specification.setText(oneTag + "  x" + number);
@@ -275,7 +283,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
             } else {
                 twoTag = bean.tab;
             }
-            if (!TextUtils.isEmpty(twoTag)) {
+            if (twoTag != null && !TextUtils.isEmpty(twoTag)) {
                 tv_specification.setText(oneTag + "," + twoTag + "  x" + number);
             } else {
                 tv_specification.setText(oneTag + "  x" + number);
@@ -308,7 +316,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
     @Override
     public void agentMerchandiseSuccess(MerchandiseDetailBean merchandiseDetailBean) {
         ToastUtils.show("代理成功");
-        merchandiseDetailBean.isAgent = 1;
+        merchandiseDetailBean.isAgent = "1";
     }
 
     @Override
