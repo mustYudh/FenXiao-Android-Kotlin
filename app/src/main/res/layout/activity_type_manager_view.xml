@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F7F7F7"
+    >
+
+  <com.scwang.smartrefresh.layout.SmartRefreshLayout
+      android:layout_marginBottom="48dp"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
+  </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="48dp"
+      android:layout_alignParentBottom="true"
+      android:background="@color/white"
+      android:gravity="center"
+      >
+
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/sort_add"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:text="新建分类"
+        android:textColor="#ff2d2e39"
+        android:textSize="14sp"
+        />
+  </LinearLayout>
+</RelativeLayout>

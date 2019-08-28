@@ -1,5 +1,7 @@
 package com.nhbs.fenxiao.module.store.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -8,6 +10,7 @@ import com.mylhyl.circledialog.CircleDialog
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseFragment
 import com.nhbs.fenxiao.module.center.activity.ReleaseGoodsActivity
+import com.nhbs.fenxiao.module.store.activity.SetTypeActivity
 import com.nhbs.fenxiao.module.store.adapter.MiniStoreGoodsInfoAdapter
 import com.nhbs.fenxiao.module.store.bean.GetGoodsParams
 import com.nhbs.fenxiao.module.store.bean.GoodsListBean.GoodsInfoBean
@@ -32,7 +35,7 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
 
 
   private var selectedType = 0
-
+  private val SET_TYPE_REQUEST = 100
 
   @PresenterLifeCycle
   private val mPresenter = MiniStoreGoodsInfoPresenter(this)
@@ -68,8 +71,7 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
       setTabSelectedView(1)
     }
     type_btn.setOnClickListener {
-//      setTabSelectedView(2)
-      
+      launchHelper.startActivityForResult(SetTypeActivity::class.java, SET_TYPE_REQUEST)
     }
   }
 
@@ -172,6 +174,13 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
     adapter.remove(position)
     if (adapter.data.size == 0) {
       adapter.emptyView = View.inflate(activity, R.layout.empty_layout, null)
+    }
+  }
+
+  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+    if (requestCode == SET_TYPE_REQUEST && resultCode == Activity.RESULT_OK) {
+      setTabSelectedView(1)
     }
   }
 }

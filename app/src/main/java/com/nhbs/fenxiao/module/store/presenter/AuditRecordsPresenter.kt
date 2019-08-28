@@ -18,7 +18,7 @@ class AuditRecordsPresenter(viewer: AuditRecordsViewer) : BaseViewPresenter<Audi
   @SuppressLint("CheckResult")
   fun getRecordList(pageNum: Int? = 1, refreshLayout: RefreshLayout? = null, type: Int? = 0) {
     XHttpProxy.proxy(AppApiServices::class.java)
-        .getMyActivityList(pageNum)
+        .getAuditLogList(pageNum)
         .subscribeWith(object : TipRequestSubscriber<ActivityListInfo>() {
           override fun onSuccess(result: ActivityListInfo?) {
             val data = result?.rows

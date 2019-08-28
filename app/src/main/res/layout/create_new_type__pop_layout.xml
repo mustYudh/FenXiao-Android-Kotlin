@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#52000000"
+    android:id="@+id/root"
+    android:gravity="center"
+    >
+
+  <LinearLayout
+      android:id="@+id/container"
+      android:layout_width="match_parent"
+      android:layout_height="122dp"
+      android:layout_marginHorizontal="56dp"
+      android:background="@drawable/shape_center_tab_top_bg"
+      android:gravity="center_horizontal"
+      android:orientation="vertical"
+      >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:includeFontPadding="false"
+        android:text="新建分类"
+        android:textColor="#ff444761"
+        android:textSize="15sp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/shape_edit_bg"
+        android:hint="请填写分类名称"
+        android:paddingLeft="12dp"
+        android:textColor="#ff3b3e5a"
+        android:textColorHint="#ffadb4c4"
+        android:textSize="12sp"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#F7F7F7"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+      <com.yu.common.ui.DelayClickTextView
+          android:id="@+id/cancel"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:gravity="center"
+          android:text="取消"
+          android:textColor="#ffff484c"
+          android:textSize="15sp"
+          />
+
+      <View
+          android:layout_width="1dp"
+          android:layout_height="match_parent"
+          android:background="#F7F7F7"
+          />
+
+      <com.yu.common.ui.DelayClickTextView
+          android:id="@+id/ok"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:gravity="center"
+          android:text="确定"
+          android:textColor="#ffff484c"
+          android:textSize="15sp"
+          />
+    </LinearLayout>
+  </LinearLayout>
+</LinearLayout>

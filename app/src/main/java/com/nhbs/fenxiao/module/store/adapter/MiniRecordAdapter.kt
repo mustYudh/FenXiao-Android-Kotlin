@@ -8,6 +8,7 @@ import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.module.store.bean.MiniStoreActivityBean
 import com.shehuan.niv.NiceImageView
 import com.yu.common.glide.ImageLoader
+import com.yu.common.ui.CircleImageView
 import com.yu.common.ui.Res
 import java.text.SimpleDateFormat
 
@@ -24,6 +25,7 @@ class MiniRecordAdapter : BaseQuickAdapter<MiniStoreActivityBean, BaseViewHolder
     val firstImg = helper?.getView<NiceImageView>(R.id.first_prize_img)
     val secondImg = helper?.getView<NiceImageView>(R.id.access_it_img)
     val lastImg = helper?.getView<NiceImageView>(R.id.third_prize_img)
+    val header = helper?.getView<CircleImageView>(R.id.header)
     helper?.setVisible(R.id.first_root, !TextUtils.isEmpty(item?.firstPrizeImgs))
         ?.setText(R.id.first_prize_name, item?.firstPrizeName)
         ?.setVisible(R.id.access_it_root, !TextUtils.isEmpty(item?.accessitImgs))
@@ -40,5 +42,7 @@ class MiniRecordAdapter : BaseQuickAdapter<MiniStoreActivityBean, BaseViewHolder
     ImageLoader.getInstance().displayImage(firstImg, item?.firstPrizeImgs)
     ImageLoader.getInstance().displayImage(secondImg, item?.accessitImgs)
     ImageLoader.getInstance().displayImage(lastImg, item?.thirdPrizeImgs)
+    ImageLoader.getInstance().displayImage(header, item?.headerImage)
+
   }
 }
