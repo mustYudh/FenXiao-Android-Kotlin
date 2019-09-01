@@ -32,17 +32,18 @@ public class HomeFindAdvertisingListBean {
         public String city;
         public String typeName;
         public String title;
-        public int grossSpread;
+        public String grossSpread;
+        public String total;
         public String userId;
         public String content;
         public String province;
-        public long createTime;
+        public String createTime;
         public String district;
         public String typeId;
-        public long endTime;
+        public String endTime;
         public String id;
         public String shopId;
         public BigDecimal pvSpread;
-        public int status;
+        public String status;
     }
 }

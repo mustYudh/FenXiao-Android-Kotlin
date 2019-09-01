@@ -3,6 +3,7 @@ package com.nhbs.fenxiao.http.api;
 import com.nhbs.fenxiao.module.home.bean.AdvertisingInfoBean;
 import com.nhbs.fenxiao.module.home.bean.AdvertisingShareBean;
 import com.nhbs.fenxiao.module.home.bean.AdvertisingTypeBean;
+import com.nhbs.fenxiao.module.home.bean.AwardDetailsBean;
 import com.nhbs.fenxiao.module.home.bean.HomeBannerBean;
 import com.nhbs.fenxiao.module.home.bean.HomeFindActivtyListBean;
 import com.nhbs.fenxiao.module.home.bean.HomeFindAdvertisingListBean;
@@ -127,5 +128,7 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"orderId"}, Url = "/order/confirmGoods")
     Observable<Object> confirmGoods(String orderId);
 
+    @NetMethod(ParameterNames = {"id"}, Url = "/activity/activityShareDetail")
+    Observable<AwardDetailsBean> activityShareDetail(String id);
 
 }

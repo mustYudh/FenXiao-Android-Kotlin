@@ -110,7 +110,8 @@ public class ProductClassifyFragment extends BaseFragment implements ProductClas
 
     @Override
     public void agentMerchandiseSuccess(FindMerchandiseListBean.RowsBean item) {
-
+        ToastUtils.show("代理成功");
+        item.isAgent = "1";
     }
 
     private void showShareDialog(ShareMerchandiseBean shareMerchandiseBean) {
