@@ -300,12 +300,7 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
         });
 
         DelayClickTextView tv_commit = payDialog.findViewById(R.id.tv_commit);
-        tv_commit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPresenter.userToPay(createUserOrderBean.data.id, "2", type + "");
-            }
-        });
+        tv_commit.setOnClickListener(view -> mPresenter.userToPay(createUserOrderBean.data.id, "2", type + ""));
     }
 
     @Override

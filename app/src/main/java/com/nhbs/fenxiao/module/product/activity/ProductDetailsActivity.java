@@ -98,11 +98,10 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
             bindText(R.id.tv_share, "分享了" + merchandiseDetailBean.shareNum + "次");
             bindText(R.id.tv_shop_name, merchandiseDetailBean.shopName + "");
             bindText(R.id.tv_shop_address, merchandiseDetailBean.province + merchandiseDetailBean.city + "");
-            bindText(R.id.tv_commission, "分享赚¥" + merchandiseDetailBean.commission + "");
-            bindText(R.id.tv_bug_price, "¥" + merchandiseDetailBean.commission);
-            bindText(R.id.tv_share_price, "¥" + merchandiseDetailBean.commission);
-            bindText(R.id.tv_song_huo, "送货上门:¥" + merchandiseDetailBean.delivery);
-            bindText(R.id.tv_you_fei, "快递: ¥" + merchandiseDetailBean.postage);
+            bindText(R.id.tv_bug_price, "自买省¥" + merchandiseDetailBean.commission);
+            bindText(R.id.tv_share_price, "分享赚¥" + merchandiseDetailBean.commission);
+//            bindText(R.id.tv_song_huo, "送货上门:¥" + merchandiseDetailBean.delivery);
+//            bindText(R.id.tv_you_fei, "快递: ¥" + merchandiseDetailBean.postage);
 
             bindView(R.id.tv_apply, view -> {
                 if (merchandiseDetailBean.isAgent != null && "0".equals(merchandiseDetailBean.isAgent)) {
@@ -113,17 +112,24 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
             });
 
 
-            bindView(R.id.ll_buy, view -> showTypeDialog(merchandiseDetailBean, merchandiseDetailBean.tagOne, merchandiseDetailBean.tagTwo));
+            bindView(R.id.tv_bug_price, view -> showTypeDialog(merchandiseDetailBean, merchandiseDetailBean.tagOne, merchandiseDetailBean.tagTwo));
 
             ImageLoader.getInstance().displayImage(iv_shop, merchandiseDetailBean.shopImage, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
 
-            bindView(R.id.ll_share, view -> mPresenter.advertiseShare(merchandise_id));
+            bindView(R.id.tv_share_price, view -> mPresenter.advertiseShare(merchandise_id));
 
             bindView(R.id.rl_shop, view -> {
                 if (merchandiseDetailBean.shopId != null) {
                     Bundle bundle = new Bundle();
                     bundle.putString("SHOP_ID", merchandiseDetailBean.shopId);
                     getLaunchHelper().startActivity(ProductShopDetailsActivity.class, bundle);
+                }
+            });
+
+            bindView(R.id.ll_add, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
                 }
             });
         }

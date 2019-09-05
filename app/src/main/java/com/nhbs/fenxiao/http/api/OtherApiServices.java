@@ -9,6 +9,7 @@ import com.nhbs.fenxiao.module.home.bean.HomeFindActivtyListBean;
 import com.nhbs.fenxiao.module.home.bean.HomeFindAdvertisingListBean;
 import com.nhbs.fenxiao.module.home.bean.HomeHotAdvertiseBean;
 import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
+import com.nhbs.fenxiao.module.mine.bean.MineGroupBean;
 import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
 import com.nhbs.fenxiao.module.order.bean.CreateUserOrderBean;
 import com.nhbs.fenxiao.module.order.bean.FirstAddressBean;
@@ -130,5 +131,11 @@ public interface OtherApiServices {
 
     @NetMethod(ParameterNames = {"id"}, Url = "/activity/activityShareDetail")
     Observable<AwardDetailsBean> activityShareDetail(String id);
+
+    @NetMethod(ParameterNames = {"pageNum", "pageSize"}, Url = "/user/myGroup")
+    Observable<MineGroupBean> mineGroup(String pageNum, String pageSize);
+
+    @NetMethod(ParameterNames = {"orderId"}, Url = "/order/cancelOrder")
+    Observable<Object> cancelOrder(String orderId);
 
 }

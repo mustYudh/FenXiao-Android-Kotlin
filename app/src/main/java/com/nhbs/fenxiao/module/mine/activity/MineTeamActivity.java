@@ -13,6 +13,7 @@ import com.nhbs.fenxiao.base.BaseBarActivity;
 import com.nhbs.fenxiao.module.mine.activity.presenter.MineTeamActivityPresenter;
 import com.nhbs.fenxiao.module.mine.activity.presenter.MineTeamActivityViewer;
 import com.nhbs.fenxiao.module.mine.adapter.MineTeamRvAdapter;
+import com.nhbs.fenxiao.module.mine.bean.MineGroupBean;
 import com.yu.common.mvp.PresenterLifeCycle;
 
 import java.util.ArrayList;
@@ -22,9 +23,11 @@ import java.util.List;
 public class MineTeamActivity extends BaseBarActivity implements MineTeamActivityViewer {
 
     @PresenterLifeCycle
-    MineTeamActivityPresenter presenter = new MineTeamActivityPresenter(this);
+    MineTeamActivityPresenter mPresenter = new MineTeamActivityPresenter(this);
     private RecyclerView rv_team;
     private List<String> list = new ArrayList<>();
+    private int pageNum = 1;
+    private int pageSize = 10;
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
@@ -70,8 +73,13 @@ public class MineTeamActivity extends BaseBarActivity implements MineTeamActivit
 
         };
         ll_team_one.setOnClickListener(onClickListener);
-
-
         ll_team_two.setOnClickListener(onClickListener);
+
+        mPresenter.mineGroup(pageNum + "", pageSize + "");
+    }
+
+    @Override
+    public void mineGroupSuccess(MineGroupBean mineGroupBean) {
+
     }
 }
