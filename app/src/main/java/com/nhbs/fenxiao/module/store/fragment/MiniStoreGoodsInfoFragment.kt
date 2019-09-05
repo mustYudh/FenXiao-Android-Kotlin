@@ -164,7 +164,7 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
         type.isSelected = true
         type_icon.isSelected = true
         time_picker.setImageResource(R.drawable.ic_time_picker_normal)
-
+        launchHelper.startActivity(SetTypeActivity::class.java)
       }
     }
   }

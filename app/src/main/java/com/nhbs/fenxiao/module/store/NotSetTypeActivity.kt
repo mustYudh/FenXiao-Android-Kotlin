@@ -13,10 +13,10 @@ class NotSetTypeActivity : BaseBarActivity(), NotSetTypeViewer {
   internal var presenter = NotSetTypePresenter(this)
 
   override fun setView(savedInstanceState: Bundle?) {
-    setContentView(R.layout.activity_not_set_type_view)
+    setContentView(R.layout.activity_type_manager_view)
   }
 
   override fun loadData() {
-
+    setTitle("未分类")
   }
 }

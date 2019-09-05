@@ -24,7 +24,9 @@ class SetTypeActivity : BaseBarActivity(), SetTypeViewer {
   }
 
   override fun loadData() {
+    setTitle("分类")
     initListener()
+
   }
 
   private fun initListener() {
