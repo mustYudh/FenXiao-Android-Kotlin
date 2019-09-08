@@ -16,5 +16,7 @@ data class ShopInfoBean(
     var province: String,
     var shopName: String,
     var userId: String,
-    var usersNum: Int
-): Serializable
+    var headImage: String,
+    var usersNum: Int,
+    var status: Int
+) : Serializable

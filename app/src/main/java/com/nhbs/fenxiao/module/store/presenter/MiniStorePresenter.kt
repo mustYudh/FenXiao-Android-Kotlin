@@ -5,6 +5,7 @@ import com.nhbs.fenxiao.http.api.AppApiServices
 import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber
 import com.nhbs.fenxiao.module.store.bean.ShopInfoBean
 import com.xuexiang.xhttp2.XHttpProxy
+import com.xuexiang.xhttp2.exception.ApiException
 import com.yu.common.framework.BaseViewPresenter
 
 /**
@@ -23,6 +24,13 @@ class MiniStorePresenter(viewer: MiniStoreViewer) : BaseViewPresenter<MiniStoreV
             getViewer()?.setShopInfo(t)
           }
 
+          override fun onError(apiException: ApiException?) {
+            if (apiException?.code == 10001) {
+              getViewer()?.needOpenStore()
+            } else {
+              super.onError(apiException)
+            }
+          }
         })
   }
 

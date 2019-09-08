@@ -10,4 +10,6 @@ import com.yu.common.mvp.Viewer
 interface MiniStoreViewer: Viewer {
 
   fun setShopInfo(info: ShopInfoBean?)
+
+  fun needOpenStore()
 }

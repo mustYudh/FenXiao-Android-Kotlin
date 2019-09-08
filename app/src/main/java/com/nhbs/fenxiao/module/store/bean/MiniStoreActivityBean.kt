@@ -39,6 +39,7 @@ class MiniStoreActivityBean : Serializable{
 
    var firstPrizeImgs: String? = null
    var firstPrizeNum: Int = 0
+   var type: Int = 0
    var city: String? = null
    var drawTime: Long = 0
    var thirdPrizeImgs: String? = null
@@ -49,6 +50,7 @@ class MiniStoreActivityBean : Serializable{
    var province: String? = null
    var accessitName: String? = null
    var headerImage: String? = null
+   var shopImage: String? = null
    var isGeneralize: Int = 0
    var lotteryWinner: String? = null
    var firstPrizeName: String? = null
@@ -62,4 +64,6 @@ class MiniStoreActivityBean : Serializable{
    var aName: String? = null
    var district: String? = null
    var status: Int = 0
+   var name: String = ""
+   var images: String = ""
 }

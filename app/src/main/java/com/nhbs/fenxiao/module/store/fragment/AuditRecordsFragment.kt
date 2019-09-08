@@ -43,7 +43,8 @@ class AuditRecordsFragment : BaseFragment(), AuditRecordsViewer {
 
   private fun initListener() {
     refresh?.setOnRefreshListener { refreshLayout ->
-      mPresenter.getRecordList(0, refreshLayout, 0)
+      pageNum = 1
+      mPresenter.getRecordList(pageNum, refreshLayout, 0)
     }
     refresh?.setOnLoadMoreListener { refreshLayout ->
       pageNum++

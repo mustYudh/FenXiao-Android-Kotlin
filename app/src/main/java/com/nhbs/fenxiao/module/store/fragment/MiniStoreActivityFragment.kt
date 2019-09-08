@@ -45,7 +45,8 @@ class MiniStoreActivityFragment : BaseFragment(), MiniStoreActivityInfoViewer {
 
   private fun initListener() {
     refresh?.setOnRefreshListener { refreshLayout ->
-      mPresenter.getActivityList(0, refreshLayout, 0)
+      pageNum = 1
+      mPresenter.getActivityList(pageNum, refreshLayout, 0)
     }
     refresh?.setOnLoadMoreListener { refreshLayout ->
       pageNum++

@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.view.ViewPager
+import android.util.Log
+import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import com.denghao.control.view.utils.UpdataCurrentFragment
@@ -19,11 +21,13 @@ import com.nhbs.fenxiao.module.store.presenter.MiniStoreViewer
 import com.nhbs.fenxiao.module.web.WebViewActivity
 import com.nhbs.fenxiao.utils.DensityUtils
 import com.nhbs.fenxiao.utils.checkTextEmpty
+import com.yu.common.glide.ImageLoader
 import com.yu.common.mvp.PresenterLifeCycle
 import com.yu.common.navigation.StatusBarFontColorUtil
 import com.yu.common.ui.BadgeView
 import kotlinx.android.synthetic.main.fragment_mini_store_layout.describes
 import kotlinx.android.synthetic.main.fragment_mini_store_layout.edit
+import kotlinx.android.synthetic.main.fragment_mini_store_layout.header
 import kotlinx.android.synthetic.main.fragment_mini_store_layout.order_manager
 import kotlinx.android.synthetic.main.fragment_mini_store_layout.tv_open_store
 import net.lucode.hackware.magicindicator.MagicIndicator
@@ -139,14 +143,7 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
   }
 
   override fun update(bundle: Bundle?) {
-    val isMerchant = UserProfile.getInstance().isMerchant == 1
-    bindView<TextView>(R.id.tv_open_store, !isMerchant)
-    bindView<TextView>(R.id.tv_open_store_hint, !isMerchant)
-    bindView<MagicIndicator>(R.id.magic_indicator, isMerchant)
-    bindView<ViewPager>(R.id.view_pager, isMerchant)
-    if (UserProfile.getInstance().isMerchant == 1) {
-      mPresenter.getShopInfo()
-    }
+    mPresenter.getShopInfo()
   }
 
 
@@ -167,6 +164,7 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
 
 
   override fun setShopInfo(info: ShopInfoBean?) {
+    openStoreStatus(true)
     bindView<TextView>(R.id.province, info?.province.checkTextEmpty())
     bindText<TextView>(R.id.province, "${info?.province}${info?.city}${info?.district}")
     bindText<TextView>(R.id.shopName, info?.shopName)
@@ -175,6 +173,22 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
     bindText<TextView>(R.id.usersNum, info?.usersNum.toString())
     bindText<TextView>(R.id.ordersNum, info?.ordersNum.toString())
     bindText<TextView>(R.id.priceNum, info?.priceNum.toString())
+    bindView<View>(R.id.red_hint, info?.status == 1)
+    Log.e("======>", info?.headImage)
+    ImageLoader.getInstance().displayImage(header, info?.headImage)
+  }
+
+  override fun needOpenStore() {
+    openStoreStatus(false)
+  }
+
+  private fun openStoreStatus(
+      isMerchant: Boolean) {
+    bindView<TextView>(R.id.tv_open_store, !isMerchant)
+    bindView<TextView>(R.id.tv_open_store_hint, !isMerchant)
+    bindView<MagicIndicator>(R.id.magic_indicator, isMerchant)
+    bindView<ViewPager>(R.id.view_pager, isMerchant)
+    bindView<ViewPager>(R.id.order_info_root, isMerchant)
   }
 
 

@@ -79,7 +79,7 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
     refresh = bindView(R.id.refresh)
     mPresenter.getGoodsList(params, null, 0, true)
     refresh?.setOnRefreshListener { refreshLayout ->
-      params.pageNum = 0
+      params.pageNum = 1
       mPresenter.getGoodsList(params, refreshLayout, 0)
     }
     refresh?.setOnLoadMoreListener { refreshLayout ->
