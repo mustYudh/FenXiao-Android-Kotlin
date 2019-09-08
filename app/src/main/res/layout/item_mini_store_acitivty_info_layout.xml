@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<LinearLayout
+    android:id="@+id/activity_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
@@ -15,6 +21,7 @@
     android:paddingRight="12dp"
     android:paddingTop="14dp"
     >
+
 
 
   <LinearLayout
@@ -37,7 +44,6 @@
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:layout_gravity="center"
         >
 
       <TextView
@@ -132,7 +138,6 @@
             />
 
         <TextView
-            android:id="@+id/tag1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -186,7 +191,6 @@
             />
 
         <TextView
-            android:id="@+id/tag2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -237,7 +241,6 @@
             />
 
         <TextView
-            android:id="@+id/tag3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -315,5 +318,93 @@
 
   </LinearLayout>
 
+
+</LinearLayout>
+
+  <LinearLayout
+      android:visibility="gone"
+      android:background="@drawable/shape_white_radius_8"
+      android:paddingLeft="12dp"
+      android:paddingRight="12dp"
+      android:layout_marginBottom="8dp"
+      android:layout_marginLeft="12dp"
+      android:layout_marginRight="12dp"
+      android:id="@+id/goods_root"
+      android:layout_width="match_parent"
+      android:layout_height="83dp"
+      android:orientation="horizontal"
+      >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+      <com.yu.common.ui.DelayClickImageView
+          android:id="@+id/goods_image"
+          android:layout_width="64dp"
+          android:layout_height="64dp"
+          android:layout_marginBottom="7dp"
+          android:layout_marginRight="12dp"
+          android:layout_marginTop="12dp"
+          android:scaleType="centerCrop"
+          />
+      <TextView
+          android:id="@+id/statue"
+          android:layout_width="36dp"
+          android:layout_height="14dp"
+          android:layout_gravity="bottom|right"
+          android:layout_marginBottom="12dp"
+          android:layout_marginRight="12dp"
+          android:background="#FF3539"
+          android:gravity="center"
+          tools:text="上架中"
+          android:textColor="@color/white"
+          android:textSize="10sp"
+          />
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+      <TextView
+          android:id="@+id/title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginRight="32dp"
+          android:layout_marginTop="14dp"
+          android:textColor="#3C3D5A"
+          android:textSize="14sp"
+          tools:text="办公室沙发茶几组合现代三人位真皮"
+          />
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1"
+          android:gravity="bottom"
+          android:orientation="horizontal"
+          android:paddingBottom="7dp"
+          >
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF3539"
+            android:textSize="12sp"
+            tools:text="¥234"
+            />
+
+
+
+      </LinearLayout>
+
+    </LinearLayout>
+
+
+  </LinearLayout>
 
 </LinearLayout>

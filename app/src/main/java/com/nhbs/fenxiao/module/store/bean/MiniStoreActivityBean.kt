@@ -7,7 +7,7 @@ import java.math.BigDecimal
  * @author yudenghao
  * @date 2019-08-26
  */
-class MiniStoreActivityBean : Serializable{
+class MiniStoreActivityBean : Serializable {
 
   /**
    * firstPrizeImgs : http://nhbs.oss-cn-beijing.aliyuncs.com/03.jpg
@@ -37,33 +37,35 @@ class MiniStoreActivityBean : Serializable{
    * status : 3
    */
 
-   var firstPrizeImgs: String? = null
-   var firstPrizeNum: Int = 0
-   var type: Int = 0
-   var city: String? = null
-   var drawTime: Long = 0
-   var thirdPrizeImgs: String? = null
-   var content: String? = null
-   var thirdPrizeName: String? = null
-   var pvPrice: BigDecimal? = null
-   var accessitImgs: String? = null
-   var province: String? = null
-   var accessitName: String? = null
-   var headerImage: String? = null
-   var shopImage: String? = null
-   var isGeneralize: Int = 0
-   var lotteryWinner: String? = null
-   var firstPrizeName: String? = null
-   var id: String? = null
-   var town: String? = null
-   var thirdPrizeNum: BigDecimal? = null
-   var grossSpread: BigDecimal? = null
-   var userId: String? = null
-   var accessitNum: Int = 0
-   var createTime: Long = 0
-   var aName: String? = null
-   var district: String? = null
-   var status: Int = 0
-   var name: String = ""
-   var images: String = ""
+  var firstPrizeImgs: String? = null
+  var firstPrizeNum: Int = 0
+  var type: Int = 0
+  var city: String? = null
+  var drawTime: Long = 0
+  var thirdPrizeImgs: String? = null
+  var content: String? = null
+  var thirdPrizeName: String? = null
+  var pvPrice: BigDecimal? = null
+  var accessitImgs: String? = null
+  var province: String? = null
+  var accessitName: String? = null
+  var headerImage: String? = null
+  var shopImage: String? = null
+  var isGeneralize: Int = 0
+  var lotteryWinner: String? = null
+  var firstPrizeName: String? = null
+  var id: String? = null
+  var town: String? = null
+  var thirdPrizeNum: BigDecimal? = null
+  var grossSpread: BigDecimal? = null
+  var userId: String? = null
+  var accessitNum: Int = 0
+  var createTime: Long = 0
+  var aName: String? = null
+  var district: String? = null
+  var status: Int = 0
+  var name: String = ""
+  var images: String = ""
+  val mPrice: BigDecimal? = null
+
 }
