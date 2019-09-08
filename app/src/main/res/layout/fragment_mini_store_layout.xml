@@ -50,7 +50,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="XXXX的小铺"
+            android:text="未开通店铺"
             android:textColor="@color/lb_cm_white"
             android:textSize="18sp"
             />
@@ -73,6 +73,7 @@
             />
 
         <TextView
+            android:id="@+id/state"
             android:visibility="gone"
             android:layout_width="52dp"
             android:layout_height="16dp"
@@ -99,7 +100,7 @@
         android:visibility="gone"
         >
 
-      <EditText
+      <TextView
           android:id="@+id/describes"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
@@ -110,7 +111,7 @@
           android:enabled="false"
           android:maxLines="1"
           android:singleLine="true"
-          android:text="满XXX减XXXX满XXX减XXXX满XXX减XXXX满XXX……"
+          android:text="暂无描述信息"
           android:textColor="@color/lb_cm_white"
           android:textSize="12sp"
           />

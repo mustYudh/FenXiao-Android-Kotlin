@@ -54,7 +54,7 @@ class OrderManagerFragment : BaseFragment(), OnTabSelectedListener {
   override fun loadData() {
     mViewPager = bindView(R.id.view_pager)
     tabTitles.add("进行中")
-    tabTitles.add("已完成")
+//    tabTitles.add("已完成")
     mTabLayout = bindView<TabLayout>(R.id.magic_indicator)
     val tabStrip = mTabLayout?.getChildAt(0)
     if (tabStrip != null) {

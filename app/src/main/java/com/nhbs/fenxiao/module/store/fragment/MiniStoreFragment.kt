@@ -4,9 +4,8 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.view.ViewPager
-import android.util.Log
 import android.view.View
-import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.denghao.control.view.utils.UpdataCurrentFragment
 import com.nhbs.fenxiao.R
@@ -25,7 +24,6 @@ import com.yu.common.glide.ImageLoader
 import com.yu.common.mvp.PresenterLifeCycle
 import com.yu.common.navigation.StatusBarFontColorUtil
 import com.yu.common.ui.BadgeView
-import kotlinx.android.synthetic.main.fragment_mini_store_layout.describes
 import kotlinx.android.synthetic.main.fragment_mini_store_layout.edit
 import kotlinx.android.synthetic.main.fragment_mini_store_layout.header
 import kotlinx.android.synthetic.main.fragment_mini_store_layout.order_manager
@@ -158,24 +156,23 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
     initTab()
     initListener()
     edit.setOnClickListener {
-      describes.isEnabled = true
+
     }
   }
 
 
   override fun setShopInfo(info: ShopInfoBean?) {
     openStoreStatus(true)
-    bindView<TextView>(R.id.province, info?.province.checkTextEmpty())
-    bindText<TextView>(R.id.province, "${info?.province}${info?.city}${info?.district}")
+    bindText<TextView>(R.id.province, if (info?.province.checkTextEmpty()) "${info?.province}${info?.city}${info?.district}" else "请选择地址")
     bindText<TextView>(R.id.shopName, info?.shopName)
-    bindText<EditText>(R.id.describes, info?.describes)
-    bindView<EditText>(R.id.describes_root, !info?.describes.checkTextEmpty())
+    bindText<TextView>(R.id.describes, info?.describes)
+
     bindText<TextView>(R.id.usersNum, info?.usersNum.toString())
     bindText<TextView>(R.id.ordersNum, info?.ordersNum.toString())
     bindText<TextView>(R.id.priceNum, info?.priceNum.toString())
     bindView<View>(R.id.red_hint, info?.status == 1)
-    Log.e("======>", info?.headImage)
-    ImageLoader.getInstance().displayImage(header, info?.headImage)
+    bindText<TextView>(R.id.state,if (info?.status ==1) "未认证" else "已认证" )
+    ImageLoader.getInstance().displayImage(header, info?.headImage,R.drawable.ic_normal_header)
   }
 
   override fun needOpenStore() {
@@ -189,6 +186,9 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
     bindView<MagicIndicator>(R.id.magic_indicator, isMerchant)
     bindView<ViewPager>(R.id.view_pager, isMerchant)
     bindView<ViewPager>(R.id.order_info_root, isMerchant)
+    bindView<TextView>(R.id.province,isMerchant)
+    bindView<TextView>(R.id.state,isMerchant)
+    bindView<LinearLayout>(R.id.describes_root,isMerchant)
   }
 
 
