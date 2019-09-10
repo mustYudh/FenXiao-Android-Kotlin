@@ -1,4 +1,4 @@
-package com.nhbs.fenxiao.module.mine.activity.presenter;
+package com.nhbs.fenxiao.module.mine.fragment.presenter;
 
 import android.annotation.SuppressLint;
 
@@ -9,9 +9,9 @@ import com.xuexiang.xhttp2.XHttpProxy;
 import com.yu.common.framework.BaseViewPresenter;
 
 @SuppressLint("CheckResult")
-public class GeneralizePresenter extends BaseViewPresenter<GeneralizeViewer> {
+public class TeamGeneralizePresenter extends BaseViewPresenter<TeamGeneralizeViewer> {
 
-    public GeneralizePresenter(GeneralizeViewer viewer) {
+    public TeamGeneralizePresenter(TeamGeneralizeViewer viewer) {
         super(viewer);
     }
 

@@ -51,14 +51,14 @@ public class AffirmOrderPresenter extends BaseViewPresenter<AffirmOrderViewer> {
     }
 
 
-    public void userToPay(String orderId, String type, String payWay) {
+    public void userToPay(String orderId, String type, String payWay,CreateUserOrderBean createUserOrderBean) {
         XHttpProxy.proxy(OtherApiServices.class)
                 .userToPay(orderId, type, payWay)
                 .subscribeWith(new TipRequestSubscriber<PayInfo>() {
                     @Override
                     protected void onSuccess(PayInfo payInfo) {
                         assert getViewer() != null;
-                        getViewer().userToPaySuccess(payInfo);
+                        getViewer().userToPaySuccess(payInfo,createUserOrderBean);
                     }
                 });
     }

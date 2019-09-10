@@ -8,8 +8,10 @@ import com.nhbs.fenxiao.module.home.bean.HomeBannerBean;
 import com.nhbs.fenxiao.module.home.bean.HomeFindActivtyListBean;
 import com.nhbs.fenxiao.module.home.bean.HomeFindAdvertisingListBean;
 import com.nhbs.fenxiao.module.home.bean.HomeHotAdvertiseBean;
+import com.nhbs.fenxiao.module.mine.bean.BindWxBean;
 import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
 import com.nhbs.fenxiao.module.mine.bean.MineGroupBean;
+import com.nhbs.fenxiao.module.mine.bean.MineSpreadLogsListBean;
 import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
 import com.nhbs.fenxiao.module.order.bean.CreateUserOrderBean;
 import com.nhbs.fenxiao.module.order.bean.FirstAddressBean;
@@ -137,5 +139,17 @@ public interface OtherApiServices {
 
     @NetMethod(ParameterNames = {"orderId"}, Url = "/order/cancelOrder")
     Observable<Object> cancelOrder(String orderId);
+
+    @NetMethod(ParameterNames = {"merchandiseId", "type"}, Url = "/userLove/save")
+    Observable<Object> likeProduct(String merchandiseId, String type);
+
+    @NetMethod(ParameterNames = {"pageNum", "pageSize"}, Url = "/advertising/querySpreadLogsList")
+    Observable<MineSpreadLogsListBean> querySpreadLogsList(String pageNum, String pageSize);
+
+    @NetMethod(ParameterNames = {"withdrawalAmount", "payType"}, Url = "/withdraw/createUserWithdraw")
+    Observable<Object> createUserWithdraw(String withdrawalAmount, String payType);
+
+    @NetMethod(ParameterNames = {"openId"}, Url = "/user/boundWinXin")
+    Observable<BindWxBean> boundWinXin(String openId);
 
 }

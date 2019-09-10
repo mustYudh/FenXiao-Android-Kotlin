@@ -11,4 +11,6 @@ public interface ProductDetailsViewer extends Viewer {
     void agentMerchandiseSuccess(MerchandiseDetailBean merchandiseDetailBean);
 
     void advertiseShareSuccess(ShareMerchandiseBean shareMerchandiseBean);
+
+    void likeProductSuccess(MerchandiseDetailBean merchandiseDetailBean);
 }

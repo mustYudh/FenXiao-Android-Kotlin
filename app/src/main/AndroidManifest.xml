@@ -30,6 +30,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="label,allowBackup">
         <activity
+            android:name=".module.order.activity.PaySuccessActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".module.product.activity.CommentProductActivity"
             android:screenOrientation="portrait"/>
         <activity

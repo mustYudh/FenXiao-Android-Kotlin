@@ -51,4 +51,16 @@ public class ProductDetailsPresenter extends BaseViewPresenter<ProductDetailsVie
                     }
                 });
     }
+
+    public void likeProduct(MerchandiseDetailBean merchandiseDetailBean, String type) {
+        XHttpProxy.proxy(OtherApiServices.class)
+                .likeProduct(merchandiseDetailBean.id, type)
+                .subscribeWith(new LoadingRequestSubscriber<Object>(getActivity(), false) {
+                    @Override
+                    protected void onSuccess(Object o) {
+                        assert getViewer() != null;
+                        getViewer().likeProductSuccess(merchandiseDetailBean);
+                    }
+                });
+    }
 }

@@ -1,14 +1,20 @@
 package com.nhbs.fenxiao.module.mine.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.denghao.control.view.utils.UpdataCurrentFragment;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarFragment;
+import com.nhbs.fenxiao.http.loading.NetLoadingDialog;
 import com.nhbs.fenxiao.module.home.StatusBarColorManager;
 import com.nhbs.fenxiao.module.mine.activity.MineAddressListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineGeneralizeActivity;
@@ -22,20 +28,31 @@ import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentPresenter;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentViewer;
 import com.nhbs.fenxiao.module.view.MyOneLineView;
+import com.nhbs.fenxiao.utils.DialogUtils;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.yu.common.glide.ImageLoader;
 import com.yu.common.launche.LauncherHelper;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.navigation.StatusBarFontColorUtil;
+import com.yu.common.toast.ToastUtils;
 import com.yu.common.ui.CircleImageView;
 import com.yu.common.ui.DelayClickTextView;
+import com.yu.share.AuthLoginHelp;
+import com.yu.share.callback.AuthLoginCallback;
+
+import java.util.Map;
 
 public class MineFragment extends BaseBarFragment
         implements MineFragmentViewer, MyOneLineView.OnRootClickListener, View.OnClickListener,
-        UpdataCurrentFragment {
+        UpdataCurrentFragment, AuthLoginCallback {
 
     @PresenterLifeCycle
     private MineFragmentPresenter mPresenter = new MineFragmentPresenter(this);
     private CircleImageView mHeadimg;
+    private AuthLoginHelp mAuthLoginHelp;
+    private MineUserInfoBean userInfoBean = null;
+    private DialogUtils payDialog;
 
     @Override
     protected int getActionBarLayoutId() {
@@ -94,10 +111,60 @@ public class MineFragment extends BaseBarFragment
         tv_withdraw.setOnClickListener(this);
         ll_setting.setOnClickListener(this);
 
+        mAuthLoginHelp = new AuthLoginHelp(getActivity());
+        mAuthLoginHelp.callback(this);
+
         mPresenter.getUserInfo();
 
+        bindView(R.id.tv_withdraw, view -> showTypeDialog());
     }
 
+    private int type = 1;
+
+    @SuppressLint("SetTextI18n")
+    private void showTypeDialog() {
+        payDialog = new DialogUtils.Builder(getActivity()).view(R.layout.dialog_withdraw)
+                .gravity(Gravity.BOTTOM)
+                .cancelTouchout(true)
+                .addViewOnclick(R.id.iv_close, view -> {
+                    if (payDialog.isShowing()) {
+                        payDialog.dismiss();
+                    }
+                })
+                .style(R.style.Dialog)
+                .build();
+        payDialog.show();
+
+        RelativeLayout rl_ali = payDialog.findViewById(R.id.rl_ali);
+        RelativeLayout rl_wx = payDialog.findViewById(R.id.rl_wx);
+        ImageView iv_ali = payDialog.findViewById(R.id.iv_ali);
+        ImageView iv_wx = payDialog.findViewById(R.id.iv_wx);
+
+        rl_ali.setOnClickListener(view -> {
+            iv_ali.setImageResource(R.drawable.ic_circle_select);
+            iv_wx.setImageResource(R.drawable.ic_circle_normal);
+            type = 1;
+
+        });
+
+        rl_wx.setOnClickListener(view -> {
+            iv_wx.setImageResource(R.drawable.ic_circle_select);
+            iv_ali.setImageResource(R.drawable.ic_circle_normal);
+            type = 2;
+        });
+
+        DelayClickTextView tv_commit = payDialog.findViewById(R.id.tv_commit);
+        tv_commit.setOnClickListener(view -> {
+            if (userInfoBean != null) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("WITHDRAW_TYPE", type);
+                bundle.putString("WITHDRAW_MONEY", userInfoBean.balance);
+                getLaunchHelper().startActivity(MineWithdrawActivity.class, bundle);
+            } else {
+                ToastUtils.show("用户数据异常");
+            }
+        });
+    }
 
     @Override
     public void onRootClick(View view) {
@@ -111,6 +178,14 @@ public class MineFragment extends BaseBarFragment
                 getLaunchHelper().startActivity(MineAddressListActivity.class);
                 break;
             case 3:
+                //绑定微信
+                boolean installWeChat =
+                        UMShareAPI.get(getActivity()).isInstall(getActivity(), SHARE_MEDIA.WEIXIN);
+                if (installWeChat) {
+                    mAuthLoginHelp.login(SHARE_MEDIA.WEIXIN);
+                } else {
+                    ToastUtils.show("请先安装微信");
+                }
                 break;
             case 4:
                 break;
@@ -160,6 +235,7 @@ public class MineFragment extends BaseBarFragment
     @Override
     public void getUserInfoSuccess(MineUserInfoBean mineUserInfoBean) {
         if (mineUserInfoBean != null) {
+            userInfoBean = mineUserInfoBean;
             bindText(R.id.tv_name, mineUserInfoBean.nickName);
             bindText(R.id.tv_balance, mineUserInfoBean.balance + "");
             bindText(R.id.tv_focusnum, "关注：" + mineUserInfoBean.focusNum + "件宝贝");
@@ -172,7 +248,34 @@ public class MineFragment extends BaseBarFragment
     }
 
     @Override
+    public void boundWinXinSuccess(MineUserInfoBean mineUserInfoBean) {
+        Log.e("aaaa", "走了吗");
+        ToastUtils.show("绑定微信成功");
+    }
+
+    @Override
     public void update(Bundle bundle) {
         loadData();
+    }
+
+    @Override
+    public void onStart(SHARE_MEDIA media) {
+        NetLoadingDialog.showLoading(getActivity(), false);
+    }
+
+    @Override
+    public void onComplete(SHARE_MEDIA media, int i, Map<String, String> map) {
+        String openId = map.get("openid");
+        mPresenter.boundWinXin(openId, userInfoBean);
+    }
+
+    @Override
+    public void onError(SHARE_MEDIA media, int i, Throwable throwable) {
+        NetLoadingDialog.dismissLoading();
+    }
+
+    @Override
+    public void onCancel(SHARE_MEDIA media, int i) {
+        NetLoadingDialog.dismissLoading();
     }
 }

@@ -67,4 +67,5 @@ public class MerchandiseDetailBean {
     public String province;
     public String city;
     public String district;
+    public String followStatus;
 }

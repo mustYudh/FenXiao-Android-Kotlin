@@ -3,6 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="@color/white"
               android:gravity="center_horizontal"
               android:orientation="vertical"
     >
@@ -13,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="231241.00"
+        android:text="0"
         android:textColor="#ffff294f"
         android:textSize="24sp"
         />
@@ -28,71 +29,24 @@
         android:textSize="12sp"
         />
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="24dp">
+        android:layout_marginTop="24dp"
+        android:gravity="center">
 
 
-        <LinearLayout
-            android:id="@+id/ll_team_one"
-            android:layout_width="0dp"
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/magic_indicator"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_team_one"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="我的团队"
-                android:textColor="@color/app_red"
-                android:textSize="16sp"
-                />
-
-            <View
-                android:id="@+id/view_one"
-                android:layout_width="24dp"
-                android:layout_height="2dp"
-                android:layout_marginTop="4dp"
-                android:background="@drawable/shape_mine_team_line"/>
-
-        </LinearLayout>
+            android:overScrollMode="never"
+            android:paddingBottom="5dp"
+            android:scrollbars="none"
+            />
 
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="16dp"
-            android:layout_gravity="center_vertical"
-            android:background="#EAECEE"/>
-
-        <LinearLayout
-            android:id="@+id/ll_team_two"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_team_two"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="团队推广"
-                android:textColor="@color/app_ADB6C4"
-                android:textSize="16sp"
-                />
-
-            <View
-                android:id="@+id/view_two"
-                android:layout_width="24dp"
-                android:layout_height="2dp"
-                android:layout_marginTop="4dp"
-                android:background="@drawable/shape_mine_team_line"
-                android:visibility="invisible"/>
-
-        </LinearLayout>
     </LinearLayout>
 
     <View
@@ -100,21 +54,12 @@
         android:layout_height="8dp"
         android:background="#F7F7F7"/>
 
-
-    <LinearLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#F7F7F7"
-        >
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_team"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/app_transparent"
-            />
-    </LinearLayout>
-
-
+        android:overScrollMode="never"
+        />
 </LinearLayout>

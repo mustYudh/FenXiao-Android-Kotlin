@@ -300,11 +300,11 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
         });
 
         DelayClickTextView tv_commit = payDialog.findViewById(R.id.tv_commit);
-        tv_commit.setOnClickListener(view -> mPresenter.userToPay(createUserOrderBean.data.id, "2", type + ""));
+        tv_commit.setOnClickListener(view -> mPresenter.userToPay(createUserOrderBean.data.id, "2", type + "",createUserOrderBean));
     }
 
     @Override
-    public void userToPaySuccess(PayInfo payInfo) {
+    public void userToPaySuccess(PayInfo payInfo,CreateUserOrderBean createUserOrderBean) {
         if (payDialog.isShowing()) {
             payDialog.dismiss();
         }
@@ -312,6 +312,9 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
                 .getPayResult(new PayUtils.PayCallBack() {
                     @Override
                     public void onPaySuccess(int type) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("PRICE",createUserOrderBean.data.price+"");
+                        getLaunchHelper().startActivity(PaySuccessActivity.class,bundle);
                         finish();
                     }
 
