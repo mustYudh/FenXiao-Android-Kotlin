@@ -11,5 +11,5 @@ public interface AffirmOrderViewer extends Viewer {
 
     void getFirstAddress(FirstAddressBean firstAddressBean);
 
-    void userToPaySuccess(PayInfo payInfo);
+    void userToPaySuccess(PayInfo payInfo,CreateUserOrderBean createUserOrderBean);
 }

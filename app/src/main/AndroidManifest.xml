@@ -3,22 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.nhbs.fenxiao">
 
-  <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-  <uses-permission android:name="android.permission.CAMERA"/>
-  <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-  <uses-permission android:name="android.permission.CALL_PHONE"/>
-  <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-  <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-
   <application
       android:name=".APP"
       android:allowBackup="true"
@@ -31,60 +15,156 @@
       tools:replace="label,allowBackup">
     <activity
         android:name=".module.store.TypeManagerActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
     <activity
         android:name=".module.store.NotSetTypeActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
     <activity
         android:name=".module.store.activity.SetTypeActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
     <activity
         android:name=".module.product.activity.CommentProductActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
     <activity
         android:name=".module.product.activity.ProductShopDetailsActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
     <activity
         android:name=".module.order.activity.OrderDetailsActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
     <activity
         android:name=".module.store.activity.WithdrawalInfoActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
     <activity
         android:name=".module.store.activity.WithdrawalActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
     <activity
         android:name=".module.store.activity.OrderManagerActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
     <activity
         android:name=".module.home.activity.AwardDetailsActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
     <activity
         android:name=".module.home.activity.AdvertisingShareActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
     <activity
         android:name=".module.product.activity.ProductDetailsActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
     <activity
         android:name=".module.mine.activity.MineSettingsActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
     <activity
         android:name=".module.home.activity.HomeEventActivity"
-        android:screenOrientation="portrait"/>
+        android:screenOrientation="portrait" />
 
+    <activity
+        android:name=".module.order.activity.PaySuccessActivity"
+        android:screenOrientation="portrait" />
+    
+
+    <activity
+        android:name=".wxapi.WXEntryActivity"
+        android:configChanges="keyboardHidden|orientation|screenSize"
+        android:exported="true"
+        android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity
+        android:name=".wxapi.WXPayEntryActivity"
+        android:exported="true"
+        android:launchMode="singleTop"
+        android:theme="@style/AppTransParentTheme" />
+    <activity
+        android:name=".module.center.activity.ReleaseACGoodsActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.center.activity.ReleaseAdvertisingActivity"
+        android:screenOrientation="portrait" />
+
+    <activity
+        android:name=".module.center.activity.SelectGoodsTypeActivity"
+        android:screenOrientation="portrait" />
+
+    <activity
+        android:name=".module.mine.activity.MineOpinionActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.center.activity.ReleaseGoodsActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.mine.activity.MineWithdrawActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.mine.activity.MineRedactAddressActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.mine.activity.MineAddressListActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.order.activity.AffirmOrderActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.mine.activity.MineIncomeActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.mine.activity.MineGeneralizeActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.home.activity.RewardAdvertisingActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.mine.activity.MineOrderListActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.login.VerificationCodeActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.login.BindPhoneActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.home.activity.HomeProductClassifyActivity"
+        android:screenOrientation="portrait" />
+
+    <activity
+        android:name=".module.mine.activity.MineTeamActivity"
+        android:screenOrientation="portrait" />
+
+    <activity
+        android:name=".module.home.HomePageActivity"
+        android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
+        android:launchMode="singleTask"
+        android:screenOrientation="portrait"
+        android:windowSoftInputMode="adjustNothing" />
+    <activity
+        android:name=".module.login.LoginActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".test.TestActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.web.WebViewActivity"
+        android:screenOrientation="portrait" />
+    <activity
+        android:name=".module.splash.SplashActivity"
+        android:screenOrientation="portrait">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
     <meta-data
         android:name="UMENG_APPKEY"
-        android:value="${UMENG_APPKEY}"/>
+        android:value="${UMENG_APPKEY}" />
     <meta-data
         android:name="UMENG_CHANNEL"
-        android:value="${UMENG_CHANNEL}"/>
+        android:value="${UMENG_CHANNEL}" />
     <meta-data
         android:name="SENSORS_ANALYTICS_UTM_SOURCE"
-        android:value="${UMENG_CHANNEL}"/>
+        android:value="${UMENG_CHANNEL}" />
     <meta-data
         android:name="android.max_aspect"
-        android:value="2.1"/>
-
+        android:value="2.1" />
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths" />
     <provider
         android:name="android.support.v4.content.FileProvider"
         android:authorities="${applicationId}.fileprovider"
@@ -92,99 +172,24 @@
         android:grantUriPermissions="true">
       <meta-data
           android:name="android.support.FILE_PROVIDER_PATHS"
-          android:resource="@xml/picker_file_paths"/>
+          android:resource="@xml/picker_file_paths" />
     </provider>
-
-    <activity
-        android:name=".wxapi.WXEntryActivity"
-        android:configChanges="keyboardHidden|orientation|screenSize"
-        android:exported="true"
-        android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-    <activity
-        android:name=".wxapi.WXPayEntryActivity"
-        android:exported="true"
-        android:launchMode="singleTop"
-        android:theme="@style/AppTransParentTheme"/>
-    <activity
-        android:name=".module.center.activity.ReleaseACGoodsActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.center.activity.ReleaseAdvertisingActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.center.activity.SelectGoodsTypeActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.mine.activity.MineOpinionActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.center.activity.ReleaseGoodsActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.mine.activity.MineWithdrawActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.mine.activity.MineRedactAddressActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.mine.activity.MineAddressListActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.order.activity.AffirmOrderActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.mine.activity.MineIncomeActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.mine.activity.MineGeneralizeActivity"
-        android:screenOrientation="portrait"/>
-
-    <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/file_paths"/>
-
-    <activity
-        android:name=".module.home.activity.RewardAdvertisingActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.mine.activity.MineOrderListActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.login.VerificationCodeActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.login.BindPhoneActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.home.activity.HomeProductClassifyActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.mine.activity.MineTeamActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.home.HomePageActivity"
-        android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
-        android:launchMode="singleTask"
-        android:screenOrientation="portrait"
-        android:windowSoftInputMode="adjustNothing"/>
-    <activity
-        android:name=".module.login.LoginActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".test.TestActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.web.WebViewActivity"
-        android:screenOrientation="portrait"/>
-    <activity
-        android:name=".module.splash.SplashActivity"
-        android:screenOrientation="portrait">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-
-        <category android:name="android.intent.category.LAUNCHER"/>
-      </intent-filter>
-    </activity>
   </application>
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.CALL_PHONE" />
+  <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+  <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
 
 </manifest>

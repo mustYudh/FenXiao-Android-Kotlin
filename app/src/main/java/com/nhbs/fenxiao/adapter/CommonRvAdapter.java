@@ -23,7 +23,12 @@ public class CommonRvAdapter extends BaseQuickAdapter<FindMerchandiseListBean.Ro
     @Override
     protected void convert(BaseViewHolder helper, FindMerchandiseListBean.RowsBean item) {
         ImageView iv_product = helper.getView(R.id.iv_product);
-        ImageLoader.getInstance().displayImage(iv_product, item.mImgs, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
+        if (item.mImgs != null) {
+            String[] split = item.mImgs.split(",");
+            if (split.length != 0) {
+                ImageLoader.getInstance().displayImage(iv_product, split[0], R.drawable.ic_placeholder, R.drawable.ic_placeholder);
+            }
+        }
         helper.setText(R.id.tv_title, item.mName);
         helper.setText(R.id.tv_price, "¥" + item.mPrice);
         helper.setText(R.id.tv_share, "分享赚¥" + item.commission);

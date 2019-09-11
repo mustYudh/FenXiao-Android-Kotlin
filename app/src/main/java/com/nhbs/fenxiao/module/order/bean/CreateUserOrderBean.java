@@ -40,19 +40,19 @@ public class CreateUserOrderBean {
         public String orderId;
         public String title;
         public String userId;
-        public int status;
-        public int type;
-        public int price;
-        public long createTime;
-        public Object updateTime;
+        public String status;
+        public String type;
+        public String price;
+        public String createTime;
+        public String updateTime;
         public String addressId;
-        public Object expressNumber;
-        public Object receivingTime;
-        public int number;
+        public String expressNumber;
+        public String receivingTime;
+        public String number;
         public String totalPrice;
         public String shopId;
         public String color;
-        public int dealWay;
+        public String dealWay;
         public String size;
     }
 }

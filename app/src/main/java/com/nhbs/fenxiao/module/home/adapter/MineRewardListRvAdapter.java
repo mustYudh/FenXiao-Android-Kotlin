@@ -2,7 +2,6 @@ package com.nhbs.fenxiao.module.home.adapter;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -27,15 +26,12 @@ public class MineRewardListRvAdapter extends BaseQuickAdapter<HomeFindAdvertisin
         ImageLoader.getInstance().displayImage(iv_icon, item.imgs, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
 
         helper.setText(R.id.tv_title, item.title);
-//        helper.setText(R.id.tv_share_num, "已分享人数"+item.);
+        helper.setText(R.id.tv_share_num, "已分享人数" + item.total);
         helper.setText(R.id.tv_price, "¥" + item.pvSpread + "/次");
-        helper.getView(R.id.tv_share).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("ADVERT_ID", item.id);
-                LauncherHelper.from(context).startActivity(AdvertisingShareActivity.class, bundle);
-            }
+        helper.getView(R.id.ll_root).setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("ADVERT_ID", item.id);
+            LauncherHelper.from(context).startActivity(AdvertisingShareActivity.class, bundle);
         });
     }
 }

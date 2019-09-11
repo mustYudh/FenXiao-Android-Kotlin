@@ -16,6 +16,7 @@ import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.adapter.CommonRvAdapter;
 import com.nhbs.fenxiao.base.BaseBarFragment;
 import com.nhbs.fenxiao.module.home.StatusBarColorManager;
+import com.nhbs.fenxiao.module.home.activity.AdvertisingShareActivity;
 import com.nhbs.fenxiao.module.home.activity.HomeEventActivity;
 import com.nhbs.fenxiao.module.home.activity.HomeProductClassifyActivity;
 import com.nhbs.fenxiao.module.home.activity.RewardAdvertisingActivity;
@@ -159,10 +160,17 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
                 TextView tv_price = view.findViewById(R.id.tv_price);
                 TextView tv_share = view.findViewById(R.id.tv_share);
                 CircleImageView iv_icon = view.findViewById(R.id.iv_icon);
+                LinearLayout ll_root = view.findViewById(R.id.ll_root);
                 ImageLoader.getInstance().displayImage(iv_icon, homeHotAdvertiseBean.rows.get(i).imgs, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
                 tv_title.setText(homeHotAdvertiseBean.rows.get(i).title + "");
                 tv_price.setText("¥" + homeHotAdvertiseBean.rows.get(i).pvSpread + "/次");
                 tv_share.setText("已分享人数" + homeHotAdvertiseBean.rows.get(i).total);
+                int finalI = i;
+                ll_root.setOnClickListener(view1 -> {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("ADVERT_ID", homeHotAdvertiseBean.rows.get(finalI).id);
+                    getLaunchHelper().startActivity(AdvertisingShareActivity.class, bundle);
+                });
                 ll_mission_root.addView(view);
             }
         }

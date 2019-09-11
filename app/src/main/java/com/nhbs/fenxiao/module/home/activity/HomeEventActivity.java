@@ -35,7 +35,7 @@ public class HomeEventActivity extends BaseBarActivity implements HomeEventViewe
         rv_event = bindView(R.id.rv_event);
         rv_event.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv_event.addItemDecoration(new SpaceVerticalItemDecoration(DensityUtil.dip2px(this, 8)));
-        adapter = new MineHomeEventRvAdapter(R.layout.item_home_event);
+        adapter = new MineHomeEventRvAdapter(R.layout.item_home_event, getActivity());
         rv_event.setAdapter(adapter);
         mPresenter.getFindActivtyList(pageNum, pageSize);
     }

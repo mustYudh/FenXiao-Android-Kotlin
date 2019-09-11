@@ -1,9 +1,14 @@
 package com.nhbs.fenxiao.module.mine.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseFragment;
@@ -11,8 +16,12 @@ import com.nhbs.fenxiao.module.mine.adapter.MineOrderListRvAdapter;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineOrderListFragmentPresenter;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineOrderListFragmentViewer;
 import com.nhbs.fenxiao.module.order.bean.MineOrderListBean;
+import com.nhbs.fenxiao.module.order.bean.PayInfo;
+import com.nhbs.fenxiao.utils.DialogUtils;
+import com.nhbs.fenxiao.utils.PayUtils;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.toast.ToastUtils;
+import com.yu.common.ui.DelayClickTextView;
 
 import java.util.List;
 
@@ -25,6 +34,7 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
     private int pageSize = 10;
     private MineOrderListRvAdapter adapter;
     private RecyclerView rv_list;
+    private DialogUtils payDialog;
 
     @Override
     protected int getContentViewId() {
@@ -71,14 +81,25 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
                 adapter.setNewData(mineOrderListBean.rows);
             }
             adapter.setOnItemChildClickListener((adapter, view, position) -> {
+                List<MineOrderListBean.RowsBean> data = adapter.getData();
+                MineOrderListBean.RowsBean rowsBean = data.get(position);
                 switch (view.getId()) {
                     case R.id.tv_label8:
-                        List<MineOrderListBean.RowsBean> data = adapter.getData();
-                        MineOrderListBean.RowsBean rowsBean = data.get(position);
                         mPresenter.confirmGoods(rowsBean.id);
                         break;
                     case R.id.tv_label4:
                         ToastUtils.show("已提醒发货");
+                        break;
+                    case R.id.tv_label3:
+                        //取消订单
+                        mPresenter.cancelOrder(rowsBean.id);
+                        break;
+                    case R.id.tv_label7:
+                        //查看提货码
+                        break;
+                    case R.id.tv_label6:
+                        //付款
+                        showTypeDialog(rowsBean);
                         break;
                 }
             });
@@ -91,6 +112,46 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
         }
     }
 
+
+    private int type = 1;
+
+    @SuppressLint("SetTextI18n")
+    private void showTypeDialog(MineOrderListBean.RowsBean rowsBean) {
+        payDialog = new DialogUtils.Builder(getActivity()).view(R.layout.dialog_pay)
+                .gravity(Gravity.BOTTOM)
+                .cancelTouchout(true)
+                .addViewOnclick(R.id.iv_close, view -> {
+                    if (payDialog.isShowing()) {
+                        payDialog.dismiss();
+                    }
+                })
+                .style(R.style.Dialog)
+                .build();
+        payDialog.show();
+
+        RelativeLayout rl_ali = payDialog.findViewById(R.id.rl_ali);
+        RelativeLayout rl_wx = payDialog.findViewById(R.id.rl_wx);
+        ImageView iv_ali = payDialog.findViewById(R.id.iv_ali);
+        ImageView iv_wx = payDialog.findViewById(R.id.iv_wx);
+        TextView tv_price = payDialog.findViewById(R.id.tv_price);
+        tv_price.setText("¥" + rowsBean.price);
+        rl_ali.setOnClickListener(view -> {
+            iv_ali.setImageResource(R.drawable.ic_circle_select);
+            iv_wx.setImageResource(R.drawable.ic_circle_normal);
+            type = 1;
+
+        });
+
+        rl_wx.setOnClickListener(view -> {
+            iv_wx.setImageResource(R.drawable.ic_circle_select);
+            iv_ali.setImageResource(R.drawable.ic_circle_normal);
+            type = 2;
+        });
+
+        DelayClickTextView tv_commit = payDialog.findViewById(R.id.tv_commit);
+        tv_commit.setOnClickListener(view -> mPresenter.userToPay(rowsBean.id, "2", type + ""));
+    }
+
     @Override
     public void confirmGoodsSuccess() {
         ToastUtils.show("确认收货成功");
@@ -100,5 +161,40 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
         } else {
             mPresenter.getMineOrder(pageNum + "", pageSize + "", "2", order_type + "");
         }
+    }
+
+    @Override
+    public void cancelOrderSuccess() {
+        ToastUtils.show("取消订单成功");
+        pageNum = 1;
+        if ("-1".equals(order_type + "")) {
+            mPresenter.getMineOrder(pageNum + "", pageSize + "", "2", "null");
+        } else {
+            mPresenter.getMineOrder(pageNum + "", pageSize + "", "2", order_type + "");
+        }
+    }
+
+    @Override
+    public void userToPaySuccess(PayInfo payInfo) {
+        if (payDialog.isShowing()) {
+            payDialog.dismiss();
+        }
+        PayUtils.getInstance().pay(getActivity(), type, payInfo)
+                .getPayResult(new PayUtils.PayCallBack() {
+                    @Override
+                    public void onPaySuccess(int type) {
+                        pageNum = 1;
+                        if ("-1".equals(order_type + "")) {
+                            mPresenter.getMineOrder(pageNum + "", pageSize + "", "2", "null");
+                        } else {
+                            mPresenter.getMineOrder(pageNum + "", pageSize + "", "2", order_type + "");
+                        }
+                    }
+
+                    @Override
+                    public void onFailed(int type) {
+                        ToastUtils.show("支付失败，请重试");
+                    }
+                });
     }
 }

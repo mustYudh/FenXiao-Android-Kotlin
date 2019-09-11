@@ -1,19 +1,26 @@
 package com.nhbs.fenxiao.module.home.adapter;
 
+import android.content.Context;
+import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.nhbs.fenxiao.R;
+import com.nhbs.fenxiao.module.home.activity.AwardDetailsActivity;
 import com.nhbs.fenxiao.module.home.bean.HomeFindActivtyListBean;
 import com.nhbs.fenxiao.utils.DateUtil;
 import com.shehuan.niv.NiceImageView;
 import com.yu.common.glide.ImageLoader;
+import com.yu.common.launche.LauncherHelper;
 import com.yu.common.ui.CircleImageView;
 
 public class MineHomeEventRvAdapter extends BaseQuickAdapter<HomeFindActivtyListBean.RowsBean, BaseViewHolder> {
-    public MineHomeEventRvAdapter(int layoutResId) {
+    private Context context;
+
+    public MineHomeEventRvAdapter(int layoutResId, Context context) {
         super(layoutResId);
+        this.context = context;
     }
 
     @Override
@@ -39,5 +46,11 @@ public class MineHomeEventRvAdapter extends BaseQuickAdapter<HomeFindActivtyList
         helper.setText(R.id.tv_time, DateUtil.formatDateAndTime(item.drawTime) + "自动开奖");
 
         ImageLoader.getInstance().displayImage(iv_icon, item.headerImage, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
+
+        helper.getView(R.id.ll_root).setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("AWARD_ID", item.id);
+            LauncherHelper.from(context).startActivity(AwardDetailsActivity.class, bundle);
+        });
     }
 }

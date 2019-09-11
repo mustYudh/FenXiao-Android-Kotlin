@@ -61,6 +61,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
     private String oneTag = "";
     private String twoTag = "";
     private CircleImageView iv_shop;
+    private ImageView iv_like;
     private DialogUtils shareDialog;
 
     @Override
@@ -80,6 +81,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
         merchandise_id = bundle.getString("MERCHANDISE_ID");
         mBanner = bindView(R.id.banner);
         iv_shop = bindView(R.id.iv_shop);
+        iv_like = bindView(R.id.iv_like);
         bindView(R.id.action_bar_left_actions, view -> finish());
 
         mPresenter.getMerchandiseDetail(merchandise_id);
@@ -98,12 +100,11 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
             bindText(R.id.tv_share, "分享了" + merchandiseDetailBean.shareNum + "次");
             bindText(R.id.tv_shop_name, merchandiseDetailBean.shopName + "");
             bindText(R.id.tv_shop_address, merchandiseDetailBean.province + merchandiseDetailBean.city + "");
-            bindText(R.id.tv_commission, "分享赚¥" + merchandiseDetailBean.commission + "");
-            bindText(R.id.tv_bug_price, "¥" + merchandiseDetailBean.commission);
-            bindText(R.id.tv_share_price, "¥" + merchandiseDetailBean.commission);
-            bindText(R.id.tv_song_huo, "送货上门:¥" + merchandiseDetailBean.delivery);
-            bindText(R.id.tv_you_fei, "快递: ¥" + merchandiseDetailBean.postage);
-
+            bindText(R.id.tv_bug_price, "自买省¥" + merchandiseDetailBean.commission);
+            bindText(R.id.tv_share_price, "分享赚¥" + merchandiseDetailBean.commission);
+//            bindText(R.id.tv_song_huo, "送货上门:¥" + merchandiseDetailBean.delivery);
+//            bindText(R.id.tv_you_fei, "快递: ¥" + merchandiseDetailBean.postage);
+            iv_like.setImageResource(("1".equals(merchandiseDetailBean.followStatus)) ? R.drawable.ic_shou_cang_other : R.drawable.ic_shou_cang);
             bindView(R.id.tv_apply, view -> {
                 if (merchandiseDetailBean.isAgent != null && "0".equals(merchandiseDetailBean.isAgent)) {
                     mPresenter.agentMerchandise(merchandise_id, merchandiseDetailBean);
@@ -113,11 +114,11 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
             });
 
 
-            bindView(R.id.ll_buy, view -> showTypeDialog(merchandiseDetailBean, merchandiseDetailBean.tagOne, merchandiseDetailBean.tagTwo));
+            bindView(R.id.tv_bug_price, view -> showTypeDialog(merchandiseDetailBean, merchandiseDetailBean.tagOne, merchandiseDetailBean.tagTwo));
 
             ImageLoader.getInstance().displayImage(iv_shop, merchandiseDetailBean.shopImage, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
 
-            bindView(R.id.ll_share, view -> mPresenter.advertiseShare(merchandise_id));
+            bindView(R.id.tv_share_price, view -> mPresenter.advertiseShare(merchandise_id));
 
             bindView(R.id.rl_shop, view -> {
                 if (merchandiseDetailBean.shopId != null) {
@@ -126,6 +127,8 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
                     getLaunchHelper().startActivity(ProductShopDetailsActivity.class, bundle);
                 }
             });
+
+            bindView(R.id.ll_add, view -> mPresenter.likeProduct(merchandiseDetailBean, "0"));
         }
     }
 
@@ -326,6 +329,18 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
         } else {
             ToastUtils.show("分享数据出问题了~");
         }
+    }
+
+    @Override
+    public void likeProductSuccess(MerchandiseDetailBean merchandiseDetailBean) {
+        if ("1".equals(merchandiseDetailBean.followStatus)) {
+            ToastUtils.show("取消收藏成功");
+            merchandiseDetailBean.followStatus = "0";
+        } else {
+            ToastUtils.show("收藏成功");
+            merchandiseDetailBean.followStatus = "1";
+        }
+        iv_like.setImageResource(("1".equals(merchandiseDetailBean.followStatus)) ? R.drawable.ic_shou_cang_other : R.drawable.ic_shou_cang);
     }
 
     private void showShareDialog(ShareMerchandiseBean shareMerchandiseBean) {

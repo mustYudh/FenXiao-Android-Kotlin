@@ -91,6 +91,12 @@ public class MineOrderListRvAdapter extends BaseQuickAdapter<MineOrderListBean.R
         helper.addOnClickListener(R.id.tv_label8);
         //提醒发货
         helper.addOnClickListener(R.id.tv_label4);
+        //取消订单
+        helper.addOnClickListener(R.id.tv_label3);
+        //付款
+        helper.addOnClickListener(R.id.tv_label6);
+        //查看提货码
+        helper.addOnClickListener(R.id.tv_label7);
 
         helper.getView(R.id.ll_root).setOnClickListener(view -> {
             Bundle bundle = new Bundle();

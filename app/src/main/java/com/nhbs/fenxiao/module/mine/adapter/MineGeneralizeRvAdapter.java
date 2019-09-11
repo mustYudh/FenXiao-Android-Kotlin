@@ -1,18 +1,15 @@
 package com.nhbs.fenxiao.module.mine.adapter;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
-import java.util.List;
-
 public class MineGeneralizeRvAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
     private Context context;
 
-    public MineGeneralizeRvAdapter(int layoutResId, @Nullable List<String> data, Context context) {
-        super(layoutResId, data);
+    public MineGeneralizeRvAdapter(int layoutResId, Context context) {
+        super(layoutResId);
         this.context = context;
     }
 
