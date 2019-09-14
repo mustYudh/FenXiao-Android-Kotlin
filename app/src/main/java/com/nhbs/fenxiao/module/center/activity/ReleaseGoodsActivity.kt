@@ -29,14 +29,17 @@ import kotlinx.android.synthetic.main.activity_new_release_goods_view.check_free
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.commission
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.door_to_door_delivery
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.free_mail
+import kotlinx.android.synthetic.main.activity_new_release_goods_view.friends
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.goods_tag_1
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.goods_tag_2
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.mail
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.price
+import kotlinx.android.synthetic.main.activity_new_release_goods_view.qq
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.release
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.select_goods_type
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.since_the_lift
 import kotlinx.android.synthetic.main.activity_new_release_goods_view.type_name
+import kotlinx.android.synthetic.main.activity_new_release_goods_view.wei_bo
 import kotlinx.android.synthetic.main.include_layout_release_goods_top.goods_info
 import kotlinx.android.synthetic.main.include_layout_release_goods_top.goods_name
 import kotlinx.android.synthetic.main.include_layout_release_goods_top.list
@@ -53,6 +56,9 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
   private var goodsTypeId = ""
   private var editGoods = false
   private var id: String? = ""
+  private var selectedFriends = false
+  private var selectedWeiBo = false
+  private var selectedQQ = false
 
   companion object {
     private const val GOODS_INFO = "goods_info"
@@ -141,6 +147,21 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
       mAdapter.data.forEachIndexed { index, result ->
         mImages += "$result${if (index < mAdapter.data.size - 1) "," else ""}"
       }
+      val data = ArrayList<String>()
+      if (selectedFriends) {
+        data.add("朋友圈")
+      }
+      if (selectedWeiBo) {
+        data.add("微博")
+      }
+      if (selectedQQ) {
+        data.add("QQ空间")
+      }
+      var shareType = ""
+
+      data.forEachIndexed { index, type ->
+        shareType += "${type}${if (index != data.size - 1) "," else ""}"
+      }
       params.mImgs = mImages
       params.mContent = goods_info.getInputText()
       params.mPrice = price.getInputText()
@@ -151,6 +172,7 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
       params.tagOne = goods_tag_1.getInputText()
       params.tagTwo = goods_tag_2.getInputText()
       params.mName = goods_name.getInputText()
+      params.shareType = shareType
       params.id = id
       if (editGoods) {
         mPresenter.editGoodsInfo(params, mAdapter.data as ArrayList<String>)
@@ -158,6 +180,21 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
         mPresenter.releaseGoods(params, mAdapter.data as ArrayList<String>)
       }
 
+    }
+
+    friends.setOnClickListener {
+      selectedFriends = !selectedFriends
+      friends.isSelected = selectedFriends
+    }
+
+    wei_bo.setOnClickListener {
+      selectedWeiBo = !selectedWeiBo
+      wei_bo.isSelected = selectedWeiBo
+    }
+
+    qq.setOnClickListener {
+      selectedQQ = !selectedQQ
+      qq.isSelected = selectedQQ
     }
 
     free_mail.addTextChangedListener(object : TextWatcher {

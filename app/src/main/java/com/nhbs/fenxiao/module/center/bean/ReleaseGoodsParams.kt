@@ -22,6 +22,7 @@ class ReleaseGoodsParams : Serializable {
   var mName: String? = null
   var tagOneName: String? = null
   var tagTwoName: String? = null
+  var shareType: String? = null
 
   fun checkEmpty(): Boolean {
     if (mImgs.checkTextEmpty()) {
@@ -58,6 +59,10 @@ class ReleaseGoodsParams : Serializable {
     }
     if (tagTwo.checkTextEmpty()) {
       showToast("标签填写不能为空")
+      return false
+    }
+    if (shareType.checkTextEmpty()) {
+      showToast("至少选择一种投放平台")
       return false
     }
     return true
