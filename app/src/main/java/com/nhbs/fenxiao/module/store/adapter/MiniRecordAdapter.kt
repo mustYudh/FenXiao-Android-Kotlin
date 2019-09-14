@@ -7,7 +7,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.module.store.bean.MiniStoreActivityBean
-import com.nhbs.fenxiao.utils.getMoney
 import com.shehuan.niv.NiceImageView
 import com.yu.common.glide.ImageLoader
 import com.yu.common.ui.CircleImageView
@@ -56,7 +55,7 @@ class MiniRecordAdapter : BaseQuickAdapter<MiniStoreActivityBean, BaseViewHolder
       val imageView = helper?.getView<ImageView>(R.id.goods_image)
       helper?.setGone(R.id.activity_root, false)?.setGone(R.id.goods_root, true)?.setText(
           R.id.statue, getStatus(2, item?.status))?.setText(R.id.title, item?.name)?.setText(
-          R.id.price, "¥${item?.mPrice?.getMoney()}")
+          R.id.price, "¥${item?.mPrice}")
       if (images?.size!! > 0) {
         ImageLoader.getInstance().displayImage(imageView, images[0])
       }

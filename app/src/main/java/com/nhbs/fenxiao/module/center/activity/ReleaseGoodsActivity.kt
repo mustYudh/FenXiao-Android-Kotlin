@@ -235,6 +235,18 @@ class ReleaseGoodsActivity : BaseBarActivity(), ReleaseGoodsViewer {
     dealWay = info?.dealWay!!
     goodsTypeId = info.classId!!
     id = info?.id
+    val shareType = info?.shareType
+    if(!TextUtils.isEmpty(shareType)) {
+      if (shareType?.contains("朋友圈")!!) {
+        friends.isSelected = true
+      }
+      if (shareType.contains("微博")) {
+        wei_bo.isSelected = true
+      }
+      if (shareType.contains("QQ空间")) {
+        qq.isSelected = true
+      }
+    }
     setReleaseGoodsImage(ArrayList(info.mImgs?.split(",")))
 
   }

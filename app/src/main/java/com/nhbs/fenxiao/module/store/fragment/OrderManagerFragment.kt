@@ -26,6 +26,7 @@ import java.util.ArrayList
  */
 class OrderManagerFragment : BaseFragment(), OnTabSelectedListener {
 
+
   private var mViewPager: ViewPager? = null
   private var mTabLayout: TabLayout? = null
   private var mAdapter: OrderManagerAdapter? = null
@@ -39,6 +40,7 @@ class OrderManagerFragment : BaseFragment(), OnTabSelectedListener {
     private var fragment: Fragment? = null
     fun getFragment(): Fragment {
       return if (fragment == null) {
+
         fragment = OrderManagerFragment()
         fragment!!
       } else {
@@ -47,6 +49,7 @@ class OrderManagerFragment : BaseFragment(), OnTabSelectedListener {
 
     }
   }
+
 
   override fun setView(savedInstanceState: Bundle?) {
   }

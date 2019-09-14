@@ -10,6 +10,6 @@ class GetGoodsParams : Serializable {
   var pageNum: Int? = 1
   var pageSize: Int? = 10
   var type: String? = "0"
-  var classId: String? = ""
+  var classId: String? = null
   var orderType: Int? = 1
 }

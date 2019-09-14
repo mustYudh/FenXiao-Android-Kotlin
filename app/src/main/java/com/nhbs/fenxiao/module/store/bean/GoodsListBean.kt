@@ -62,6 +62,7 @@ class GoodsListBean : Serializable {
     val commission: BigDecimal? = null
     val id: String? = null
     val shopId: String? = null
+    val shareType: String? = null
     val mName: String? = null
     val affiliationShopName: Any? = null
     val mImgs: String? = null

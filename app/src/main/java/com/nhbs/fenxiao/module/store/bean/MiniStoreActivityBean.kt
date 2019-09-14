@@ -66,6 +66,6 @@ class MiniStoreActivityBean : Serializable {
   var status: Int = 0
   var name: String = ""
   var images: String = ""
-  val mPrice: BigDecimal? = null
+  val mPrice: String? = null
 
 }

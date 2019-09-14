@@ -6,8 +6,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.nhbs.fenxiao.base.BaseFragment
 import com.nhbs.fenxiao.module.store.adapter.OrderListAdapter
-import com.nhbs.fenxiao.module.store.bean.OrderListBean
+import com.nhbs.fenxiao.module.store.bean.QueryShopKeeperOrdersParams
+import com.nhbs.fenxiao.module.store.presenter.OrderManagerPresenter
+import com.nhbs.fenxiao.module.store.presenter.OrderManagerViewer
 import com.nhbs.fenxiao.utils.setLinearLayoutAdapter
+import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.fragment_order_tab_manager.list
 import kotlinx.android.synthetic.main.fragment_order_tab_manager.status_root
 
@@ -18,7 +21,12 @@ import kotlinx.android.synthetic.main.fragment_order_tab_manager.status_root
  */
 
 
-class OrderManagerTabFragment : BaseFragment() {
+class OrderManagerTabFragment : BaseFragment() , OrderManagerViewer {
+  @PresenterLifeCycle
+  private val mPresenter = OrderManagerPresenter(this)
+  var params: QueryShopKeeperOrdersParams = QueryShopKeeperOrdersParams()
+
+
   private var position: Int = 0
   val adapter0 = OrderListAdapter(0)
   val adapter1 = OrderListAdapter(1)
@@ -99,10 +107,9 @@ class OrderManagerTabFragment : BaseFragment() {
     }
 
     list.setLinearLayoutAdapter(adapter0)
-    adapter0.addData(OrderListBean())
-    adapter1.addData(OrderListBean())
-    adapter2.addData(OrderListBean())
-    adapter3.addData(OrderListBean())
+
+    mPresenter.findMyShopMerchandiseList(params)
+
   }
 
 

@@ -90,7 +90,7 @@ fun Activity.selectPhoto(max: Int? = 1) {
 fun getCalendarPicker(context: Context, getTime: (time: Date) -> Unit) {
   val selectedDate = Calendar.getInstance()//系统当前时间
   val startDate = Calendar.getInstance()
-  startDate.set(2000, 1, 23)
+
   val endDate = Calendar.getInstance()
   endDate.set(2069, 2, 28)
   val pvCustomLunar = TimePickerBuilder(context, OnTimeSelectListener { date, _ ->

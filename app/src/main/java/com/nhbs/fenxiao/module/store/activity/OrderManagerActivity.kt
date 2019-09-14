@@ -15,12 +15,14 @@ import kotlinx.android.synthetic.main.order_manager_title_bar_layout.order_manag
 
 class OrderManagerActivity : BaseBarActivity(), OrderManagerViewer {
 
+  @PresenterLifeCycle
+  internal var presenter = OrderManagerPresenter(this)
+
+
   override fun getActionBarLayoutId(): Int {
     return layout.order_manager_title_bar_layout
   }
 
-  @PresenterLifeCycle
-  internal var presenter = OrderManagerPresenter(this)
 
 
   override fun setView(savedInstanceState: Bundle?) {

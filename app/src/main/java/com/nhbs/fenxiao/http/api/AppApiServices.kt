@@ -97,5 +97,5 @@ interface AppApiServices {
 
 
   @NetMethod(ParameterNames = [], Url = "/api/create/queryShopKeeperOrders")
-  fun queryShopKeeperOrders(pageNum: Int? = 1, pageSize: Int? = 10): Observable<Any>
+  fun queryShopKeeperOrders(@Body body: RequestBody): Observable<ApiResult<Any>>
 }
