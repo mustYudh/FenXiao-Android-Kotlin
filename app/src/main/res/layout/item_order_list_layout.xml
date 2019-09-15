@@ -31,8 +31,6 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:scaleType="centerCrop"
-          android:src="@drawable/home_label_2"
-          android:visibility="gone"
           app:corner_radius="2dp"
           />
 

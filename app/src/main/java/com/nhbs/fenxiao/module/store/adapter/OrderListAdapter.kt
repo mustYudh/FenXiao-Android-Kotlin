@@ -6,6 +6,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.module.store.bean.OrderInfo
+import com.shehuan.niv.NiceImageView
+import com.yu.common.glide.ImageLoader
 
 /**
  * @author yudneghao
@@ -17,6 +19,13 @@ class OrderListAdapter(var status: Int) : BaseQuickAdapter<OrderInfo, BaseViewHo
     helper?.setText(R.id.name, "收货人: ${item?.userName} ${item?.mobile}")?.setText(R.id.time,
         "支付时间: ${item?.receivingTime}")?.setText(R.id.price, "本单金额：¥${item?.totalPrice}")
         ?.setText(R.id.count, "共${item?.number}件")
+    val images = item?.goodsImage?.split(",")
+    if (images != null && images.size > 0) {
+      val url = images[0]
+      val imageView = helper?.getView<NiceImageView>(R.id.show_photo)
+      ImageLoader.getInstance().displayImage(imageView, url, R.drawable.ic_placeholder,
+          R.drawable.ic_placeholder)
+    }
     val statusText = helper?.getView<TextView>(R.id.status)
     when (status) {
       0 -> {

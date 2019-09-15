@@ -112,28 +112,30 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
         }
       }
     }
-
     list.setLinearLayoutAdapter(adapter0)
+//    list.setLinearLayoutAdapter(adapter1)
+//    list.setLinearLayoutAdapter(adapter2)
+//    list.setLinearLayoutAdapter(adapter3)
 
-    mPresenter.findMyShopMerchandiseList(params0)
+
 
     refresh.setOnRefreshListener {
       when (position) {
         0 -> {
           params0.pageNum = 0
-          mPresenter.findMyShopMerchandiseList(params0,it,0)
+          mPresenter.findMyShopMerchandiseList(0, params0, it, 0)
         }
         1 -> {
           params1.pageNum = 0
-          mPresenter.findMyShopMerchandiseList(params1,it,0)
+          mPresenter.findMyShopMerchandiseList(1, params1, it, 0)
         }
         2 -> {
           params2.pageNum = 0
-          mPresenter.findMyShopMerchandiseList(params2,it,0)
+          mPresenter.findMyShopMerchandiseList(2, params2, it, 0)
         }
         3 -> {
           params3.pageNum = 0
-          mPresenter.findMyShopMerchandiseList(params3,it,0)
+          mPresenter.findMyShopMerchandiseList(3, params3, it, 0)
         }
       }
     }
@@ -141,27 +143,67 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
       when (position) {
         0 -> {
           params0.pageNum = params0.pageNum + 1
-          mPresenter.findMyShopMerchandiseList(params0,it,1)
+          mPresenter.findMyShopMerchandiseList(0, params0, it, 1)
         }
         1 -> {
           params1.pageNum = params1.pageNum + 1
-          mPresenter.findMyShopMerchandiseList(params1,it,1)
+          mPresenter.findMyShopMerchandiseList(1, params1, it, 1)
         }
         2 -> {
           params2.pageNum = params2.pageNum + 1
-          mPresenter.findMyShopMerchandiseList(params2,it,1)
+          mPresenter.findMyShopMerchandiseList(2, params2, it, 1)
         }
         3 -> {
           params3.pageNum = params3.pageNum + 1
-          mPresenter.findMyShopMerchandiseList(params3,it,1)
+          mPresenter.findMyShopMerchandiseList(3, params3, it, 1)
         }
       }
     }
 
+
+
+    params1.status = 1
+    params2.status = 4
+    params3.status = 5
+    mPresenter.findMyShopMerchandiseList(0, params0)
+    mPresenter.findMyShopMerchandiseList(1, params1)
+    mPresenter.findMyShopMerchandiseList(2, params2)
+    mPresenter.findMyShopMerchandiseList(3, params3)
+
   }
 
 
-  override fun getGoodsInfo(rows: List<OrderInfo>?) {
+  override fun getGoodsInfo(rows: List<OrderInfo>, type: Int, position: Int) {
+    when (position) {
+      0 -> {
+        if (type == 0) {
+          adapter0.setNewData(rows)
+        } else {
+          adapter0.addData(rows)
+        }
+      }
+      1 -> {
+        if (type == 0) {
+          adapter1.setNewData(rows)
+        } else {
+          adapter1.addData(rows)
+        }
+      }
+      2 -> {
+        if (type == 0) {
+          adapter2.setNewData(rows)
+        } else {
+          adapter2.addData(rows)
+        }
+      }
+      3 -> {
+        if (type == 0) {
+          adapter3.setNewData(rows)
+        } else {
+          adapter3.addData(rows)
+        }
+      }
+    }
 
   }
 

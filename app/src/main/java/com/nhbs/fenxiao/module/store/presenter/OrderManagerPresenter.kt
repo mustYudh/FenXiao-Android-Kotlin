@@ -21,13 +21,26 @@ class OrderManagerPresenter(viewer: OrderManagerViewer) : BaseViewPresenter<Orde
     viewer) {
 
 
-  fun findMyShopMerchandiseList(params: QueryShopKeeperOrdersParams,refreshLayout: RefreshLayout? = null, type: Int? = 0) {
+  fun findMyShopMerchandiseList(position: Int,params: QueryShopKeeperOrdersParams,refreshLayout: RefreshLayout? = null, type: Int? = 0) {
     XHttp.custom(AppApiServices::class.java)
         .queryShopKeeperOrders(HttpUtils.getJsonRequestBody(params))
         .compose(RxSchedulerUtils._io_main_o<ApiResult<OrderManagerInfoBean>>())
         .subscribeWith(object : TipRequestSubscriber<ApiResult<OrderManagerInfoBean>>() {
           override fun onSuccess(data: ApiResult<OrderManagerInfoBean>?) {
-              getViewer()?.getGoodsInfo(data?.data?.rows)
+            if (data != null && data.data != null && data.data.rows != null) {
+              getViewer()?.getGoodsInfo(data.data?.rows!!,type!!,position)
+            }
+            if (refreshLayout != null) {
+              if (type == 0) {
+                refreshLayout.finishRefresh()
+                if (data == null || data.data.rows.isEmpty()) {
+                  refreshLayout.finishRefreshWithNoMoreData()
+                }
+              } else {
+                refreshLayout.finishLoadMore()
+                refreshLayout.finishLoadMoreWithNoMoreData()
+              }
+            }
           }
         })
   }

@@ -30,7 +30,7 @@ data class OrderInfo(
     var title: String,
     var totalPrice: String,
     var type: Int,
-    var updateTime: Int,
+    var updateTime: Long,
     var userId: String,
     var userName: String
 ) : Serializable
