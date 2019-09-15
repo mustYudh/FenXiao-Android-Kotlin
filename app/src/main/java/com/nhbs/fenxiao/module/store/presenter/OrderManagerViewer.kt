@@ -11,4 +11,6 @@ interface OrderManagerViewer : Viewer {
   fun getGoodsInfo(rows: List<OrderInfo>,type: Int,position: Int)
 
   fun goSendGoodsSuccess(info: OrderInfo,position: Int)
+
+  fun updateOrderPriceSuccess(info: OrderInfo,position: Int)
 }

@@ -25,7 +25,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         
-        <ImageView
+        <com.yu.common.ui.DelayClickImageView
+            android:id="@+id/cancel"
            android:layout_alignParentRight="true"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
@@ -57,6 +58,7 @@
                 />
 
             <EditText
+                android:id="@+id/price"
                 android:layout_marginRight="16dp"
                 android:inputType="numberDecimal"
                 android:layout_marginLeft="16dp"
@@ -88,6 +90,7 @@
                 />
 
             <EditText
+                android:id="@+id/package_price"
                 android:inputType="numberDecimal"
                 android:textColor="#ff3b3e5a"
                 android:layout_marginLeft="16dp"
@@ -98,25 +101,31 @@
                 android:layout_height="match_parent" />
             
             <LinearLayout
+                android:id="@+id/free_package"
+                android:paddingLeft="4dp"
                 android:gravity="center"
-                android:layout_width="28dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent">
 
-                <ImageView
+                <com.yu.common.ui.DelayClickImageView
+                    android:id="@+id/free"
+                    android:layout_marginRight="4dp"
                     android:src="@drawable/shape_check_selector"
                     android:layout_width="12dp"
                     android:layout_height="12dp" />
 
+                <TextView
+                    android:layout_marginRight="16dp"
+                    android:layout_width="28dp"
+                    android:layout_height="20dp"
+                    android:text="包邮"
+                    android:textColor="#ffa0a9bb"
+                    android:textSize="14sp"
+                    />
+
             </LinearLayout>
 
-            <TextView
-                android:layout_marginRight="16dp"
-                android:layout_width="28dp"
-                android:layout_height="20dp"
-                android:text="包邮"
-                android:textColor="#ffa0a9bb"
-                android:textSize="14sp"
-                />
+
         </LinearLayout>
 
         <View
@@ -125,7 +134,8 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"/>
 
-        <TextView
+        <com.yu.common.ui.DelayClickTextView
+            android:id="@+id/commit"
             android:gravity="center"
             android:layout_marginTop="44dp"
             android:layout_marginBottom="24dp"

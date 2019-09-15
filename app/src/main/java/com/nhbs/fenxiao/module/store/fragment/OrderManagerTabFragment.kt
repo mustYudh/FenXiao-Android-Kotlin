@@ -9,6 +9,7 @@ import com.nhbs.fenxiao.base.BaseFragment
 import com.nhbs.fenxiao.module.store.adapter.OrderListAdapter
 import com.nhbs.fenxiao.module.store.bean.OrderInfo
 import com.nhbs.fenxiao.module.store.bean.QueryShopKeeperOrdersParams
+import com.nhbs.fenxiao.module.store.pop.EditPricePopupWindow
 import com.nhbs.fenxiao.module.store.presenter.OrderManagerPresenter
 import com.nhbs.fenxiao.module.store.presenter.OrderManagerViewer
 import com.nhbs.fenxiao.utils.setLinearLayoutAdapter
@@ -43,7 +44,7 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
   val adapter3 = OrderListAdapter(3)
 
   override fun getContentViewId(): Int {
-    return com.nhbs.fenxiao.R.layout.fragment_order_tab_manager
+    return R.layout.fragment_order_tab_manager
   }
 
   override fun setView(savedInstanceState: Bundle?) {
@@ -53,11 +54,11 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
   override fun loadData() {
     for (item in 0..3) {
       val statusTab = LayoutInflater.from(activity!!).inflate(
-          com.nhbs.fenxiao.R.layout.item_goods_status,
+          R.layout.item_goods_status,
           status_root, false)
-      val statusRoot: LinearLayout = statusTab.findViewById(com.nhbs.fenxiao.R.id.tba_root)
-      val text: TextView = statusTab.findViewById(com.nhbs.fenxiao.R.id.text)
-      val count: TextView = statusTab.findViewById(com.nhbs.fenxiao.R.id.count)
+      val statusRoot: LinearLayout = statusTab.findViewById(R.id.tba_root)
+      val text: TextView = statusTab.findViewById(R.id.text)
+      val count: TextView = statusTab.findViewById(R.id.count)
       when (item) {
         0 -> {
           statusRoot.isSelected = true
@@ -89,9 +90,9 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
       status_root.getChildAt(i).setOnClickListener {
         for (item in 0..3) {
           val statusTab = status_root.getChildAt(item)
-          val statusRoot: LinearLayout = statusTab.findViewById(com.nhbs.fenxiao.R.id.tba_root)
-          val text: TextView = statusTab.findViewById(com.nhbs.fenxiao.R.id.text)
-          val count: TextView = statusTab.findViewById(com.nhbs.fenxiao.R.id.count)
+          val statusRoot: LinearLayout = statusTab.findViewById(R.id.tba_root)
+          val text: TextView = statusTab.findViewById(R.id.text)
+          val count: TextView = statusTab.findViewById(R.id.count)
           statusTab.isEnabled = i != item
           statusRoot.isSelected = i == item
           text.isSelected = i == item
@@ -164,16 +165,20 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
       when (view.id) {
         R.id.status_btn -> {
           val info = adapter.data[position] as OrderInfo
-          mPresenter.goSendGoods(info,position)
+          mPresenter.goSendGoods(info, position)
         }
       }
     }
 
 
     adapter1.setOnItemChildClickListener { adapter, view, position ->
+      val info = adapter.data[position] as OrderInfo
       when (view.id) {
         R.id.status_btn -> {
-
+          val editPrice = EditPricePopupWindow(activity!!) { goodsPrice,packagePrice ->
+            mPresenter.updateOrderPrice(info,goodsPrice,packagePrice,position)
+          }
+          editPrice.showPopupWindow()
         }
       }
     }
@@ -237,13 +242,18 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
         }
       }
     }
-
   }
 
   override fun goSendGoodsSuccess(info: OrderInfo, position: Int) {
     adapter0.remove(position)
     adapter3.addData(info)
     showToast("发货成功")
+  }
+
+
+  override fun updateOrderPriceSuccess(info: OrderInfo, position: Int) {
+    adapter1.setData(position,info)
+    showToast("修改成功")
   }
 
 

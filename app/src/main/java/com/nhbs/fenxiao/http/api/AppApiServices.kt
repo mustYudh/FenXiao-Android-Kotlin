@@ -111,4 +111,7 @@ interface AppApiServices {
   @NetMethod(ParameterNames = ["orderId", "expressNumber", "dealWay"],
       Url = "/order/goSendGoods")
   fun goSendGoods(orderId: String, expressNumber: String, dealWay: Int): Observable<Any>
+
+  @NetMethod(ParameterNames = ["orderId","price","postage"],Url = "/order/updateOrderPrice")
+  fun updateOrderPrice(orderId: String,price: String,postage: String): Observable<Any>
 }

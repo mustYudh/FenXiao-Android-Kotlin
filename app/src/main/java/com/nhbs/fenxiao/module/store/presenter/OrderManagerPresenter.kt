@@ -57,4 +57,14 @@ class OrderManagerPresenter(viewer: OrderManagerViewer) : BaseViewPresenter<Orde
         })
   }
 
+  fun updateOrderPrice(info: OrderInfo,price: String,postage: String,position: Int) {
+    XHttpProxy.proxy(AppApiServices::class.java)
+        .updateOrderPrice(info.orderId,price,postage)
+        .subscribeWith(object : TipRequestSubscriber<Any>() {
+          override fun onSuccess(t: Any?) {
+            getViewer()?.updateOrderPriceSuccess(info,position)
+          }
+        })
+  }
+
 }
