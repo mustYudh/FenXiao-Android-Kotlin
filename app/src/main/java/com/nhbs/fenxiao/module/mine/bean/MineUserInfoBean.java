@@ -14,5 +14,7 @@ public class MineUserInfoBean {
     public String nickName;
     public String balance;
     public String headImage;
-    public Integer focusNum;
+    public String focusNum;
+    public String aliStatus;
+    public String winStatus;
 }

@@ -116,13 +116,13 @@ public class MineFragment extends BaseBarFragment
 
         mPresenter.getUserInfo();
 
-        bindView(R.id.tv_withdraw, view -> showTypeDialog());
+
     }
 
     private int type = 1;
 
     @SuppressLint("SetTextI18n")
-    private void showTypeDialog() {
+    private void showTypeDialog(MineUserInfoBean mineUserInfoBean) {
         payDialog = new DialogUtils.Builder(getActivity()).view(R.layout.dialog_withdraw)
                 .gravity(Gravity.BOTTOM)
                 .cancelTouchout(true)
@@ -163,7 +163,11 @@ public class MineFragment extends BaseBarFragment
             } else {
                 ToastUtils.show("用户数据异常");
             }
+            if (payDialog.isShowing()) {
+                payDialog.dismiss();
+            }
         });
+        payDialog.setOnDismissListener(dialogInterface -> type = 1);
     }
 
     @Override
@@ -244,6 +248,8 @@ public class MineFragment extends BaseBarFragment
             } else {
                 mHeadimg.setImageResource(R.drawable.ic_launcher_background);
             }
+
+            bindView(R.id.tv_withdraw, view -> showTypeDialog(mineUserInfoBean));
         }
     }
 
