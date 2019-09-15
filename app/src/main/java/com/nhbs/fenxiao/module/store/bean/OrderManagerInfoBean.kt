@@ -1,6 +1,7 @@
 package com.nhbs.fenxiao.module.store.bean
 
 import java.io.Serializable
+import java.math.BigDecimal
 
 /**
  * @author yudneghao
@@ -20,7 +21,7 @@ data class OrderInfo(
     var mobile: String,
     var number: Int,
     var orderId: String,
-    var price: Double,
+    var price: BigDecimal,
     var receivingTime: Int,
     var shopId: String,
     var shopImage: String,
@@ -29,8 +30,10 @@ data class OrderInfo(
     var tagTwo: String,
     var title: String,
     var totalPrice: String,
+    var postage: String,
     var type: Int,
     var updateTime: Long,
     var userId: String,
     var userName: String
 ) : Serializable
+

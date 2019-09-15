@@ -7,6 +7,7 @@ import android.widget.TextView
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseFragment
 import com.nhbs.fenxiao.module.store.adapter.OrderListAdapter
+import com.nhbs.fenxiao.module.store.bean.OrderCountBean
 import com.nhbs.fenxiao.module.store.bean.OrderInfo
 import com.nhbs.fenxiao.module.store.bean.QueryShopKeeperOrdersParams
 import com.nhbs.fenxiao.module.store.pop.EditPricePopupWindow
@@ -53,9 +54,7 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
 
   override fun loadData() {
     for (item in 0..3) {
-      val statusTab = LayoutInflater.from(activity!!).inflate(
-          R.layout.item_goods_status,
-          status_root, false)
+      val statusTab = LayoutInflater.from(activity!!).inflate(R.layout.item_goods_status, status_root, false)
       val statusRoot: LinearLayout = statusTab.findViewById(R.id.tba_root)
       val text: TextView = statusTab.findViewById(R.id.text)
       val count: TextView = statusTab.findViewById(R.id.count)
@@ -115,10 +114,8 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
         }
       }
     }
+
     list.setLinearLayoutAdapter(adapter0)
-
-
-
 
     refresh.setOnRefreshListener {
       when (position) {
@@ -175,8 +172,8 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
       val info = adapter.data[position] as OrderInfo
       when (view.id) {
         R.id.status_btn -> {
-          val editPrice = EditPricePopupWindow(activity!!) { goodsPrice,packagePrice ->
-            mPresenter.updateOrderPrice(info,goodsPrice,packagePrice,position)
+          val editPrice = EditPricePopupWindow(activity!!,info) { goodsPrice, packagePrice ->
+            mPresenter.updateOrderPrice(info, goodsPrice, packagePrice, position)
           }
           editPrice.showPopupWindow()
         }
@@ -203,6 +200,7 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
     params1.status = 1
     params2.status = 4
     params3.status = 5
+    mPresenter.getOrdersCount()
     mPresenter.findMyShopMerchandiseList(0, params0)
     mPresenter.findMyShopMerchandiseList(1, params1)
     mPresenter.findMyShopMerchandiseList(2, params2)
@@ -244,16 +242,41 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
     }
   }
 
+
+  override fun setOrdersCount(count: OrderCountBean?) {
+    for (i in 0 until 4) {
+      val statusTab = status_root.getChildAt(i)
+      val tabCount: TextView = statusTab.findViewById(R.id.count)
+      when(i) {
+        0 -> {
+          tabCount.text = count?.tabOne.toString()
+        }
+        1 -> {
+          tabCount.text = count?.tabTwo.toString()
+        }
+        2 -> {
+          tabCount.text = count?.tabThree.toString()
+        }
+        3 -> {
+          tabCount.text = count?.tabFour.toString()
+        }
+      }
+    }
+  }
+
+
   override fun goSendGoodsSuccess(info: OrderInfo, position: Int) {
     adapter0.remove(position)
     adapter3.addData(info)
     showToast("发货成功")
+    mPresenter.getOrdersCount()
   }
 
 
   override fun updateOrderPriceSuccess(info: OrderInfo, position: Int) {
-    adapter1.setData(position,info)
+    adapter1.setData(position, info)
     showToast("修改成功")
+    mPresenter.getOrdersCount()
   }
 
 

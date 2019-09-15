@@ -139,12 +139,13 @@
         android:background="@color/line_color"
         />
     <TextView
+        android:id="@+id/back_money"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"
         android:paddingBottom="4dp"
         android:paddingTop="4dp"
-        android:text="商品退款：-130.00"
+        tools:text="商品退款：-130.00"
         android:textColor="#ffa0a9bb"
         android:textSize="11sp"
         />

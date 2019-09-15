@@ -29,28 +29,29 @@ class OrderListAdapter(var status: Int) : BaseQuickAdapter<OrderInfo, BaseViewHo
     val statusText = helper?.getView<TextView>(R.id.status)
     when (status) {
       0 -> {
-        helper?.setVisible(R.id.refund_rood, false)
+        helper?.setGone(R.id.refund_rood, false)
         helper?.setText(R.id.status_btn, "发货")
         statusText?.setTextColor(Color.parseColor("#FF2751"))
         statusText?.text = "待收货"
       }
       1 -> {
-        helper?.setVisible(R.id.refund_rood, false)
+        helper?.setGone(R.id.refund_rood, false)
         helper?.setText(R.id.status_btn, "修改价格")
         statusText?.setTextColor(Color.parseColor("#FF2751"))
         statusText?.text = "待收货"
       }
       2 -> {
-        helper?.setVisible(R.id.refund_rood, false)
+        helper?.setGone(R.id.refund_rood, false)
         helper?.setText(R.id.status_btn, "查看物流")
         statusText?.setTextColor(Color.parseColor("#A0A9BB"))
         statusText?.text = "已发货"
       }
       3 -> {
-        helper?.setVisible(R.id.refund_rood, true)
+        helper?.setGone(R.id.refund_rood, true)
         helper?.setText(R.id.status_btn, "处理退款")
-        statusText?.setTextColor(Color.parseColor("#FF2751"))
-        statusText?.text = "待收货"
+        statusText?.setTextColor(Color.parseColor(if (item?.status == 5) "#FF2751" else "A0A9BB"))
+        statusText?.text = if (item?.status == 5) "待处理" else "已处理"
+        helper?.setText(R.id.back_money, "商品退款：-${item?.totalPrice}")
       }
     }
   }

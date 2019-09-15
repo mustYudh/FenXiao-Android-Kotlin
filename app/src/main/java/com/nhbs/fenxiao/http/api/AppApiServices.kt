@@ -5,6 +5,7 @@ import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
 import com.nhbs.fenxiao.module.store.bean.ActivityListInfo
 import com.nhbs.fenxiao.module.store.bean.GoodsListBean
+import com.nhbs.fenxiao.module.store.bean.OrderCountBean
 import com.nhbs.fenxiao.module.store.bean.OrderManagerInfoBean
 import com.nhbs.fenxiao.module.store.bean.ShopInfoBean
 import com.nhbs.fenxiao.module.store.bean.TypeCountListBean
@@ -114,4 +115,9 @@ interface AppApiServices {
 
   @NetMethod(ParameterNames = ["orderId","price","postage"],Url = "/order/updateOrderPrice")
   fun updateOrderPrice(orderId: String,price: String,postage: String): Observable<Any>
+
+  @POST("/api/shop/getOrdersCount")
+  @Headers("Content-Type: application/json", "Accept: application/json")
+  fun getOrdersCount(@Body body: RequestBody, @Header(
+      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<OrderCountBean>>
 }

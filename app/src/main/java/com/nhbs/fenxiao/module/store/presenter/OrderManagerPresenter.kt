@@ -1,8 +1,10 @@
 package com.nhbs.fenxiao.module.store.presenter
 
 import android.annotation.SuppressLint
+import android.text.TextUtils
 import com.nhbs.fenxiao.http.api.AppApiServices
 import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber
+import com.nhbs.fenxiao.module.store.bean.OrderCountBean
 import com.nhbs.fenxiao.module.store.bean.OrderInfo
 import com.nhbs.fenxiao.module.store.bean.OrderManagerInfoBean
 import com.nhbs.fenxiao.module.store.bean.QueryShopKeeperOrdersParams
@@ -22,6 +24,18 @@ import com.yu.common.utils.RxSchedulerUtils
 class OrderManagerPresenter(viewer: OrderManagerViewer) : BaseViewPresenter<OrderManagerViewer>(
     viewer) {
 
+
+  fun getOrdersCount() {
+    XHttp.custom(AppApiServices::class.java)
+        .getOrdersCount(HttpUtils.getJsonRequestBody(Any()))
+        .compose(RxSchedulerUtils._io_main_o<ApiResult<OrderCountBean>>())
+        .subscribeWith(object : TipRequestSubscriber<ApiResult<OrderCountBean>>() {
+          override fun onSuccess(info: ApiResult<OrderCountBean>?) {
+              getViewer()?.setOrdersCount(info?.data)
+          }
+
+        })
+  }
 
   fun findMyShopMerchandiseList(position: Int,params: QueryShopKeeperOrdersParams,refreshLayout: RefreshLayout? = null, type: Int? = 0) {
     XHttp.custom(AppApiServices::class.java)
@@ -58,10 +72,13 @@ class OrderManagerPresenter(viewer: OrderManagerViewer) : BaseViewPresenter<Orde
   }
 
   fun updateOrderPrice(info: OrderInfo,price: String,postage: String,position: Int) {
+
     XHttpProxy.proxy(AppApiServices::class.java)
         .updateOrderPrice(info.orderId,price,postage)
         .subscribeWith(object : TipRequestSubscriber<Any>() {
           override fun onSuccess(t: Any?) {
+            val price = (price.toDouble() * info.number + (if (TextUtils.isEmpty(postage)) 0.00 else position.toDouble())).toString()
+            info.totalPrice = price
             getViewer()?.updateOrderPriceSuccess(info,position)
           }
         })
