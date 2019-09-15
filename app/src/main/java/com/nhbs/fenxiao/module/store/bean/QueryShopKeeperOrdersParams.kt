@@ -8,4 +8,4 @@ import java.io.Serializable
  */
 data class QueryShopKeeperOrdersParams(var status: Int = 0,
     var type: Int = 0, var pageNum: Int = 1,
-    var pageSize: Int = 10, var searchTtile: String? = null) : Serializable
+    var pageSize: Int = 10, var searchTtile: String? = "") : Serializable

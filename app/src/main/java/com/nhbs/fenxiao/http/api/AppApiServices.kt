@@ -96,6 +96,7 @@ interface AppApiServices {
   fun getAuditLogList(pageNum: Int? = 1, pageSize: Int? = 10): Observable<ActivityListInfo>
 
 
-  @NetMethod(ParameterNames = [], Url = "/api/create/queryShopKeeperOrders")
+  @POST("/api/create/queryShopKeeperOrders")
+  @Headers("Content-Type: application/json", "Accept: application/json")
   fun queryShopKeeperOrders(@Body body: RequestBody): Observable<ApiResult<Any>>
 }
