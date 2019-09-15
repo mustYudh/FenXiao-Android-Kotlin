@@ -34,7 +34,7 @@ public class ImageLoaderKit {
      */
 
     public void clear() {
-        NIMGlideModule.clearMemoryCache(context);
+        //NIMGlideModule.clearMemoryCache(context);
     }
 
     /**

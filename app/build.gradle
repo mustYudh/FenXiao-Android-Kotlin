@@ -204,10 +204,9 @@ repositories {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(path: ':common')
     implementation project(path: ':http-lib')
     implementation project(path: ':bottom_tab')
-//    implementation project(path: ':uikit')
+    implementation project(path: ':uikit')
     implementation project(':share')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
