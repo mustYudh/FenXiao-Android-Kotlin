@@ -14,10 +14,10 @@
       >
 
     <TextView
+        android:id="@+id/type_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:text="黑色"
         android:textColor="#ff2d2e39"
         android:textSize="14sp"
         />
@@ -29,10 +29,10 @@
         />
 
     <TextView
+        android:id="@+id/type_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="4dp"
-        android:text="0件商品"
         android:textColor="#ffa0a9bb"
         android:textSize="14sp"
         />

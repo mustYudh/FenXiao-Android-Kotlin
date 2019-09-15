@@ -151,7 +151,7 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
           }
         }
         SELECTED_DATA_REQUEST_DATA_1 -> {
-//          val result = data?.getSerializableExtra(SelectGoodsTypeActivity.SELECTED_DATA) as Row
+//          val result = data?.getSerializableExtra(SelectGoodsTypeActivity.SELECTED_DATA) as OrderInfo
 //          type_name1.text = result.classify
         }
         SELECTED_DATA_REQUEST_DATA_2 -> {

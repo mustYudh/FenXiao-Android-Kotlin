@@ -5,15 +5,18 @@ import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.nhbs.fenxiao.R
-import com.nhbs.fenxiao.module.store.bean.OrderListBean
+import com.nhbs.fenxiao.module.store.bean.OrderInfo
 
 /**
  * @author yudneghao
  * @date 2019-08-18
  */
-class OrderListAdapter(var status: Int) : BaseQuickAdapter<OrderListBean, BaseViewHolder>(
+class OrderListAdapter(var status: Int) : BaseQuickAdapter<OrderInfo, BaseViewHolder>(
     (R.layout.item_order_list_layout), null) {
-  override fun convert(helper: BaseViewHolder?, item: OrderListBean?) {
+  override fun convert(helper: BaseViewHolder?, item: OrderInfo?) {
+    helper?.setText(R.id.name, "收货人: ${item?.userName} ${item?.mobile}")?.setText(R.id.time,
+        "支付时间: ${item?.receivingTime}")?.setText(R.id.price, "本单金额：¥${item?.totalPrice}")
+        ?.setText(R.id.count, "共${item?.number}件")
     val statusText = helper?.getView<TextView>(R.id.status)
     when (status) {
       0 -> {

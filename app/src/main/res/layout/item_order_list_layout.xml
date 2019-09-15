@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="8dp"
     android:background="@color/white"
     android:orientation="vertical"
@@ -37,12 +37,13 @@
           />
 
       <TextView
+          android:id="@+id/count"
           android:layout_width="match_parent"
           android:layout_height="16dp"
           android:layout_gravity="bottom"
           android:background="#61000000"
           android:gravity="center"
-          android:text="共1件"
+          tools:text="共1件"
           android:textColor="@color/white"
           android:textSize="10sp"
           />
@@ -64,29 +65,32 @@
 
 
       <com.yu.common.ui.DelayClickTextView
+          android:id="@+id/name"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="收货人: 张XX 15032455421"
+          tools:text="收货人: 张XX 15032455421"
           android:textColor="#ff2d2e39"
           android:textSize="14sp"
           />
 
 
       <TextView
+          android:id="@+id/time"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="2dp"
-          android:text="支付时间: 2019-01-01 12:14:15"
+          tools:text="支付时间: 2019-01-01 12:14:15"
           android:textColor="#ffa0a9bb"
           android:textSize="12sp"
           />
 
 
       <TextView
+          android:id="@+id/price"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="2dp"
-          android:text="本单金额：¥130.00"
+          tools:text="本单金额：¥130.00"
           android:textColor="#ffa0a9bb"
           android:textSize="12sp"
           />

@@ -6,12 +6,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.nhbs.fenxiao.base.BaseFragment
 import com.nhbs.fenxiao.module.store.adapter.OrderListAdapter
+import com.nhbs.fenxiao.module.store.bean.OrderInfo
 import com.nhbs.fenxiao.module.store.bean.QueryShopKeeperOrdersParams
 import com.nhbs.fenxiao.module.store.presenter.OrderManagerPresenter
 import com.nhbs.fenxiao.module.store.presenter.OrderManagerViewer
 import com.nhbs.fenxiao.utils.setLinearLayoutAdapter
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.fragment_order_tab_manager.list
+import kotlinx.android.synthetic.main.fragment_order_tab_manager.refresh
 import kotlinx.android.synthetic.main.fragment_order_tab_manager.status_root
 
 
@@ -21,10 +23,15 @@ import kotlinx.android.synthetic.main.fragment_order_tab_manager.status_root
  */
 
 
-class OrderManagerTabFragment : BaseFragment() , OrderManagerViewer {
+class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
+
+
   @PresenterLifeCycle
   private val mPresenter = OrderManagerPresenter(this)
-  var params: QueryShopKeeperOrdersParams = QueryShopKeeperOrdersParams()
+  var params0: QueryShopKeeperOrdersParams = QueryShopKeeperOrdersParams()
+  var params1: QueryShopKeeperOrdersParams = QueryShopKeeperOrdersParams()
+  var params2: QueryShopKeeperOrdersParams = QueryShopKeeperOrdersParams()
+  var params3: QueryShopKeeperOrdersParams = QueryShopKeeperOrdersParams()
 
 
   private var position: Int = 0
@@ -88,7 +95,7 @@ class OrderManagerTabFragment : BaseFragment() , OrderManagerViewer {
           text.isSelected = i == item
           count.isSelected = i == item
           position = i
-          when(position) {
+          when (position) {
             0 -> {
               list.setLinearLayoutAdapter(adapter0)
             }
@@ -108,7 +115,53 @@ class OrderManagerTabFragment : BaseFragment() , OrderManagerViewer {
 
     list.setLinearLayoutAdapter(adapter0)
 
-    mPresenter.findMyShopMerchandiseList(params)
+    mPresenter.findMyShopMerchandiseList(params0)
+
+    refresh.setOnRefreshListener {
+      when (position) {
+        0 -> {
+          params0.pageNum = 0
+          mPresenter.findMyShopMerchandiseList(params0,it,0)
+        }
+        1 -> {
+          params1.pageNum = 0
+          mPresenter.findMyShopMerchandiseList(params1,it,0)
+        }
+        2 -> {
+          params2.pageNum = 0
+          mPresenter.findMyShopMerchandiseList(params2,it,0)
+        }
+        3 -> {
+          params3.pageNum = 0
+          mPresenter.findMyShopMerchandiseList(params3,it,0)
+        }
+      }
+    }
+    refresh.setOnLoadMoreListener {
+      when (position) {
+        0 -> {
+          params0.pageNum = params0.pageNum + 1
+          mPresenter.findMyShopMerchandiseList(params0,it,1)
+        }
+        1 -> {
+          params1.pageNum = params1.pageNum + 1
+          mPresenter.findMyShopMerchandiseList(params1,it,1)
+        }
+        2 -> {
+          params2.pageNum = params2.pageNum + 1
+          mPresenter.findMyShopMerchandiseList(params2,it,1)
+        }
+        3 -> {
+          params3.pageNum = params3.pageNum + 1
+          mPresenter.findMyShopMerchandiseList(params3,it,1)
+        }
+      }
+    }
+
+  }
+
+
+  override fun getGoodsInfo(rows: List<OrderInfo>?) {
 
   }
 

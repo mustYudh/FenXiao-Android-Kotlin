@@ -5,7 +5,9 @@ import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
 import com.nhbs.fenxiao.module.store.bean.ActivityListInfo
 import com.nhbs.fenxiao.module.store.bean.GoodsListBean
+import com.nhbs.fenxiao.module.store.bean.OrderManagerInfoBean
 import com.nhbs.fenxiao.module.store.bean.ShopInfoBean
+import com.nhbs.fenxiao.module.store.bean.TypeCountListBean
 import com.nhbs.fenxiao.utils.oss.bean.OssConfig
 import com.xuexiang.xhttp2.annotation.NetMethod
 import com.xuexiang.xhttp2.model.ApiResult
@@ -98,5 +100,10 @@ interface AppApiServices {
 
   @POST("/api/create/queryShopKeeperOrders")
   @Headers("Content-Type: application/json", "Accept: application/json")
-  fun queryShopKeeperOrders(@Body body: RequestBody): Observable<ApiResult<Any>>
+  fun queryShopKeeperOrders(@Body body: RequestBody, @Header(
+      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<OrderManagerInfoBean>>
+
+
+  @NetMethod(Url = "/merchandise/countByClass")
+  fun getGoodsTypeCount(): Observable<TypeCountListBean>
 }
