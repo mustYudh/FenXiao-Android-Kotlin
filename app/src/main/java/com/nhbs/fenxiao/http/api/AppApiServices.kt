@@ -78,7 +78,8 @@ interface AppApiServices {
 
   @POST("/api/merchandise/findMerchandiseList")
   @Headers("Content-Type: application/json", "Accept: application/json")
-  fun getGoodsList(@Body params: RequestBody, @Header("token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<GoodsListBean>>
+  fun getGoodsList(@Body params: RequestBody, @Header(
+      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<GoodsListBean>>
 
 
   @NetMethod(Url = "/merchandise/pullDown", ParameterNames = ["id"])
@@ -106,4 +107,8 @@ interface AppApiServices {
 
   @NetMethod(Url = "/merchandise/countByClass")
   fun getGoodsTypeCount(): Observable<TypeCountListBean>
+
+  @NetMethod(ParameterNames = ["orderId", "expressNumber", "dealWay"],
+      Url = "/order/goSendGoods")
+  fun goSendGoods(orderId: String, expressNumber: String, dealWay: Int): Observable<Any>
 }

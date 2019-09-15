@@ -3,10 +3,12 @@ package com.nhbs.fenxiao.module.store.presenter
 import android.annotation.SuppressLint
 import com.nhbs.fenxiao.http.api.AppApiServices
 import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber
+import com.nhbs.fenxiao.module.store.bean.OrderInfo
 import com.nhbs.fenxiao.module.store.bean.OrderManagerInfoBean
 import com.nhbs.fenxiao.module.store.bean.QueryShopKeeperOrdersParams
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.xuexiang.xhttp2.XHttp
+import com.xuexiang.xhttp2.XHttpProxy
 import com.xuexiang.xhttp2.model.ApiResult
 import com.xuexiang.xhttp2.utils.HttpUtils
 import com.yu.common.framework.BaseViewPresenter
@@ -41,6 +43,16 @@ class OrderManagerPresenter(viewer: OrderManagerViewer) : BaseViewPresenter<Orde
                 refreshLayout.finishLoadMoreWithNoMoreData()
               }
             }
+          }
+        })
+  }
+
+  fun goSendGoods(info: OrderInfo,position: Int) {
+    XHttpProxy.proxy(AppApiServices::class.java)
+        .goSendGoods(info.id,info.expressNumber,info.dealWay)
+        .subscribeWith(object : TipRequestSubscriber<Any>() {
+          override fun onSuccess(t: Any?) {
+            getViewer()?.goSendGoodsSuccess(info,position)
           }
         })
   }

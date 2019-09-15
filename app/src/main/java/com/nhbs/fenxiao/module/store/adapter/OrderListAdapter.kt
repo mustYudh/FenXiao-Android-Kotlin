@@ -18,7 +18,7 @@ class OrderListAdapter(var status: Int) : BaseQuickAdapter<OrderInfo, BaseViewHo
   override fun convert(helper: BaseViewHolder?, item: OrderInfo?) {
     helper?.setText(R.id.name, "收货人: ${item?.userName} ${item?.mobile}")?.setText(R.id.time,
         "支付时间: ${item?.receivingTime}")?.setText(R.id.price, "本单金额：¥${item?.totalPrice}")
-        ?.setText(R.id.count, "共${item?.number}件")
+        ?.setText(R.id.count, "共${item?.number}件")?.addOnClickListener(R.id.status_btn)
     val images = item?.goodsImage?.split(",")
     if (images != null && images.size > 0) {
       val url = images[0]

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseFragment
 import com.nhbs.fenxiao.module.store.adapter.OrderListAdapter
 import com.nhbs.fenxiao.module.store.bean.OrderInfo
@@ -11,6 +12,7 @@ import com.nhbs.fenxiao.module.store.bean.QueryShopKeeperOrdersParams
 import com.nhbs.fenxiao.module.store.presenter.OrderManagerPresenter
 import com.nhbs.fenxiao.module.store.presenter.OrderManagerViewer
 import com.nhbs.fenxiao.utils.setLinearLayoutAdapter
+import com.nhbs.fenxiao.utils.showToast
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.fragment_order_tab_manager.list
 import kotlinx.android.synthetic.main.fragment_order_tab_manager.refresh
@@ -113,9 +115,7 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
       }
     }
     list.setLinearLayoutAdapter(adapter0)
-//    list.setLinearLayoutAdapter(adapter1)
-//    list.setLinearLayoutAdapter(adapter2)
-//    list.setLinearLayoutAdapter(adapter3)
+
 
 
 
@@ -160,7 +160,40 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
       }
     }
 
+    adapter0.setOnItemChildClickListener { adapter, view, position ->
+      when (view.id) {
+        R.id.status_btn -> {
+          val info = adapter.data[position] as OrderInfo
+          mPresenter.goSendGoods(info,position)
+        }
+      }
+    }
 
+
+    adapter1.setOnItemChildClickListener { adapter, view, position ->
+      when (view.id) {
+        R.id.status_btn -> {
+
+        }
+      }
+    }
+
+
+    adapter2.setOnItemChildClickListener { adapter, view, position ->
+      when (view.id) {
+        R.id.status_btn -> {
+
+        }
+      }
+    }
+
+    adapter3.setOnItemChildClickListener { adapter, view, position ->
+      when (view.id) {
+        R.id.status_btn -> {
+
+        }
+      }
+    }
 
     params1.status = 1
     params2.status = 4
@@ -205,6 +238,12 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
       }
     }
 
+  }
+
+  override fun goSendGoodsSuccess(info: OrderInfo, position: Int) {
+    adapter0.remove(position)
+    adapter3.addData(info)
+    showToast("发货成功")
   }
 
 

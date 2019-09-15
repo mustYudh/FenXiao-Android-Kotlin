@@ -79,6 +79,8 @@
         android:screenOrientation="portrait"/>
     <activity
         android:name=".module.store.activity.OrderManagerActivity"
+        android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
+        android:windowSoftInputMode="adjustNothing"
         android:screenOrientation="portrait"/>
     <activity
         android:name=".module.home.activity.AwardDetailsActivity"
