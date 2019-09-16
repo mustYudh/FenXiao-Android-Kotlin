@@ -88,6 +88,7 @@ class OrderManagerPresenter(viewer: OrderManagerViewer) : BaseViewPresenter<Orde
         .findExp(expressNumber.expressNumber)
         .subscribeWith(object : LoadingRequestSubscriber<ExpInfoBean>(activity,false) {
           override fun onSuccess(data: ExpInfoBean?) {
+            data?.orderInfo = expressNumber
             getViewer()?.findExpSuccess(data)
           }
         })
