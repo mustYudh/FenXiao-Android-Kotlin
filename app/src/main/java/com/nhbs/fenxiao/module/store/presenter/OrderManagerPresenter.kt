@@ -3,6 +3,7 @@ package com.nhbs.fenxiao.module.store.presenter
 import android.annotation.SuppressLint
 import android.text.TextUtils
 import com.nhbs.fenxiao.http.api.AppApiServices
+import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber
 import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber
 import com.nhbs.fenxiao.module.store.bean.ExpInfoBean
 import com.nhbs.fenxiao.module.store.bean.OrderCountBean
@@ -77,7 +78,7 @@ class OrderManagerPresenter(viewer: OrderManagerViewer) : BaseViewPresenter<Orde
   fun findExp(expressNumber: OrderInfo) {
     XHttpProxy.proxy(AppApiServices::class.java)
         .findExp(expressNumber.expressNumber)
-        .subscribeWith(object : TipRequestSubscriber<ExpInfoBean>() {
+        .subscribeWith(object : LoadingRequestSubscriber<ExpInfoBean>(activity,false) {
           override fun onSuccess(data: ExpInfoBean?) {
             getViewer()?.findExpSuccess(data)
           }

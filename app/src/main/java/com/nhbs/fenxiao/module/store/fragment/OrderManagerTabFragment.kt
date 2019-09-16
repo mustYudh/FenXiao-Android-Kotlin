@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseFragment
+import com.nhbs.fenxiao.module.store.activity.DeliveryInfoActivity
 import com.nhbs.fenxiao.module.store.adapter.OrderListAdapter
 import com.nhbs.fenxiao.module.store.bean.ExpInfoBean
 import com.nhbs.fenxiao.module.store.bean.OrderCountBean
@@ -284,7 +285,7 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
 
 
   override fun findExpSuccess(data: ExpInfoBean?) {
-
+      launchHelper.startActivity(DeliveryInfoActivity.getIntent(activity,data))
   }
 
 
