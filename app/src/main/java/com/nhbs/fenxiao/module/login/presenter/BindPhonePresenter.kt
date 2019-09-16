@@ -42,7 +42,7 @@ class BindPhonePresenter(viewer: BindPhoneViewer) : BaseViewPresenter<BindPhoneV
 
     XHttpProxy.proxy(AppApiServices::class.java)
         .sendVerCode(phone)
-        .subscribeWith(object : LoadingRequestSubscriber<Any>(activity, false) {
+        .subscribeWith(object : LoadingRequestSubscriber<Any>(activity!!, false) {
           override fun onSuccess(o: Any) {
             showToast("获取验证码成功")
             if (timer == null) {

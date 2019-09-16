@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    >
+
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="80dp"
+      android:background="@color/white"
+      android:orientation="horizontal"
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp"
+      android:paddingTop="8dp"
+      >
+
+
+
+    <com.shehuan.niv.NiceImageView
+        android:id="@+id/show_photo"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:scaleType="centerCrop"
+        app:corner_radius="2dp"
+        />
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingRight="26dp"
+        android:paddingLeft="12dp"
+        >
+
+      <TextView
+          android:id="@+id/content"
+          android:textColor="#ff2d2e39"
+          android:textSize="12sp"
+          tools:text="办公室沙发茶几组合现代三人位真皮三人位真"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+
+
+      <TextView
+          android:id="@+id/type"
+          android:textColor="#ffa0a9bb"
+          android:textSize="12sp"
+          android:paddingBottom="16dp"
+          android:gravity="bottom"
+          tools:text="黑色"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+      <TextView
+          android:id="@+id/money"
+          android:textColor="#FF2F57"
+          android:textSize="12sp"
+          tools:text="¥1243.00"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+
+
+
+      <TextView
+          android:id="@+id/count"
+          android:gravity="right"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="X1"
+          android:textColor="#ffa0a9bb"
+          android:textSize="10sp"
+          />
+    </LinearLayout>
+  </LinearLayout>
+
+  <LinearLayout
+      android:paddingLeft="16dp"
+      android:paddingRight="16dp"
+      android:layout_marginTop="8dp"
+      android:background="@color/white"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/delivery_status"
+        android:paddingTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="物流状态：未签收"
+        android:textColor="#ffa0a9bb"
+        android:textSize="12sp"
+        />
+
+
+    <TextView
+        android:id="@+id/delivery_company"
+        android:layout_marginTop="4dp"
+        android:paddingTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="承运公司：韵达快递"
+        android:textColor="#ffa0a9bb"
+        android:textSize="12sp"
+        />
+
+
+    <TextView
+        android:id="@+id/delivery_order"
+        android:layout_marginTop="4dp"
+        android:paddingTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="运单编号：21311424112414"
+        android:textColor="#ffa0a9bb"
+        android:textSize="12sp"
+        />
+
+
+    <TextView
+        android:id="@+id/delivery_time"
+        android:layout_marginTop="4dp"
+        android:paddingTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="发货时间：2019-01-01 14:32:11"
+        android:textColor="#ffa0a9bb"
+        android:textSize="12sp"
+        />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:background="@drawable/shape_gary_radius_2"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+  </LinearLayout>
+</LinearLayout>

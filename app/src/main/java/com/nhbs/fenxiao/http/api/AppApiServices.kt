@@ -126,4 +126,10 @@ interface AppApiServices {
 
   @NetMethod(ParameterNames = ["nu"],Url = "/findExp")
   fun findExp(nu: String): Observable<ExpInfoBean>
+
+
+  @POST("/api/app/loginout")
+  @Headers("Content-Type: application/json", "Accept: application/json")
+  fun logout(@Body body: RequestBody, @Header(
+      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
 }
