@@ -1,5 +1,6 @@
 package com.nhbs.fenxiao.module.store.presenter
 
+import com.nhbs.fenxiao.module.store.bean.ExpInfoBean
 import com.nhbs.fenxiao.module.store.bean.OrderCountBean
 import com.nhbs.fenxiao.module.store.bean.OrderInfo
 import com.yu.common.mvp.Viewer
@@ -17,4 +18,6 @@ interface OrderManagerViewer : Viewer {
   fun goSendGoodsSuccess(info: OrderInfo,position: Int)
 
   fun updateOrderPriceSuccess(info: OrderInfo,position: Int)
+
+  fun findExpSuccess(data: ExpInfoBean?)
 }

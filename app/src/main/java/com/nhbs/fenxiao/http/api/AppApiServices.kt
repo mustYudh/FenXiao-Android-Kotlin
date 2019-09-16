@@ -4,6 +4,7 @@ import com.nhbs.fenxiao.data.UserProfile
 import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
 import com.nhbs.fenxiao.module.store.bean.ActivityListInfo
+import com.nhbs.fenxiao.module.store.bean.ExpInfoBean
 import com.nhbs.fenxiao.module.store.bean.GoodsListBean
 import com.nhbs.fenxiao.module.store.bean.OrderCountBean
 import com.nhbs.fenxiao.module.store.bean.OrderManagerInfoBean
@@ -120,4 +121,9 @@ interface AppApiServices {
   @Headers("Content-Type: application/json", "Accept: application/json")
   fun getOrdersCount(@Body body: RequestBody, @Header(
       "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<OrderCountBean>>
+
+
+
+  @NetMethod(ParameterNames = ["nu"],Url = "/findExp")
+  fun findExp(nu: String): Observable<ExpInfoBean>
 }

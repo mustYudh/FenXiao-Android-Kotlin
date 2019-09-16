@@ -7,6 +7,7 @@ import android.widget.TextView
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseFragment
 import com.nhbs.fenxiao.module.store.adapter.OrderListAdapter
+import com.nhbs.fenxiao.module.store.bean.ExpInfoBean
 import com.nhbs.fenxiao.module.store.bean.OrderCountBean
 import com.nhbs.fenxiao.module.store.bean.OrderInfo
 import com.nhbs.fenxiao.module.store.bean.QueryShopKeeperOrdersParams
@@ -54,7 +55,8 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
 
   override fun loadData() {
     for (item in 0..3) {
-      val statusTab = LayoutInflater.from(activity!!).inflate(R.layout.item_goods_status, status_root, false)
+      val statusTab = LayoutInflater.from(activity!!).inflate(R.layout.item_goods_status,
+          status_root, false)
       val statusRoot: LinearLayout = statusTab.findViewById(R.id.tba_root)
       val text: TextView = statusTab.findViewById(R.id.text)
       val count: TextView = statusTab.findViewById(R.id.count)
@@ -99,23 +101,23 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
           position = i
           when (position) {
             0 -> {
-              list.setLinearLayoutAdapter(adapter0)
+              list.setLinearLayoutAdapter(adapter0, true)
             }
             1 -> {
-              list.setLinearLayoutAdapter(adapter1)
+              list.setLinearLayoutAdapter(adapter1, true)
             }
             2 -> {
-              list.setLinearLayoutAdapter(adapter2)
+              list.setLinearLayoutAdapter(adapter2, true)
             }
             3 -> {
-              list.setLinearLayoutAdapter(adapter3)
+              list.setLinearLayoutAdapter(adapter3, true)
             }
           }
         }
       }
     }
 
-    list.setLinearLayoutAdapter(adapter0)
+    list.setLinearLayoutAdapter(adapter0, true)
 
     refresh.setOnRefreshListener {
       when (position) {
@@ -172,7 +174,7 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
       val info = adapter.data[position] as OrderInfo
       when (view.id) {
         R.id.status_btn -> {
-          val editPrice = EditPricePopupWindow(activity!!,info) { goodsPrice, packagePrice ->
+          val editPrice = EditPricePopupWindow(activity!!, info) { goodsPrice, packagePrice ->
             mPresenter.updateOrderPrice(info, goodsPrice, packagePrice, position)
           }
           editPrice.showPopupWindow()
@@ -184,7 +186,8 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
     adapter2.setOnItemChildClickListener { adapter, view, position ->
       when (view.id) {
         R.id.status_btn -> {
-
+          val info = adapter.data[position] as OrderInfo
+          mPresenter.findExp(info)
         }
       }
     }
@@ -197,7 +200,7 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
       }
     }
 
-    params1.status = 1
+    params1.status = 0
     params2.status = 4
     params3.status = 5
     mPresenter.getOrdersCount()
@@ -247,7 +250,7 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
     for (i in 0 until 4) {
       val statusTab = status_root.getChildAt(i)
       val tabCount: TextView = statusTab.findViewById(R.id.count)
-      when(i) {
+      when (i) {
         0 -> {
           tabCount.text = count?.tabOne.toString()
         }
@@ -277,6 +280,11 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
     adapter1.setData(position, info)
     showToast("修改成功")
     mPresenter.getOrdersCount()
+  }
+
+
+  override fun findExpSuccess(data: ExpInfoBean?) {
+
   }
 
 

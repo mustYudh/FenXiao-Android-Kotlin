@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.text.TextUtils
 import com.nhbs.fenxiao.http.api.AppApiServices
 import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber
+import com.nhbs.fenxiao.module.store.bean.ExpInfoBean
 import com.nhbs.fenxiao.module.store.bean.OrderCountBean
 import com.nhbs.fenxiao.module.store.bean.OrderInfo
 import com.nhbs.fenxiao.module.store.bean.OrderManagerInfoBean
@@ -31,20 +32,21 @@ class OrderManagerPresenter(viewer: OrderManagerViewer) : BaseViewPresenter<Orde
         .compose(RxSchedulerUtils._io_main_o<ApiResult<OrderCountBean>>())
         .subscribeWith(object : TipRequestSubscriber<ApiResult<OrderCountBean>>() {
           override fun onSuccess(info: ApiResult<OrderCountBean>?) {
-              getViewer()?.setOrdersCount(info?.data)
+            getViewer()?.setOrdersCount(info?.data)
           }
 
         })
   }
 
-  fun findMyShopMerchandiseList(position: Int,params: QueryShopKeeperOrdersParams,refreshLayout: RefreshLayout? = null, type: Int? = 0) {
+  fun findMyShopMerchandiseList(position: Int, params: QueryShopKeeperOrdersParams,
+      refreshLayout: RefreshLayout? = null, type: Int? = 0) {
     XHttp.custom(AppApiServices::class.java)
         .queryShopKeeperOrders(HttpUtils.getJsonRequestBody(params))
         .compose(RxSchedulerUtils._io_main_o<ApiResult<OrderManagerInfoBean>>())
         .subscribeWith(object : TipRequestSubscriber<ApiResult<OrderManagerInfoBean>>() {
           override fun onSuccess(data: ApiResult<OrderManagerInfoBean>?) {
             if (data != null && data.data != null && data.data.rows != null) {
-              getViewer()?.getGoodsInfo(data.data?.rows!!,type!!,position)
+              getViewer()?.getGoodsInfo(data.data?.rows!!, type!!, position)
             }
             if (refreshLayout != null) {
               if (type == 0) {
@@ -61,25 +63,38 @@ class OrderManagerPresenter(viewer: OrderManagerViewer) : BaseViewPresenter<Orde
         })
   }
 
-  fun goSendGoods(info: OrderInfo,position: Int) {
+  fun goSendGoods(info: OrderInfo, position: Int) {
     XHttpProxy.proxy(AppApiServices::class.java)
-        .goSendGoods(info.id,info.expressNumber,info.dealWay)
+        .goSendGoods(info.id, info.expressNumber, info.dealWay)
         .subscribeWith(object : TipRequestSubscriber<Any>() {
           override fun onSuccess(t: Any?) {
-            getViewer()?.goSendGoodsSuccess(info,position)
+            getViewer()?.goSendGoodsSuccess(info, position)
           }
         })
   }
 
-  fun updateOrderPrice(info: OrderInfo,price: String,postage: String,position: Int) {
+
+  fun findExp(expressNumber: OrderInfo) {
+    XHttpProxy.proxy(AppApiServices::class.java)
+        .findExp(expressNumber.expressNumber)
+        .subscribeWith(object : TipRequestSubscriber<ExpInfoBean>() {
+          override fun onSuccess(data: ExpInfoBean?) {
+            getViewer()?.findExpSuccess(data)
+          }
+        })
+
+  }
+
+  fun updateOrderPrice(info: OrderInfo, price: String, postage: String, position: Int) {
 
     XHttpProxy.proxy(AppApiServices::class.java)
-        .updateOrderPrice(info.orderId,price,postage)
+        .updateOrderPrice(info.orderId, price, postage)
         .subscribeWith(object : TipRequestSubscriber<Any>() {
           override fun onSuccess(t: Any?) {
-            val price = (price.toDouble() * info.number + (if (TextUtils.isEmpty(postage)) 0.00 else position.toDouble())).toString()
+            val price = (price.toDouble() * info.number + (if (TextUtils.isEmpty(
+                    postage)) 0.00 else position.toDouble())).toString()
             info.totalPrice = price
-            getViewer()?.updateOrderPriceSuccess(info,position)
+            getViewer()?.updateOrderPriceSuccess(info, position)
           }
         })
   }
