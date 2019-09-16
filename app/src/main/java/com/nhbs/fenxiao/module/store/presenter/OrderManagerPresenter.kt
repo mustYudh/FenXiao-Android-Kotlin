@@ -2,6 +2,7 @@ package com.nhbs.fenxiao.module.store.presenter
 
 import android.annotation.SuppressLint
 import android.text.TextUtils
+import com.mylhyl.circledialog.CircleDialog
 import com.nhbs.fenxiao.http.api.AppApiServices
 import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber
 import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber
@@ -65,13 +66,20 @@ class OrderManagerPresenter(viewer: OrderManagerViewer) : BaseViewPresenter<Orde
   }
 
   fun goSendGoods(info: OrderInfo, position: Int) {
-    XHttpProxy.proxy(AppApiServices::class.java)
-        .goSendGoods(info.id, info.expressNumber, info.dealWay)
-        .subscribeWith(object : TipRequestSubscriber<Any>() {
-          override fun onSuccess(t: Any?) {
-            getViewer()?.goSendGoodsSuccess(info, position)
-          }
-        })
+    CircleDialog.Builder()
+        .setTitle("温馨提示")
+        .setText("\n确定要发货吗?\n")
+        .setPositive("确定") {
+          XHttpProxy.proxy(AppApiServices::class.java)
+              .goSendGoods(info.id, info.expressNumber, info.dealWay)
+              .subscribeWith(object : TipRequestSubscriber<Any>() {
+                override fun onSuccess(t: Any?) {
+                  getViewer()?.goSendGoodsSuccess(info, position)
+                }
+              })
+        }.setNegative("取消", null)
+        .show(activity.supportFragmentManager)
+
   }
 
 
