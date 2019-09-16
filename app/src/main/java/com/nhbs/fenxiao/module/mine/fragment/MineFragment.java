@@ -1,10 +1,10 @@
 package com.nhbs.fenxiao.module.mine.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,6 +16,7 @@ import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarFragment;
 import com.nhbs.fenxiao.http.loading.NetLoadingDialog;
 import com.nhbs.fenxiao.module.home.StatusBarColorManager;
+import com.nhbs.fenxiao.module.mine.activity.BindAliPayActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineAddressListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineGeneralizeActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineIncomeActivity;
@@ -155,11 +156,37 @@ public class MineFragment extends BaseBarFragment
 
         DelayClickTextView tv_commit = payDialog.findViewById(R.id.tv_commit);
         tv_commit.setOnClickListener(view -> {
-            if (userInfoBean != null) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("WITHDRAW_TYPE", type);
-                bundle.putString("WITHDRAW_MONEY", userInfoBean.balance);
-                getLaunchHelper().startActivity(MineWithdrawActivity.class, bundle);
+            if (mineUserInfoBean != null) {
+                switch (type) {
+                    case 1:
+                        if (mineUserInfoBean.aliStatus != null && mineUserInfoBean.aliStatus.equals("1")) {
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("WITHDRAW_TYPE", type);
+                            bundle.putString("WITHDRAW_MONEY", mineUserInfoBean.balance);
+                            getLaunchHelper().startActivity(MineWithdrawActivity.class, bundle);
+                        } else {
+                            getLaunchHelper().startActivityForResult(BindAliPayActivity.class, 1);
+                        }
+                        break;
+                    case 2:
+                        if (mineUserInfoBean.winStatus != null && mineUserInfoBean.winStatus.equals("1")) {
+                            Bundle bundle = new Bundle();
+                            bundle.putInt("WITHDRAW_TYPE", type);
+                            bundle.putString("WITHDRAW_MONEY", mineUserInfoBean.balance);
+                            getLaunchHelper().startActivity(MineWithdrawActivity.class, bundle);
+                        } else {
+                            //绑定微信
+                            boolean installWeChat =
+                                    UMShareAPI.get(getActivity()).isInstall(getActivity(), SHARE_MEDIA.WEIXIN);
+                            if (installWeChat) {
+                                mAuthLoginHelp.login(SHARE_MEDIA.WEIXIN);
+                            } else {
+                                ToastUtils.show("请先安装微信");
+                            }
+                        }
+                        break;
+                }
+
             } else {
                 ToastUtils.show("用户数据异常");
             }
@@ -255,8 +282,18 @@ public class MineFragment extends BaseBarFragment
 
     @Override
     public void boundWinXinSuccess(MineUserInfoBean mineUserInfoBean) {
-        Log.e("aaaa", "走了吗");
+        mPresenter.getUserInfo();
         ToastUtils.show("绑定微信成功");
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode) {
+            case 1:
+                mPresenter.getUserInfo();
+                break;
+        }
     }
 
     @Override
