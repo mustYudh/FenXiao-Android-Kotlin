@@ -152,4 +152,10 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"openId"}, Url = "/user/boundWinXin")
     Observable<BindWxBean> boundWinXin(String openId);
 
+    @NetMethod(ParameterNames = {"mobile"}, Url = "/sms/sendBondAliAccount")
+    Observable<Object> sendBondAliAccount(String mobile);
+
+    @NetMethod(ParameterNames = {"code","account"}, Url = "/user/boundAliAccount")
+    Observable<Object> boundAliAccount(String code,String account);
+
 }
