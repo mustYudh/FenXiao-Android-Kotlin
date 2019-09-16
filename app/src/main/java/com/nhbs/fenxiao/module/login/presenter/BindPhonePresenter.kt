@@ -6,6 +6,7 @@ import android.text.TextUtils
 import com.nhbs.fenxiao.data.UserProfile
 import com.nhbs.fenxiao.http.api.AppApiServices
 import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber
+import com.nhbs.fenxiao.module.home.HomePageActivity
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
 import com.nhbs.fenxiao.module.login.bean.WeChatRegisterParams
 import com.nhbs.fenxiao.utils.showToast
@@ -80,6 +81,7 @@ class BindPhonePresenter(viewer: BindPhoneViewer) : BaseViewPresenter<BindPhoneV
             false) {
           override fun onSuccess(t: ApiResult<LoginInfoBean>?) {
             UserProfile.getInstance().appLogin(t?.data)
+            launchHelper.startActivity(HomePageActivity::class.java)
             activity!!.setResult(Activity.RESULT_OK)
             activity!!.finish()
           }

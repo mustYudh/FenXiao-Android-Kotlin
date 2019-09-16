@@ -3,6 +3,7 @@ package com.nhbs.fenxiao.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import com.nhbs.fenxiao.http.loading.NetLoadingDialog;
 import com.nhbs.fenxiao.utils.ActivityManager;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.UMShareAPI;
@@ -31,6 +32,7 @@ public abstract class BaseActivity extends BasicActivity {
 
 
     @Override protected void onDestroy() {
+        NetLoadingDialog.dismissLoading();
         super.onDestroy();
         UMShareAPI.get(this).release();
     }

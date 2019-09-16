@@ -68,7 +68,7 @@ import com.yu.common.utils.RxSchedulerUtils;
                       LoginActivity.BIND_PHONE_SUCCESS_REQUEST_CODE);
                 } else if (bean.getCode() == 2000) {
                   UserProfile.getInstance().appLogin(bean.getData());
-                  getActivity().setResult(Activity.RESULT_OK);
+                  getLauncherHelper().startActivity(HomePageActivity.class);
                   getActivity().finish();
                 }
               }
