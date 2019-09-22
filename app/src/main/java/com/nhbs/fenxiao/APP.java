@@ -1,9 +1,16 @@
 package com.nhbs.fenxiao;
 
+import android.text.TextUtils;
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.auth.LoginInfo;
+import com.netease.nimlib.sdk.util.NIMUtil;
+import com.nhbs.fenxiao.data.UserProfile;
 import com.nhbs.fenxiao.http.interceptor.CustomDynamicInterceptor;
 import com.nhbs.fenxiao.http.interceptor.CustomExpiredInterceptor;
 import com.nhbs.fenxiao.http.interceptor.CustomLoggingInterceptor;
 import com.nhbs.fenxiao.http.interceptor.CustomResponseInterceptor;
+import com.nhbs.fenxiao.im.NimSDKOptionConfig;
+import com.nhbs.fenxiao.im.preference.NimAppCache;
 import com.nhbs.fenxiao.utils.PickerViewUtils;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -45,6 +52,27 @@ public class APP extends BaseApp {
     ShareAuthSDK.init(this, DEBUG);
     PickerViewUtils.INSTANCE.initJsonData(this);
     initHttp();
+    initIM();
+  }
+
+  private void initIM() {
+    NimAppCache.setContext(this);
+    NIMClient.init(this, loginInfo(), NimSDKOptionConfig.getSDKOptions(this));
+    if (NIMUtil.isMainProcess(this)) {
+
+    }
+  }
+
+  private LoginInfo loginInfo() {
+    String account = UserProfile.getInstance().getAccount();
+    String token = UserProfile.getInstance().getAppToken();
+
+    if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
+      NimAppCache.setAccount(account);
+      return new LoginInfo(account, token);
+    } else {
+      return null;
+    }
   }
 
   private void initHttp() {
