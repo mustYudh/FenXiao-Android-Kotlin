@@ -9,14 +9,16 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseBarActivity
-import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean.RowsBean
 import com.nhbs.fenxiao.module.store.activity.presenter.TypeInfoPresenter
 import com.nhbs.fenxiao.module.store.activity.presenter.TypeInfoViewer
+import com.nhbs.fenxiao.module.store.bean.GetGoodsParams
+import com.nhbs.fenxiao.module.store.bean.GoodsListBean.GoodsInfoBean
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.activity_type_info_view.refresh
 
 
 class TypeInfoActivity : BaseBarActivity(), TypeInfoViewer {
+  private var params = GetGoodsParams()
 
 
   @PresenterLifeCycle
@@ -41,6 +43,7 @@ class TypeInfoActivity : BaseBarActivity(), TypeInfoViewer {
 
   override fun loadData() {
     typeName = intent.getStringExtra(TYPE_NAME)
+    params.classId = typeName
     setTitle(typeName)
     val spannableString = SpannableString("编辑")
     val colorSpan = ForegroundColorSpan(Color.parseColor("#FF3539"))
@@ -48,19 +51,23 @@ class TypeInfoActivity : BaseBarActivity(), TypeInfoViewer {
     setRightMenu(spannableString) {
 
     }
-    presenter.getMerchandiseClassList(typeName!!,pageNum,null)
+    presenter.getGoodsList(params,null)
     refresh.setOnRefreshListener {
       pageNum = 1
-      presenter.getMerchandiseClassList(typeName!!,pageNum,it,0)
+      params.pageNum = pageNum
+      presenter.getGoodsList(params,it,0)
     }
 
     refresh.setOnLoadMoreListener {
       pageNum++
-      presenter.getMerchandiseClassList(typeName!!,pageNum,it,1)
+      params.pageNum = pageNum
+      presenter.getGoodsList(params,it,0)
     }
   }
 
-  override fun getMerchandiseClassListSuccess(rows: List<RowsBean>?) {
+
+  override fun setGoodsInfoList(list: List<GoodsInfoBean>?) {
 
   }
+
 }

@@ -1,26 +1,32 @@
 package com.nhbs.fenxiao.module.store.activity.presenter
 
 import android.annotation.SuppressLint
-import com.nhbs.fenxiao.http.api.OtherApiServices
+import com.nhbs.fenxiao.http.api.AppApiServices
 import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber
-import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean
+import com.nhbs.fenxiao.module.store.bean.GetGoodsParams
+import com.nhbs.fenxiao.module.store.bean.GoodsListBean
 import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.xuexiang.xhttp2.XHttpProxy
+import com.xuexiang.xhttp2.XHttp
 import com.xuexiang.xhttp2.exception.ApiException
+import com.xuexiang.xhttp2.model.ApiResult
+import com.xuexiang.xhttp2.utils.HttpUtils
 import com.yu.common.framework.BaseViewPresenter
+import com.yu.common.utils.RxSchedulerUtils
 
 @SuppressLint("CheckResult")
 class TypeInfoPresenter(viewer: TypeInfoViewer) : BaseViewPresenter<TypeInfoViewer>(viewer) {
 
 
-  fun getMerchandiseClassList(classId: String, pageNum: Int = 1, refreshLayout: RefreshLayout? = null, type: Int? = 0) {
-    XHttpProxy.proxy(OtherApiServices::class.java)
-        .findMerchandiseList(classId, pageNum, 10)
-        .subscribeWith(object : LoadingRequestSubscriber<FindMerchandiseListBean>(activity,
+
+  fun getGoodsList(params: GetGoodsParams, refreshLayout: RefreshLayout?, type: Int? = 0) {
+    XHttp.custom(AppApiServices::class.java)
+        .getGoodsList(HttpUtils.getJsonRequestBody(params))
+        .compose(RxSchedulerUtils._io_main_o<ApiResult<GoodsListBean>>())
+        .subscribeWith(object : LoadingRequestSubscriber<ApiResult<GoodsListBean>>(activity!!,
             false) {
-          override fun onSuccess(result: FindMerchandiseListBean) {
-            val data = result.rows
-            getViewer()!!.getMerchandiseClassListSuccess(result.rows)
+          override fun onSuccess(result: ApiResult<GoodsListBean>?) {
+            val data = result?.data?.rows
+            getViewer()?.setGoodsInfoList(data)
             if (refreshLayout != null) {
               if (type == 0) {
                 refreshLayout.finishRefresh()
@@ -45,8 +51,6 @@ class TypeInfoPresenter(viewer: TypeInfoViewer) : BaseViewPresenter<TypeInfoView
               }
             }
           }
-
-
         })
   }
 }
