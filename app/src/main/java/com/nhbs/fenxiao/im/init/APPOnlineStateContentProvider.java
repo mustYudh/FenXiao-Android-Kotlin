@@ -8,8 +8,7 @@ import com.nhbs.fenxiao.im.preference.NimAppCache;
  * Created by hzchenkang on 2017/3/31.
  */
 
-public class OnlineStateContentProvider
-    implements com.netease.nim.uikit.api.model.main.OnlineStateContentProvider {
+public class APPOnlineStateContentProvider implements OnlineStateContentProvider {
 
     @Override
     public String getSimpleDisplay(String account) {

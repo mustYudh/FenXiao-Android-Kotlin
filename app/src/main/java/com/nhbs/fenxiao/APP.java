@@ -16,7 +16,7 @@ import com.nhbs.fenxiao.im.NimSDKOptionConfig;
 import com.nhbs.fenxiao.im.custom.ChatRoomSessionHelper;
 import com.nhbs.fenxiao.im.custom.SessionHelper;
 import com.nhbs.fenxiao.im.init.NIMInitManager;
-import com.nhbs.fenxiao.im.init.OnlineStateContentProvider;
+import com.nhbs.fenxiao.im.init.APPOnlineStateContentProvider;
 import com.nhbs.fenxiao.im.preference.NimAppCache;
 import com.nhbs.fenxiao.im.preference.UserPreferences;
 import com.nhbs.fenxiao.im.push.PushContentProvider;
@@ -92,7 +92,7 @@ public class APP extends BaseApp {
     // 添加自定义推送文案以及选项，请开发者在各端（Android、IOS、PC、Web）消息发送时保持一致，以免出现通知不一致的情况
     NimUIKit.setCustomPushContentProvider(new PushContentProvider());
 
-    NimUIKit.setOnlineStateContentProvider(new OnlineStateContentProvider());
+    NimUIKit.setOnlineStateContentProvider(new APPOnlineStateContentProvider());
 
 
   }
