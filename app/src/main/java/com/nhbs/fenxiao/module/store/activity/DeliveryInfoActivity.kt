@@ -9,8 +9,8 @@ import android.view.View
 import android.widget.TextView
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseBarActivity
-import com.nhbs.fenxiao.module.store.activity.presenter.DeliveryInfoPresenter
-import com.nhbs.fenxiao.module.store.activity.presenter.DeliveryInfoViewer
+import com.nhbs.fenxiao.module.store.presenter.DeliveryInfoPresenter
+import com.nhbs.fenxiao.module.store.presenter.DeliveryInfoViewer
 import com.nhbs.fenxiao.module.store.adapter.DeliveryInfoAdapter
 import com.nhbs.fenxiao.module.store.bean.ExpInfoBean
 import com.nhbs.fenxiao.utils.setLinearLayoutAdapter

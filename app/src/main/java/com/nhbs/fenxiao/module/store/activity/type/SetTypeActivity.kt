@@ -1,4 +1,4 @@
-package com.nhbs.fenxiao.module.store.activity
+package com.nhbs.fenxiao.module.store.activity.type
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -12,7 +12,9 @@ import com.nhbs.fenxiao.module.store.bean.ClassTOS
 import com.nhbs.fenxiao.module.store.pop.CreateNewTypePopUpWindow
 import com.nhbs.fenxiao.module.store.presenter.SetTypePresenter
 import com.nhbs.fenxiao.module.store.presenter.SetTypeViewer
+import com.nhbs.fenxiao.utils.checkTextEmpty
 import com.nhbs.fenxiao.utils.setLinearLayoutAdapter
+import com.nhbs.fenxiao.utils.showToast
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.activity_set_type_view.add_new_type
 import kotlinx.android.synthetic.main.activity_set_type_view.no_set_type
@@ -34,7 +36,6 @@ class SetTypeActivity : BaseBarActivity(), SetTypeViewer {
   override fun loadData() {
     setTitle("分类")
     initListener()
-    presenter.getGoodsCount()
   }
 
   private fun initListener() {
@@ -48,7 +49,13 @@ class SetTypeActivity : BaseBarActivity(), SetTypeViewer {
           dismiss()
         })
         setAgreeListener(View.OnClickListener {
-          dismiss()
+          if (getInputInfo().checkTextEmpty()) {
+            showToast("请输入分类名称")
+          } else {
+            presenter.createNewTypeName(getInputInfo())
+            dismiss()
+          }
+
         })
         showPopupWindow()
       }
@@ -58,6 +65,15 @@ class SetTypeActivity : BaseBarActivity(), SetTypeViewer {
     type_manager.setOnClickListener {
       launchHelper.startActivity(TypeManagerActivity::class.java)
     }
+    adapter.setOnItemClickListener { adapter, _, position ->
+        val data = adapter.data[position] as ClassTOS
+        launchHelper.startActivity(TypeInfoActivity.getIntent(activity,data.classify))
+    }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    presenter.getGoodsCount()
   }
 
 

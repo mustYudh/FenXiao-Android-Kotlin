@@ -132,4 +132,13 @@ interface AppApiServices {
   @Headers("Content-Type: application/json", "Accept: application/json")
   fun logout(@Body body: RequestBody, @Header(
       "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
+
+
+
+  @NetMethod(ParameterNames =["classify"],Url ="/merchandiseClass/merchandiseClass")
+  fun merchandiseClass(classify: String): Observable<Any>
+
 }
+
+
+

@@ -14,12 +14,14 @@
       tools:ignore="GoogleAppIndexingWarning"
       tools:replace="label,allowBackup">
     <activity
+        android:name=".module.store.activity.type.TypeInfoActivity"
+        android:screenOrientation="portrait" />
+    <activity
         android:name=".module.store.activity.DeliveryInfoActivity"
         android:screenOrientation="portrait" />
     <activity
         android:name=".module.mine.activity.BindAliPayActivity"
         android:screenOrientation="portrait" />
-
     <activity
         android:name=".module.store.TypeManagerActivity"
         android:screenOrientation="portrait" />
@@ -27,16 +29,14 @@
         android:name=".module.store.NotSetTypeActivity"
         android:screenOrientation="portrait" />
     <activity
-        android:name=".module.store.activity.SetTypeActivity"
+        android:name=".module.store.activity.type.SetTypeActivity"
         android:screenOrientation="portrait" />
     <activity
         android:name=".module.product.activity.CommentProductActivity"
         android:screenOrientation="portrait" />
-
     <activity
         android:name=".module.product.activity.ProductShopDetailsActivity"
         android:screenOrientation="portrait" />
-
     <activity
         android:name=".module.order.activity.OrderDetailsActivity"
         android:screenOrientation="portrait" />
@@ -125,11 +125,9 @@
     <activity
         android:name=".module.home.activity.HomeProductClassifyActivity"
         android:screenOrientation="portrait" />
-
     <activity
         android:name=".module.mine.activity.MineTeamActivity"
         android:screenOrientation="portrait" />
-
     <activity
         android:name=".module.home.HomePageActivity"
         android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
@@ -154,6 +152,7 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+
     <meta-data
         android:name="UMENG_APPKEY"
         android:value="${UMENG_APPKEY}" />
@@ -169,6 +168,7 @@
     <meta-data
         android:name="android.support.FILE_PROVIDER_PATHS"
         android:resource="@xml/file_paths" />
+
     <provider
         android:name="android.support.v4.content.FileProvider"
         android:authorities="${applicationId}.fileprovider"

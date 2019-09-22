@@ -10,7 +10,7 @@ import com.mylhyl.circledialog.CircleDialog
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseFragment
 import com.nhbs.fenxiao.module.center.activity.ReleaseGoodsActivity
-import com.nhbs.fenxiao.module.store.activity.SetTypeActivity
+import com.nhbs.fenxiao.module.store.activity.type.SetTypeActivity
 import com.nhbs.fenxiao.module.store.adapter.MiniStoreGoodsInfoAdapter
 import com.nhbs.fenxiao.module.store.bean.GetGoodsParams
 import com.nhbs.fenxiao.module.store.bean.GoodsListBean.GoodsInfoBean
@@ -71,7 +71,8 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
       setTabSelectedView(1)
     }
     type_btn.setOnClickListener {
-      launchHelper.startActivityForResult(SetTypeActivity::class.java, SET_TYPE_REQUEST)
+      launchHelper.startActivityForResult(
+          SetTypeActivity::class.java, SET_TYPE_REQUEST)
     }
   }
 

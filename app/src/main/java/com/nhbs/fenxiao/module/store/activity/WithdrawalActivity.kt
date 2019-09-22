@@ -3,8 +3,8 @@ package com.nhbs.fenxiao.module.store.activity
 import android.os.Bundle
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseBarActivity
-import com.nhbs.fenxiao.module.store.activity.presenter.WithdrawalPresenter
-import com.nhbs.fenxiao.module.store.activity.presenter.WithdrawalViewer
+import com.nhbs.fenxiao.module.store.presenter.WithdrawalPresenter
+import com.nhbs.fenxiao.module.store.presenter.WithdrawalViewer
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.activity_login_view.next_action
 

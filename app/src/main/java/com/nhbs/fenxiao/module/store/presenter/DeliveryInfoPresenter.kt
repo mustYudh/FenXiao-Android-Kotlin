@@ -1,4 +1,4 @@
-package com.nhbs.fenxiao.module.store.activity.presenter
+package com.nhbs.fenxiao.module.store.presenter
 
 import com.yu.common.framework.BaseViewPresenter
 
