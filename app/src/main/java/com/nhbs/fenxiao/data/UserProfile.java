@@ -49,7 +49,7 @@ public class UserProfile implements Serializable {
   }
 
   public String getAccount() {
-    spHelper.getString(ACCOUNT,"");
+    return spHelper.getString(ACCOUNT,"");
   }
 
   public String getAppToken() {

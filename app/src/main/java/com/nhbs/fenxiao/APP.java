@@ -1,6 +1,9 @@
 package com.nhbs.fenxiao;
 
 import android.text.TextUtils;
+import com.netease.nim.uikit.api.NimUIKit;
+import com.netease.nim.uikit.api.UIKitOptions;
+import com.netease.nim.uikit.business.contact.core.query.PinYin;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 import com.netease.nimlib.sdk.util.NIMUtil;
@@ -10,7 +13,13 @@ import com.nhbs.fenxiao.http.interceptor.CustomExpiredInterceptor;
 import com.nhbs.fenxiao.http.interceptor.CustomLoggingInterceptor;
 import com.nhbs.fenxiao.http.interceptor.CustomResponseInterceptor;
 import com.nhbs.fenxiao.im.NimSDKOptionConfig;
+import com.nhbs.fenxiao.im.custom.ChatRoomSessionHelper;
+import com.nhbs.fenxiao.im.custom.SessionHelper;
+import com.nhbs.fenxiao.im.init.NIMInitManager;
+import com.nhbs.fenxiao.im.init.OnlineStateContentProvider;
 import com.nhbs.fenxiao.im.preference.NimAppCache;
+import com.nhbs.fenxiao.im.preference.UserPreferences;
+import com.nhbs.fenxiao.im.push.PushContentProvider;
 import com.nhbs.fenxiao.utils.PickerViewUtils;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -59,8 +68,40 @@ public class APP extends BaseApp {
     NimAppCache.setContext(this);
     NIMClient.init(this, loginInfo(), NimSDKOptionConfig.getSDKOptions(this));
     if (NIMUtil.isMainProcess(this)) {
-
+      PinYin.init(this);
+      PinYin.validate();
+      initUIKit();
+      NIMClient.toggleNotification(UserPreferences.getNotificationToggle());
+      // 云信sdk相关业务初始化
+      NIMInitManager.getInstance().init(true);
     }
+  }
+
+  private void initUIKit() {
+    // 初始化
+    NimUIKit.init(this, buildUIKitOptions());
+
+    // IM 会话窗口的定制初始化。
+    SessionHelper.init();
+
+    // 聊天室聊天窗口的定制初始化。
+    ChatRoomSessionHelper.init();
+
+
+
+    // 添加自定义推送文案以及选项，请开发者在各端（Android、IOS、PC、Web）消息发送时保持一致，以免出现通知不一致的情况
+    NimUIKit.setCustomPushContentProvider(new PushContentProvider());
+
+    NimUIKit.setOnlineStateContentProvider(new OnlineStateContentProvider());
+
+
+  }
+
+  private UIKitOptions buildUIKitOptions() {
+    UIKitOptions options = new UIKitOptions();
+    // 设置app图片/音频/日志等缓存目录
+    options.appCacheDir = NimSDKOptionConfig.getAppCacheDir(this) + "/app";
+    return options;
   }
 
   private LoginInfo loginInfo() {
