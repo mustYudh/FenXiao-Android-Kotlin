@@ -1,20 +1,24 @@
-package com.nhbs.fenxiao.module.order.activity;
+package com.nhbs.fenxiao.module.home.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Gravity;
-import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
 
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.adapter.CommonRvAdapter;
 import com.nhbs.fenxiao.base.BaseBarActivity;
-import com.nhbs.fenxiao.module.home.HomePageActivity;
-import com.nhbs.fenxiao.module.order.activity.presenter.PaySuccessPresenter;
-import com.nhbs.fenxiao.module.order.activity.presenter.PaySuccessViewer;
+import com.nhbs.fenxiao.module.home.activity.presenter.ProductSearchPresenter;
+import com.nhbs.fenxiao.module.home.activity.presenter.ProductSearchViewer;
 import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
+import com.nhbs.fenxiao.module.view.ClearEditText;
 import com.nhbs.fenxiao.module.view.ScreenSpaceItemDecoration;
 import com.nhbs.fenxiao.utils.DialogUtils;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -25,50 +29,56 @@ import com.yu.share.SharesBean;
 import com.yu.share.callback.ShareCallback;
 
 
-public class PaySuccessActivity extends BaseBarActivity implements PaySuccessViewer {
-    private RecyclerView rv_product;
+public class ProductSearchActivity extends BaseBarActivity implements ProductSearchViewer {
+
+    @PresenterLifeCycle
+    ProductSearchPresenter mPresenter = new ProductSearchPresenter(this);
+    private RecyclerView mSearch;
     private int pageNum = 1;
     private int pageSize = 10;
     private CommonRvAdapter adapter;
-    @PresenterLifeCycle
-    PaySuccessPresenter mPresenter = new PaySuccessPresenter(this);
     private DialogUtils shareDialog;
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_pay_success_view);
+        setContentView(R.layout.activity_product_search_view);
+    }
+
+    @Override
+    protected int getActionBarLayoutId() {
+        return R.layout.action_bar_product_search_layout;
     }
 
     @Override
     protected void loadData() {
-        setTitle("支付结果");
-        Bundle bundle = getIntent().getExtras();
-        String price = bundle.getString("PRICE");
-        bindText(R.id.tv_price, "实付¥" + price);
-        rv_product = bindView(R.id.rv_product);
-        rv_product.addItemDecoration(new ScreenSpaceItemDecoration(getActivity(), 10));
-        rv_product.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        adapter = new CommonRvAdapter(R.layout.item_common_product, getActivity());
-        rv_product.setAdapter(adapter);
-
-        mPresenter.getMerchandiseClassList("1", pageNum, pageSize);
-
-
-        bindView(R.id.tv_home, view -> {
-            getLaunchHelper().startActivity(HomePageActivity.class);
+        ClearEditText ed_search = bindView(R.id.et_search);
+        LinearLayout ll_add = bindView(R.id.ll_add);
+        ll_add.setOnClickListener(view -> {
             finish();
         });
-
-        bindView(R.id.tv_order, new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+        mSearch = bindView(R.id.rv_search);
+        mSearch.addItemDecoration(new ScreenSpaceItemDecoration(getActivity(), 10));
+        mSearch.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        adapter = new CommonRvAdapter(R.layout.item_common_product, getActivity());
+        mSearch.setAdapter(adapter);
+        ed_search.setOnEditorActionListener((textView, i, keyEvent) -> {
+            if (i == EditorInfo.IME_ACTION_SEARCH) {
+                InputMethodManager inputMgr = (InputMethodManager) getActivity()
+                        .getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMgr.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
+                if (TextUtils.isEmpty(ed_search.getText().toString().trim())) {
+                    ToastUtils.show("请输入商品");
+                } else {
+                    mPresenter.searchMerchandiseList(ed_search.getText().toString().trim(), pageNum, pageSize);
+                }
+                return true;
             }
+            return false;
         });
     }
 
     @Override
-    public void getMerchandiseClassListSuccess(FindMerchandiseListBean findMerchandiseListBean) {
+    public void searchMerchandiseListSuccess(FindMerchandiseListBean findMerchandiseListBean) {
         if (findMerchandiseListBean != null && findMerchandiseListBean.rows != null && findMerchandiseListBean.rows.size() != 0) {
             adapter.setNewData(findMerchandiseListBean.rows);
             adapter.setOnItemDetailsDoCilckListener(new CommonRvAdapter.OnItemOperateListener() {
@@ -86,6 +96,12 @@ public class PaySuccessActivity extends BaseBarActivity implements PaySuccessVie
                     mPresenter.advertiseShare(id);
                 }
             });
+            bindView(R.id.ll_empty, false);
+            bindView(R.id.rv_product, true);
+        } else {
+            //空页面
+            bindView(R.id.ll_empty, true);
+            bindView(R.id.rv_product, false);
         }
     }
 

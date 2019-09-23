@@ -42,14 +42,36 @@
         android:drawableLeft="@drawable/home_search"
         android:drawablePadding="8dp"
         android:hint="搜索宝贝"
-        android:maxLength="1"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
+        android:imeOptions="actionSearch"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
         android:singleLine="true"
         android:textColorHint="#3C3D5A"
         android:textSize="14sp"
 
         />
 
+
+    <LinearLayout
+        android:id="@+id/ll_add"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            />
+
+
+    </LinearLayout>
 
 </LinearLayout>
