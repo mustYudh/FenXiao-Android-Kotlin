@@ -4,5 +4,5 @@ import com.yu.common.mvp.Viewer;
 
 
 public interface MineWithdrawViewer extends Viewer {
-
+    void createUserWithdrawSuccess();
 }

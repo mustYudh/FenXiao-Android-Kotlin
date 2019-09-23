@@ -129,6 +129,18 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
             });
 
             bindView(R.id.ll_add, view -> mPresenter.likeProduct(merchandiseDetailBean, "0"));
+
+            switch (merchandiseDetailBean.dealWay) {
+                case "1":
+                    bindText(R.id.tv_type, "自提");
+                    break;
+                case "2":
+                    bindText(R.id.tv_type, "送货上门");
+                    break;
+                case "3":
+                    bindText(R.id.tv_type, "邮寄");
+                    break;
+            }
         }
     }
 

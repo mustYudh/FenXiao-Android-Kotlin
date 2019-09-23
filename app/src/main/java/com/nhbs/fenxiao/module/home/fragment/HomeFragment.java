@@ -19,6 +19,7 @@ import com.nhbs.fenxiao.module.home.StatusBarColorManager;
 import com.nhbs.fenxiao.module.home.activity.AdvertisingShareActivity;
 import com.nhbs.fenxiao.module.home.activity.HomeEventActivity;
 import com.nhbs.fenxiao.module.home.activity.HomeProductClassifyActivity;
+import com.nhbs.fenxiao.module.home.activity.ProductSearchActivity;
 import com.nhbs.fenxiao.module.home.activity.RewardAdvertisingActivity;
 import com.nhbs.fenxiao.module.home.adapter.BannerViewHolder;
 import com.nhbs.fenxiao.module.home.bean.HomeBannerBean;
@@ -81,7 +82,7 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
         mBanner = bindView(R.id.banner);
         EditText ed_search = bindView(R.id.ed_search);
         ed_search.setInputType(InputType.TYPE_NULL);
-
+        ed_search.setOnClickListener(view -> getLaunchHelper().startActivity(ProductSearchActivity.class));
         rv_home.addItemDecoration(new ScreenSpaceItemDecoration(getActivity(), 10));
         rv_home.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         adapter = new CommonRvAdapter(R.layout.item_common_product, getActivity());
