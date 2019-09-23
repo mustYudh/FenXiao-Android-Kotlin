@@ -30,6 +30,15 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="label,allowBackup">
         <activity
+            android:name=".module.store.activity.RedactStoreActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.home.activity.ProductSearchActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.mine.activity.MineWithdrawInfoActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".module.mine.activity.BindAliPayActivity"
             android:screenOrientation="portrait"/>
 
@@ -45,7 +54,6 @@
         <meta-data
             android:name="android.max_aspect"
             android:value="2.1"/>
-
 
         <provider
             android:name="android.support.v4.content.FileProvider"

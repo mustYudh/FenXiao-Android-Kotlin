@@ -9,6 +9,7 @@ import com.nhbs.fenxiao.module.home.bean.HomeFindActivtyListBean;
 import com.nhbs.fenxiao.module.home.bean.HomeFindAdvertisingListBean;
 import com.nhbs.fenxiao.module.home.bean.HomeHotAdvertiseBean;
 import com.nhbs.fenxiao.module.mine.bean.BindWxBean;
+import com.nhbs.fenxiao.module.mine.bean.GetWithdrawInfoBean;
 import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
 import com.nhbs.fenxiao.module.mine.bean.MineGroupBean;
 import com.nhbs.fenxiao.module.mine.bean.MineSpreadLogsListBean;
@@ -63,6 +64,9 @@ public interface OtherApiServices {
 
     @NetMethod(ParameterNames = {"classId", "pageNum", "pageSize"}, Url = "/merchandise/findMerchandiseList")
     Observable<FindMerchandiseListBean> findMerchandiseList(String classId, int pageNum, int pageSize);
+
+    @NetMethod(ParameterNames = {"mTitle", "pageNum", "pageSize"}, Url = "/merchandise/findMerchandiseList")
+    Observable<FindMerchandiseListBean> searchMerchandiseList(String mTitle, int pageNum, int pageSize);
 
     @NetMethod(ParameterNames = {"type", "pageNum", "pageSize"}, Url = "/merchandise/findMerchandiseList")
     Observable<FindMerchandiseListBean> homeFindMerchandiseList(String type, int pageNum, int pageSize);
@@ -155,7 +159,11 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"mobile"}, Url = "/sms/sendBondAliAccount")
     Observable<Object> sendBondAliAccount(String mobile);
 
-    @NetMethod(ParameterNames = {"code","account"}, Url = "/user/boundAliAccount")
-    Observable<Object> boundAliAccount(String code,String account);
+    @NetMethod(ParameterNames = {"code", "account"}, Url = "/user/boundAliAccount")
+    Observable<Object> boundAliAccount(String code, String account);
+
+    @NetMethod(ParameterNames = {"id"}, Url = "/withdraw/getWithdrawByKey")
+    Observable<GetWithdrawInfoBean> getWithdrawByKey(String id);
+
 
 }

@@ -5,13 +5,16 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.text.InputType;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarFragment;
 import com.nhbs.fenxiao.base.BaseFragment;
 import com.nhbs.fenxiao.module.home.StatusBarColorManager;
+import com.nhbs.fenxiao.module.home.activity.ProductSearchActivity;
 import com.nhbs.fenxiao.module.product.adapter.ProductViewPageAdapter;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseClassBean;
 import com.nhbs.fenxiao.module.product.fragment.presenter.ProductFragmentPresenter;
@@ -59,9 +62,12 @@ public class ProductFragment extends BaseBarFragment implements ProductFragmentV
     protected void loadData() {
 
         mViewPager = bindView(R.id.view_pager);
-
+        EditText et_search = bindView(R.id.et_search);
+        et_search.setInputType(InputType.TYPE_NULL);
 
         mPresenter.getMerchandiseClass();
+
+        bindView(R.id.et_search, view -> getLaunchHelper().startActivity(ProductSearchActivity.class));
     }
 
 

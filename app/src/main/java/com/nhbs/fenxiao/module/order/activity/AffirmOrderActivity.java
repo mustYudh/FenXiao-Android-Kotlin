@@ -36,6 +36,7 @@ import java.math.BigDecimal;
 /**
  * 确认订单
  */
+@SuppressLint("SetTextI18n")
 public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderViewer {
 
     @PresenterLifeCycle
@@ -110,11 +111,11 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
                         break;
                     case "2":
                         params.addressId = addressId;
-                        params.delivery = merchandiseDetailBean.delivery + "";
+                        params.delivery = (merchandiseDetailBean.delivery != null ? String.valueOf(merchandiseDetailBean.delivery) : "0");
                         break;
                     case "3":
                         params.addressId = addressId;
-                        params.postage = merchandiseDetailBean.postage + "";
+                        params.postage = (merchandiseDetailBean.postage != null ? String.valueOf(merchandiseDetailBean.postage) : "0");
                         break;
                 }
                 mPresenter.createUserOrder(params);
@@ -122,31 +123,17 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
         });
 
         bindView(R.id.ll_address, view -> getLaunchHelper().startActivityForResult(MineAddressListActivity.class, 1));
+        bindView(R.id.ll_address_empty, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getLaunchHelper().startActivityForResult(MineAddressListActivity.class, 1);
+            }
+        });
 
         BigDecimal num = new BigDecimal(number);
         bindText(R.id.tv_num_product, "共" + number + "件");
         bindText(R.id.tv_num_bottom, "共" + number + "件");
-        switch (dealway) {
-            case "1":
-                if (merchandiseDetailBean.mPrice != null) {
-                    bindText(R.id.tv_price, "¥" + (merchandiseDetailBean.mPrice.multiply(num)));
-                    bindText(R.id.tv_price_bottom, "¥" + (merchandiseDetailBean.mPrice.multiply(num)));
-                }
 
-                break;
-            case "2":
-                if (merchandiseDetailBean.mPrice != null && merchandiseDetailBean.delivery != null) {
-                    bindText(R.id.tv_price, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.delivery)));
-                    bindText(R.id.tv_price_bottom, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.delivery)));
-                }
-                break;
-            case "3":
-                if (merchandiseDetailBean.mPrice != null && merchandiseDetailBean.postage != null) {
-                    bindText(R.id.tv_price, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.postage)));
-                    bindText(R.id.tv_price_bottom, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.postage)));
-                }
-                break;
-        }
         bindText(R.id.tv_num, number + "");
         bindView(R.id.tv_add, new View.OnClickListener() {
             @Override
@@ -205,13 +192,33 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
         assert dealway != null;
         switch (dealway) {
             case "1":
+                if (merchandiseDetailBean.mPrice != null) {
+                    bindText(R.id.tv_price, "¥" + (merchandiseDetailBean.mPrice.multiply(num)));
+                    bindText(R.id.tv_price_bottom, "¥" + (merchandiseDetailBean.mPrice.multiply(num)));
+                }
+                break;
+            case "2":
+                if (merchandiseDetailBean.mPrice != null) {
+                    bindText(R.id.tv_price, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add((merchandiseDetailBean.delivery != null ? merchandiseDetailBean.delivery : BigDecimal.valueOf(0)))));
+                    bindText(R.id.tv_price_bottom, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.delivery != null ? merchandiseDetailBean.delivery : BigDecimal.valueOf(0))));
+                }
+                break;
+            case "3":
+                if (merchandiseDetailBean.mPrice != null) {
+                    bindText(R.id.tv_price, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.postage != null ? merchandiseDetailBean.postage : BigDecimal.valueOf(0))));
+                    bindText(R.id.tv_price_bottom, "¥" + ((merchandiseDetailBean.mPrice.multiply(num)).add(merchandiseDetailBean.postage != null ? merchandiseDetailBean.postage : BigDecimal.valueOf(0))));
+                }
+                break;
+        }
+        switch (dealway) {
+            case "1":
                 bindText(R.id.tv_dealway, "自提");
                 break;
             case "2":
-                bindText(R.id.tv_dealway, "送货上门¥" + merchandiseDetailBean.delivery);
+                bindText(R.id.tv_dealway, "送货上门¥" + (merchandiseDetailBean.delivery != null ? merchandiseDetailBean.delivery : "0"));
                 break;
             case "3":
-                bindText(R.id.tv_dealway, "邮寄¥" + merchandiseDetailBean.postage);
+                bindText(R.id.tv_dealway, "邮寄¥" + (merchandiseDetailBean.postage != null ? merchandiseDetailBean.postage : "0"));
                 break;
         }
     }
@@ -258,6 +265,10 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
                     bindText(R.id.tv_nick_name, listBean.userName);
                     bindText(R.id.tv_mobile, listBean.mobile);
                     bindText(R.id.tv_address, listBean.address + listBean.specificAddress);
+
+                    bindView(R.id.ll_address, true);
+                    bindView(R.id.ll_address_empty, false);
+                    bindView(R.id.ll_address_ziti, false);
                 }
                 break;
 
@@ -300,11 +311,11 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
         });
 
         DelayClickTextView tv_commit = payDialog.findViewById(R.id.tv_commit);
-        tv_commit.setOnClickListener(view -> mPresenter.userToPay(createUserOrderBean.data.id, "2", type + "",createUserOrderBean));
+        tv_commit.setOnClickListener(view -> mPresenter.userToPay(createUserOrderBean.data.id, "2", type + "", createUserOrderBean));
     }
 
     @Override
-    public void userToPaySuccess(PayInfo payInfo,CreateUserOrderBean createUserOrderBean) {
+    public void userToPaySuccess(PayInfo payInfo, CreateUserOrderBean createUserOrderBean) {
         if (payDialog.isShowing()) {
             payDialog.dismiss();
         }
@@ -313,8 +324,8 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
                     @Override
                     public void onPaySuccess(int type) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("PRICE",createUserOrderBean.data.price+"");
-                        getLaunchHelper().startActivity(PaySuccessActivity.class,bundle);
+                        bundle.putString("PRICE", createUserOrderBean.data.price + "");
+                        getLaunchHelper().startActivity(PaySuccessActivity.class, bundle);
                         finish();
                     }
 
