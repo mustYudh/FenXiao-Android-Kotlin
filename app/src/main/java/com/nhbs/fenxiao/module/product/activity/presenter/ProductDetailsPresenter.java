@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 
 import com.nhbs.fenxiao.http.api.OtherApiServices;
 import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber;
+import com.nhbs.fenxiao.http.subscriber.NoTipRequestSubscriber;
+import com.nhbs.fenxiao.module.product.bean.CommentListBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.xuexiang.xhttp2.XHttpProxy;
@@ -60,6 +62,18 @@ public class ProductDetailsPresenter extends BaseViewPresenter<ProductDetailsVie
                     protected void onSuccess(Object o) {
                         assert getViewer() != null;
                         getViewer().likeProductSuccess(merchandiseDetailBean);
+                    }
+                });
+    }
+
+    public void commentList(String targetId) {
+        XHttpProxy.proxy(OtherApiServices.class)
+                .commentList(targetId)
+                .subscribeWith(new NoTipRequestSubscriber<CommentListBean>() {
+                    @Override
+                    protected void onSuccess(CommentListBean commentListBean) {
+                        assert getViewer() != null;
+                        getViewer().commentListSuccess(commentListBean);
                     }
                 });
     }

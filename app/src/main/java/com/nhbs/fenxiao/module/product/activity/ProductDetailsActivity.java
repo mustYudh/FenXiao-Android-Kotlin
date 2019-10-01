@@ -22,6 +22,7 @@ import com.nhbs.fenxiao.module.order.activity.AffirmOrderActivity;
 import com.nhbs.fenxiao.module.product.activity.presenter.ProductDetailsPresenter;
 import com.nhbs.fenxiao.module.product.activity.presenter.ProductDetailsViewer;
 import com.nhbs.fenxiao.module.product.adapter.BannerProductViewHolder;
+import com.nhbs.fenxiao.module.product.bean.CommentListBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.nhbs.fenxiao.module.product.bean.SpecificationBean;
@@ -85,6 +86,8 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
         bindView(R.id.action_bar_left_actions, view -> finish());
 
         mPresenter.getMerchandiseDetail(merchandise_id);
+        mPresenter.commentList(merchandise_id);
+
     }
 
     @Override
@@ -353,6 +356,11 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
             merchandiseDetailBean.followStatus = "1";
         }
         iv_like.setImageResource(("1".equals(merchandiseDetailBean.followStatus)) ? R.drawable.ic_shou_cang_other : R.drawable.ic_shou_cang);
+    }
+
+    @Override
+    public void commentListSuccess(CommentListBean commentListBean) {
+
     }
 
     private void showShareDialog(ShareMerchandiseBean shareMerchandiseBean) {

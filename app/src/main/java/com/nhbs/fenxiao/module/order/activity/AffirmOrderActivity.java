@@ -105,7 +105,7 @@ public class AffirmOrderActivity extends BaseBarActivity implements AffirmOrderV
                 if (twotag != null && !TextUtils.isEmpty(twotag)) {
                     params.size = twotag;
                 }
-                params.dealWay = dealway;
+                params.dealWay = Integer.parseInt(dealway);
                 switch (dealway) {
                     case "1":
                         break;

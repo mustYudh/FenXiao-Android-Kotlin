@@ -9,7 +9,7 @@ public class CreateOrderParams {
     public Integer number;
     public String color;
     public String size;
-    public String dealWay;
+    public Integer dealWay;
     public String postage;
     public String delivery;
 
