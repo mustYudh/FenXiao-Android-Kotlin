@@ -42,7 +42,8 @@ public class MineGeneralizeActivity extends BaseBarActivity implements Generaliz
 
     @Override
     public void querySpreadLogsListSuccess(MineSpreadLogsListBean spreadLogsListBean) {
-        if (spreadLogsListBean != null) {
+        if (spreadLogsListBean != null && spreadLogsListBean.rows != null && spreadLogsListBean.rows.size() != 0) {
+            adapter.setNewData(spreadLogsListBean.rows);
             bindView(R.id.ll_empty, false);
             bindView(R.id.rv_list, true);
         } else {

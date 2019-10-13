@@ -57,7 +57,7 @@ public class DateUtil {
      * @return 年-月-日
      */
     public static String formatDate(long lefttime) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.CHINA);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
         String sDateTime = sdf.format(lefttime);
         return sDateTime;
     }

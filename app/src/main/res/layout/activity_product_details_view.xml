@@ -151,102 +151,110 @@
 
 
             <LinearLayout
+                android:id="@+id/ll_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:paddingLeft="16dp"
-                android:paddingTop="12dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="12dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="1"
-                    android:includeFontPadding="false"
-                    android:text="宝贝评价"
-                    android:textColor="#ff000000"
-                    android:textSize="14sp"
-                    />
+                android:orientation="vertical">
 
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="12dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="12dp">
 
-                    <com.yu.common.ui.DelayClickTextView
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:includeFontPadding="false"
+                        android:text="宝贝评价"
+                        android:textColor="#ff000000"
+                        android:textSize="14sp"
+                        />
+
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:includeFontPadding="false"
-                        android:text="查看更多"
-                        android:textColor="#ffa0a9bb"
-                        android:textSize="12sp"
-                        />
+                        android:gravity="center_vertical">
 
-                    <ImageView
-                        android:layout_width="4dp"
-                        android:layout_height="7dp"
-                        android:layout_marginLeft="4dp"
-                        android:src="@drawable/arrow_right"/>
+                        <com.yu.common.ui.DelayClickTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:text="查看更多"
+                            android:textColor="#ffa0a9bb"
+                            android:textSize="12sp"
+                            />
+
+                        <ImageView
+                            android:layout_width="4dp"
+                            android:layout_height="7dp"
+                            android:layout_marginLeft="4dp"
+                            android:src="@drawable/arrow_right"/>
+                    </LinearLayout>
+
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                >
-
-
-                <com.yu.common.ui.CircleImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="8dp"
-                    android:src="@mipmap/ic_launcher"/>
-
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    >
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:text="XXX小店"
-                        android:textColor="#ff3c3e5b"
-                        android:textSize="12sp"
-                        />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:text="2019.04.28"
-                        android:textColor="#ffa0a9bb"
-                        android:textSize="10sp"
-                        />
+                    <com.yu.common.ui.CircleImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@mipmap/ic_launcher"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:text="宝贝很棒"
-                        android:textColor="#ff3c3e5b"
-                        android:textSize="12sp"
-                        />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="XXX小店"
+                            android:textColor="#ff3c3e5b"
+                            android:textSize="12sp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="2019.04.28"
+                            android:textColor="#ffa0a9bb"
+                            android:textSize="10sp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:includeFontPadding="false"
+                            android:text="宝贝很棒"
+                            android:textColor="#ff3c3e5b"
+                            android:textSize="12sp"
+                            />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
-
-
             </LinearLayout>
 
             <View
