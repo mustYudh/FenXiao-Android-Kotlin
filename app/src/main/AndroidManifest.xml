@@ -242,6 +242,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".module.store.activity.RedactStoreActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
