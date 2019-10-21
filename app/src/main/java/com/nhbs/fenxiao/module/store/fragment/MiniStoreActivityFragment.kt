@@ -10,6 +10,7 @@ import com.nhbs.fenxiao.module.store.adapter.MiniStoreActivityAdapter
 import com.nhbs.fenxiao.module.store.bean.MiniStoreActivityBean
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreActivityInfoPresenter
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreActivityInfoViewer
+import com.nhbs.fenxiao.utils.setLinearLayoutAdapter
 import com.nhbs.fenxiao.utils.showToast
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.refresh
@@ -34,7 +35,7 @@ class MiniStoreActivityFragment : BaseFragment(), MiniStoreActivityInfoViewer {
   override fun setView(savedInstanceState: Bundle?) {
     mRecyclerView = bindView(R.id.recycler_view)
     mRecyclerView?.layoutManager = LinearLayoutManager(activity)
-    mRecyclerView?.adapter = adapter
+    mRecyclerView?.setLinearLayoutAdapter(adapter,true)
     initListener()
   }
 

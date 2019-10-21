@@ -16,6 +16,7 @@ import com.nhbs.fenxiao.module.store.bean.GetGoodsParams
 import com.nhbs.fenxiao.module.store.bean.GoodsListBean.GoodsInfoBean
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreGoodsInfoPresenter
 import com.nhbs.fenxiao.module.store.presenter.MiniStoreGoodsInfoViewer
+import com.nhbs.fenxiao.utils.setLinearLayoutAdapter
 import com.nhbs.fenxiao.utils.showToast
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.yu.common.mvp.PresenterLifeCycle
@@ -58,7 +59,7 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
     picker_time.isSelected = selectedType == 0
     time_picker.rotation = 0f
     mRecyclerView?.layoutManager = LinearLayoutManager(activity)
-    mRecyclerView?.adapter = adapter
+    mRecyclerView?.setLinearLayoutAdapter(adapter,true)
     select_type.visibility = View.VISIBLE
     initListener()
   }

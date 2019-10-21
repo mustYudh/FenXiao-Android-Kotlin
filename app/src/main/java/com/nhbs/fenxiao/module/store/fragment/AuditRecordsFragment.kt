@@ -10,6 +10,7 @@ import com.nhbs.fenxiao.module.store.adapter.MiniRecordAdapter
 import com.nhbs.fenxiao.module.store.bean.MiniStoreActivityBean
 import com.nhbs.fenxiao.module.store.presenter.AuditRecordsPresenter
 import com.nhbs.fenxiao.module.store.presenter.AuditRecordsViewer
+import com.nhbs.fenxiao.utils.setLinearLayoutAdapter
 import com.yu.common.mvp.PresenterLifeCycle
 import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.refresh
 
@@ -28,7 +29,7 @@ class AuditRecordsFragment : BaseFragment(), AuditRecordsViewer {
   override fun setView(savedInstanceState: Bundle?) {
     mRecyclerView = bindView(R.id.recycler_view)
     mRecyclerView?.layoutManager = LinearLayoutManager(activity)
-    mRecyclerView?.adapter = adapter
+    mRecyclerView?.setLinearLayoutAdapter(adapter,true)
     initListener()
   }
 
