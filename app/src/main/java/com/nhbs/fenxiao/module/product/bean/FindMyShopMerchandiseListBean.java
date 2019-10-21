@@ -29,7 +29,7 @@ public class FindMyShopMerchandiseListBean {
      */
 
 
-    public List<ListBean> list;
+    public List<ListBean> rows;
 
     public static class ListBean {
         /**

@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.flexbox.FlexboxLayout;
@@ -23,6 +24,7 @@ import com.nhbs.fenxiao.module.product.activity.presenter.ProductDetailsPresente
 import com.nhbs.fenxiao.module.product.activity.presenter.ProductDetailsViewer;
 import com.nhbs.fenxiao.module.product.adapter.BannerProductViewHolder;
 import com.nhbs.fenxiao.module.product.bean.CommentListBean;
+import com.nhbs.fenxiao.module.product.bean.FindMyShopMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.nhbs.fenxiao.module.product.bean.SpecificationBean;
@@ -45,7 +47,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-
+@SuppressLint("SetTextI18n")
 public class ProductDetailsActivity extends BaseBarActivity implements ProductDetailsViewer, APPScrollView.OnScrollListener {
 
     @PresenterLifeCycle
@@ -64,6 +66,7 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
     private CircleImageView iv_shop;
     private ImageView iv_like;
     private DialogUtils shareDialog;
+    private LinearLayout ll_product;
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
@@ -81,12 +84,13 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
         assert bundle != null;
         merchandise_id = bundle.getString("MERCHANDISE_ID");
         mBanner = bindView(R.id.banner);
+        ll_product = bindView(R.id.ll_product);
         iv_shop = bindView(R.id.iv_shop);
         iv_like = bindView(R.id.iv_like);
         bindView(R.id.action_bar_left_actions, view -> finish());
 
         mPresenter.getMerchandiseDetail(merchandise_id);
-        mPresenter.commentList(merchandise_id);
+        mPresenter.commentList(merchandise_id, "1", "1000");
 
     }
 
@@ -97,6 +101,8 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
                 String[] split = merchandiseDetailBean.mImgs.split(",");
                 initBanner(Arrays.asList(split));
             }
+            mPresenter.findMyShopMerchandiseList("1", "1000", merchandiseDetailBean.shopId);
+
             bindText(R.id.tv_title, merchandiseDetailBean.mName + "");
             bindText(R.id.tv_price, "¥" + merchandiseDetailBean.mPrice);
             bindText(R.id.tv_content, merchandiseDetailBean.mContent + "");
@@ -364,6 +370,29 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
             bindView(R.id.ll_comment, true);
         } else {
             bindView(R.id.ll_comment, false);
+        }
+    }
+
+    @Override
+    public void findMyShopMerchandiseListSuccess(FindMyShopMerchandiseListBean findMyShopMerchandiseListBean) {
+        if (findMyShopMerchandiseListBean != null && findMyShopMerchandiseListBean.rows != null && findMyShopMerchandiseListBean.rows.size() != 0) {
+            ll_product.setVisibility(View.VISIBLE);
+            ll_product.removeAllViews();
+            for (int i = 0; i < findMyShopMerchandiseListBean.rows.size(); i++) {
+                View view = View.inflate(getActivity(), R.layout.item_bottom_product, null);
+                NiceImageView iv_icon = view.findViewById(R.id.iv_icon);
+                TextView tv_name = view.findViewById(R.id.tv_name);
+                TextView tv_price = view.findViewById(R.id.tv_price);
+                tv_name.setText(findMyShopMerchandiseListBean.rows.get(i).mName);
+                tv_price.setText("¥" + findMyShopMerchandiseListBean.rows.get(i).mPrice);
+                if (findMyShopMerchandiseListBean.rows.get(i).mImgs != null) {
+                    String[] split = findMyShopMerchandiseListBean.rows.get(i).mImgs.split(",");
+                    ImageLoader.getInstance().displayImage(iv_icon, split[0], R.drawable.ic_placeholder, R.drawable.ic_placeholder);
+                }
+                ll_product.addView(view);
+            }
+        } else {
+            ll_product.setVisibility(View.GONE);
         }
     }
 

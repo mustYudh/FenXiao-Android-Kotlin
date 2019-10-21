@@ -19,6 +19,7 @@ import com.nhbs.fenxiao.module.order.bean.FirstAddressBean;
 import com.nhbs.fenxiao.module.order.bean.MineOrderListBean;
 import com.nhbs.fenxiao.module.order.bean.OrderDetailsBean;
 import com.nhbs.fenxiao.module.order.bean.PayInfo;
+import com.nhbs.fenxiao.module.order.bean.SearchOrderBean;
 import com.nhbs.fenxiao.module.product.bean.CommentListBean;
 import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.FindMyShopMerchandiseListBean;
@@ -166,8 +167,11 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"id"}, Url = "/withdraw/getWithdrawByKey")
     Observable<GetWithdrawInfoBean> getWithdrawByKey(String id);
 
-    @NetMethod(ParameterNames = {"targetId"}, Url = "/find/commentList")
-    Observable<CommentListBean> commentList(String targetId);
+    @NetMethod(ParameterNames = {"targetId","pageNum", "pageSize"}, Url = "/find/commentList")
+    Observable<CommentListBean> commentList(String targetId,String pageNum, String pageSize);
+
+    @NetMethod(ParameterNames = {"type","pageNum", "pageSize","searchTtile"}, Url = "/create/queryShopKeeperOrders")
+    Observable<SearchOrderBean> queryShopKeeperOrders(String type, String pageNum, String pageSize, String searchTtile);
 
 
 }

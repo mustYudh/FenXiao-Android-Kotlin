@@ -6,6 +6,7 @@ import com.nhbs.fenxiao.http.api.OtherApiServices;
 import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber;
 import com.nhbs.fenxiao.http.subscriber.NoTipRequestSubscriber;
 import com.nhbs.fenxiao.module.product.bean.CommentListBean;
+import com.nhbs.fenxiao.module.product.bean.FindMyShopMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.xuexiang.xhttp2.XHttpProxy;
@@ -66,14 +67,26 @@ public class ProductDetailsPresenter extends BaseViewPresenter<ProductDetailsVie
                 });
     }
 
-    public void commentList(String targetId) {
+    public void commentList(String targetId, String pageNum, String pageSize) {
         XHttpProxy.proxy(OtherApiServices.class)
-                .commentList(targetId)
+                .commentList(targetId, pageNum, pageSize)
                 .subscribeWith(new NoTipRequestSubscriber<CommentListBean>() {
                     @Override
                     protected void onSuccess(CommentListBean commentListBean) {
                         assert getViewer() != null;
                         getViewer().commentListSuccess(commentListBean);
+                    }
+                });
+    }
+
+    public void findMyShopMerchandiseList(String pageNum, String pageSize, String shopId) {
+        XHttpProxy.proxy(OtherApiServices.class)
+                .findMyShopMerchandiseList(pageNum, pageSize, shopId)
+                .subscribeWith(new LoadingRequestSubscriber<FindMyShopMerchandiseListBean>(getActivity(), false) {
+                    @Override
+                    protected void onSuccess(FindMyShopMerchandiseListBean findMyShopMerchandiseListBean) {
+                        assert getViewer() != null;
+                        getViewer().findMyShopMerchandiseListSuccess(findMyShopMerchandiseListBean);
                     }
                 });
     }

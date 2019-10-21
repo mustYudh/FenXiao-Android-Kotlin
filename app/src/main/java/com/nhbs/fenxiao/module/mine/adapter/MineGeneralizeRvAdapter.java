@@ -23,8 +23,9 @@ public class MineGeneralizeRvAdapter extends BaseQuickAdapter<MineSpreadLogsList
         CircleImageView iv_icon = helper.getView(R.id.iv_icon);
         ImageLoader.getInstance().displayImage(iv_icon, item.imgs, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
         helper.setText(R.id.tv_share, "已分享人数" + item.shareCount);
+        helper.setText(R.id.tv_title, item.title + "");
         helper.setText(R.id.tv_num, "推广剩余费用：¥" + item.grossSpread);
         helper.setText(R.id.tv_price, "¥" + item.pvSpread + "/次");
-        helper.setText(R.id.tv_time, "截止时间："+DateUtil.formatDate(item.endTime));
+        helper.setText(R.id.tv_time, "截止时间：" + DateUtil.formatDate(item.endTime));
     }
 }

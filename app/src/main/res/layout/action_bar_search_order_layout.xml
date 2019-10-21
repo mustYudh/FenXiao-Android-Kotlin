@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/action_bar_all_height"
+    android:background="@color/lb_cm_white"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/action_bar_height_top"
+    >
+
+    <LinearLayout
+        android:id="@+id/action_bar_left_actions"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="2dp"
+        android:gravity="center_vertical|left"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
+
+        <com.yu.common.ui.BarIconContainer
+            android:id="@+id/action_back"
+            android:layout_width="48dp"
+            android:layout_height="@dimen/action_bar_height"
+            app:bar_icon="@drawable/ic_back_arrow_black"
+            />
+
+
+    </LinearLayout>
+
+    <com.nhbs.fenxiao.module.view.ClearEditText
+        android:id="@+id/et_search"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_search_product"
+        android:cursorVisible="true"
+        android:drawableLeft="@drawable/home_search"
+        android:drawablePadding="8dp"
+        android:hint="搜索订单"
+        android:imeOptions="actionSearch"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:singleLine="true"
+        android:textColorHint="#3C3D5A"
+        android:textSize="14sp"
+
+        />
+
+
+    <LinearLayout
+        android:id="@+id/ll_add"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>

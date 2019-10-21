@@ -70,8 +70,8 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
 
     @Override
     public void findMyShopMerchandiseListSuccess(FindMyShopMerchandiseListBean findMyShopMerchandiseListBean) {
-        if (findMyShopMerchandiseListBean != null && findMyShopMerchandiseListBean.list != null && findMyShopMerchandiseListBean.list.size() != 0) {
-            adapter.setNewData(findMyShopMerchandiseListBean.list);
+        if (findMyShopMerchandiseListBean != null && findMyShopMerchandiseListBean.rows != null && findMyShopMerchandiseListBean.rows.size() != 0) {
+            adapter.setNewData(findMyShopMerchandiseListBean.rows);
             adapter.setOnItemDetailsDoCilckListener(new ProductShopRvAdapter.OnItemOperateListener() {
                 @Override
                 public void onItemDetailsAgencyClick(String id) {
