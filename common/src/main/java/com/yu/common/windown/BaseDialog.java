@@ -9,7 +9,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
 import android.view.View;
@@ -70,19 +69,19 @@ public abstract class BaseDialog extends Dialog {
     }
   }
 
-  @Override
-  public void setContentView(@LayoutRes int layoutId) {
-    super.setContentView(R.layout.lb_cm_dailog_base_container_view);
-    View childView = getLayoutInflater().inflate(layoutId, getContainer(), false);
-    getContainer().addView(childView);
-    bindView(R.id.base_shadow, new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        onBackPressed();
-      }
-    });
-    matchWindows(hasEdit(childView));
-  }
+//  @Override
+//  public void setContentView(@LayoutRes int layoutId) {
+//    super.setContentView(R.layout.lb_cm_dailog_base_container_view);
+//    View childView = getLayoutInflater().inflate(layoutId, getContainer(), false);
+//    getContainer().addView(childView);
+//    bindView(R.id.base_shadow, new View.OnClickListener() {
+//      @Override
+//      public void onClick(View v) {
+//        onBackPressed();
+//      }
+//    });
+//    matchWindows(hasEdit(childView));
+//  }
 
   /**
    * 判断是否有edittext

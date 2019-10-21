@@ -13,12 +13,14 @@ import android.widget.TextView
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.R.layout
 import com.nhbs.fenxiao.base.BaseFragment
+import com.nhbs.fenxiao.module.order.activity.SearchOrderActivity
 import com.nhbs.fenxiao.module.store.adapter.OrderManagerAdapter
 import com.yu.common.ui.BadgeView
 import com.yu.common.ui.ProxyDrawable
 import com.yu.common.ui.Res
 import com.yu.common.utils.DensityUtil
-import java.util.ArrayList
+import kotlinx.android.synthetic.main.fragment_order_manager.*
+import java.util.*
 
 /**
  * @author yudneghao
@@ -89,6 +91,9 @@ class OrderManagerFragment : BaseFragment(), OnTabSelectedListener {
       }
       initBadgeViews()
       setUpTabBadge()
+    }
+    search_btn.setOnClickListener {
+      launchHelper.startActivity(SearchOrderActivity::class.java)
     }
   }
 

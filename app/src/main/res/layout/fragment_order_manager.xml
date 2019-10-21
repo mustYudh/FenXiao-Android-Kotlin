@@ -10,7 +10,8 @@
     >
 
 
-  <EditText
+  <com.yu.common.ui.DelayClickTextView
+      android:id="@+id/search_btn"
       android:layout_width="match_parent"
       android:layout_height="32dp"
       android:layout_marginLeft="16dp"

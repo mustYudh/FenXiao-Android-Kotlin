@@ -13,6 +13,7 @@ import com.nhbs.fenxiao.base.BaseBarFragment
 import com.nhbs.fenxiao.data.UserProfile
 import com.nhbs.fenxiao.module.home.StatusBarColorManager
 import com.nhbs.fenxiao.module.store.activity.OrderManagerActivity
+import com.nhbs.fenxiao.module.store.activity.RedactStoreActivity
 import com.nhbs.fenxiao.module.store.adapter.MiniStoreGoodsPageAdapter
 import com.nhbs.fenxiao.module.store.bean.ShopInfoBean
 import com.nhbs.fenxiao.module.store.presenter.MiniStorePresenter
@@ -24,10 +25,7 @@ import com.yu.common.glide.ImageLoader
 import com.yu.common.mvp.PresenterLifeCycle
 import com.yu.common.navigation.StatusBarFontColorUtil
 import com.yu.common.ui.BadgeView
-import kotlinx.android.synthetic.main.fragment_mini_store_layout.edit
-import kotlinx.android.synthetic.main.fragment_mini_store_layout.header
-import kotlinx.android.synthetic.main.fragment_mini_store_layout.order_manager
-import kotlinx.android.synthetic.main.fragment_mini_store_layout.tv_open_store
+import kotlinx.android.synthetic.main.fragment_mini_store_layout.*
 import net.lucode.hackware.magicindicator.MagicIndicator
 import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
@@ -36,7 +34,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerInd
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.CommonPagerTitleView
-import java.util.ArrayList
+import java.util.*
 
 /**
  * @author yudenghao
@@ -75,6 +73,9 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
     }
     order_manager.setOnClickListener {
       launchHelper.startActivity(OrderManagerActivity::class.java)
+    }
+    edit.setOnClickListener {
+      launchHelper.startActivity(RedactStoreActivity::class.java)
     }
   }
 
@@ -155,9 +156,6 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
     tabTitles.add("审核记录")
     initTab()
     initListener()
-    edit.setOnClickListener {
-
-    }
   }
 
 
