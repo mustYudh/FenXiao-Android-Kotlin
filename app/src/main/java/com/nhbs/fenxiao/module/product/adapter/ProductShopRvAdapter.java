@@ -23,7 +23,11 @@ public class ProductShopRvAdapter extends BaseQuickAdapter<FindMyShopMerchandise
     @Override
     protected void convert(BaseViewHolder helper, FindMyShopMerchandiseListBean.ListBean item) {
         ImageView iv_product = helper.getView(R.id.iv_product);
-        ImageLoader.getInstance().displayImage(iv_product, item.mImgs, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
+        if (item.mImgs != null) {
+            String[] split = item.mImgs.split(",");
+            ImageLoader.getInstance().displayImage(iv_product, split[0], R.drawable.ic_placeholder, R.drawable.ic_placeholder);
+        }
+
         helper.setText(R.id.tv_title, item.mName);
         helper.setText(R.id.tv_price, "¥" + item.mPrice);
         helper.setText(R.id.tv_share, "分享赚¥" + item.commission);

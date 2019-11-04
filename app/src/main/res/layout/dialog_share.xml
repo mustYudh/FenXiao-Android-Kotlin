@@ -8,9 +8,10 @@
 
 
     <LinearLayout
-        android:paddingTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
 
 
         <LinearLayout
@@ -21,7 +22,8 @@
             android:gravity="center"
             android:orientation="vertical"
             android:paddingTop="8dp"
-            android:paddingBottom="8dp">
+            android:paddingBottom="8dp"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="40dp"
@@ -48,7 +50,8 @@
             android:gravity="center"
             android:orientation="vertical"
             android:paddingTop="8dp"
-            android:paddingBottom="8dp">
+            android:paddingBottom="8dp"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="40dp"
@@ -126,7 +129,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
 
 
         <LinearLayout

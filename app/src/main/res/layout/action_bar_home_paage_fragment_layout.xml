@@ -2,68 +2,70 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="@dimen/action_bar_all_height"
     android:background="@color/app_theme"
     android:gravity="center"
     android:orientation="horizontal"
-    android:layout_height="@dimen/action_bar_all_height"
     android:paddingTop="@dimen/action_bar_height_top"
     >
 
 
-  <com.nhbs.fenxiao.module.view.ClearEditText
-      android:id="@+id/ed_search"
-      android:layout_width="0dp"
-      android:layout_height="28dp"
-      android:layout_marginLeft="16dp"
-      android:layout_marginRight="8dp"
-      android:layout_weight="1"
-      android:background="@drawable/shape_search_home"
-      android:cursorVisible="true"
-      android:drawableLeft="@drawable/home_search"
-      android:drawablePadding="8dp"
-      android:hint="搜索宝贝"
-      android:maxLength="1"
-      android:paddingLeft="12dp"
-      android:paddingRight="12dp"
-      android:singleLine="true"
-      android:textColorHint="#3C3D5A"
-      android:textSize="14sp"
+    <com.nhbs.fenxiao.module.view.ClearEditText
+        android:id="@+id/ed_search"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_search_home"
+        android:cursorVisible="true"
+        android:drawableLeft="@drawable/home_search"
+        android:drawablePadding="8dp"
+        android:hint="搜索宝贝"
+        android:maxLength="1"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:singleLine="true"
+        android:textColorHint="#3C3D5A"
+        android:textSize="14sp"
 
-      />
-
-
-  <ImageView
-      android:layout_width="22dp"
-      android:layout_height="22dp"
-      android:layout_marginLeft="12dp"
-      android:scaleType="centerCrop"
-      android:src="@drawable/home_scan"
-      />
+        />
 
 
-  <ImageView
-      android:layout_width="22dp"
-      android:layout_height="20dp"
-      android:layout_marginLeft="12dp"
-      android:scaleType="centerCrop"
-      android:src="@drawable/home_msg"
-      />
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginLeft="12dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/home_scan"
+        android:visibility="gone"
+        />
 
-  <TextView
-      android:id="@+id/iv_msg_num"
-      android:layout_width="wrap_content"
-      android:layout_height="12dp"
-      android:layout_marginBottom="10dp"
-      android:layout_marginLeft="-8dp"
-      android:layout_marginRight="4dp"
-      android:background="@drawable/shape_red_point"
-      android:gravity="center"
-      android:paddingLeft="2dp"
-      android:paddingRight="2dp"
-      android:text="99"
-      android:textColor="@color/lb_cm_white"
-      android:textSize="10sp"
-      android:visibility="visible"
-      />
+
+    <ImageView
+        android:layout_width="22dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="12dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/home_msg"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/iv_msg_num"
+        android:layout_width="wrap_content"
+        android:layout_height="12dp"
+        android:layout_marginLeft="-8dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shape_red_point"
+        android:gravity="center"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:text="99"
+        android:textColor="@color/lb_cm_white"
+        android:textSize="10sp"
+        android:visibility="gone"
+        />
 
 </LinearLayout>

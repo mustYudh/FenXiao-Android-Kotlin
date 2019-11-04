@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/white"
@@ -15,6 +16,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/rl_img"
         android:layout_width="match_parent"
         android:layout_height="48dp">
 
@@ -38,6 +40,7 @@
             android:gravity="center_vertical">
 
             <com.yu.common.ui.CircleImageView
+                android:id="@+id/iv_img"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@mipmap/ic_launcher"/>
@@ -57,14 +60,14 @@
         android:layout_marginRight="16dp"
         android:background="#F7F7F7"/>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp">
+        android:layout_height="48dp"
+        android:gravity="center_vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
             android:includeFontPadding="false"
             android:text="小店名称"
@@ -74,19 +77,21 @@
 
 
         <EditText
-            android:layout_width="wrap_content"
+            android:id="@+id/et_name"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:layout_weight="1"
             android:background="@null"
-            android:gravity="center"
-            android:text="·001"
+            android:gravity="right|center_vertical"
+            android:hint="请填写小店名称"
             android:textColor="#ff9ea9bc"
+            android:textColorHint="#ff9ea9bc"
             android:textSize="13sp"
-            />
+            tools:ignore="RtlHardcoded"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -94,6 +99,7 @@
         android:background="#F3F5F8"/>
 
     <EditText
+        android:id="@+id/et_describes"
         android:layout_width="match_parent"
         android:layout_height="165dp"
         android:layout_marginLeft="16dp"
@@ -101,10 +107,11 @@
         android:layout_marginRight="16dp"
         android:background="#F3F5F8"
         android:gravity="top"
+        android:hint="请填写小店描述"
         android:paddingLeft="16dp"
         android:paddingTop="12dp"
-        android:text="·001"
         android:textColor="#ff9ea9bc"
+        android:textColorHint="#ff9ea9bc"
         android:textSize="13sp"
         />
 
@@ -114,7 +121,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <TextView
+    <com.yu.common.ui.DelayClickTextView
+        android:id="@+id/tv_commit"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_margin="16dp"

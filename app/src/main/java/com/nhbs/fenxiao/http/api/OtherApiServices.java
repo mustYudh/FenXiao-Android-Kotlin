@@ -167,11 +167,13 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"id"}, Url = "/withdraw/getWithdrawByKey")
     Observable<GetWithdrawInfoBean> getWithdrawByKey(String id);
 
-    @NetMethod(ParameterNames = {"targetId","pageNum", "pageSize"}, Url = "/find/commentList")
-    Observable<CommentListBean> commentList(String targetId,String pageNum, String pageSize);
+    @NetMethod(ParameterNames = {"targetId", "pageNum", "pageSize"}, Url = "/find/commentList")
+    Observable<CommentListBean> commentList(String targetId, String pageNum, String pageSize);
 
-    @NetMethod(ParameterNames = {"type","pageNum", "pageSize","searchTtile"}, Url = "/create/queryShopKeeperOrders")
+    @NetMethod(ParameterNames = {"type", "pageNum", "pageSize", "searchTtile"}, Url = "/create/queryShopKeeperOrders")
     Observable<SearchOrderBean> queryShopKeeperOrders(String type, String pageNum, String pageSize, String searchTtile);
 
+    @NetMethod(ParameterNames = {"id", "shopImage", "shopName", "describes"}, Url = "/userShop/update")
+    Observable<Object> userShopUpdate(String id, String shopImage, String shopName, String describes);
 
 }

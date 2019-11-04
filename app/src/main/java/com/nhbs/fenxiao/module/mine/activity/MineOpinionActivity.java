@@ -32,7 +32,6 @@ import java.util.List;
 
 import id.zelory.compressor.Compressor;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -119,23 +118,12 @@ public class MineOpinionActivity extends BaseBarActivity implements MineOpinionV
                         .compressToFileAsFlowable(imageFileCrmera)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Consumer<File>() {
-                            @Override
-                            public void accept(File file) {
-                                mPresenter.uploadImg(file);
-                            }
-                        }, new Consumer<Throwable>() {
-                            @Override
-                            public void accept(Throwable throwable) {
-                                throwable.printStackTrace();
+                        .subscribe(file -> mPresenter.uploadImg(file), throwable -> {
+                            throwable.printStackTrace();
 //                                        showError(throwable.getMessage());
-                                new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        handler.sendEmptyMessage(1002);//向消息队列发送一个标记
-                                    }
-                                }).start();
-                            }
+                            new Thread(() -> {
+                                handler.sendEmptyMessage(1002);//向消息队列发送一个标记
+                            }).start();
                         });
             }
         });
@@ -228,21 +216,14 @@ public class MineOpinionActivity extends BaseBarActivity implements MineOpinionV
     public void uploadImgSuccess(UploadImgBean uploadImgBean) {
         if (uploadImgBean != null) {
             imageFiles.add(uploadImgBean.url + "");
-
             if (imageFiles.size() == allLocationSelectedPicture.size()) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        handler.sendEmptyMessage(1001);//向消息队列发送一个标记
-                    }
+                new Thread(() -> {
+                    handler.sendEmptyMessage(1001);//向消息队列发送一个标记
                 }).start();
             }
         } else {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    handler.sendEmptyMessage(1003);//向消息队列发送一个标记
-                }
+            new Thread(() -> {
+                handler.sendEmptyMessage(1003);//向消息队列发送一个标记
             }).start();
         }
     }

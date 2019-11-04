@@ -5,7 +5,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.text.InputType;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.nhbs.fenxiao.R;
@@ -54,7 +56,9 @@ public class HomeProductClassifyActivity extends BaseBarActivity implements Home
 
         mViewPager = bindView(R.id.view_pager);
 
-
+        EditText et_search = bindView(R.id.et_search);
+        et_search.setInputType(InputType.TYPE_NULL);
+        bindView(R.id.et_search, view -> getLaunchHelper().startActivity(ProductSearchActivity.class));
         mPresenter.getMerchandiseClass();
 
         bindView(R.id.action_bar_left_actions, true);

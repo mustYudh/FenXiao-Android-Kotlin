@@ -3,7 +3,7 @@ package com.nhbs.fenxiao.module.mine.activity.presenter;
 import android.annotation.SuppressLint;
 
 import com.nhbs.fenxiao.http.api.OtherApiServices;
-import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber;
+import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber;
 import com.nhbs.fenxiao.module.mine.bean.UploadImgBean;
 import com.xuexiang.xhttp2.XHttp;
 import com.xuexiang.xhttp2.XHttpProxy;
@@ -25,7 +25,7 @@ public class MineOpinionPresenter
     public void opinionAdd(String context, String mobile, String conUrl, String type) {
         XHttpProxy.proxy(OtherApiServices.class)
                 .opinionAdd(context, mobile, conUrl, type)
-                .subscribeWith(new TipRequestSubscriber<Object>(){
+                .subscribeWith(new LoadingRequestSubscriber<Object>(getActivity(), false) {
                     @Override
                     protected void onSuccess(Object o) {
                         assert getViewer() != null;
@@ -43,7 +43,7 @@ public class MineOpinionPresenter
 
     public void uploadImg(File file) {
         XHttp.post("/upload")
-                .baseUrl("http://139.180.218.55:8070")
+                .baseUrl("http://bapi.novobus.cn")
                 .subUrl("/api")
                 .uploadFile("file", file, (bytesWritten, contentLength, done) -> {
                 })
