@@ -47,6 +47,7 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
   private val mPresenter = MiniStorePresenter(this)
 
   private val tabTitles = ArrayList<String>()
+  private var shopId: String? = ""
   private var mMagicIndicator: MagicIndicator? = null
   private var mViewPager: ViewPager? = null
   private var mPagerAdapter: MiniStoreGoodsPageAdapter? = null
@@ -75,7 +76,7 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
       launchHelper.startActivity(OrderManagerActivity::class.java)
     }
     edit.setOnClickListener {
-      launchHelper.startActivity(RedactStoreActivity::class.java)
+      launchHelper.startActivity(RedactStoreActivity.getIntent(activity,shopId))
     }
   }
 
@@ -161,6 +162,7 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
 
   override fun setShopInfo(info: ShopInfoBean?) {
     openStoreStatus(true)
+    shopId = info?.shopId
     bindText<TextView>(R.id.province, if (info?.province.checkTextEmpty()) "${info?.province}${info?.city}${info?.district}" else "请选择地址")
     bindText<TextView>(R.id.shopName, info?.shopName)
     bindText<TextView>(R.id.describes, info?.describes)

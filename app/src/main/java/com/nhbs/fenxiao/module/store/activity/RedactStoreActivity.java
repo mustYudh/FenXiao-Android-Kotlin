@@ -1,6 +1,7 @@
 package com.nhbs.fenxiao.module.store.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -76,6 +77,11 @@ public class RedactStoreActivity extends BaseBarActivity implements RedactStoreV
         }
     };
 
+    public static Intent getIntent(Context context,String stoteId) {
+        Intent intent = new Intent(context, RedactStoreActivity.class);
+        intent.putExtra("STORE_ID",stoteId);
+        return  intent;
+    }
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {

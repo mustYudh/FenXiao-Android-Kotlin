@@ -17,4 +17,6 @@ public class MineUserInfoBean {
     public String focusNum;
     public String aliStatus;
     public String winStatus;
+    public String settledAmount;
+    public String drawalAmount;
 }

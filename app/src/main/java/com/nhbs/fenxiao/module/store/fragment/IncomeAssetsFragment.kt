@@ -93,6 +93,9 @@ class IncomeAssetsFragment : BaseFragment(), AuthLoginCallback, IncomeAssetsView
 
 
     override fun getUserInfoSuccess(info: MineUserInfoBean) {
+        balance.text = info.balance
+        settled_amount.text = info.settledAmount
+        drawal_amount.text = info.drawalAmount
         withdrawal.setOnClickListener {
             IncomeAssetsDialog(activity!!, info, object : AuthLoginCallback {
                 override fun onStart(media: SHARE_MEDIA?) {

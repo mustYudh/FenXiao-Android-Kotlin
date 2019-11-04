@@ -36,6 +36,9 @@ public class VerificationCodePresenter extends BaseViewPresenter<VerificationCod
                       @Override protected void onError(ApiException apiException) {
                         super.onError(apiException);
                         assert getViewer() != null;
+                        if (apiException.getCode() == 3003) {
+                            getActivity().finish();
+                        }
                         getViewer().loginFailed();
                       }
                     });

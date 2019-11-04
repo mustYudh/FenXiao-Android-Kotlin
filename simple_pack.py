@@ -5,7 +5,7 @@ import sys
 reload(sys)
 
 
-apks_release_dir = "app/build/outputs/apk/fenxiao/release/"
+apks_release_dir = "app/build/outputs/apk/zhongmai/release/"
 apk_name="app-release.apk"
 
 print "脚本名：", sys.argv[0]
@@ -27,7 +27,7 @@ for i in range(1, len(sys.argv)):
     if (sys.argv[i]=="install"):
         _install = True;
 
-gradleOrder="./gradlew clean assembleFenxiaoRelease -PAPI_MODE="+_api_mode;
+gradleOrder="./gradlew clean assembleZhongmaiRelease -PAPI_MODE="+_api_mode;
 
 print "环境参数 ", " api_mode=",_api_mode, " clean=",_clean, "install=",_install
 
