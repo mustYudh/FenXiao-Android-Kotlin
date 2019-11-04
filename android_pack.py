@@ -1,4 +1,4 @@
 # coding=utf-8
 import os
-os.system("./gradlew clean assembleZhongmaiRelease -PAPI_MODE=ONLINE");
+os.system("./gradlew clean assembleFenxiaoRelease -PAPI_MODE=ONLINE");
 
