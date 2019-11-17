@@ -59,6 +59,7 @@ public class AdvertisingShareActivity extends BaseBarActivity implements Adverti
             ImageLoader.getInstance().displayImage(iv_img, advertisingInfoBean.imgs, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
             ImageLoader.getInstance().displayImage(iv_shop, advertisingInfoBean.shopImage, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
             bindView(R.id.tv_share, view -> mPresenter.advertiseShare(advertisingInfoBean.id));
+            bindText(R.id.tv_share, "分享赚" + advertisingInfoBean.pvSpread + "元");
         }
     }
 
