@@ -33,6 +33,10 @@ class CreateNewTypePopUpWindow(context: Context) : BasePopupWindow(context,
     return bindView(R.id.container)
   }
 
+  fun setTitle(title: String){
+    bindView<TextView>(R.id.text_title).text = title
+  }
+
   fun setCancelListener(listener: View.OnClickListener): CreateNewTypePopUpWindow {
     bindView<TextView>(R.id.cancel, listener)
     return this

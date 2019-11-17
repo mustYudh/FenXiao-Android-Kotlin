@@ -3,24 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#F7F7F7"
     >
 
-  <com.scwang.smartrefresh.layout.SmartRefreshLayout
-      android:layout_marginBottom="48dp"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      >
-
-
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/type_manage_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
-
-
-  </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
+        android:layout_marginBottom="48dp"
+        android:layout_marginTop="1dp"
+        tools:listitem="@layout/item_manage_classification"/>
 
   <LinearLayout
       android:id="@+id/create_new_type"
@@ -29,15 +22,20 @@
       android:layout_alignParentBottom="true"
       android:background="@color/white"
       android:gravity="center"
-      >
+      android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:text="分类至"
-        android:textColor="#FF4A4D"
-        android:textSize="16sp"
-        />
+      <ImageView
+          android:layout_width="22dp"
+          android:layout_height="22dp"
+          android:src="@drawable/ic_add_classification"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="新建分类"
+          android:layout_marginLeft="8dp"
+          android:textColor="#333333"
+          android:textSize="14dp"/>
+
   </LinearLayout>
 </RelativeLayout>

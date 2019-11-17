@@ -3,13 +3,7 @@ package com.nhbs.fenxiao.http.api
 import com.nhbs.fenxiao.data.UserProfile
 import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
-import com.nhbs.fenxiao.module.store.bean.ActivityListInfo
-import com.nhbs.fenxiao.module.store.bean.ExpInfoBean
-import com.nhbs.fenxiao.module.store.bean.GoodsListBean
-import com.nhbs.fenxiao.module.store.bean.OrderCountBean
-import com.nhbs.fenxiao.module.store.bean.OrderManagerInfoBean
-import com.nhbs.fenxiao.module.store.bean.ShopInfoBean
-import com.nhbs.fenxiao.module.store.bean.TypeCountListBean
+import com.nhbs.fenxiao.module.store.bean.*
 import com.nhbs.fenxiao.utils.oss.bean.OssConfig
 import com.xuexiang.xhttp2.annotation.NetMethod
 import com.xuexiang.xhttp2.model.ApiResult
@@ -81,8 +75,17 @@ interface AppApiServices {
   @POST("/api/merchandise/findMerchandiseList")
   @Headers("Content-Type: application/json", "Accept: application/json")
   fun getGoodsList(@Body params: RequestBody, @Header(
-      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<GoodsListBean>>
+          "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<GoodsListBean>>
 
+  @POST("/api/merchandise/queryMyClassGoodsList")
+  @Headers("Content-Type: application/json", "Accept: application/json")
+  fun getGoodsListNew(@Body params: RequestBody, @Header(
+          "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<GoodsListBean>>
+
+  @POST("/api/merchandise/queryMyOtherClassGoodsList")
+  @Headers("Content-Type: application/json", "Accept: application/json")
+  fun getOtherGoodsList(@Body params: RequestBody, @Header(
+          "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<OtherTypeGoodsBean>>
 
   @NetMethod(Url = "/merchandise/pullDown", ParameterNames = ["id"])
   fun pullDownGoods(id: String): Observable<Any>
@@ -137,6 +140,20 @@ interface AppApiServices {
 
   @NetMethod(ParameterNames =["classify"],Url ="/merchandiseClass/merchandiseClass")
   fun merchandiseClass(classify: String): Observable<Any>
+
+
+  @NetMethod(ParameterNames =["id","classify"],Url ="/merchandiseClass/updateClass")
+  fun changeTypeName(id: String,classify: String): Observable<Any>
+
+
+  @NetMethod(ParameterNames =["id"],Url ="/merchandise/deleteClass")
+  fun deleteType(id: String): Observable<Any>
+
+  @NetMethod(ParameterNames =["id","classId"],Url ="/merchandise/addClassGoods")
+  fun typeAddGoods(id: String,classId:String): Observable<Any>
+
+  @NetMethod(ParameterNames =["id","classId"],Url ="/merchandise/deleteClassGoods")
+  fun typeDeleteGoods(id: String,classId:String): Observable<Any>
 
 }
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/GreyWhite">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/goods_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_classification_goods"
+        android:layout_marginTop="1dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/white"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp">
+
+        <TextView
+            android:id="@+id/text_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_confirm_btn_add_classification"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:gravity="center"
+            android:text="确认添加"/>
+
+    </LinearLayout>
+
+</LinearLayout>

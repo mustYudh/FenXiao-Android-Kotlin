@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:paddingLeft="16dp"
+        android:paddingRight="38dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/img_choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/choose_goods_selector"
+            android:layout_marginRight="12dp"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="64dp"
+            android:layout_height="64dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="2dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="12dp">
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textSize="14dp"
+                android:textColor="@color/color_black_333333"
+                android:text="办公室沙发茶几组合现代三人位真皮"/>
+
+            <TextView
+                android:id="@+id/text_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:text="¥234"
+                android:textColor="@color/color_red_FF484C"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/GreyWhite"/>
+
+</LinearLayout>

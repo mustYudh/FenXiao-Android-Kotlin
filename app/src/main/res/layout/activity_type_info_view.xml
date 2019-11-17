@@ -4,25 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-  <com.scwang.smartrefresh.layout.SmartRefreshLayout
-      android:id="@+id/refresh"
-      android:layout_width="match_parent"
-      android:layout_weight="1"
-      android:layout_height="0dp">
-
+    android:layout_height="match_parent"
+    android:background="@color/GreyWhite">
 
     <android.support.v7.widget.RecyclerView
-        tools:listitem="@layout/item_mini_store_classified"
+        tools:listitem="@layout/item_classification_goods"
         android:id="@+id/goods_info"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-
-  </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
   <TextView
+      android:id="@+id/text_add"
       android:background="@color/white"
       android:gravity="center"
       android:layout_width="match_parent"
@@ -33,6 +26,7 @@
       />
 
   <LinearLayout
+      android:id="@+id/ll_manage"
       android:visibility="gone"
       android:background="@color/white"
       android:gravity="center_vertical"
@@ -40,6 +34,7 @@
       android:layout_height="48dp">
 
     <TextView
+        android:id="@+id/text_all"
         android:gravity="center"
         android:layout_weight="1"
         android:layout_width="0dp"
@@ -56,8 +51,8 @@
         android:layout_height="match_parent"
         android:background="#ffececec"/>
 
-
     <TextView
+        android:id="@+id/text_delete"
         android:gravity="center"
         android:layout_weight="1"
         android:layout_width="0dp"

@@ -68,6 +68,8 @@ class GoodsListBean : Serializable {
     val mImgs: String? = null
     val status: Int = 0
     var number: Int = 0
+    var isChecked: Boolean = false
+    var isShowCheck: Boolean = false
 
   }
 }

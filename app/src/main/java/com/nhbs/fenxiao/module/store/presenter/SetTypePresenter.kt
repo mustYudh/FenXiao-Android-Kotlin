@@ -19,17 +19,19 @@ class SetTypePresenter(viewer: SetTypeViewer) : BaseViewPresenter<SetTypeViewer>
           override fun onSuccess(data: TypeCountListBean?) {
             val list = ArrayList<ClassTOS>()
             var count = 0
+            var noTypeId = ""
             if (data != null) {
               for (item in data.classListTOS) {
                 if (item.classify != "未分类") {
                   list.add(item)
                 } else {
                   count = item.total
+                  noTypeId = item.id
                 }
               }
             }
 
-            getViewer()?.setGoodsTypeCount(list,count)
+            getViewer()?.setGoodsTypeCount(list,count,noTypeId)
           }
 
         })
