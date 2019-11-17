@@ -14,6 +14,7 @@ import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
 import com.nhbs.fenxiao.module.mine.bean.MineGroupBean;
 import com.nhbs.fenxiao.module.mine.bean.MineSpreadLogsListBean;
 import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
+import com.nhbs.fenxiao.module.mine.bean.UserAccountInfo;
 import com.nhbs.fenxiao.module.order.bean.CreateUserOrderBean;
 import com.nhbs.fenxiao.module.order.bean.FirstAddressBean;
 import com.nhbs.fenxiao.module.order.bean.MineOrderListBean;
@@ -175,5 +176,9 @@ public interface OtherApiServices {
 
     @NetMethod(ParameterNames = {"id", "shopImage", "shopName", "describes"}, Url = "/userShop/update")
     Observable<Object> userShopUpdate(String id, String shopImage, String shopName, String describes);
+
+    @NetMethod(Url = "/user/getUserAccountInfo")
+    Observable<UserAccountInfo> getUserAccountInfo();
+
 
 }
