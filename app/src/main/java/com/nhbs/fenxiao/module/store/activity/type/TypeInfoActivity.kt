@@ -64,6 +64,7 @@ class TypeInfoActivity : BaseBarActivity(), TypeInfoViewer {
     paramsN.classId = typeId
 //    params.pageNum = pageNum
     setTitle(typeName)
+    adapter.setEmptyView(R.layout.layout_empty)
     val spannableString = SpannableString("编辑")
     val colorSpan = ForegroundColorSpan(Color.parseColor("#FF3539"))
     spannableString.setSpan(colorSpan, 0, 2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
