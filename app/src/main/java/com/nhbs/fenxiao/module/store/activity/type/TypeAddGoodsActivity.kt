@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseBarActivity
 import com.nhbs.fenxiao.module.store.activity.presenter.TypeAddGoodsPresenter
@@ -41,7 +42,6 @@ class TypeAddGoodsActivity : BaseBarActivity(), TypeAddGoodsViewer {
 
   override fun loadData() {
     setTitle("添加商品")
-    adapter.setEmptyView(R.layout.layout_empty)
     typeId = intent.getStringExtra(TYPE_ID)
     params.classId = typeId
     initListener()
@@ -74,6 +74,8 @@ class TypeAddGoodsActivity : BaseBarActivity(), TypeAddGoodsViewer {
       listData.addAll(list)
     }
     goods_list.setLinearLayoutAdapter(adapter)
+    var view : View = View.inflate(this, R.layout.layout_empty_visible, null)
+    adapter.emptyView = view
     adapter.setNewData(list)
     adapter.setOnItemClickListener { adapter, view, position ->
       if (list?.get(position)?.isChecked!!) {

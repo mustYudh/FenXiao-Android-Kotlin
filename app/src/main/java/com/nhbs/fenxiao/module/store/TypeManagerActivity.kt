@@ -1,6 +1,7 @@
 package com.nhbs.fenxiao.module.store
 
 import android.os.Bundle
+import android.view.View
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseBarActivity
 import com.nhbs.fenxiao.module.store.adapter.TypeManageListAdapter
@@ -27,7 +28,6 @@ class TypeManagerActivity : BaseBarActivity(), TypeManagerViewer {
 
   override fun loadData() {
     setTitle("管理分类")
-    adapter.setEmptyView(R.layout.layout_empty)
     create_new_type.setOnClickListener {
       createNewTypePop = CreateNewTypePopUpWindow(activity)
       with(createNewTypePop!!) {
@@ -55,6 +55,8 @@ class TypeManagerActivity : BaseBarActivity(), TypeManagerViewer {
 
   override fun setGoodsTypeCount(classListTOS: List<ClassTOS>, notTypeCount: Int) {
     type_manage_list.setLinearLayoutAdapter(adapter)
+    var view : View = View.inflate(this, R.layout.layout_empty_visible, null)
+    adapter.emptyView = view
     adapter.setOnItemChildClickListener { adapter, view, position ->
       if(view.id == R.id.img_change) {
         createNewTypePop = CreateNewTypePopUpWindow(activity)

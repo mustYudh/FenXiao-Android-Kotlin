@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseBarActivity
 import com.nhbs.fenxiao.module.store.adapter.NoTypeGoodsListAdapter
@@ -44,7 +45,6 @@ class NotSetTypeActivity : BaseBarActivity(), NotSetTypeViewer {
 
   override fun loadData() {
     setTitle("未分类")
-    adapter.setEmptyView(R.layout.layout_empty)
     typeId = intent.getStringExtra(TYPE_ID)
     params.classId = typeId
     initListener()
@@ -64,6 +64,8 @@ class NotSetTypeActivity : BaseBarActivity(), NotSetTypeViewer {
   @SuppressLint("SetTextI18n")
   override fun setGoodsInfoList(list: List<GoodsListBean.GoodsInfoBean>?) {
     goods_info.setLinearLayoutAdapter(adapter)
+    var view : View = View.inflate(this, R.layout.layout_empty_visible, null)
+    adapter.emptyView = view
     adapter.setNewData(list)
     adapter.setOnItemClickListener { adapter, view, position ->
       chooseId = ""
