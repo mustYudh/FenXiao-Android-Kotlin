@@ -44,6 +44,7 @@ class NotSetTypeActivity : BaseBarActivity(), NotSetTypeViewer {
 
   override fun loadData() {
     setTitle("未分类")
+    adapter.setEmptyView(R.layout.layout_empty)
     typeId = intent.getStringExtra(TYPE_ID)
     params.classId = typeId
     initListener()

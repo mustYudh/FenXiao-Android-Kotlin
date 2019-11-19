@@ -41,6 +41,7 @@ class TypeAddGoodsActivity : BaseBarActivity(), TypeAddGoodsViewer {
 
   override fun loadData() {
     setTitle("添加商品")
+    adapter.setEmptyView(R.layout.layout_empty)
     typeId = intent.getStringExtra(TYPE_ID)
     params.classId = typeId
     initListener()
