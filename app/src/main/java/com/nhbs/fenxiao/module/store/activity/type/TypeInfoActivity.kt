@@ -64,7 +64,6 @@ class TypeInfoActivity : BaseBarActivity(), TypeInfoViewer {
     paramsN.classId = typeId
 //    params.pageNum = pageNum
     setTitle(typeName)
-    adapter.setEmptyView(R.layout.layout_empty)
     val spannableString = SpannableString("编辑")
     val colorSpan = ForegroundColorSpan(Color.parseColor("#FF3539"))
     spannableString.setSpan(colorSpan, 0, 2, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
@@ -134,6 +133,8 @@ class TypeInfoActivity : BaseBarActivity(), TypeInfoViewer {
       listData.addAll(list)
     }
     goods_info.setLinearLayoutAdapter(adapter)
+    var view : View = View.inflate(this, R.layout.layout_empty_visible, null)
+    adapter.emptyView = view
     adapter.setNewData(list)
     adapter.setOnItemClickListener { adapter, view, position ->
       if (list?.get(position)?.isChecked!!) {
