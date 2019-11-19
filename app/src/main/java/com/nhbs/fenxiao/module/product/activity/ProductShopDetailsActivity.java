@@ -14,6 +14,7 @@ import com.nhbs.fenxiao.module.product.activity.presenter.ProductShopDetailsPres
 import com.nhbs.fenxiao.module.product.activity.presenter.ProductShopDetailsViewer;
 import com.nhbs.fenxiao.module.product.adapter.ProductShopRvAdapter;
 import com.nhbs.fenxiao.module.product.bean.FindMyShopMerchandiseListBean;
+import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.nhbs.fenxiao.module.product.bean.ShopOtherUserDetailBean;
 import com.nhbs.fenxiao.module.store.bean.UserShopShareBean;
 import com.nhbs.fenxiao.module.view.ScreenSpaceItemDecoration;
@@ -21,6 +22,7 @@ import com.nhbs.fenxiao.utils.DialogUtils;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.yu.common.glide.ImageLoader;
 import com.yu.common.mvp.PresenterLifeCycle;
+import com.yu.common.toast.ToastUtils;
 import com.yu.common.ui.CircleImageView;
 import com.yu.share.ShareHelp;
 import com.yu.share.SharesBean;
@@ -74,13 +76,17 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
             adapter.setNewData(findMyShopMerchandiseListBean.rows);
             adapter.setOnItemDetailsDoCilckListener(new ProductShopRvAdapter.OnItemOperateListener() {
                 @Override
-                public void onItemDetailsAgencyClick(String id) {
-
+                public void onItemDetailsAgencyClick(FindMyShopMerchandiseListBean.ListBean item) {
+                    if ("0".equals(item.isAgent)) {
+                        mPresenter.agentMerchandise(item);
+                    } else {
+                        ToastUtils.show("您已经代理过了");
+                    }
                 }
 
                 @Override
                 public void onItemDetailsShareClick(String id) {
-
+                    mPresenter.advertiseShare(id);
                 }
             });
             bindView(R.id.ll_empty, false);
@@ -127,6 +133,98 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
         if (userShopShareBean != null) {
             showShareDialog(userShopShareBean);
         }
+    }
+
+    @Override
+    public void advertiseShareSuccess(ShareMerchandiseBean shareMerchandiseBean) {
+        if (shareMerchandiseBean != null) {
+            showShareGoodsDialog(shareMerchandiseBean);
+        } else {
+            ToastUtils.show("分享数据出问题了~");
+        }
+    }
+
+    @Override
+    public void agentMerchandiseSuccess(FindMyShopMerchandiseListBean.ListBean item) {
+        ToastUtils.show("代理成功");
+        item.isAgent = "1";
+    }
+
+
+    private void showShareGoodsDialog(ShareMerchandiseBean shareMerchandiseBean) {
+        SharesBean sharesBean = new SharesBean();
+        sharesBean.content = shareMerchandiseBean.mContent;
+        sharesBean.iconUrl = shareMerchandiseBean.mImgs;
+        sharesBean.targetUrl = shareMerchandiseBean.shareUrl;
+        sharesBean.title = shareMerchandiseBean.mTitle;
+        ShareHelp shareHelp = new ShareHelp(getActivity());
+
+        shareDialog = new DialogUtils.Builder(getActivity()).view(R.layout.dialog_share)
+                .gravity(Gravity.BOTTOM)
+                .cancelTouchout(true)
+                .style(R.style.Dialog)
+                .addViewOnclick(R.id.ll_save, view -> {
+                    if (shareDialog.isShowing()) {
+                        shareDialog.dismiss();
+                    }
+                })
+                .addViewOnclick(R.id.ll_link, view -> {
+                    if (shareDialog.isShowing()) {
+                        shareDialog.dismiss();
+                    }
+                })
+                .addViewOnclick(R.id.ll_friend, view -> {
+                    if (shareDialog.isShowing()) {
+                        shareDialog.dismiss();
+                    }
+                    sharesBean.type = SHARE_MEDIA.WEIXIN_CIRCLE;
+                    shareHelp.share(sharesBean);
+                })
+                .addViewOnclick(R.id.ll_wx, view -> {
+                    if (shareDialog.isShowing()) {
+                        shareDialog.dismiss();
+                    }
+                    sharesBean.type = SHARE_MEDIA.WEIXIN;
+                    shareHelp.share(sharesBean);
+                })
+                .addViewOnclick(R.id.ll_weibo, view -> {
+                    if (shareDialog.isShowing()) {
+                        shareDialog.dismiss();
+                    }
+                    sharesBean.type = SHARE_MEDIA.SINA;
+                    shareHelp.share(sharesBean);
+                })
+                .addViewOnclick(R.id.ll_qq, view -> {
+                    if (shareDialog.isShowing()) {
+                        shareDialog.dismiss();
+                    }
+                    sharesBean.type = SHARE_MEDIA.QQ;
+                    shareHelp.share(sharesBean);
+                })
+                .build();
+        shareDialog.show();
+
+        shareHelp.callback(new ShareCallback() {
+            @Override
+            public void onShareStart(SHARE_MEDIA shareMedia) {
+
+            }
+
+            @Override
+            public void onShareSuccess(SHARE_MEDIA media) {
+
+            }
+
+            @Override
+            public void onShareFailed(SHARE_MEDIA media, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onShareCancel(SHARE_MEDIA shareMedia) {
+
+            }
+        });
     }
 
 
