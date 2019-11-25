@@ -44,7 +44,8 @@
             android:layout_height="56dp"
             android:layout_marginTop="8dp"
             android:background="@color/white"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/ll_quick_btn"

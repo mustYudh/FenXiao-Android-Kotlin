@@ -2,6 +2,7 @@ package com.nhbs.fenxiao.module.store.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.nhbs.fenxiao.R
@@ -93,6 +94,12 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
       status_root.addView(statusTab)
     }
 
+    var view0 : View = View.inflate(activity, R.layout.layout_empty_visible, null)
+    var view1 : View = View.inflate(activity, R.layout.layout_empty_visible, null)
+    var view2 : View = View.inflate(activity, R.layout.layout_empty_visible, null)
+    var view3 : View = View.inflate(activity, R.layout.layout_empty_visible, null)
+
+
     for (i in 0 until 4) {
       status_root.getChildAt(i).setOnClickListener {
         for (item in 0..3) {
@@ -108,15 +115,19 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
           when (position) {
             0 -> {
               list.setLinearLayoutAdapter(adapter0, true)
+              adapter0.emptyView = view0
             }
             1 -> {
               list.setLinearLayoutAdapter(adapter1, true)
+              adapter1.emptyView = view1
             }
             2 -> {
               list.setLinearLayoutAdapter(adapter2, true)
+              adapter2.emptyView = view2
             }
             3 -> {
               list.setLinearLayoutAdapter(adapter3, true)
+              adapter3.emptyView = view3
             }
           }
         }
@@ -124,6 +135,8 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
     }
 
     list.setLinearLayoutAdapter(adapter0, true)
+    adapter0.emptyView = view0
+
 
     refresh.setOnRefreshListener {
       when (position) {
@@ -205,6 +218,8 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
         }
       }
     }
+
+
 
     params1.status = 0
     params2.status = 4
@@ -303,8 +318,16 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
   fun getDeliverSucEvent(data : DeliverSucEvent) {
     adapter0.remove(data.position!!)
 //    adapter3.addData(data.info!!)
+    params2.pageNum = 0
     mPresenter.findMyShopMerchandiseList(2, params2)
     showToast("发货成功")
+    mPresenter.getOrdersCount()
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN)
+  fun getRefundSucEvent(data : RefundSucEvent) {
+    params3.pageNum = 0
+    mPresenter.findMyShopMerchandiseList(3, params3)
     mPresenter.getOrdersCount()
   }
 

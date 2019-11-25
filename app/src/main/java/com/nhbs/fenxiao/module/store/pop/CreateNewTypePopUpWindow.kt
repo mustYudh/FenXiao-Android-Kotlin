@@ -25,6 +25,10 @@ class CreateNewTypePopUpWindow(context: Context) : BasePopupWindow(context,
     return bindView<EditText>(R.id.name).getInputText()
   }
 
+  fun setHint(hint: String){
+    bindView<EditText>(R.id.name).hint = hint
+  }
+
   override fun getBackgroundShadow(): View {
     return bindView(R.id.root)
   }

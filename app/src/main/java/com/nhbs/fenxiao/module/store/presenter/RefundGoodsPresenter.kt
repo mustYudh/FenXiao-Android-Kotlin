@@ -5,6 +5,7 @@ import com.nhbs.fenxiao.http.api.AppApiServices
 import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber
 import com.nhbs.fenxiao.module.store.bean.ExpInfoBean
 import com.nhbs.fenxiao.module.store.bean.OrderInfo
+import com.nhbs.fenxiao.module.store.bean.RefundGoodsInfoBean
 import com.xuexiang.xhttp2.XHttpProxy
 import com.yu.common.framework.BaseViewPresenter
 
@@ -42,9 +43,9 @@ class RefundGoodsPresenter(viewer: RefundGoodsViewer) : BaseViewPresenter<Refund
 
     }
 
-    fun refuseRefund(info: OrderInfo) {
+    fun refuseRefund(info: OrderInfo,refuseReason: String) {
         XHttpProxy.proxy(AppApiServices::class.java)
-                .refuseRefund(info.id)
+                .refuseRefund(info.id,refuseReason)
                 .subscribeWith(object : LoadingRequestSubscriber<Any>(activity,false) {
                     override fun onSuccess(data: Any?) {
                         getViewer()?.refuseRefundSuc()
@@ -56,8 +57,9 @@ class RefundGoodsPresenter(viewer: RefundGoodsViewer) : BaseViewPresenter<Refund
     fun getRefundInfo(info: OrderInfo) {
         XHttpProxy.proxy(AppApiServices::class.java)
                 .getRefundInfo(info.id)
-                .subscribeWith(object : LoadingRequestSubscriber<Any>(activity,false) {
-                    override fun onSuccess(data: Any?) {
+                .subscribeWith(object : LoadingRequestSubscriber<RefundGoodsInfoBean>(activity,false) {
+                    override fun onSuccess(data: RefundGoodsInfoBean?) {
+                        getViewer()?.getInfoSuc(data!!)
                     }
                 })
 

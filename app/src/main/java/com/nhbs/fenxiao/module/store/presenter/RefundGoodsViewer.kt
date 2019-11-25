@@ -1,6 +1,7 @@
 package com.nhbs.fenxiao.module.store.presenter
 
 import com.nhbs.fenxiao.module.store.bean.ExpInfoBean
+import com.nhbs.fenxiao.module.store.bean.RefundGoodsInfoBean
 import com.yu.common.mvp.Viewer
 
 /**
@@ -11,7 +12,7 @@ import com.yu.common.mvp.Viewer
  * @email mayuxuan@innobuddy.com
  */
 interface RefundGoodsViewer : Viewer {
-    fun getInfoSuc()
+    fun getInfoSuc(data: RefundGoodsInfoBean)
 
     fun findExpSuccess(data: ExpInfoBean?)
 
