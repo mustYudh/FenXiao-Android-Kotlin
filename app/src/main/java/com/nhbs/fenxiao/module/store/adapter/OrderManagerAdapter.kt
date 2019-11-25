@@ -17,7 +17,7 @@ class OrderManagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
   }
 
   override fun getCount(): Int {
-    return 1
+    return 2
   }
 
 }

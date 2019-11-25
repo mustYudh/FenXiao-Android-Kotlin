@@ -59,7 +59,7 @@ class OrderManagerFragment : BaseFragment(), OnTabSelectedListener {
   override fun loadData() {
     mViewPager = bindView(R.id.view_pager)
     tabTitles.add("进行中")
-//    tabTitles.add("已完成")
+    tabTitles.add("已完成")
     mTabLayout = bindView<TabLayout>(R.id.magic_indicator)
     val tabStrip = mTabLayout?.getChildAt(0)
     if (tabStrip != null) {
@@ -91,6 +91,7 @@ class OrderManagerFragment : BaseFragment(), OnTabSelectedListener {
       }
       initBadgeViews()
       setUpTabBadge()
+      mTabLayout?.visibility = View.VISIBLE
     }
     search_btn.setOnClickListener {
       launchHelper.startActivity(SearchOrderActivity::class.java)
@@ -102,7 +103,7 @@ class OrderManagerFragment : BaseFragment(), OnTabSelectedListener {
       mBadgeViews = ArrayList()
       for (i in 0 until 2) {
         val tmp = BadgeView(activity)
-        tmp.setBadgeMargin(110, 8, 0, 0)
+        tmp.setBadgeMargin(125, 8, 0, 0)
         tmp.setPadding(10, 1, 10, 1)
         tmp.textSize = 10F
         tmp.setBackground(DensityUtil.dip2px(4F).toFloat(), Color.parseColor("#FF2751"))

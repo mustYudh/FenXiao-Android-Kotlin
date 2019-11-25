@@ -6,21 +6,21 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.base.BaseFragment
+import com.nhbs.fenxiao.module.store.activity.DeliverGoodsActivity
 import com.nhbs.fenxiao.module.store.activity.DeliveryInfoActivity
+import com.nhbs.fenxiao.module.store.activity.RefundGoodsActivity
 import com.nhbs.fenxiao.module.store.adapter.OrderListAdapter
-import com.nhbs.fenxiao.module.store.bean.ExpInfoBean
-import com.nhbs.fenxiao.module.store.bean.OrderCountBean
-import com.nhbs.fenxiao.module.store.bean.OrderInfo
-import com.nhbs.fenxiao.module.store.bean.QueryShopKeeperOrdersParams
+import com.nhbs.fenxiao.module.store.bean.*
 import com.nhbs.fenxiao.module.store.pop.EditPricePopupWindow
 import com.nhbs.fenxiao.module.store.presenter.OrderManagerPresenter
 import com.nhbs.fenxiao.module.store.presenter.OrderManagerViewer
 import com.nhbs.fenxiao.utils.setLinearLayoutAdapter
 import com.nhbs.fenxiao.utils.showToast
 import com.yu.common.mvp.PresenterLifeCycle
-import kotlinx.android.synthetic.main.fragment_order_tab_manager.list
-import kotlinx.android.synthetic.main.fragment_order_tab_manager.refresh
-import kotlinx.android.synthetic.main.fragment_order_tab_manager.status_root
+import kotlinx.android.synthetic.main.fragment_order_tab_manager.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 /**
@@ -52,6 +52,11 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
 
   override fun setView(savedInstanceState: Bundle?) {
 
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    EventBus.getDefault().register(this)
   }
 
   override fun loadData() {
@@ -165,11 +170,10 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
       when (view.id) {
         R.id.status_btn -> {
           val info = adapter.data[position] as OrderInfo
-          mPresenter.goSendGoods(info, position)
+          launchHelper.startActivity(DeliverGoodsActivity.getIntent(activity!!,info,position))
         }
       }
     }
-
 
     adapter1.setOnItemChildClickListener { adapter, view, position ->
       val info = adapter.data[position] as OrderInfo
@@ -196,7 +200,8 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
     adapter3.setOnItemChildClickListener { adapter, view, position ->
       when (view.id) {
         R.id.status_btn -> {
-
+          val info = adapter.data[position] as OrderInfo
+          launchHelper.startActivity(RefundGoodsActivity.getIntent(activity!!,info,position))
         }
       }
     }
@@ -271,7 +276,8 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
 
   override fun goSendGoodsSuccess(info: OrderInfo, position: Int) {
     adapter0.remove(position)
-    adapter3.addData(info)
+//    adapter3.addData(info)
+    mPresenter.findMyShopMerchandiseList(2, params2)
     showToast("发货成功")
     mPresenter.getOrdersCount()
   }
@@ -286,6 +292,20 @@ class OrderManagerTabFragment : BaseFragment(), OrderManagerViewer {
 
   override fun findExpSuccess(data: ExpInfoBean?) {
       launchHelper.startActivity(DeliveryInfoActivity.getIntent(activity,data))
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    EventBus.getDefault().unregister(this)
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN)
+  fun getDeliverSucEvent(data : DeliverSucEvent) {
+    adapter0.remove(data.position!!)
+//    adapter3.addData(data.info!!)
+    mPresenter.findMyShopMerchandiseList(2, params2)
+    showToast("发货成功")
+    mPresenter.getOrdersCount()
   }
 
 

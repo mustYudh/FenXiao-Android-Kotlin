@@ -155,6 +155,14 @@ interface AppApiServices {
   @NetMethod(ParameterNames =["id","classId"],Url ="/merchandise/deleteClassGoods")
   fun typeDeleteGoods(id: String,classId:String): Observable<Any>
 
+  @NetMethod(ParameterNames = ["orderId"],Url = "/order/refuseRefund")
+  fun refuseRefund(id: String): Observable<Any>
+
+  @NetMethod(ParameterNames = ["orderId"],Url = "/order/confirmRefund")
+  fun confirmRefund(id: String): Observable<Any>
+
+  @NetMethod(ParameterNames = ["orderId"],Url = "/query/getRefundInfo")
+  fun getRefundInfo(orderId: String): Observable<Any>
 }
 
 
