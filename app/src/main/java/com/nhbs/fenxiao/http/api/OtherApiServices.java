@@ -156,8 +156,8 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"withdrawalAmount", "payType"}, Url = "/withdraw/createUserWithdraw")
     Observable<Object> createUserWithdraw(String withdrawalAmount, String payType);
 
-    @NetMethod(ParameterNames = {"openId"}, Url = "/user/boundWinXin")
-    Observable<BindWxBean> boundWinXin(String openId);
+    @NetMethod(ParameterNames = {"openId","winXinName"}, Url = "/user/boundWinXin")
+    Observable<BindWxBean> boundWinXin(String openId,String winXinName);
 
     @NetMethod(ParameterNames = {"mobile"}, Url = "/sms/sendBondAliAccount")
     Observable<Object> sendBondAliAccount(String mobile);

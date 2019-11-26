@@ -309,7 +309,8 @@ public class MineFragment extends BaseBarFragment
     @Override
     public void onComplete(SHARE_MEDIA media, int i, Map<String, String> map) {
         String openId = map.get("openid");
-        mPresenter.boundWinXin(openId, userInfoBean);
+        String winXinName = map.get("name");
+        mPresenter.boundWinXin(openId, winXinName, userInfoBean);
     }
 
     @Override

@@ -38,7 +38,7 @@ public class ProductShopRvAdapter extends BaseQuickAdapter<FindMyShopMerchandise
         });
         helper.getView(R.id.tv_agency).setOnClickListener(view -> {
             if (onItemOperateListener != null){
-                onItemOperateListener.onItemDetailsAgencyClick(item.id);
+                onItemOperateListener.onItemDetailsAgencyClick(item);
             }
         });
 
@@ -50,7 +50,7 @@ public class ProductShopRvAdapter extends BaseQuickAdapter<FindMyShopMerchandise
     }
 
     public interface OnItemOperateListener {
-        void onItemDetailsAgencyClick(String id);
+        void onItemDetailsAgencyClick(FindMyShopMerchandiseListBean.ListBean item);
 
         void onItemDetailsShareClick(String id);
     }

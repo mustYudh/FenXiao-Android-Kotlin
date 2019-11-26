@@ -29,9 +29,9 @@ class IncomeAssetsPresenter(viewer: IncomeAssetsViewer) : BaseViewPresenter<Inco
     }
 
 
-    fun boundWinXin(openId: String?) {
+    fun boundWinXin(openId: String?, winXinName: String?) {
         XHttpProxy.proxy(OtherApiServices::class.java)
-                .boundWinXin(openId)
+                .boundWinXin(openId,winXinName)
                 .subscribeWith(object : LoadingRequestSubscriber<BindWxBean>(activity, false) {
                     override fun onSuccess(bindWxBean: BindWxBean) {
                         assert(getViewer() != null)
