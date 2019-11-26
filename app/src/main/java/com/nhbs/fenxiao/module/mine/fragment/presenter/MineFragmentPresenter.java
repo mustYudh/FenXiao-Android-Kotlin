@@ -29,9 +29,9 @@ public class MineFragmentPresenter extends BaseViewPresenter<MineFragmentViewer>
     }
 
 
-    public void boundWinXin(String openId,MineUserInfoBean mineUserInfoBean) {
+    public void boundWinXin(String openId, String winXinName, MineUserInfoBean mineUserInfoBean) {
         XHttpProxy.proxy(OtherApiServices.class)
-                .boundWinXin(openId)
+                .boundWinXin(openId, winXinName)
                 .subscribeWith(new LoadingRequestSubscriber<BindWxBean>(getActivity(), false) {
                     @Override
                     protected void onSuccess(BindWxBean bindWxBean) {
