@@ -14,12 +14,12 @@ import android.widget.RelativeLayout;
 import com.denghao.control.view.utils.UpdataCurrentFragment;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarFragment;
+import com.nhbs.fenxiao.data.UserProfile;
 import com.nhbs.fenxiao.http.loading.NetLoadingDialog;
 import com.nhbs.fenxiao.module.home.StatusBarColorManager;
 import com.nhbs.fenxiao.module.mine.activity.BindAliPayActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineAddressListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineGeneralizeActivity;
-import com.nhbs.fenxiao.module.mine.activity.MineIncomeActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineOpinionActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineOrderListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineSettingsActivity;
@@ -29,6 +29,7 @@ import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentPresenter;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentViewer;
 import com.nhbs.fenxiao.module.view.MyOneLineView;
+import com.nhbs.fenxiao.module.web.WebViewActivity;
 import com.nhbs.fenxiao.utils.DialogUtils;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareConfig;
@@ -110,10 +111,12 @@ public class MineFragment extends BaseBarFragment
         LinearLayout ll_order = bindView(R.id.ll_order);
         LinearLayout ll_generalize = bindView(R.id.ll_generalize);
         LinearLayout ll_income = bindView(R.id.ll_income);
+        LinearLayout ll_draw = bindView(R.id.ll_draw);
         DelayClickTextView tv_withdraw = bindView(R.id.tv_withdraw);
         ll_order.setOnClickListener(this);
         ll_generalize.setOnClickListener(this);
         ll_income.setOnClickListener(this);
+        ll_draw.setOnClickListener(this);
         tv_withdraw.setOnClickListener(this);
         ll_setting.setOnClickListener(this);
 
@@ -247,7 +250,12 @@ public class MineFragment extends BaseBarFragment
                 break;
             case R.id.ll_income:
                 //收入报表
-                LauncherHelper.from(getActivity()).startActivity(MineIncomeActivity.class);
+//                LauncherHelper.from(getActivity()).startActivity(MineIncomeActivity.class);
+                LauncherHelper.from(getActivity()).startActivity(WebViewActivity.callIntent(getActivity(), "收入报表", "http://app.novobus.cn/incomeReport?token=" + UserProfile.getInstance().getAppToken()));
+                break;
+            case R.id.ll_draw:
+                //抽奖记录
+                LauncherHelper.from(getActivity()).startActivity(WebViewActivity.callIntent(getActivity(), "抽奖记录", "http://app.novobus.cn/drawRecord?token=" + UserProfile.getInstance().getAppToken()));
                 break;
             case R.id.tv_withdraw:
                 //提现
