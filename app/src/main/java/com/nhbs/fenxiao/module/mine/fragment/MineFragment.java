@@ -31,6 +31,7 @@ import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentViewer;
 import com.nhbs.fenxiao.module.view.MyOneLineView;
 import com.nhbs.fenxiao.utils.DialogUtils;
 import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareConfig;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.yu.common.glide.ImageLoader;
 import com.yu.common.launche.LauncherHelper;
@@ -72,6 +73,10 @@ public class MineFragment extends BaseBarFragment
 
     @Override
     protected void loadData() {
+        UMShareConfig config = new UMShareConfig();
+        config.isNeedAuthOnGetUserInfo(true);
+        UMShareAPI.get(getActivity()).setShareConfig(config);
+
         mHeadimg = bindView(R.id.iv_headimg);
         LinearLayout ll_setting = bindView(R.id.ll_setting);
         LinearLayout ll_root = bindView(R.id.ll_root);
