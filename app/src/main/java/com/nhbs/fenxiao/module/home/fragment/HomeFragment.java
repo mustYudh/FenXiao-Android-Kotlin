@@ -30,6 +30,9 @@ import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.nhbs.fenxiao.module.view.ScreenSpaceItemDecoration;
 import com.nhbs.fenxiao.utils.DialogUtils;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.yu.common.glide.ImageLoader;
 import com.yu.common.mvp.PresenterLifeCycle;
@@ -51,10 +54,11 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
     private LinearLayout ll_mission_root;
     private RecyclerView rv_home;
     private int pageNum = 1;
-    private int pageSize = 10;
+    private int pageSize = 1000;
     private MZBannerView mBanner;
     private CommonRvAdapter adapter;
     private DialogUtils shareDialog;
+    private SmartRefreshLayout refreshLayout;
 
     @Override
     public boolean isImmersionBar() {
@@ -78,6 +82,7 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
         LinearLayout ll_product = bindView(R.id.ll_product);
         LinearLayout ll_reward = bindView(R.id.ll_reward);
         LinearLayout ll_activity = bindView(R.id.ll_activity);
+        refreshLayout = bindView(R.id.refresh);
         rv_home = bindView(R.id.rv_home);
         mBanner = bindView(R.id.banner);
         EditText ed_search = bindView(R.id.ed_search);
@@ -90,6 +95,15 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
         ll_product.setOnClickListener(this);
         ll_reward.setOnClickListener(this);
         ll_activity.setOnClickListener(this);
+        refreshLayout.setEnableLoadMoreWhenContentNotFull(false);
+        refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()).setSpinnerStyle(SpinnerStyle.Translate));
+        refreshLayout.setEnableOverScrollBounce(false);
+        refreshLayout.setEnableAutoLoadMore(true);
+        refreshLayout.setEnableLoadMore(false);
+        refreshLayout.setOnRefreshListener(refreshLayout12 -> {
+            pageNum = 1;
+            mPresenter.getMerchandiseClassList("1", pageNum, pageSize);
+        });
     }
 
     @Override
@@ -123,6 +137,9 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
 
     @Override
     public void getMerchandiseClassListSuccess(FindMerchandiseListBean findMerchandiseListBean) {
+        if (refreshLayout != null) {
+            refreshLayout.finishRefresh();
+        }
         if (findMerchandiseListBean != null && findMerchandiseListBean.rows != null && findMerchandiseListBean.rows.size() != 0) {
             adapter.setNewData(findMerchandiseListBean.rows);
             adapter.setOnItemDetailsDoCilckListener(new CommonRvAdapter.OnItemOperateListener() {
@@ -190,6 +207,13 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
     public void agentMerchandiseSuccess(FindMerchandiseListBean.RowsBean item) {
         ToastUtils.show("代理成功");
         item.isAgent = "1";
+    }
+
+    @Override
+    public void getBannerListFail() {
+        if (refreshLayout != null) {
+            refreshLayout.finishRefresh();
+        }
     }
 
     private void showShareDialog(ShareMerchandiseBean shareMerchandiseBean) {

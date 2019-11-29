@@ -10,6 +10,7 @@ import com.nhbs.fenxiao.module.home.bean.HomeHotAdvertiseBean;
 import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.xuexiang.xhttp2.XHttpProxy;
+import com.xuexiang.xhttp2.exception.ApiException;
 import com.yu.common.framework.BaseViewPresenter;
 
 @SuppressLint("CheckResult")
@@ -39,6 +40,12 @@ public class HomeFragmentPresenter extends BaseViewPresenter<HomeFragmentViewer>
                     protected void onSuccess(HomeBannerBean homeBannerBean) {
                         assert getViewer() != null;
                         getViewer().getBannerListSuccess(homeBannerBean);
+                    }
+
+                    @Override
+                    protected void onError(ApiException apiException) {
+                        assert getViewer() != null;
+                        getViewer().getBannerListFail();
                     }
                 });
     }
