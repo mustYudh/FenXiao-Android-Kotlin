@@ -32,6 +32,19 @@ public class ProductShopDetailsPresenter extends BaseViewPresenter<ProductShopDe
                 });
     }
 
+    public void likeProductCancle(String id, String type) {
+        XHttpProxy.proxy(OtherApiServices.class)
+                .likeProductCancle(id, type)
+                .subscribeWith(new LoadingRequestSubscriber<Object>(getActivity(), false) {
+                    @Override
+                    protected void onSuccess(Object o) {
+                        assert getViewer() != null;
+                        getViewer().likeProductCancleSuccess();
+                    }
+                });
+    }
+
+
     public void getMerchandiseClass() {
         XHttpProxy.proxy(OtherApiServices.class)
                 .merchandiseClass()

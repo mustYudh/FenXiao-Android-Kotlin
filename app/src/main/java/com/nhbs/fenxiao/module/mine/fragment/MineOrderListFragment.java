@@ -1,10 +1,12 @@
 package com.nhbs.fenxiao.module.mine.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,6 +19,8 @@ import com.nhbs.fenxiao.module.mine.fragment.presenter.MineOrderListFragmentPres
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineOrderListFragmentViewer;
 import com.nhbs.fenxiao.module.order.bean.MineOrderListBean;
 import com.nhbs.fenxiao.module.order.bean.PayInfo;
+import com.nhbs.fenxiao.module.store.activity.DeliveryInfoActivity;
+import com.nhbs.fenxiao.module.store.bean.ExpInfoBean;
 import com.nhbs.fenxiao.utils.DialogUtils;
 import com.nhbs.fenxiao.utils.PayUtils;
 import com.yu.common.mvp.PresenterLifeCycle;
@@ -100,6 +104,14 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
                     case R.id.tv_label6:
                         //付款
                         showTypeDialog(rowsBean);
+                        break;
+                    case R.id.tv_label2:
+                        //查看物流
+                        if (!TextUtils.isEmpty(rowsBean.expressNumber)){
+                            mPresenter.findExp(rowsBean.expressNumber);
+                        }else {
+                            ToastUtils.show("物流信息出错");
+                        }
                         break;
                 }
             });
@@ -196,5 +208,14 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
                         ToastUtils.show("支付失败，请重试");
                     }
                 });
+    }
+
+    @Override
+    public void findExpSuccess(ExpInfoBean expInfoBean) {
+        if (expInfoBean != null) {
+            Intent intent = new Intent(getActivity(), DeliveryInfoActivity.class);
+            intent.putExtra("DELIVERY_INFO", expInfoBean);
+            startActivity(intent);
+        }
     }
 }

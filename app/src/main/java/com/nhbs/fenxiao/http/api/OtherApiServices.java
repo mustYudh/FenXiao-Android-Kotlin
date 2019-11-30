@@ -29,6 +29,7 @@ import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
 import com.nhbs.fenxiao.module.product.bean.ProductCommentBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.nhbs.fenxiao.module.product.bean.ShopOtherUserDetailBean;
+import com.nhbs.fenxiao.module.store.bean.ExpInfoBean;
 import com.nhbs.fenxiao.module.store.bean.UserShopShareBean;
 import com.xuexiang.xhttp2.annotation.NetMethod;
 
@@ -153,6 +154,9 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"merchandiseId", "type"}, Url = "/userLove/save")
     Observable<Object> likeProduct(String merchandiseId, String type);
 
+    @NetMethod(ParameterNames = {"merchandiseId", "type"}, Url = "/userLove/cancelUserLove")
+    Observable<Object> likeProductCancle(String merchandiseId, String type);
+
     @NetMethod(ParameterNames = {"pageNum", "pageSize"}, Url = "/advertising/querySpreadLogsList")
     Observable<MineSpreadLogsListBean> querySpreadLogsList(String pageNum, String pageSize);
 
@@ -182,6 +186,9 @@ public interface OtherApiServices {
 
     @NetMethod(Url = "/user/getUserAccountInfo")
     Observable<UserAccountInfo> getUserAccountInfo();
+
+    @NetMethod(ParameterNames = {"nu"}, Url = "/findExp")
+    Observable<ExpInfoBean> findExp(String nu);
 
 
 }

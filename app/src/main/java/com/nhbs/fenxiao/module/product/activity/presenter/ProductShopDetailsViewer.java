@@ -2,7 +2,6 @@ package com.nhbs.fenxiao.module.product.activity.presenter;
 
 import com.nhbs.fenxiao.module.product.bean.FindMyShopMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.MerchandiseClassBean;
-import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.nhbs.fenxiao.module.product.bean.ShopOtherUserDetailBean;
 import com.nhbs.fenxiao.module.store.bean.UserShopShareBean;
@@ -23,4 +22,6 @@ public interface ProductShopDetailsViewer extends Viewer {
     void getMerchandiseClassSuccess(MerchandiseClassBean merchandiseClassBean);
 
     void likeProductSuccess();
+
+    void likeProductCancleSuccess();
 }

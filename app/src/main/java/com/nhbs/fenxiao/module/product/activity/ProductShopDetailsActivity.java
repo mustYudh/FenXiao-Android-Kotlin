@@ -122,7 +122,7 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
             if ("1".equals(shopOtherUserDetailBean.status)) {
                 //关注
                 bindText(R.id.tv_status, "已关注");
-                bindView(R.id.ll_status, view -> mPresenter.likeProduct(shop_id, "1"));
+                bindView(R.id.ll_status, view -> mPresenter.likeProductCancle(shop_id, "1"));
             } else {
                 bindText(R.id.tv_status, "+ 关注");
                 bindView(R.id.ll_status, view -> mPresenter.likeProduct(shop_id, "1"));
@@ -161,6 +161,13 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
 
     @Override
     public void likeProductSuccess() {
+        ToastUtils.show("关注成功");
+        mPresenter.getShopOtherUserDetail(shop_id);
+    }
+
+    @Override
+    public void likeProductCancleSuccess() {
+        ToastUtils.show("取消关注成功");
         mPresenter.getShopOtherUserDetail(shop_id);
     }
 
@@ -334,7 +341,7 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
         ProductShopTypeRvAdapter shopTypeRvAdapter = new ProductShopTypeRvAdapter(R.layout.item_shop_type, rows);
         rv_shop.setAdapter(shopTypeRvAdapter);
         shopTypeRvAdapter.setOnItemDetailsDoCilckListener(id -> {
-            if (shopDialog.isShowing()){
+            if (shopDialog.isShowing()) {
                 shopDialog.dismiss();
             }
             shopTypeRvAdapter.notifyDataSetChanged();
