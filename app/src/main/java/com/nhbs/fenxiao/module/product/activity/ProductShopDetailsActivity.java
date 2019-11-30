@@ -1,19 +1,21 @@
 package com.nhbs.fenxiao.module.product.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.Gravity;
-import android.view.View;
 
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarActivity;
 import com.nhbs.fenxiao.module.product.activity.presenter.ProductShopDetailsPresenter;
 import com.nhbs.fenxiao.module.product.activity.presenter.ProductShopDetailsViewer;
 import com.nhbs.fenxiao.module.product.adapter.ProductShopRvAdapter;
+import com.nhbs.fenxiao.module.product.adapter.ProductShopTypeRvAdapter;
 import com.nhbs.fenxiao.module.product.bean.FindMyShopMerchandiseListBean;
+import com.nhbs.fenxiao.module.product.bean.MerchandiseClassBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.nhbs.fenxiao.module.product.bean.ShopOtherUserDetailBean;
 import com.nhbs.fenxiao.module.store.bean.UserShopShareBean;
@@ -28,6 +30,8 @@ import com.yu.share.ShareHelp;
 import com.yu.share.SharesBean;
 import com.yu.share.callback.ShareCallback;
 
+import java.util.List;
+
 
 public class ProductShopDetailsActivity extends BaseBarActivity implements ProductShopDetailsViewer {
 
@@ -39,6 +43,9 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
     private DialogUtils shareDialog;
     private RecyclerView rv_product;
     private ProductShopRvAdapter adapter;
+    private DialogUtils shopDialog;
+    private String shop_id;
+    private String classId = "";
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
@@ -58,7 +65,7 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
     @Override
     protected void loadData() {
         Bundle bundle = getIntent().getExtras();
-        String shop_id = bundle.getString("SHOP_ID");
+        shop_id = bundle.getString("SHOP_ID");
         iv_shop = bindView(R.id.iv_shop);
         rv_product = bindView(R.id.rv_product);
         rv_product.addItemDecoration(new ScreenSpaceItemDecoration(getActivity(), 10));
@@ -66,8 +73,13 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
         adapter = new ProductShopRvAdapter(R.layout.item_common_product, getActivity());
         rv_product.setAdapter(adapter);
         mPresenter.getShopOtherUserDetail(shop_id);
-        mPresenter.findMyShopMerchandiseList(pageNum + "", pageSize + "", shop_id);
+        if (!TextUtils.isEmpty(classId)) {
+            mPresenter.findMyShopMerchandiseList(classId, pageNum + "", pageSize + "", shop_id);
+        } else {
+            mPresenter.findMyShopMerchandiseListAll(pageNum + "", pageSize + "", shop_id);
+        }
         bindView(R.id.ll_share, view -> mPresenter.userShareShop(shop_id));
+        bindView(R.id.ll_type, view -> mPresenter.getMerchandiseClass());
     }
 
     @Override
@@ -110,20 +122,10 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
             if ("1".equals(shopOtherUserDetailBean.status)) {
                 //关注
                 bindText(R.id.tv_status, "已关注");
-                bindView(R.id.ll_status, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
+                bindView(R.id.ll_status, view -> mPresenter.likeProduct(shop_id, "1"));
             } else {
                 bindText(R.id.tv_status, "+ 关注");
-                bindView(R.id.ll_status, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
+                bindView(R.id.ll_status, view -> mPresenter.likeProduct(shop_id, "1"));
             }
         }
     }
@@ -148,6 +150,18 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
     public void agentMerchandiseSuccess(FindMyShopMerchandiseListBean.ListBean item) {
         ToastUtils.show("代理成功");
         item.isAgent = "1";
+    }
+
+    @Override
+    public void getMerchandiseClassSuccess(MerchandiseClassBean merchandiseClassBean) {
+        if (merchandiseClassBean != null && merchandiseClassBean.rows != null && merchandiseClassBean.rows.size() != 0) {
+            showTypeDialog(merchandiseClassBean.rows);
+        }
+    }
+
+    @Override
+    public void likeProductSuccess() {
+        mPresenter.getShopOtherUserDetail(shop_id);
     }
 
 
@@ -301,6 +315,31 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
             public void onShareCancel(SHARE_MEDIA shareMedia) {
 
             }
+        });
+    }
+
+
+    @SuppressLint("SetTextI18n")
+    private void showTypeDialog(List<MerchandiseClassBean.RowsBean> rows) {
+        shopDialog = new DialogUtils.Builder(getActivity()).view(R.layout.dialog_shop)
+                .gravity(Gravity.BOTTOM)
+                .cancelTouchout(true)
+                .style(R.style.Dialog)
+                .build();
+        shopDialog.show();
+
+        RecyclerView rv_shop = shopDialog.findViewById(R.id.rv_shop);
+        rv_shop.setLayoutManager(new GridLayoutManager(ProductShopDetailsActivity.this, 3));
+
+        ProductShopTypeRvAdapter shopTypeRvAdapter = new ProductShopTypeRvAdapter(R.layout.item_shop_type, rows);
+        rv_shop.setAdapter(shopTypeRvAdapter);
+        shopTypeRvAdapter.setOnItemDetailsDoCilckListener(id -> {
+            if (shopDialog.isShowing()){
+                shopDialog.dismiss();
+            }
+            shopTypeRvAdapter.notifyDataSetChanged();
+            classId = id;
+            mPresenter.findMyShopMerchandiseList(id, pageNum + "", pageSize + "", shop_id);
         });
     }
 }

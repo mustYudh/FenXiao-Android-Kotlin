@@ -210,7 +210,7 @@ public class HomeFragment extends BaseBarFragment implements HomeFragmentViewer,
     }
 
     @Override
-    public void getBannerListFail() {
+    public void getMerchandiseClassListFail() {
         if (refreshLayout != null) {
             refreshLayout.finishRefresh();
         }

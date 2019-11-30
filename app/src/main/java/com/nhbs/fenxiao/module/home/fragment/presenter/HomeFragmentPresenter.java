@@ -29,6 +29,12 @@ public class HomeFragmentPresenter extends BaseViewPresenter<HomeFragmentViewer>
                         assert getViewer() != null;
                         getViewer().getMerchandiseClassListSuccess(findMerchandiseListBean);
                     }
+
+                    @Override
+                    protected void onError(ApiException apiException) {
+                        assert getViewer() != null;
+                        getViewer().getMerchandiseClassListFail();
+                    }
                 });
     }
 
@@ -40,12 +46,6 @@ public class HomeFragmentPresenter extends BaseViewPresenter<HomeFragmentViewer>
                     protected void onSuccess(HomeBannerBean homeBannerBean) {
                         assert getViewer() != null;
                         getViewer().getBannerListSuccess(homeBannerBean);
-                    }
-
-                    @Override
-                    protected void onError(ApiException apiException) {
-                        assert getViewer() != null;
-                        getViewer().getBannerListFail();
                     }
                 });
     }

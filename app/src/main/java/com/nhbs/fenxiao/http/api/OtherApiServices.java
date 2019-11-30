@@ -126,6 +126,9 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"pageNum", "pageSize", "shopId"}, Url = "/merchandise/findMyShopMerchandiseList")
     Observable<FindMyShopMerchandiseListBean> findMyShopMerchandiseList(String pageNum, String pageSize, String shopId);
 
+    @NetMethod(ParameterNames = {"classId", "pageNum", "pageSize", "shopId"}, Url = "/merchandise/findMyShopMerchandiseList")
+    Observable<FindMyShopMerchandiseListBean> findMyShopMerchandiseShopList(String classId, String pageNum, String pageSize, String shopId);
+
     @NetMethod(ParameterNames = {"targetId", "content"}, Url = "/create/comment")
     Observable<ProductCommentBean> productComment(String targetId, String content);
 
@@ -156,8 +159,8 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"withdrawalAmount", "payType"}, Url = "/withdraw/createUserWithdraw")
     Observable<Object> createUserWithdraw(String withdrawalAmount, String payType);
 
-    @NetMethod(ParameterNames = {"openId","winXinName"}, Url = "/user/boundWinXin")
-    Observable<BindWxBean> boundWinXin(String openId,String winXinName);
+    @NetMethod(ParameterNames = {"openId", "winXinName"}, Url = "/user/boundWinXin")
+    Observable<BindWxBean> boundWinXin(String openId, String winXinName);
 
     @NetMethod(ParameterNames = {"mobile"}, Url = "/sms/sendBondAliAccount")
     Observable<Object> sendBondAliAccount(String mobile);

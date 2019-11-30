@@ -18,5 +18,5 @@ public interface HomeFragmentViewer extends Viewer {
 
     void agentMerchandiseSuccess(FindMerchandiseListBean.RowsBean item);
 
-    void getBannerListFail();
+    void getMerchandiseClassListFail();
 }
