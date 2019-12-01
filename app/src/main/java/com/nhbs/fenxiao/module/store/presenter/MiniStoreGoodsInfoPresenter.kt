@@ -26,7 +26,7 @@ class MiniStoreGoodsInfoPresenter(viewer: MiniStoreGoodsInfoViewer) :
 
   fun getGoodsList(params: GetGoodsParams, refreshLayout: RefreshLayout?, type: Int,isPickerTime: Boolean? = false) {
     XHttp.custom(AppApiServices::class.java)
-        .getGoodsList(HttpUtils.getJsonRequestBody(params))
+        .getMyShopGoodsList(HttpUtils.getJsonRequestBody(params))
         .compose(RxSchedulerUtils._io_main_o<ApiResult<GoodsListBean>>())
         .subscribeWith(object : LoadingRequestSubscriber<ApiResult<GoodsListBean>>(activity!!,
             false) {
