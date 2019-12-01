@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#52000000"
+    android:id="@+id/root"
+    android:gravity="bottom">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:textSize="12dp"
+            android:textColor="@color/color_A0A9BB"
+            android:text="分类至（按分类展示商品、方便买家筛选）"
+            android:background="@color/GreyWhite"
+            android:paddingLeft="24dp"
+            android:gravity="center_vertical"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            android:layout_marginBottom="11dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/GreyWhite"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:id="@+id/text_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="14dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_gray1_cor4"
+                android:text="取消"/>
+
+            <View
+                android:layout_width="11dp"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:id="@+id/text_confirm"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="14dp"
+                android:gravity="center"
+                android:background="@drawable/bg_confirm_btn_add_classification"
+                android:textColor="@color/white"
+                android:text="确认"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

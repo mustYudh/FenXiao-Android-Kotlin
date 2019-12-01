@@ -6,11 +6,7 @@ import com.mylhyl.circledialog.CircleDialog
 import com.nhbs.fenxiao.http.api.AppApiServices
 import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber
 import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber
-import com.nhbs.fenxiao.module.store.bean.ExpInfoBean
-import com.nhbs.fenxiao.module.store.bean.OrderCountBean
-import com.nhbs.fenxiao.module.store.bean.OrderInfo
-import com.nhbs.fenxiao.module.store.bean.OrderManagerInfoBean
-import com.nhbs.fenxiao.module.store.bean.QueryShopKeeperOrdersParams
+import com.nhbs.fenxiao.module.store.bean.*
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.xuexiang.xhttp2.XHttp
 import com.xuexiang.xhttp2.XHttpProxy
@@ -77,7 +73,9 @@ class OrderManagerPresenter(viewer: OrderManagerViewer) : BaseViewPresenter<Orde
                   getViewer()?.goSendGoodsSuccess(info, position)
                 }
               })
-        }.setNegative("取消", null)
+        }.setNegative("取消" ) {
+
+            }
         .show(activity.supportFragmentManager)
 
   }

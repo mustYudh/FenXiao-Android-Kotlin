@@ -7,6 +7,7 @@ import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber;
 import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber;
 import com.nhbs.fenxiao.module.order.bean.MineOrderListBean;
 import com.nhbs.fenxiao.module.order.bean.PayInfo;
+import com.nhbs.fenxiao.module.store.bean.ExpInfoBean;
 import com.xuexiang.xhttp2.XHttpProxy;
 import com.yu.common.framework.BaseViewPresenter;
 
@@ -61,6 +62,18 @@ public class MineOrderListFragmentPresenter extends BaseViewPresenter<MineOrderL
                     protected void onSuccess(Object o) {
                         assert getViewer() != null;
                         getViewer().cancelOrderSuccess();
+                    }
+                });
+    }
+
+    public void findExp(String un) {
+        XHttpProxy.proxy(OtherApiServices.class)
+                .findExp(un)
+                .subscribeWith(new LoadingRequestSubscriber<ExpInfoBean>(getActivity(), false) {
+                    @Override
+                    protected void onSuccess(ExpInfoBean expInfoBean) {
+                        assert getViewer() != null;
+                        getViewer().findExpSuccess(expInfoBean);
                     }
                 });
     }

@@ -4,9 +4,13 @@ import android.annotation.SuppressLint;
 import com.mylhyl.circledialog.CircleDialog;
 import com.nhbs.fenxiao.data.UserProfile;
 import com.nhbs.fenxiao.http.api.AppApiServices;
+import com.nhbs.fenxiao.http.api.OtherApiServices;
+import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber;
 import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber;
+import com.nhbs.fenxiao.module.mine.bean.UserAccountInfo;
 import com.nhbs.fenxiao.utils.ActivityManager;
 import com.xuexiang.xhttp2.XHttp;
+import com.xuexiang.xhttp2.XHttpProxy;
 import com.xuexiang.xhttp2.model.ApiResult;
 import com.xuexiang.xhttp2.utils.HttpUtils;
 import com.yu.common.framework.BaseViewPresenter;
@@ -35,4 +39,16 @@ public class MineSettingsPresenter extends BaseViewPresenter<MineSettingsViewer>
         .setNegative("取消", null)
         .show(getActivity().getSupportFragmentManager());
   }
+
+    public void getUserAccountInfo() {
+        XHttpProxy.proxy(OtherApiServices.class)
+                .getUserAccountInfo()
+                .subscribeWith(new LoadingRequestSubscriber<UserAccountInfo>(getActivity(), false) {
+                    @Override
+                    protected void onSuccess(UserAccountInfo accountInfo) {
+                        assert getViewer() != null;
+                        getViewer().getUserAccountInfoSuccess(accountInfo);
+                    }
+                });
+    }
 }

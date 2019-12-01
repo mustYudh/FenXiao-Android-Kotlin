@@ -76,8 +76,17 @@ interface AppApiServices {
   @POST("/api/merchandise/findMerchandiseList")
   @Headers("Content-Type: application/json", "Accept: application/json")
   fun getGoodsList(@Body params: RequestBody, @Header(
-      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<GoodsListBean>>
+          "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<GoodsListBean>>
 
+  @POST("/api/merchandise/queryMyClassGoodsList")
+  @Headers("Content-Type: application/json", "Accept: application/json")
+  fun getGoodsListNew(@Body params: RequestBody, @Header(
+          "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<GoodsListBean>>
+
+  @POST("/api/merchandise/queryMyOtherClassGoodsList")
+  @Headers("Content-Type: application/json", "Accept: application/json")
+  fun getOtherGoodsList(@Body params: RequestBody, @Header(
+          "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<OtherTypeGoodsBean>>
 
   @NetMethod(Url = "/merchandise/pullDown", ParameterNames = ["id"])
   fun pullDownGoods(id: String): Observable<Any>
@@ -143,6 +152,30 @@ interface AppApiServices {
 
   @NetMethod(Url = "/user/createNeteaseCommunicationUser")
   fun getNimeInfo():Observable<NimeInfoBean>
+
+
+  @NetMethod(ParameterNames =["id","classify"],Url ="/merchandiseClass/updateClass")
+  fun changeTypeName(id: String,classify: String): Observable<Any>
+
+
+  @NetMethod(ParameterNames =["id"],Url ="/merchandise/deleteClass")
+  fun deleteType(id: String): Observable<Any>
+
+  @NetMethod(ParameterNames =["id","classId"],Url ="/merchandise/addClassGoods")
+  fun typeAddGoods(id: String,classId:String): Observable<Any>
+
+  @NetMethod(ParameterNames =["id","classId"],Url ="/merchandise/deleteClassGoods")
+  fun typeDeleteGoods(id: String,classId:String): Observable<Any>
+
+  @NetMethod(ParameterNames = ["orderId","refuseReason"],Url = "/order/refuseRefund")
+  fun refuseRefund(orderId: String,refuseReason: String): Observable<Any>
+
+  @NetMethod(ParameterNames = ["orderId"],Url = "/order/confirmRefund")
+  fun confirmRefund(orderId: String): Observable<Any>
+
+  @NetMethod(ParameterNames = ["orderId"],Url = "/query/getRefundInfo")
+  fun getRefundInfo(orderId: String): Observable<RefundGoodsInfoBean>
+
 }
 
 

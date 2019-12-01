@@ -6,5 +6,5 @@ import com.yu.common.mvp.Viewer
 interface TypeInfoViewer : Viewer {
 
   fun setGoodsInfoList(list: List<GoodsInfoBean>?)
-
+  fun deleteGoodsSuc()
 }

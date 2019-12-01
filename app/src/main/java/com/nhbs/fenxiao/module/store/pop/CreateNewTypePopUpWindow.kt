@@ -25,12 +25,20 @@ class CreateNewTypePopUpWindow(context: Context) : BasePopupWindow(context,
     return bindView<EditText>(R.id.name).getInputText()
   }
 
+  fun setHint(hint: String){
+    bindView<EditText>(R.id.name).hint = hint
+  }
+
   override fun getBackgroundShadow(): View {
     return bindView(R.id.root)
   }
 
   override fun getContainer(): View {
     return bindView(R.id.container)
+  }
+
+  fun setTitle(title: String){
+    bindView<TextView>(R.id.text_title).text = title
   }
 
   fun setCancelListener(listener: View.OnClickListener): CreateNewTypePopUpWindow {

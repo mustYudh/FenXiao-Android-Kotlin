@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="16dp"
+            android:background="@color/line_gray"/>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/ic_goods_unchoose"
+            android:background="@color/white"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@color/line_gray"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="179dp"
+        android:background="@drawable/shape_white_radius_6"
+        android:layout_marginLeft="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="@color/color_333333"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="aaa"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:textColor="@color/app_red"
+                android:text="13天9小时15分"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:textColor="@color/A0A9BB"
+                android:text="系统自动退货"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_gray"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="@color/A0A9BB"
+            android:text="承运公司：韵达快递"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="@color/A0A9BB"
+            android:text="承运公司：韵达快递"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textColor="@color/A0A9BB"
+            android:text="承运公司：韵达快递"
+            android:layout_marginTop="4dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_gray"
+            android:layout_marginTop="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="64dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bg_refund_btn"
+                android:gravity="center"
+                android:textColor="@color/A0A9BB"
+                android:textSize="12dp"
+                android:text="跟踪物流"/>
+
+            <TextView
+                android:layout_width="64dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bg_refund_btn"
+                android:gravity="center"
+                android:textColor="@color/A0A9BB"
+                android:textSize="12dp"
+                android:text="拒绝退款"
+                android:layout_marginLeft="8dp"/>
+
+            <TextView
+                android:layout_width="64dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bg_refund_btn"
+                android:gravity="center"
+                android:textColor="@color/A0A9BB"
+                android:textSize="12dp"
+                android:text="同意退款"
+                android:layout_marginLeft="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

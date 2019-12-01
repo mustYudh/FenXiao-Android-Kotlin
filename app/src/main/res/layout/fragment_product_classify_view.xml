@@ -7,21 +7,28 @@
     >
 
 
-    <FrameLayout
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_product"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="16dp"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#F7F7F7"/>
+            android:layout_height="match_parent">
 
 
-        <include layout="@layout/layout_empty"/>
-    </FrameLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_product"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="16dp"
+                android:background="#F7F7F7"/>
 
+
+            <include layout="@layout/layout_empty"/>
+        </FrameLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

@@ -7,6 +7,7 @@ import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber;
 import com.nhbs.fenxiao.module.product.bean.FindMerchandiseListBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.xuexiang.xhttp2.XHttpProxy;
+import com.xuexiang.xhttp2.exception.ApiException;
 import com.yu.common.framework.BaseViewPresenter;
 
 @SuppressLint("CheckResult")
@@ -24,6 +25,12 @@ public class ProductClassifyFragmentPresenter extends BaseViewPresenter<ProductC
                     protected void onSuccess(FindMerchandiseListBean findMerchandiseListBean) {
                         assert getViewer() != null;
                         getViewer().getMerchandiseClassListSuccess(findMerchandiseListBean);
+                    }
+
+                    @Override
+                    protected void onError(ApiException apiException) {
+                        assert getViewer() != null;
+                        getViewer().getMerchandiseClassListFail();
                     }
                 });
     }

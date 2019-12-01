@@ -80,4 +80,12 @@ public abstract class BaseBarActivity extends BaseActivity {
                 right.setVisibility(View.VISIBLE);
             }
   }
+
+  public void setRightMenuText(CharSequence text) {
+    if (!TextUtils.isEmpty(text)) {
+      TextView right = bindView(R.id.right_menu);
+      right.setText(text);
+      right.setVisibility(View.VISIBLE);
+    }
+  }
 }

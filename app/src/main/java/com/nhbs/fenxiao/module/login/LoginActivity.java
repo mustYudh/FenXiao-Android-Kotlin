@@ -7,124 +7,143 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.EditText;
+
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarActivity;
 import com.nhbs.fenxiao.http.loading.NetLoadingDialog;
 import com.nhbs.fenxiao.module.login.presenter.LoginPresenter;
 import com.nhbs.fenxiao.module.login.presenter.LoginViewer;
 import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareConfig;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.yu.common.login.LoginRedirectHelper;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.toast.ToastUtils;
 import com.yu.share.AuthLoginHelp;
 import com.yu.share.callback.AuthLoginCallback;
+
 import java.util.Map;
 
 /**
  * @author yudenghao
  */
 public class LoginActivity extends BaseBarActivity
-    implements LoginViewer, View.OnClickListener, AuthLoginCallback {
+        implements LoginViewer, View.OnClickListener, AuthLoginCallback {
 
-  public final static int BIND_PHONE_SUCCESS_REQUEST_CODE = 123;
-  public static boolean pFlag = false;
-  @PresenterLifeCycle private LoginPresenter mPresenter = new LoginPresenter(this);
-  private EditText phoneNumber;
-  private AuthLoginHelp mAuthLoginHelp;
+    public final static int BIND_PHONE_SUCCESS_REQUEST_CODE = 123;
+    public static boolean pFlag = false;
+    @PresenterLifeCycle
+    private LoginPresenter mPresenter = new LoginPresenter(this);
+    private EditText phoneNumber;
+    private AuthLoginHelp mAuthLoginHelp;
 
-  public static Intent callRedirectOtherActionIntent(Context context, String targetOther,
-      Bundle bundle) {
-    return LoginRedirectHelper.setRedirectData(context, LoginActivity.class, bundle, "",
-        targetOther);
-  }
+    public static Intent callRedirectOtherActionIntent(Context context, String targetOther,
+                                                       Bundle bundle) {
+        return LoginRedirectHelper.setRedirectData(context, LoginActivity.class, bundle, "",
+                targetOther);
+    }
 
-  @Override protected void setView(@Nullable Bundle savedInstanceState) {
-    pFlag = true;
-    setContentView(R.layout.activity_login_view);
-  }
+    @Override
+    protected void setView(@Nullable Bundle savedInstanceState) {
+        pFlag = true;
+        setContentView(R.layout.activity_login_view);
+    }
 
-  @Override protected void loadData() {
-    initView();
-    initListener();
-    phoneNumber = bindView(R.id.phone_number);
-  }
+    @Override
+    protected void loadData() {
+        UMShareConfig config = new UMShareConfig();
+        config.isNeedAuthOnGetUserInfo(true);
+        UMShareAPI.get(this).setShareConfig(config);
+        initView();
+        initListener();
+        phoneNumber = bindView(R.id.phone_number);
+    }
 
-  private void initListener() {
-    bindView(R.id.next_action, this);
-    bindView(R.id.we_chat_login, this);
-    mAuthLoginHelp = new AuthLoginHelp(getActivity());
-    mAuthLoginHelp.callback(this);
-  }
+    private void initListener() {
+        bindView(R.id.next_action, this);
+        bindView(R.id.we_chat_login, this);
+        mAuthLoginHelp = new AuthLoginHelp(getActivity());
+        mAuthLoginHelp.callback(this);
+    }
 
-  private void initView() {
-    setBackImgRes(R.drawable.ic_cancel);
-    bindView(R.id.divider).setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-  }
+    private void initView() {
+        setBackImgRes(R.drawable.ic_cancel);
+        bindView(R.id.divider).setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+    }
 
-  @Override public Bundle getLoginExtraBundle() {
-    return LoginRedirectHelper.getLoginExtraBundle(getActivity());
-  }
+    @Override
+    public Bundle getLoginExtraBundle() {
+        return LoginRedirectHelper.getLoginExtraBundle(getActivity());
+    }
 
-  @Override public String getRedirectOtherAction() {
-    return LoginRedirectHelper.getRedirectOtherAction(getActivity());
-  }
+    @Override
+    public String getRedirectOtherAction() {
+        return LoginRedirectHelper.getRedirectOtherAction(getActivity());
+    }
 
-  @Override public String getRedirectActivityClassName() {
-    return LoginRedirectHelper.getRedirectActivityClassName(getActivity());
-  }
+    @Override
+    public String getRedirectActivityClassName() {
+        return LoginRedirectHelper.getRedirectActivityClassName(getActivity());
+    }
 
-  @Override protected void onPause() {
-    super.onPause();
-    pFlag = false;
-  }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        pFlag = false;
+    }
 
-  @Override public void onClick(View v) {
-    switch (v.getId()) {
-      case R.id.next_action:
-        mPresenter.sendVerCode(phoneNumber.getText().toString().trim());
-        break;
-      case R.id.we_chat_login:
-        boolean installWeChat =
-            UMShareAPI.get(getActivity()).isInstall(getActivity(), SHARE_MEDIA.WEIXIN);
-        if (installWeChat) {
-          mAuthLoginHelp.login(SHARE_MEDIA.WEIXIN);
-        } else {
-          ToastUtils.show("请先安装微信");
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.next_action:
+                mPresenter.sendVerCode(phoneNumber.getText().toString().trim());
+                break;
+            case R.id.we_chat_login:
+                boolean installWeChat =
+                        UMShareAPI.get(getActivity()).isInstall(getActivity(), SHARE_MEDIA.WEIXIN);
+                if (installWeChat) {
+                    mAuthLoginHelp.login(SHARE_MEDIA.WEIXIN);
+                } else {
+                    ToastUtils.show("请先安装微信");
+                }
+                break;
+            default:
         }
-        break;
-      default:
     }
-  }
 
-  @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    if (resultCode == Activity.RESULT_OK) {
-      if (requestCode == VerificationCodeActivity.INPUT_VER_CODE_REQUEST) {
-        mPresenter.login();
-      } else if (requestCode == LoginActivity.BIND_PHONE_SUCCESS_REQUEST_CODE) {
-        finish();
-      }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == VerificationCodeActivity.INPUT_VER_CODE_REQUEST) {
+                mPresenter.login();
+            } else if (requestCode == LoginActivity.BIND_PHONE_SUCCESS_REQUEST_CODE) {
+                finish();
+            }
+        }
     }
-  }
 
-  @Override public void onStart(SHARE_MEDIA media) {
-    NetLoadingDialog.showLoading(getActivity(), false);
-  }
+    @Override
+    public void onStart(SHARE_MEDIA media) {
+        NetLoadingDialog.showLoading(getActivity(), false);
+    }
 
-  @Override public void onComplete(SHARE_MEDIA media, int i, Map<String, String> map) {
-    String openId = map.get("openid");
-    String name = map.get("name");
-    String iconUrl = map.get("iconurl");
-    mPresenter.loginWeChat(openId,name,iconUrl);
-  }
+    @Override
+    public void onComplete(SHARE_MEDIA media, int i, Map<String, String> map) {
+        String openId = map.get("openid");
+        String name = map.get("name");
+        String iconUrl = map.get("iconurl");
+        mPresenter.loginWeChat(openId, name, iconUrl);
+    }
 
-  @Override public void onError(SHARE_MEDIA media, int i, Throwable throwable) {
-    NetLoadingDialog.dismissLoading();
-  }
+    @Override
+    public void onError(SHARE_MEDIA media, int i, Throwable throwable) {
+        NetLoadingDialog.dismissLoading();
+    }
 
-  @Override public void onCancel(SHARE_MEDIA media, int i) {
+    @Override
+    public void onCancel(SHARE_MEDIA media, int i) {
 
-    NetLoadingDialog.dismissLoading();
-  }
+        NetLoadingDialog.dismissLoading();
+    }
 }

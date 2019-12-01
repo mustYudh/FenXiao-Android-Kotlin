@@ -30,9 +30,9 @@
     <application
         android:name=".APP"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_app_logo"
         android:label="${APP_NAME}"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
@@ -219,6 +219,12 @@
             android:name=".module.mine.activity.MineTeamActivity"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".module.store.activity.DeliverGoodsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".module.store.activity.RefundGoodsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".module.home.HomePageActivity"
             android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
@@ -243,6 +249,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".module.store.activity.RedactStoreActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".module.store.activity.type.TypeAddGoodsActivity"
             android:screenOrientation="portrait"/>
     </application>
 

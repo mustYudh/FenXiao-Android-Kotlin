@@ -13,5 +13,6 @@ data class TypeCountListBean(
 data class ClassTOS(
     var classify: String,
     var id: String,
-    var total: Int
+    var total: Int,
+    var isChecked: Boolean = false
 ): Serializable

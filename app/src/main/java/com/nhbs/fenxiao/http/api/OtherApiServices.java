@@ -14,6 +14,7 @@ import com.nhbs.fenxiao.module.mine.bean.MineAddressBean;
 import com.nhbs.fenxiao.module.mine.bean.MineGroupBean;
 import com.nhbs.fenxiao.module.mine.bean.MineSpreadLogsListBean;
 import com.nhbs.fenxiao.module.mine.bean.MineUserInfoBean;
+import com.nhbs.fenxiao.module.mine.bean.UserAccountInfo;
 import com.nhbs.fenxiao.module.order.bean.CreateUserOrderBean;
 import com.nhbs.fenxiao.module.order.bean.FirstAddressBean;
 import com.nhbs.fenxiao.module.order.bean.MineOrderListBean;
@@ -28,6 +29,7 @@ import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
 import com.nhbs.fenxiao.module.product.bean.ProductCommentBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.nhbs.fenxiao.module.product.bean.ShopOtherUserDetailBean;
+import com.nhbs.fenxiao.module.store.bean.ExpInfoBean;
 import com.nhbs.fenxiao.module.store.bean.UserShopShareBean;
 import com.xuexiang.xhttp2.annotation.NetMethod;
 
@@ -125,6 +127,9 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"pageNum", "pageSize", "shopId"}, Url = "/merchandise/findMyShopMerchandiseList")
     Observable<FindMyShopMerchandiseListBean> findMyShopMerchandiseList(String pageNum, String pageSize, String shopId);
 
+    @NetMethod(ParameterNames = {"classId", "pageNum", "pageSize", "shopId"}, Url = "/merchandise/findMyShopMerchandiseList")
+    Observable<FindMyShopMerchandiseListBean> findMyShopMerchandiseShopList(String classId, String pageNum, String pageSize, String shopId);
+
     @NetMethod(ParameterNames = {"targetId", "content"}, Url = "/create/comment")
     Observable<ProductCommentBean> productComment(String targetId, String content);
 
@@ -149,14 +154,17 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"merchandiseId", "type"}, Url = "/userLove/save")
     Observable<Object> likeProduct(String merchandiseId, String type);
 
+    @NetMethod(ParameterNames = {"merchandiseId", "type"}, Url = "/userLove/cancelUserLove")
+    Observable<Object> likeProductCancle(String merchandiseId, String type);
+
     @NetMethod(ParameterNames = {"pageNum", "pageSize"}, Url = "/advertising/querySpreadLogsList")
     Observable<MineSpreadLogsListBean> querySpreadLogsList(String pageNum, String pageSize);
 
     @NetMethod(ParameterNames = {"withdrawalAmount", "payType"}, Url = "/withdraw/createUserWithdraw")
     Observable<Object> createUserWithdraw(String withdrawalAmount, String payType);
 
-    @NetMethod(ParameterNames = {"openId"}, Url = "/user/boundWinXin")
-    Observable<BindWxBean> boundWinXin(String openId);
+    @NetMethod(ParameterNames = {"openId", "winXinName"}, Url = "/user/boundWinXin")
+    Observable<BindWxBean> boundWinXin(String openId, String winXinName);
 
     @NetMethod(ParameterNames = {"mobile"}, Url = "/sms/sendBondAliAccount")
     Observable<Object> sendBondAliAccount(String mobile);
@@ -175,5 +183,12 @@ public interface OtherApiServices {
 
     @NetMethod(ParameterNames = {"id", "shopImage", "shopName", "describes"}, Url = "/userShop/update")
     Observable<Object> userShopUpdate(String id, String shopImage, String shopName, String describes);
+
+    @NetMethod(Url = "/user/getUserAccountInfo")
+    Observable<UserAccountInfo> getUserAccountInfo();
+
+    @NetMethod(ParameterNames = {"nu"}, Url = "/findExp")
+    Observable<ExpInfoBean> findExp(String nu);
+
 
 }
