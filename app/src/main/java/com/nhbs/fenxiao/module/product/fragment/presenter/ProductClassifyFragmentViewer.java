@@ -11,4 +11,6 @@ public interface ProductClassifyFragmentViewer extends Viewer {
     void advertiseShareSuccess(ShareMerchandiseBean shareMerchandiseBean);
 
     void agentMerchandiseSuccess(FindMerchandiseListBean.RowsBean item);
+
+    void getMerchandiseClassListFail();
 }

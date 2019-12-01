@@ -12,4 +12,6 @@ interface MiniStoreViewer: Viewer {
   fun setShopInfo(info: ShopInfoBean?)
 
   fun needOpenStore()
+
+  fun getUnReadMessageCont()
 }

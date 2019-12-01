@@ -24,120 +24,128 @@
     </FrameLayout>
 
 
-    <ScrollView
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="52dp"
-        android:fillViewport="true"
-        android:overScrollMode="never"
-        android:scrollbars="none">
+        >
 
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
-
-            <com.zhouwei.mzbanner.MZBannerView
-                android:id="@+id/banner"
-                android:layout_width="match_parent"
-                android:layout_height="145dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/white"
-                app:canLoop="true"
-                app:indicatorAlign="center"
-                app:indicatorPaddingLeft="10dp"
-                app:open_mz_mode="false"
-                />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="#F7F7F7"
-                android:orientation="vertical"
-                >
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+
+                <com.zhouwei.mzbanner.MZBannerView
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="145dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/white"
+                    app:canLoop="true"
+                    app:indicatorAlign="center"
+                    app:indicatorPaddingLeft="10dp"
+                    app:open_mz_mode="false"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:gravity="center_vertical"
-                    android:visibility="gone">
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="#F7F7F7"
+                    android:orientation="vertical"
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:gravity="center_vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:src="@drawable/home_trumpet"/>
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:includeFontPadding="false"
+                            android:text="176*****2300刚刚试玩了XXXX"
+                            android:textColor="#ffa2abbb"
+                            android:textSize="12sp"
+                            />
+                    </LinearLayout>
+
+
+                    <!--首页标签-->
+                    <include layout="@layout/item_home_label"/>
+
 
                     <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:src="@drawable/home_trumpet"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="65dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/become_partner"
+                        android:visibility="gone"/>
+
+
+                    <!--热门任务-->
+
+                    <include layout="@layout/item_home_mission"/>
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="7dp"
-                        android:includeFontPadding="false"
-                        android:text="176*****2300刚刚试玩了XXXX"
-                        android:textColor="#ffa2abbb"
-                        android:textSize="12sp"
+                        android:layout_marginLeft="16dp"
+                        android:text="热门商品"
+                        android:textColor="#ff000000"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
                         />
-                </LinearLayout>
 
 
-                <!--首页标签-->
-                <include layout="@layout/item_home_label"/>
-
-
-                <ImageView
-                    android:visibility="gone"
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/become_partner"/>
-
-
-                <!--热门任务-->
-
-                <include layout="@layout/item_home_mission"/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:text="热门商品"
-                    android:textColor="#ff000000"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    />
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:descendantFocusability="blocksDescendants">
-
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_home"
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginRight="16dp"
-                        android:nestedScrollingEnabled="false"
-                        />
-                </RelativeLayout>
+                        android:descendantFocusability="blocksDescendants">
+
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginRight="16dp"
+                            android:nestedScrollingEnabled="false"
+                            />
+                    </RelativeLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </ScrollView>
 
-    </ScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </FrameLayout>

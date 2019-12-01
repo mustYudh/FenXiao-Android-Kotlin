@@ -15,5 +15,6 @@ public class MerchandiseClassBean {
 
         public String classify;
         public String id;
+        public boolean isIs_select;
     }
 }

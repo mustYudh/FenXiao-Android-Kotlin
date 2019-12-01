@@ -15,6 +15,9 @@ import com.nhbs.fenxiao.module.product.fragment.presenter.ProductClassifyFragmen
 import com.nhbs.fenxiao.module.product.fragment.presenter.ProductClassifyFragmentViewer;
 import com.nhbs.fenxiao.module.view.ScreenSpaceItemDecoration;
 import com.nhbs.fenxiao.utils.DialogUtils;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.toast.ToastUtils;
@@ -30,9 +33,10 @@ public class ProductClassifyFragment extends BaseFragment implements ProductClas
     private RecyclerView rv_product;
     private String product_id;
     private int pageNum = 1;
-    private int pageSize = 10;
+    private int pageSize = 1000;
     private CommonRvAdapter adapter;
     private DialogUtils shareDialog;
+    private SmartRefreshLayout refreshLayout;
 
     @Override
     protected int getContentViewId() {
@@ -52,10 +56,21 @@ public class ProductClassifyFragment extends BaseFragment implements ProductClas
     protected void setView(@Nullable Bundle savedInstanceState) {
 
         rv_product = bindView(R.id.rv_product);
+        refreshLayout = bindView(R.id.refresh);
         rv_product.addItemDecoration(new ScreenSpaceItemDecoration(getActivity(), 10));
         rv_product.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         adapter = new CommonRvAdapter(R.layout.item_common_product, getActivity());
         rv_product.setAdapter(adapter);
+
+        refreshLayout.setEnableLoadMoreWhenContentNotFull(false);
+        refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()).setSpinnerStyle(SpinnerStyle.Translate));
+        refreshLayout.setEnableOverScrollBounce(false);
+        refreshLayout.setEnableAutoLoadMore(true);
+        refreshLayout.setEnableLoadMore(false);
+        refreshLayout.setOnRefreshListener(refreshLayout12 -> {
+            pageNum = 1;
+            mPresenter.getMerchandiseClassList(product_id, pageNum, pageSize);
+        });
 
     }
 
@@ -73,6 +88,9 @@ public class ProductClassifyFragment extends BaseFragment implements ProductClas
 
     @Override
     public void getMerchandiseClassListSuccess(FindMerchandiseListBean findMerchandiseListBean) {
+        if (refreshLayout != null) {
+            refreshLayout.finishRefresh();
+        }
         if (findMerchandiseListBean != null && findMerchandiseListBean.rows != null && findMerchandiseListBean.rows.size() != 0) {
             adapter.setNewData(findMerchandiseListBean.rows);
             adapter.setOnItemDetailsDoCilckListener(new CommonRvAdapter.OnItemOperateListener() {
@@ -112,6 +130,13 @@ public class ProductClassifyFragment extends BaseFragment implements ProductClas
     public void agentMerchandiseSuccess(FindMerchandiseListBean.RowsBean item) {
         ToastUtils.show("代理成功");
         item.isAgent = "1";
+    }
+
+    @Override
+    public void getMerchandiseClassListFail() {
+        if (refreshLayout != null) {
+            refreshLayout.finishRefresh();
+        }
     }
 
     private void showShareDialog(ShareMerchandiseBean shareMerchandiseBean) {

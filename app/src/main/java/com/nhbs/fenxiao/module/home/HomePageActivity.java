@@ -3,9 +3,15 @@ package com.nhbs.fenxiao.module.home;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
+
 import com.denghao.control.TabItem;
 import com.denghao.control.TabView;
 import com.denghao.control.view.BottomNavigationView;
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.Observer;
+import com.netease.nimlib.sdk.StatusCode;
+import com.netease.nimlib.sdk.auth.AuthServiceObserver;
+import com.netease.nimlib.sdk.auth.OnlineClient;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseActivity;
 import com.nhbs.fenxiao.module.center.HomeCenterPopUpWindow;
@@ -17,6 +23,7 @@ import com.nhbs.fenxiao.module.product.fragment.ProductFragment;
 import com.nhbs.fenxiao.module.store.fragment.MiniStoreFragment;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.utils.PressHandle;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +39,30 @@ public class HomePageActivity extends BaseActivity implements HomePageViewer {
     private BottomNavigationView mBottomNavigationView;
     private HomeCenterPopUpWindow mHomePopUpWindow;
 
+
+
+    Observer<StatusCode> userStatusObserver = (Observer<StatusCode>) code -> {
+        if (code == StatusCode.KICK_BY_OTHER_CLIENT) {
+            mPresenter.loginNime();
+        }
+    };
+
+    private void registerObservers(boolean register) {
+        NIMClient.getService(AuthServiceObserver.class).observeOtherClients(clientsObserver, register);
+        NIMClient.getService(AuthServiceObserver.class)
+                .observeOnlineStatus(userStatusObserver, register);
+    }
+
+    Observer<List<OnlineClient>> clientsObserver = (Observer<List<OnlineClient>>) onlineClients -> {
+
+    };
+
+
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_home_page_view);
+        registerObservers(true);
+        mPresenter.loginNime();
     }
 
 
@@ -67,5 +95,12 @@ public class HomePageActivity extends BaseActivity implements HomePageViewer {
                 super.onBackPressed();
             }
         }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        registerObservers(false);
+        super.onDestroy();
     }
 }

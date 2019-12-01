@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import com.mylhyl.circledialog.CircleDialog
 import com.nhbs.fenxiao.R
@@ -20,13 +21,7 @@ import com.nhbs.fenxiao.utils.setLinearLayoutAdapter
 import com.nhbs.fenxiao.utils.showToast
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.yu.common.mvp.PresenterLifeCycle
-import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.count
-import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.picker_time
-import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.select_type
-import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.time_picker
-import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.type
-import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.type_btn
-import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.type_icon
+import kotlinx.android.synthetic.main.fragment_mini_store_goods_layout.*
 
 /**
  * @author yudneghao
@@ -81,10 +76,12 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
     refresh = bindView(R.id.refresh)
     mPresenter.getGoodsList(params, null, 0, true)
     refresh?.setOnRefreshListener { refreshLayout ->
+      Log.e("=======>","刷新")
       params.pageNum = 1
       mPresenter.getGoodsList(params, refreshLayout, 0)
     }
     refresh?.setOnLoadMoreListener { refreshLayout ->
+      Log.e("=======>","加载")
       params.pageNum = pageNum++
       mPresenter.getGoodsList(params, refreshLayout, 1)
     }
@@ -112,13 +109,13 @@ class MiniStoreGoodsInfoFragment : BaseFragment(), MiniStoreGoodsInfoViewer {
 
   override fun setGoodsInfoList(list: List<GoodsInfoBean>?, isPickerTime: Boolean) {
     if (list != null && list.size > 0) {
-      if (pageNum == 1) {
+      if (params.pageNum == 1) {
         adapter.setNewData(list)
       } else {
         adapter.addData(list)
       }
     } else {
-      if (pageNum == 1) {
+      if (params.pageNum == 1) {
         adapter.emptyView = View.inflate(activity, R.layout.empty_layout, null)
       }
     }

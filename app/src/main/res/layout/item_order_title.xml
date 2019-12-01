@@ -3,152 +3,161 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="vertical"
-              android:id="@+id/ll_root"
     >
 
 
     <LinearLayout
+        android:id="@+id/ll_root"
+
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/shape_mine_order_top"
-        android:gravity="center_vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/shape_mine_order_top"
             android:gravity="center_vertical">
 
 
-            <com.yu.common.ui.CircleImageView
-                android:id="@+id/iv_headimg"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+
+                <com.yu.common.ui.CircleImageView
+                    android:id="@+id/iv_headimg"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="12dp"
+                    android:src="@drawable/ic_launcher_background"/>
+
+
+                <TextView
+                    android:id="@+id/tv_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:includeFontPadding="false"
+                    android:text="XXXX酒吧"
+                    android:textColor="#ff3b3e5a"
+                    android:textSize="12sp"
+                    />
+
+
+                <ImageView
+                    android:layout_width="4dp"
+                    android:layout_height="8dp"
+                    android:layout_marginLeft="4dp"
+                    android:src="@drawable/arrow_right"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="12dp"
+                android:includeFontPadding="false"
+                android:text="卖家已发货"
+                android:textColor="#ffff2751"
+                android:textSize="12sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lb_cm_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            >
+
+            <ImageView
+                android:id="@+id/iv_product"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:layout_marginLeft="12dp"
                 android:src="@drawable/ic_launcher_background"/>
 
 
-            <TextView
-                android:id="@+id/tv_user_name"
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="50dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tv_product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="2dp"
+                    android:maxLines="2"
+                    android:text="产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称"
+                    android:textColor="#ff3b3e5a"
+                    android:textSize="12sp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/tv_specification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:includeFontPadding="false"
+                    android:text="黑色"
+                    android:textColor="#ffa0a9bb"
+                    android:textSize="10sp"
+                    />
+            </RelativeLayout>
+
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:includeFontPadding="false"
-                android:text="XXXX酒吧"
-                android:textColor="#ff3b3e5a"
-                android:textSize="12sp"
-                />
+                android:layout_height="match_parent"
+                android:layout_marginRight="12dp"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="¥124.00"
+                    android:textColor="#ff3b3e5a"
+                    android:textSize="10sp"
+                    />
 
 
-            <ImageView
-                android:layout_width="4dp"
-                android:layout_height="8dp"
-                android:layout_marginLeft="4dp"
-                android:src="@drawable/arrow_right"/>
+                <TextView
+                    android:id="@+id/tv_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:includeFontPadding="false"
+                    android:text="X1"
+                    android:textColor="#ffa0a9bb"
+                    android:textSize="10sp"
+                    />
 
 
+            </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="12dp"
-            android:includeFontPadding="false"
-            android:text="卖家已发货"
-            android:textColor="#ffff2751"
-            android:textSize="12sp"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/lb_cm_white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
-        >
-
-        <ImageView
-            android:id="@+id/iv_product"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_marginLeft="12dp"
-            android:src="@drawable/ic_launcher_background"/>
-
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="50dp"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/tv_product_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:includeFontPadding="false"
-                android:lineSpacingExtra="2dp"
-                android:maxLines="2"
-                android:text="产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称"
-                android:textColor="#ff3b3e5a"
-                android:textSize="12sp"
-                />
-
-
-            <TextView
-                android:id="@+id/tv_specification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:includeFontPadding="false"
-                android:text="黑色"
-                android:textColor="#ffa0a9bb"
-                android:textSize="10sp"
-                />
-        </RelativeLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="12dp"
-            android:gravity="right"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:includeFontPadding="false"
-                android:text="¥124.00"
-                android:textColor="#ff3b3e5a"
-                android:textSize="10sp"
-                />
-
-
-            <TextView
-                android:id="@+id/tv_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:includeFontPadding="false"
-                android:text="X1"
-                android:textColor="#ffa0a9bb"
-                android:textSize="10sp"
-                />
-
-
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

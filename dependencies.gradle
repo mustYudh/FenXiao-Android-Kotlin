@@ -3,7 +3,7 @@ ext {
     versionName = '1.0.0'
 
     uMengKey = '5d528a403fc19583e600071b'
-    nim = ''
+    nim = '8633403913fd856a57c631bc7fc7c5df'
     uMengChannel = 'fenxiao'
     baidu = ''
 

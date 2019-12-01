@@ -79,7 +79,8 @@ class IncomeAssetsFragment : BaseFragment(), AuthLoginCallback, IncomeAssetsView
 
     override fun onComplete(media: SHARE_MEDIA?, i: Int, map: MutableMap<String, String>?) {
         val openId = map?.get("openid")
-        mPresenter.boundWinXin(openId)
+        val winXinName = map?.get("name")
+        mPresenter.boundWinXin(openId, winXinName)
     }
 
     override fun onError(media: SHARE_MEDIA?, i: Int, throwable: Throwable?) {

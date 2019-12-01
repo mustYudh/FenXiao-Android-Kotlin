@@ -14,43 +14,11 @@ import com.nhbs.fenxiao.module.center.SetPrizePopupWindow
 import com.nhbs.fenxiao.module.center.bean.ReleaseActivityParams
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsACActivityViewer
 import com.nhbs.fenxiao.module.center.presenter.ReleaseGoodsACPresenter
-import com.nhbs.fenxiao.module.store.bean.GoodsListBean.GoodsInfoBean
-import com.nhbs.fenxiao.utils.PickerViewUtils
-import com.nhbs.fenxiao.utils.getCalendarPicker
-import com.nhbs.fenxiao.utils.getInputText
-import com.nhbs.fenxiao.utils.getTime
+import com.nhbs.fenxiao.utils.*
 import com.nhbs.fenxiao.utils.oss.UploadUtils
-import com.nhbs.fenxiao.utils.setfilters
 import com.yu.common.glide.ImageLoader
 import com.yu.common.mvp.PresenterLifeCycle
-import kotlinx.android.synthetic.main.activity_release_advertising_view.select_type_1
-import kotlinx.android.synthetic.main.activity_release_advertising_view.type_name1
-import kotlinx.android.synthetic.main.activity_release_goods_view.activity_content
-import kotlinx.android.synthetic.main.activity_release_goods_view.activity_title
-import kotlinx.android.synthetic.main.activity_release_goods_view.check_free_mail_btn
-import kotlinx.android.synthetic.main.activity_release_goods_view.commission
-import kotlinx.android.synthetic.main.activity_release_goods_view.first_goods
-import kotlinx.android.synthetic.main.activity_release_goods_view.first_goods_count
-import kotlinx.android.synthetic.main.activity_release_goods_view.first_goods_edit
-import kotlinx.android.synthetic.main.activity_release_goods_view.first_goods_name
-import kotlinx.android.synthetic.main.activity_release_goods_view.first_goods_res
-import kotlinx.android.synthetic.main.activity_release_goods_view.first_goods_root
-import kotlinx.android.synthetic.main.activity_release_goods_view.last_goods
-import kotlinx.android.synthetic.main.activity_release_goods_view.last_goods_count
-import kotlinx.android.synthetic.main.activity_release_goods_view.last_goods_edit
-import kotlinx.android.synthetic.main.activity_release_goods_view.last_goods_name
-import kotlinx.android.synthetic.main.activity_release_goods_view.last_goods_res
-import kotlinx.android.synthetic.main.activity_release_goods_view.last_goods_root
-import kotlinx.android.synthetic.main.activity_release_goods_view.promotion_costs
-import kotlinx.android.synthetic.main.activity_release_goods_view.release_ac_goods
-import kotlinx.android.synthetic.main.activity_release_goods_view.second_goods
-import kotlinx.android.synthetic.main.activity_release_goods_view.second_goods_count
-import kotlinx.android.synthetic.main.activity_release_goods_view.second_goods_edit
-import kotlinx.android.synthetic.main.activity_release_goods_view.second_goods_name
-import kotlinx.android.synthetic.main.activity_release_goods_view.second_goods_res
-import kotlinx.android.synthetic.main.activity_release_goods_view.second_goods_root
-import kotlinx.android.synthetic.main.activity_release_goods_view.select_time
-import kotlinx.android.synthetic.main.activity_release_goods_view.select_time_btn
+import kotlinx.android.synthetic.main.activity_release_goods_view.*
 
 class ReleaseACGoodsActivity : BaseBarActivity(), ReleaseGoodsACActivityViewer {
 

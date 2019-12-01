@@ -19,24 +19,9 @@ import com.nhbs.fenxiao.module.center.bean.Row
 import com.nhbs.fenxiao.module.center.presenter.ReleaseAdvertisingPresenter
 import com.nhbs.fenxiao.module.center.presenter.ReleaseAdvertisingViewer
 import com.nhbs.fenxiao.module.view.RecycleItemSpace
-import com.nhbs.fenxiao.utils.PickerViewUtils
-import com.nhbs.fenxiao.utils.getCalendarPicker
-import com.nhbs.fenxiao.utils.getInputText
-import com.nhbs.fenxiao.utils.getTime
-import com.nhbs.fenxiao.utils.selectPhoto
-import com.nhbs.fenxiao.utils.setGridLayoutAdapter
-import com.nhbs.fenxiao.utils.setfilters
+import com.nhbs.fenxiao.utils.*
 import com.yu.common.mvp.PresenterLifeCycle
-import kotlinx.android.synthetic.main.activity_release_advertising_view.commission
-import kotlinx.android.synthetic.main.activity_release_advertising_view.input_content
-import kotlinx.android.synthetic.main.activity_release_advertising_view.input_title
-import kotlinx.android.synthetic.main.activity_release_advertising_view.price
-import kotlinx.android.synthetic.main.activity_release_advertising_view.release_ad
-import kotlinx.android.synthetic.main.activity_release_advertising_view.select_time
-import kotlinx.android.synthetic.main.activity_release_advertising_view.select_time_btn
-import kotlinx.android.synthetic.main.activity_release_advertising_view.select_type_1
-import kotlinx.android.synthetic.main.activity_release_advertising_view.tag_root
-import kotlinx.android.synthetic.main.activity_release_advertising_view.type_name1
+import kotlinx.android.synthetic.main.activity_release_advertising_view.*
 import kotlinx.android.synthetic.main.include_layout_release_goods_top.list
 
 class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
@@ -46,6 +31,9 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
   internal var mPresenter = ReleaseAdvertisingPresenter(this)
   private val mAdapter = AddGoodsPhotoAdapter()
   private var params = ReleaseAdParams()
+  private var selectedFriends = false
+  private var selectedWeiBo = false
+  private var selectedQQ = false
 
   override fun setView(savedInstanceState: Bundle?) {
     setContentView(R.layout.activity_release_advertising_view)
@@ -63,9 +51,8 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
     list.addItemDecoration(RecycleItemSpace(8, 0))
     list.setGridLayoutAdapter(4, mAdapter, true)
     mAdapter.addData("")
-    price.setfilters()
-    commission.setfilters()
-    mPresenter.getAdType()
+    pvSpread.setfilters()
+    grossSpread.setfilters()
   }
 
 
@@ -85,25 +72,66 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
       }
     }
 
-    select_time_btn.setOnClickListener {
+    endTime.setOnClickListener {
       getCalendarPicker(activity) {
         params.endTime = it.time.toString()
-        select_time.text = getTime(it, "yyy-MM-dd")
+        endTime.setText(getTime(it, "yyy-MM-dd"))
       }
     }
-    select_type_1.setOnClickListener {
+    startTime.setOnClickListener {
+      getCalendarPicker(activity) {
+        params.startTime = it.time.toString()
+        startTime.setText(getTime(it, "yyy-MM-dd"))
+      }
+    }
+
+    friends.setOnClickListener {
+      selectedFriends = !selectedFriends
+      friends.isSelected = selectedFriends
+    }
+
+    wei_bo.setOnClickListener {
+      selectedWeiBo = !selectedWeiBo
+      wei_bo.isSelected = selectedWeiBo
+    }
+
+    qq.setOnClickListener {
+      selectedQQ = !selectedQQ
+      qq.isSelected = selectedQQ
+    }
+
+
+    address.setOnClickListener {
       PickerViewUtils.showSelectCity(activity) { province, city, district ->
-        type_name1.text = province + city + district
+        address.text = province + city + district
         params.province = province
         params.city = city
         params.district = district
       }
     }
+
     release_ad.setOnClickListener {
       params.title = input_title.getInputText()
       params.content = input_content.getInputText()
-      params.grossSpread = price.getInputText()
-      params.pvSpread = commission.getInputText()
+      params.grossSpread = grossSpread.getInputText()
+      params.pvSpread = pvSpread.getInputText()
+      params.number = number.getInputText().toInt()
+      params.number = phoneNumber.getInputText().toInt()
+      val data = ArrayList<String>()
+      if (selectedFriends) {
+        data.add("朋友圈")
+      }
+      if (selectedWeiBo) {
+        data.add("微博")
+      }
+      if (selectedQQ) {
+        data.add("QQ空间")
+      }
+      var shareType = ""
+      data.forEachIndexed { index, type ->
+        shareType += "${type}${if (index != data.size - 1) "," else ""}"
+      }
+      params.shareType = shareType
       mPresenter.releaseAD(params,mAdapter.data as ArrayList<String>)
     }
   }

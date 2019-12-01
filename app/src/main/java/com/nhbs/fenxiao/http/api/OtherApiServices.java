@@ -29,6 +29,7 @@ import com.nhbs.fenxiao.module.product.bean.MerchandiseDetailBean;
 import com.nhbs.fenxiao.module.product.bean.ProductCommentBean;
 import com.nhbs.fenxiao.module.product.bean.ShareMerchandiseBean;
 import com.nhbs.fenxiao.module.product.bean.ShopOtherUserDetailBean;
+import com.nhbs.fenxiao.module.store.bean.ExpInfoBean;
 import com.nhbs.fenxiao.module.store.bean.UserShopShareBean;
 import com.xuexiang.xhttp2.annotation.NetMethod;
 
@@ -126,6 +127,9 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"pageNum", "pageSize", "shopId"}, Url = "/merchandise/findMyShopMerchandiseList")
     Observable<FindMyShopMerchandiseListBean> findMyShopMerchandiseList(String pageNum, String pageSize, String shopId);
 
+    @NetMethod(ParameterNames = {"classId", "pageNum", "pageSize", "shopId"}, Url = "/merchandise/findMyShopMerchandiseList")
+    Observable<FindMyShopMerchandiseListBean> findMyShopMerchandiseShopList(String classId, String pageNum, String pageSize, String shopId);
+
     @NetMethod(ParameterNames = {"targetId", "content"}, Url = "/create/comment")
     Observable<ProductCommentBean> productComment(String targetId, String content);
 
@@ -150,14 +154,17 @@ public interface OtherApiServices {
     @NetMethod(ParameterNames = {"merchandiseId", "type"}, Url = "/userLove/save")
     Observable<Object> likeProduct(String merchandiseId, String type);
 
+    @NetMethod(ParameterNames = {"merchandiseId", "type"}, Url = "/userLove/cancelUserLove")
+    Observable<Object> likeProductCancle(String merchandiseId, String type);
+
     @NetMethod(ParameterNames = {"pageNum", "pageSize"}, Url = "/advertising/querySpreadLogsList")
     Observable<MineSpreadLogsListBean> querySpreadLogsList(String pageNum, String pageSize);
 
     @NetMethod(ParameterNames = {"withdrawalAmount", "payType"}, Url = "/withdraw/createUserWithdraw")
     Observable<Object> createUserWithdraw(String withdrawalAmount, String payType);
 
-    @NetMethod(ParameterNames = {"openId"}, Url = "/user/boundWinXin")
-    Observable<BindWxBean> boundWinXin(String openId);
+    @NetMethod(ParameterNames = {"openId", "winXinName"}, Url = "/user/boundWinXin")
+    Observable<BindWxBean> boundWinXin(String openId, String winXinName);
 
     @NetMethod(ParameterNames = {"mobile"}, Url = "/sms/sendBondAliAccount")
     Observable<Object> sendBondAliAccount(String mobile);
@@ -182,6 +189,9 @@ public interface OtherApiServices {
 
     @NetMethod(ParameterNames = {"orderId","remark","reason","imageUrls","isGoods","goodsStatus"}, Url = "/user/applyRefund")
     Observable<Object> applyRefund(String orderId,String remark,String reason,String imageUrls,int isGoods,int goodsStatus);
+
+    @NetMethod(ParameterNames = {"nu"}, Url = "/findExp")
+    Observable<ExpInfoBean> findExp(String nu);
 
 
 }

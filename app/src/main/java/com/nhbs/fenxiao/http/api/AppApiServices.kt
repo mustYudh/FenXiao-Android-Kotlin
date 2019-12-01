@@ -2,6 +2,7 @@ package com.nhbs.fenxiao.http.api
 
 import com.nhbs.fenxiao.data.UserProfile
 import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
+import com.nhbs.fenxiao.module.home.bean.NimeInfoBean
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
 import com.nhbs.fenxiao.module.store.bean.*
 import com.nhbs.fenxiao.utils.oss.bean.OssConfig
@@ -142,6 +143,17 @@ interface AppApiServices {
   fun merchandiseClass(classify: String): Observable<Any>
 
 
+
+  @POST("/api/merchandise/findMyShopMerchandiseList")
+  @Headers("Content-Type: application/json", "Accept: application/json")
+  fun getMyShopGoodsList(@Body params: RequestBody, @Header(
+          "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<GoodsListBean>>
+
+
+  @NetMethod(Url = "/user/createNeteaseCommunicationUser")
+  fun getNimeInfo():Observable<NimeInfoBean>
+
+
   @NetMethod(ParameterNames =["id","classify"],Url ="/merchandiseClass/updateClass")
   fun changeTypeName(id: String,classify: String): Observable<Any>
 
@@ -163,6 +175,7 @@ interface AppApiServices {
 
   @NetMethod(ParameterNames = ["orderId"],Url = "/query/getRefundInfo")
   fun getRefundInfo(orderId: String): Observable<RefundGoodsInfoBean>
+
 }
 
 
