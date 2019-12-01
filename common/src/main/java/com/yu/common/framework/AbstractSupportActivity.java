@@ -102,6 +102,14 @@ public abstract class AbstractSupportActivity extends AppCompatActivity {
     return (T) view;
   }
 
+  public <T extends View> T bindSelector(@IdRes int id, boolean isSelector) {
+    View view = bindView(id);
+    if (view != null) {
+      view.setSelected(isSelector);
+    }
+    return (T) view;
+  }
+
   public <T extends View> T bindView(@IdRes int id, View.OnClickListener onClickListener) {
     View view = bindView(id);
     if (view != null) {

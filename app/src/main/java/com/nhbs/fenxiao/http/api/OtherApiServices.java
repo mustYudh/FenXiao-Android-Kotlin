@@ -187,6 +187,9 @@ public interface OtherApiServices {
     @NetMethod(Url = "/user/getUserAccountInfo")
     Observable<UserAccountInfo> getUserAccountInfo();
 
+    @NetMethod(ParameterNames = {"orderId","remark","reason","imageUrls","isGoods","goodsStatus"}, Url = "/user/applyRefund")
+    Observable<Object> applyRefund(String orderId,String remark,String reason,String imageUrls,int isGoods,int goodsStatus);
+
     @NetMethod(ParameterNames = {"nu"}, Url = "/findExp")
     Observable<ExpInfoBean> findExp(String nu);
 

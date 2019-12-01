@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="73dp"
+    android:layout_height="73dp"
+    >
+
+
+  <com.shehuan.niv.NiceImageView
+      android:scaleType="centerCrop"
+      android:id="@+id/add_photo"
+      android:layout_width="73dp"
+      android:layout_height="73dp"
+      android:src="@drawable/bg_add_evidence"
+      app:corner_radius="2dp"
+      />
+
+
+  <com.shehuan.niv.NiceImageView
+      android:visibility="gone"
+      android:scaleType="centerCrop"
+      android:id="@+id/show_photo"
+      android:layout_width="73dp"
+      android:layout_height="73dp"
+      android:src="@drawable/ic_select_photo_btn"
+      app:corner_radius="2dp"
+      />
+
+
+  <com.yu.common.ui.DelayClickImageView
+      android:id="@+id/delete_photo"
+      android:layout_width="16dp"
+      android:layout_height="16dp"
+      android:layout_gravity="right"
+      android:src="@drawable/ic_remove_photo"
+      android:visibility="gone"
+      />
+
+
+  <TextView
+      android:visibility="gone"
+      android:id="@+id/tag"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom"
+      android:background="@drawable/shape_main_photo_hint_tag"
+      android:gravity="center"
+      android:text="主图"
+      android:textColor="@color/lb_cm_white"
+      />
+
+</FrameLayout>
