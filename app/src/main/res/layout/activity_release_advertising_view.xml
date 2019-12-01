@@ -319,9 +319,8 @@
             android:orientation="horizontal"
             android:layout_height="wrap_content">
 
-          <EditText
+          <com.yu.common.ui.DelayClickTextView
               android:id="@+id/startTime"
-              android:editable="false"
               android:gravity="right"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
@@ -345,9 +344,8 @@
               android:layout_height="wrap_content"/>
 
 
-          <EditText
+          <com.yu.common.ui.DelayClickTextView
               android:id="@+id/endTime"
-              android:editable="false"
               android:gravity="right"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
@@ -407,7 +405,7 @@
             android:gravity="right|center_vertical"
             android:textColor="#A0A9BB"
             android:textSize="14sp"
-            tools:text="杭州"
+            android:text="不限"
             />
         <com.yu.common.ui.DelayClickImageView
             android:layout_width="12dp"

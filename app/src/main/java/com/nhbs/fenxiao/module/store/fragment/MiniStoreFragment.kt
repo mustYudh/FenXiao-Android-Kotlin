@@ -57,10 +57,7 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
     private var mViewPager: ViewPager? = null
     private var mPagerAdapter: MiniStoreGoodsPageAdapter? = null
     private var mService = NIMClient.getService(MsgServiceObserve::class.java)
-    var badgeView: BadgeView? = null
-    var mMessageObserver: Observer<List<RecentContact>> = Observer { contacts: List<RecentContact> ->
-        getUnReadMessageCont()
-    }
+    var mMessageObserver: Observer<List<RecentContact>>? = null
 
 
     override fun getActionBarLayoutId(): Int {
@@ -161,7 +158,6 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
 
 
     override fun loadData() {
-        badgeView = bindView(R.id.badge_view)
         mService.observeRecentContact(mMessageObserver, true)
         mMagicIndicator = bindView(R.id.magic_indicator)
         mViewPager = bindView(R.id.view_pager)
@@ -170,6 +166,9 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
         tabTitles.add("审核记录")
         initTab()
         initListener()
+        mMessageObserver = Observer {
+            getUnReadMessageCont()
+        }
         getUnReadMessageCont()
     }
 
@@ -215,7 +214,8 @@ class MiniStoreFragment : BaseBarFragment(), MiniStoreViewer, UpdataCurrentFragm
 
     override fun getUnReadMessageCont() {
         val unreadNum = NIMClient.getService(MsgService::class.java).totalUnreadCount
-        badgeView?.setHint(unreadNum)
+        val badgeView = bindView<BadgeView>(R.id.badge_view)
+        badgeView?.hint = unreadNum.toString()
 
     }
 

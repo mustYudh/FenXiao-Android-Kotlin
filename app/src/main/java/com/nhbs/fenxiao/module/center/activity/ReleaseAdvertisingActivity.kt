@@ -42,6 +42,7 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
   override fun loadData() {
     initView()
     initListener()
+    mPresenter.getAdType()
   }
 
   private fun initView() {
@@ -117,6 +118,7 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
       params.pvSpread = pvSpread.getInputText()
       params.number = number.getInputText().toInt()
       params.number = phoneNumber.getInputText().toInt()
+      params.phoneNumber = phoneNumber.getInputText()
       val data = ArrayList<String>()
       if (selectedFriends) {
         data.add("朋友圈")
