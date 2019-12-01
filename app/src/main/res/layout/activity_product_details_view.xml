@@ -352,6 +352,7 @@
         android:background="@color/white">
 
         <LinearLayout
+            android:id="@+id/to_chat"
             android:layout_width="64dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical"

@@ -2,8 +2,10 @@ package com.nhbs.fenxiao.http.api
 
 import com.nhbs.fenxiao.data.UserProfile
 import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
+import com.nhbs.fenxiao.module.center.bean.ReleaseAdesultBean
 import com.nhbs.fenxiao.module.home.bean.NimeInfoBean
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
+import com.nhbs.fenxiao.module.order.bean.PayInfo
 import com.nhbs.fenxiao.module.store.bean.*
 import com.nhbs.fenxiao.utils.oss.bean.OssConfig
 import com.xuexiang.xhttp2.annotation.NetMethod
@@ -46,7 +48,7 @@ interface AppApiServices {
   @POST("/api/advertising/insert")
   @Headers("Content-Type: application/json;charset=UTF-8", "Accept: application/json")
   fun releaseAD(@Body params: RequestBody, @Header(
-      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
+      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<ReleaseAdesultBean>>
 
 
   @NetMethod(Url = "/merchandiseClass/list")
@@ -176,6 +178,9 @@ interface AppApiServices {
   @NetMethod(ParameterNames = ["orderId"],Url = "/query/getRefundInfo")
   fun getRefundInfo(orderId: String): Observable<RefundGoodsInfoBean>
 
+
+  @NetMethod(Url = "/advertising/createAdvertisingOrder",ParameterNames = ["id","type"])
+  fun getAdOrder(id: String,type: Int): Observable<PayInfo>
 }
 
 

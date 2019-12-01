@@ -116,8 +116,9 @@ class ReleaseAdvertisingActivity : BaseBarActivity(), ReleaseAdvertisingViewer {
       params.content = input_content.getInputText()
       params.grossSpread = grossSpread.getInputText()
       params.pvSpread = pvSpread.getInputText()
-      params.number = number.getInputText().toInt()
-      params.number = phoneNumber.getInputText().toInt()
+      if(!number.getInputText().checkTextEmpty()) {
+        params.number = number.getInputText().toInt()
+      }
       params.phoneNumber = phoneNumber.getInputText()
       val data = ArrayList<String>()
       if (selectedFriends) {

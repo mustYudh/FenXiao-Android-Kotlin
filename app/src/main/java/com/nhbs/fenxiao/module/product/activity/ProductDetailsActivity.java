@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.hzrcht.seaofflowers.module.view.APPScrollView;
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarActivity;
+import com.nhbs.fenxiao.im.custom.SessionHelper;
 import com.nhbs.fenxiao.module.order.activity.AffirmOrderActivity;
 import com.nhbs.fenxiao.module.product.activity.presenter.ProductDetailsPresenter;
 import com.nhbs.fenxiao.module.product.activity.presenter.ProductDetailsViewer;
@@ -151,6 +152,8 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
                     break;
             }
         }
+
+        bindView(R.id.to_chat,v -> SessionHelper.startP2PSession(getActivity(),merchandiseDetailBean.userId));
     }
 
     @SuppressLint("SetTextI18n")
