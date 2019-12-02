@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseFragment;
+import com.nhbs.fenxiao.im.custom.SessionHelper;
 import com.nhbs.fenxiao.module.mine.adapter.MineOrderListRvAdapter;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineOrderListFragmentPresenter;
 import com.nhbs.fenxiao.module.mine.fragment.presenter.MineOrderListFragmentViewer;
@@ -23,6 +24,10 @@ import com.nhbs.fenxiao.module.store.activity.DeliveryInfoActivity;
 import com.nhbs.fenxiao.module.store.bean.ExpInfoBean;
 import com.nhbs.fenxiao.utils.DialogUtils;
 import com.nhbs.fenxiao.utils.PayUtils;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.yu.common.glide.ImageLoader;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.toast.ToastUtils;
 import com.yu.common.ui.DelayClickTextView;
@@ -35,10 +40,11 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
     MineOrderListFragmentPresenter mPresenter = new MineOrderListFragmentPresenter(this);
     private int order_type;
     private int pageNum = 1;
-    private int pageSize = 10;
+    private int pageSize = 1000;
     private MineOrderListRvAdapter adapter;
     private RecyclerView rv_list;
-    private DialogUtils payDialog;
+    private DialogUtils payDialog, codeDialog;
+    private SmartRefreshLayout refreshLayout;
 
     @Override
     protected int getContentViewId() {
@@ -66,6 +72,7 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
             order_type = bundle.getInt("ORDER_TYPE");
         }
         rv_list = bindView(R.id.rv_list);
+        refreshLayout = bindView(R.id.refresh);
         rv_list.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new MineOrderListRvAdapter(R.layout.item_order_title, getActivity());
         rv_list.setAdapter(adapter);
@@ -74,10 +81,27 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
         } else {
             mPresenter.getMineOrder(pageNum + "", pageSize + "", "2", order_type + "");
         }
+
+        refreshLayout.setEnableLoadMoreWhenContentNotFull(false);
+        refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()).setSpinnerStyle(SpinnerStyle.Translate));
+        refreshLayout.setEnableOverScrollBounce(false);
+        refreshLayout.setEnableAutoLoadMore(true);
+        refreshLayout.setEnableLoadMore(false);
+        refreshLayout.setOnRefreshListener(refreshLayout12 -> {
+            pageNum = 1;
+            if ("-1".equals(order_type + "")) {
+                mPresenter.getMineOrder(pageNum + "", pageSize + "", "2", "null");
+            } else {
+                mPresenter.getMineOrder(pageNum + "", pageSize + "", "2", order_type + "");
+            }
+        });
     }
 
     @Override
     public void getMineOrderSuccess(MineOrderListBean mineOrderListBean) {
+        if (refreshLayout != null) {
+            refreshLayout.finishRefresh();
+        }
         if (mineOrderListBean != null && mineOrderListBean.rows != null && mineOrderListBean.rows.size() != 0) {
             if (pageNum > 1) {
                 adapter.addData(mineOrderListBean.rows);
@@ -100,6 +124,11 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
                         break;
                     case R.id.tv_label7:
                         //查看提货码
+                        if (!TextUtils.isEmpty(rowsBean.code)) {
+                            showCodeDialog(rowsBean.code);
+                        } else {
+                            ToastUtils.show("获取提货码失败");
+                        }
                         break;
                     case R.id.tv_label6:
                         //付款
@@ -107,10 +136,17 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
                         break;
                     case R.id.tv_label2:
                         //查看物流
-                        if (!TextUtils.isEmpty(rowsBean.expressNumber)){
+                        if (!TextUtils.isEmpty(rowsBean.expressNumber)) {
                             mPresenter.findExp(rowsBean.expressNumber);
-                        }else {
+                        } else {
                             ToastUtils.show("物流信息出错");
+                        }
+                        break;
+                    case R.id.tv_label1:
+                        if (!TextUtils.isEmpty(rowsBean.userId)) {
+                            SessionHelper.startP2PSession(getActivity(), rowsBean.userId);
+                        } else {
+                            ToastUtils.show("数据异常");
                         }
                         break;
                 }
@@ -121,6 +157,13 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
             //空页面
             bindView(R.id.ll_empty, true);
             bindView(R.id.rv_list, false);
+        }
+    }
+
+    @Override
+    public void getMineOrderFail() {
+        if (refreshLayout != null) {
+            refreshLayout.finishRefresh();
         }
     }
 
@@ -162,6 +205,19 @@ public class MineOrderListFragment extends BaseFragment implements MineOrderList
 
         DelayClickTextView tv_commit = payDialog.findViewById(R.id.tv_commit);
         tv_commit.setOnClickListener(view -> mPresenter.userToPay(rowsBean.id, "2", type + ""));
+    }
+
+    private void showCodeDialog(String code) {
+        codeDialog = new DialogUtils.Builder(getActivity()).view(R.layout.dialog_code)
+                .gravity(Gravity.CENTER)
+                .cancelTouchout(true)
+                .style(R.style.Dialog_NoAnimation)
+                .build();
+        codeDialog.show();
+
+        ImageView iv_code = codeDialog.findViewById(R.id.iv_code);
+        ImageLoader.getInstance().displayImage(iv_code, code);
+
     }
 
     @Override

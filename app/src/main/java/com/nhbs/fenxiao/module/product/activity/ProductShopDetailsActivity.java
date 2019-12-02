@@ -10,6 +10,7 @@ import android.view.Gravity;
 
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarActivity;
+import com.nhbs.fenxiao.im.custom.SessionHelper;
 import com.nhbs.fenxiao.module.product.activity.presenter.ProductShopDetailsPresenter;
 import com.nhbs.fenxiao.module.product.activity.presenter.ProductShopDetailsViewer;
 import com.nhbs.fenxiao.module.product.adapter.ProductShopRvAdapter;
@@ -80,6 +81,7 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
         }
         bindView(R.id.ll_share, view -> mPresenter.userShareShop(shop_id));
         bindView(R.id.ll_type, view -> mPresenter.getMerchandiseClass());
+
     }
 
     @Override
@@ -127,6 +129,14 @@ public class ProductShopDetailsActivity extends BaseBarActivity implements Produ
                 bindText(R.id.tv_status, "+ 关注");
                 bindView(R.id.ll_status, view -> mPresenter.likeProduct(shop_id, "1"));
             }
+
+            bindView(R.id.ll_msg, view -> {
+                if (!TextUtils.isEmpty(shopOtherUserDetailBean.userId)) {
+                    SessionHelper.startP2PSession(ProductShopDetailsActivity.this, shopOtherUserDetailBean.userId);
+                } else {
+                    ToastUtils.show("数据异常");
+                }
+            });
         }
     }
 

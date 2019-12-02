@@ -72,7 +72,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="32dp"
@@ -150,7 +151,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:includeFontPadding="false"
-                        android:text="张XX 130XXXX3421"
                         android:textColor="#ff3c3d5a"
                         android:textSize="13sp"
                         />
@@ -161,7 +161,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
                         android:includeFontPadding="false"
-                        android:text="浙江省杭州市XX镇XXXXXX路"
                         android:textColor="#ffa0a9bb"
                         android:textSize="12sp"
                         />
@@ -195,7 +194,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:includeFontPadding="false"
-                    android:text="XXXX酒吧"
                     android:textColor="#ff3b3e5a"
                     android:textSize="12sp"
                     />
@@ -269,7 +267,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:includeFontPadding="false"
-                        android:text="¥124.00"
                         android:textColor="#ff3b3e5a"
                         android:textSize="10sp"
                         />
@@ -293,7 +290,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:padding="16dp"
-                android:text="共1件商品 合计：¥238.00"
                 android:textColor="#ff3b3e5a"
                 android:textSize="12sp"
                 />

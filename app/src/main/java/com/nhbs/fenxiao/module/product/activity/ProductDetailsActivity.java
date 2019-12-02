@@ -369,11 +369,11 @@ public class ProductDetailsActivity extends BaseBarActivity implements ProductDe
 
     @Override
     public void commentListSuccess(CommentListBean commentListBean) {
-        if (commentListBean != null) {
-            bindView(R.id.ll_comment, true);
-        } else {
-            bindView(R.id.ll_comment, false);
-        }
+//        if (commentListBean != null) {
+//            bindView(R.id.ll_comment, true);
+//        } else {
+//            bindView(R.id.ll_comment, false);
+//        }
     }
 
     @Override
