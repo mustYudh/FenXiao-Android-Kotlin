@@ -1,21 +1,24 @@
 package com.nhbs.fenxiao.module.order.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarActivity;
+import com.nhbs.fenxiao.im.custom.SessionHelper;
 import com.nhbs.fenxiao.module.order.activity.presenter.OrderDetailsPresenter;
 import com.nhbs.fenxiao.module.order.activity.presenter.OrderDetailsViewer;
 import com.nhbs.fenxiao.module.order.bean.OrderDetailsBean;
 import com.nhbs.fenxiao.module.order.bean.PayInfo;
+import com.nhbs.fenxiao.module.store.activity.DeliveryInfoActivity;
+import com.nhbs.fenxiao.module.store.bean.ExpInfoBean;
 import com.nhbs.fenxiao.utils.DateUtil;
 import com.nhbs.fenxiao.utils.DialogUtils;
 import com.nhbs.fenxiao.utils.PayUtils;
@@ -32,7 +35,7 @@ public class OrderDetailsActivity extends BaseBarActivity implements OrderDetail
     OrderDetailsPresenter mPresenter = new OrderDetailsPresenter(this);
     private ImageView iv_product;
     private CircleImageView iv_shop;
-    private DialogUtils payDialog;
+    private DialogUtils payDialog, codeDialog;
     private String order_id;
 
     @Override
@@ -59,16 +62,23 @@ public class OrderDetailsActivity extends BaseBarActivity implements OrderDetail
                     //自提
                     bindView(R.id.tv_ziti, true);
                     bindText(R.id.tv_type, "请买家前往商家处取商品");
+                    bindView(R.id.ll_address, false);
                     break;
                 case "2":
                     //送货上门
                     bindView(R.id.tv_ziti, false);
                     bindText(R.id.tv_type, "交易成功");
+                    bindView(R.id.ll_address, true);
+                    bindText(R.id.tv_tv_address_bottom, !TextUtils.isEmpty(orderDetailsBean.address) ? orderDetailsBean.address : "");
+                    bindText(R.id.tv_address, !TextUtils.isEmpty(orderDetailsBean.mobile) ? orderDetailsBean.mobile : "");
                     break;
                 case "3":
                     //邮寄
                     bindView(R.id.tv_ziti, false);
                     bindText(R.id.tv_type, "交易成功");
+                    bindView(R.id.ll_address, true);
+                    bindText(R.id.tv_tv_address_bottom, !TextUtils.isEmpty(orderDetailsBean.address) ? orderDetailsBean.address : "");
+                    bindText(R.id.tv_address, !TextUtils.isEmpty(orderDetailsBean.mobile) ? orderDetailsBean.mobile : "");
                     break;
             }
             //创建时间
@@ -109,6 +119,7 @@ public class OrderDetailsActivity extends BaseBarActivity implements OrderDetail
             bindText(R.id.tv_product_info, "共" + orderDetailsBean.number + "件商品 合计：¥" + orderDetailsBean.totalPrice);
             //店铺信息
             ImageLoader.getInstance().displayImage(iv_shop, orderDetailsBean.shopImage, R.drawable.ic_placeholder, R.drawable.ic_placeholder);
+            bindText(R.id.tv_shop_name, !TextUtils.isEmpty(orderDetailsBean.shopName) ? orderDetailsBean.shopName : "");
             //底部按钮
             switch (orderDetailsBean.status) {
                 case "0":
@@ -140,6 +151,22 @@ public class OrderDetailsActivity extends BaseBarActivity implements OrderDetail
                     bindText(R.id.tv_status, "售后/退货");
                     break;
             }
+            //联系卖家
+            bindView(R.id.tv_label1, view -> {
+                if (!TextUtils.isEmpty(orderDetailsBean.userId)) {
+                    SessionHelper.startP2PSession(getActivity(), orderDetailsBean.userId);
+                } else {
+                    ToastUtils.show("数据异常");
+                }
+            });
+            //查看物流
+            bindView(R.id.tv_label2, view -> {
+                if (!TextUtils.isEmpty(orderDetailsBean.expressNumber)) {
+                    mPresenter.findExp(orderDetailsBean.expressNumber);
+                } else {
+                    ToastUtils.show("物流信息出错");
+                }
+            });
             //确认收货
             bindView(R.id.tv_label8, view -> mPresenter.confirmGoods(orderDetailsBean.id));
             //提醒发货
@@ -147,10 +174,11 @@ public class OrderDetailsActivity extends BaseBarActivity implements OrderDetail
             //取消订单
             bindView(R.id.tv_label3, view -> mPresenter.cancelOrder(orderDetailsBean.id));
             //查看收货码
-            bindView(R.id.tv_label7, new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
+            bindView(R.id.tv_label7, view -> {
+                if (!TextUtils.isEmpty(orderDetailsBean.code)) {
+                    showCodeDialog(orderDetailsBean.code);
+                } else {
+                    ToastUtils.show("取货码获取失败");
                 }
             });
             //付款
@@ -189,6 +217,15 @@ public class OrderDetailsActivity extends BaseBarActivity implements OrderDetail
                 });
     }
 
+    @Override
+    public void findExpSuccess(ExpInfoBean expInfoBean) {
+        if (expInfoBean != null) {
+            Intent intent = new Intent(getActivity(), DeliveryInfoActivity.class);
+            intent.putExtra("DELIVERY_INFO", expInfoBean);
+            startActivity(intent);
+        }
+    }
+
     private int type = 1;
 
     @SuppressLint("SetTextI18n")
@@ -222,5 +259,18 @@ public class OrderDetailsActivity extends BaseBarActivity implements OrderDetail
         });
         DelayClickTextView tv_commit = payDialog.findViewById(R.id.tv_commit);
         tv_commit.setOnClickListener(view -> mPresenter.userToPay(orderDetailsBean.id, "2", type + ""));
+    }
+
+    private void showCodeDialog(String code) {
+        codeDialog = new DialogUtils.Builder(getActivity()).view(R.layout.dialog_code)
+                .gravity(Gravity.CENTER)
+                .cancelTouchout(true)
+                .style(R.style.Dialog_NoAnimation)
+                .build();
+        codeDialog.show();
+
+        ImageView iv_code = codeDialog.findViewById(R.id.iv_code);
+        ImageLoader.getInstance().displayImage(iv_code, code);
+
     }
 }

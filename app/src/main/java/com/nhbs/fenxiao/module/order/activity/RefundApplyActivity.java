@@ -181,7 +181,7 @@ public class RefundApplyActivity extends BaseActivity implements RefundApplyView
             @Override
             public void onClick(View view) {
                 if (dialog_status == null) {
-                    dialog_status = new ChooseRefundTypeDialog(RefundApplyActivity.this, R.style.dialog);
+                    dialog_status = new ChooseRefundTypeDialog(RefundApplyActivity.this, R.style.Dialog);
                     dialog_status.setCancelable(false);
                     TextView text_cancel = dialog_status.findViewById(R.id.text_cancel);
                     RecyclerView recycle = dialog_status.findViewById(R.id.recycle);
@@ -222,7 +222,7 @@ public class RefundApplyActivity extends BaseActivity implements RefundApplyView
             @Override
             public void onClick(View view) {
                 if (dialog_reason == null) {
-                    dialog_reason = new ChooseRefundTypeDialog(RefundApplyActivity.this, R.style.dialog);
+                    dialog_reason = new ChooseRefundTypeDialog(RefundApplyActivity.this, R.style.Dialog);
                     dialog_reason.setCancelable(false);
                     TextView text_title = dialog_reason.findViewById(R.id.text_title);
                     text_title.setText("退款原因");

@@ -1,7 +1,9 @@
 package com.nhbs.fenxiao.module.mine.fragment;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -31,6 +33,9 @@ import com.nhbs.fenxiao.module.mine.fragment.presenter.MineFragmentViewer;
 import com.nhbs.fenxiao.module.view.MyOneLineView;
 import com.nhbs.fenxiao.module.web.WebViewActivity;
 import com.nhbs.fenxiao.utils.DialogUtils;
+import com.nhbs.fenxiao.utils.permissions.MorePermissionsCallBack;
+import com.nhbs.fenxiao.utils.permissions.PermissionManager;
+import com.tbruyelle.rxpermissions2.Permission;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.UMShareConfig;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -233,6 +238,34 @@ public class MineFragment extends BaseBarFragment
                 getLaunchHelper().startActivity(MineOpinionActivity.class);
                 break;
             case 6:
+                //检测权限
+                PermissionManager.getInstance(getActivity()).checkMorePermission(new MorePermissionsCallBack() {
+                                                                                     @Override
+                                                                                     protected void permissionGranted(Permission permission) {
+                                                                                         // 用户已经同意该权限
+                                                                                         if ("android.permission.CALL_PHONE".equals(permission.name)) {
+                                                                                             //联系我们
+                                                                                             Intent intent = new Intent(Intent.ACTION_DIAL);
+                                                                                             Uri data = Uri.parse("tel:" + "075723668255");
+                                                                                             intent.setData(data);
+                                                                                             startActivity(intent);
+                                                                                         }
+                                                                                     }
+
+                                                                                     @Override
+                                                                                     protected void permissionShouldShowRequestPermissionRationale(Permission permission) {
+                                                                                         // 用户拒绝了该权限，没有选中『不再询问』（Never ask again）,那么下次再次启动时，还会提示请求权限的对话框
+//                                                                                                 ToastUtil.showCommonToast("请先开启权限");
+                                                                                     }
+
+                                                                                     @Override
+                                                                                     protected void permissionRejected(Permission permission) {
+//                                                                                                 ToastUtil.showCommonToast("您已拒绝手机存储权限,请先开启权限");
+                                                                                     }
+                                                                                 },
+                        Manifest.permission.CALL_PHONE
+                );
+
                 break;
         }
     }

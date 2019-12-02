@@ -87,6 +87,8 @@ public class MineOrderListRvAdapter extends BaseQuickAdapter<MineOrderListBean.R
             bundle.putString("ORDER_INFO", toJson);
             LauncherHelper.from(context).startActivity(CommentProductActivity.class, bundle);
         });
+        //联系卖家
+        helper.addOnClickListener(R.id.tv_label1);
         //确认收货
         helper.addOnClickListener(R.id.tv_label8);
         //提醒发货

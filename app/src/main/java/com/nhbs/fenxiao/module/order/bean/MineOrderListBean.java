@@ -49,5 +49,6 @@ public class MineOrderListBean {
         public String shopImage;
         public String goodsImage;
         public String status;
+        public String code;
     }
 }

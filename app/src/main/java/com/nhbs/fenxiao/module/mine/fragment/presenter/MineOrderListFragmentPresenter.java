@@ -9,6 +9,7 @@ import com.nhbs.fenxiao.module.order.bean.MineOrderListBean;
 import com.nhbs.fenxiao.module.order.bean.PayInfo;
 import com.nhbs.fenxiao.module.store.bean.ExpInfoBean;
 import com.xuexiang.xhttp2.XHttpProxy;
+import com.xuexiang.xhttp2.exception.ApiException;
 import com.yu.common.framework.BaseViewPresenter;
 
 @SuppressLint("CheckResult")
@@ -26,6 +27,11 @@ public class MineOrderListFragmentPresenter extends BaseViewPresenter<MineOrderL
                     protected void onSuccess(MineOrderListBean mineOrderListBean) {
                         assert getViewer() != null;
                         getViewer().getMineOrderSuccess(mineOrderListBean);
+                    }
+                    @Override
+                    protected void onError(ApiException apiException) {
+                        assert getViewer() != null;
+                        getViewer().getMineOrderFail();
                     }
                 });
     }

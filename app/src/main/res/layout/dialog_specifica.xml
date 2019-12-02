@@ -124,7 +124,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
         android:includeFontPadding="false"
-        android:text="尺寸"
+        android:text="规格"
         android:textColor="#ff3c3d5a"
         android:textSize="12sp"
         />
@@ -149,7 +149,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="4dp"
         android:includeFontPadding="false"
-        android:text="颜色分类"
+        android:text="规格"
         android:textColor="#ff3c3d5a"
         android:textSize="12sp"
         />

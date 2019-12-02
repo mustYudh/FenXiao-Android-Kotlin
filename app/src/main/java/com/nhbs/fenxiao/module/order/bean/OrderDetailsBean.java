@@ -38,6 +38,7 @@ public class OrderDetailsBean {
     public Long createTime;
     public Long updateTime;
     public String addressId;
+    public String address;
     public String expressNumber;
     public Long receivingTime;
     public String number;
@@ -50,4 +51,6 @@ public class OrderDetailsBean {
     public String tagOne;
     public String tagTwo;
     public String dealWay;
+    public String shopName;
+    public String code;
 }

@@ -9,6 +9,8 @@ import com.yu.common.mvp.Viewer;
 public interface MineOrderListFragmentViewer extends Viewer {
     void getMineOrderSuccess(MineOrderListBean mineOrderListBean);
 
+    void getMineOrderFail();
+    
     void confirmGoodsSuccess();
 
     void cancelOrderSuccess();
