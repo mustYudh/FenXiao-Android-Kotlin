@@ -39,6 +39,9 @@ class ReleaseAdParams : Serializable {
             showToast("请选择广告类型")
             return false
         }
+        if (pvSpread.checkTextEmpty()) {
+            showToast("转发单价输入不能为空")
+        }
         if (startTime.checkTextEmpty()) {
             showToast("请选择广告开始时间")
             return false
@@ -56,6 +59,7 @@ class ReleaseAdParams : Serializable {
             return false
         }
         if (!phoneNumber.checkTextEmpty() && !PhoneUtils.isPhoneLegal(phoneNumber)) {
+            showToast("请输入正确的手机号码")
             return false
         }
         return true

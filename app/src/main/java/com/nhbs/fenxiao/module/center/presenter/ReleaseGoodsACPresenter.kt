@@ -10,13 +10,18 @@ import com.nhbs.fenxiao.R
 import com.nhbs.fenxiao.http.api.AppApiServices
 import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber
 import com.nhbs.fenxiao.module.center.bean.ReleaseActivityParams
+import com.nhbs.fenxiao.module.center.bean.ReleaseActivityResultBean
+import com.nhbs.fenxiao.module.order.bean.PayInfo
 import com.nhbs.fenxiao.utils.DialogUtils
+import com.nhbs.fenxiao.utils.PayUtils
 import com.nhbs.fenxiao.utils.checkTextEmpty
 import com.nhbs.fenxiao.utils.showToast
 import com.xuexiang.xhttp2.XHttp
+import com.xuexiang.xhttp2.XHttpProxy
 import com.xuexiang.xhttp2.model.ApiResult
 import com.xuexiang.xhttp2.utils.HttpUtils
 import com.yu.common.framework.BaseViewPresenter
+import com.yu.common.toast.ToastUtils
 import com.yu.common.ui.DelayClickTextView
 import com.yu.common.utils.RxSchedulerUtils
 
@@ -33,9 +38,10 @@ class ReleaseGoodsACPresenter(
     if (params.checkParams()) {
       XHttp.custom(AppApiServices::class.java)
           .releaseActivity(HttpUtils.getJsonRequestBody(params))
-          .compose(RxSchedulerUtils._io_main_o<ApiResult<Any>>())
-          .subscribeWith(object : LoadingRequestSubscriber<ApiResult<Any>>(activity, false) {
-            override fun onSuccess(t: ApiResult<Any>?) {
+          .compose(RxSchedulerUtils._io_main_o<ApiResult<ReleaseActivityResultBean>>())
+          .subscribeWith(object : LoadingRequestSubscriber<ApiResult<ReleaseActivityResultBean>>(activity, false) {
+            @SuppressLint("SetTextI18n")
+            override fun onSuccess(t: ApiResult<ReleaseActivityResultBean>?) {
               if (t?.code == 2000) {
 //                showToast("发布成功")
 //                activity?.finish()
@@ -57,7 +63,7 @@ class ReleaseGoodsACPresenter(
                   val iv_ali = payDialog?.findViewById<ImageView>(R.id.iv_ali)
                   val iv_wx = payDialog?.findViewById<ImageView>(R.id.iv_wx)
                   val tv_price = payDialog?.findViewById<TextView>(R.id.tv_price)
-//                  tv_price?.text = "¥" + createUserOrderBean.data.price
+                  tv_price?.text = "¥" + t.data.grossSpread
                   rl_ali?.setOnClickListener { view: View? ->
                       iv_ali?.setImageResource(R.drawable.ic_circle_select)
                       iv_wx?.setImageResource(R.drawable.ic_circle_normal)
@@ -71,7 +77,10 @@ class ReleaseGoodsACPresenter(
                   }
 
                   val tv_commit: DelayClickTextView = payDialog?.findViewById(R.id.tv_commit)!!
-//                  tv_commit.setOnClickListener { view: View? -> toPay(t.data.id, "2", type.toString() + "", createUserOrderBean) }
+                  tv_commit.setOnClickListener { view: View? ->
+                      payDialog?.dismiss()
+                      userToPay(t.data.id, type)
+                  }
               } else if (!t?.msg.checkTextEmpty()) {
                 showToast(t?.msg!!)
               }
@@ -80,4 +89,24 @@ class ReleaseGoodsACPresenter(
           })
     }
   }
+
+    fun userToPay(id: String, type: Int) {
+        XHttpProxy.proxy(AppApiServices::class.java)
+                .getActivityOrder(id, type).safeSubscribe(object : LoadingRequestSubscriber<PayInfo>(activity!!, false) {
+                    override fun onSuccess(payInfo: PayInfo?) {
+                        PayUtils.getInstance().pay(activity, type + 1, payInfo)
+                                .getPayResult(object : PayUtils.PayCallBack {
+                                    override fun onPaySuccess(type: Int) {
+                                        showToast("发布成功")
+                                        activity?.finish()
+                                    }
+
+                                    override fun onFailed(type: Int) {
+                                        ToastUtils.show("支付失败，请重试")
+                                    }
+                                })
+
+                    }
+                })
+    }
 }
