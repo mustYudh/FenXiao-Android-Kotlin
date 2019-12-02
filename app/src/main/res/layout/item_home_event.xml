@@ -53,6 +53,7 @@
         </LinearLayout>
 
         <com.yu.common.ui.DelayClickTextView
+            android:id="@+id/tv_do"
             android:layout_width="70dp"
             android:layout_height="24dp"
             android:background="@drawable/shape_red_radius_16"

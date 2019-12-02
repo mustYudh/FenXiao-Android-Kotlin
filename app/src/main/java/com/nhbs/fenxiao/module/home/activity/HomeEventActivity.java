@@ -13,7 +13,10 @@ import com.nhbs.fenxiao.module.home.adapter.MineHomeEventRvAdapter;
 import com.nhbs.fenxiao.module.home.bean.HomeFindActivtyListBean;
 import com.nhbs.fenxiao.module.view.SpaceVerticalItemDecoration;
 import com.yu.common.mvp.PresenterLifeCycle;
+import com.yu.common.toast.ToastUtils;
 import com.yu.common.utils.DensityUtil;
+
+import java.util.List;
 
 
 public class HomeEventActivity extends BaseBarActivity implements HomeEventViewer {
@@ -46,10 +49,22 @@ public class HomeEventActivity extends BaseBarActivity implements HomeEventViewe
             adapter.setNewData(homeFindActivtyListBean.rows);
             bindView(R.id.ll_empty, false);
             bindView(R.id.rv_event, true);
+            adapter.setOnItemChildClickListener((adapter, view, position) -> {
+                List<HomeFindActivtyListBean.RowsBean> data = adapter.getData();
+                HomeFindActivtyListBean.RowsBean rowsBean = data.get(position);
+                if (view.getId() == R.id.tv_do) {
+                    mPresenter.insertActivty(rowsBean.id);
+                }
+            });
         } else {
             //空页面
             bindView(R.id.ll_empty, true);
             bindView(R.id.rv_event, false);
         }
+    }
+
+    @Override
+    public void insertActivtySuccess() {
+        ToastUtils.show("参加成功");
     }
 }

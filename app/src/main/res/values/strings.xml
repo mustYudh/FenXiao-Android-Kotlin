@@ -12,8 +12,6 @@
     <string name="off_line">离线</string>
 
 
-
-
     <!-- 云信SDK所需文案 -->
     <string name="nim_status_bar_multi_messages_incoming">%1$d位联系人有新消息</string>
     <string name="nim_status_bar_ticker_text">%1$s有新消息</string>
