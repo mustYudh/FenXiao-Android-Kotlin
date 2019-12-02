@@ -14,6 +14,8 @@ import com.nhbs.fenxiao.module.center.bean.ReleaseAdParams
 import com.nhbs.fenxiao.module.center.bean.ReleaseAdesultBean
 import com.nhbs.fenxiao.module.order.bean.PayInfo
 import com.nhbs.fenxiao.utils.DialogUtils
+import com.nhbs.fenxiao.utils.PayUtils
+import com.nhbs.fenxiao.utils.PayUtils.PayCallBack
 import com.nhbs.fenxiao.utils.checkTextEmpty
 import com.nhbs.fenxiao.utils.oss.UploadUtils
 import com.nhbs.fenxiao.utils.showToast
@@ -22,6 +24,7 @@ import com.xuexiang.xhttp2.XHttpProxy
 import com.xuexiang.xhttp2.model.ApiResult
 import com.xuexiang.xhttp2.utils.HttpUtils
 import com.yu.common.framework.BaseViewPresenter
+import com.yu.common.toast.ToastUtils
 import com.yu.common.ui.DelayClickTextView
 import com.yu.common.utils.RxSchedulerUtils
 
@@ -89,7 +92,7 @@ class ReleaseAdvertisingPresenter(
                             val iv_ali = payDialog?.findViewById<ImageView>(R.id.iv_ali)
                             val iv_wx = payDialog?.findViewById<ImageView>(R.id.iv_wx)
                             val tv_price = payDialog?.findViewById<TextView>(R.id.tv_price)
-//              tv_price?.text = "¥" + createUserOrderBean.data.price
+                            tv_price?.text = "¥" + t.data.grossSpread
                             rl_ali?.setOnClickListener { view: View? ->
                                 iv_ali?.setImageResource(R.drawable.ic_circle_select)
                                 iv_wx?.setImageResource(R.drawable.ic_circle_normal)
@@ -103,8 +106,10 @@ class ReleaseAdvertisingPresenter(
                             }
 
                             val tv_commit: DelayClickTextView = payDialog?.findViewById(R.id.tv_commit)!!
-                            tv_commit.setOnClickListener { view: View? -> userToPay(t.data.id, type) }
-//              activity?.finish()
+                            tv_commit.setOnClickListener { view: View? ->
+                                payDialog?.dismiss()
+                                userToPay(t.data.id, type)
+                            }
                         } else if (!t?.msg.checkTextEmpty()) {
                             showToast(t?.msg!!)
                         }
@@ -115,11 +120,21 @@ class ReleaseAdvertisingPresenter(
 
     fun userToPay(id: String, type: Int) {
         XHttpProxy.proxy(AppApiServices::class.java)
-                .getAdOrder(id, type).safeSubscribe(object : LoadingRequestSubscriber<PayInfo>(activity!!,false) {
-                    override fun onSuccess(t: PayInfo?) {
+                .getAdOrder(id, type).safeSubscribe(object : LoadingRequestSubscriber<PayInfo>(activity!!, false) {
+                    override fun onSuccess(payInfo: PayInfo?) {
+                        PayUtils.getInstance().pay(activity, type + 1, payInfo)
+                                .getPayResult(object : PayCallBack {
+                                    override fun onPaySuccess(type: Int) {
+                                        showToast("发布成功")
+                                        activity?.finish()
+                                    }
+
+                                    override fun onFailed(type: Int) {
+                                        ToastUtils.show("支付失败，请重试")
+                                    }
+                                })
 
                     }
-
                 })
     }
 }

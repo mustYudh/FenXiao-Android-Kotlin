@@ -13,7 +13,7 @@ data class ReleaseAdesultBean(
     var createTime: Long,
     var district: String,
     var endTime: Long,
-    var grossSpread: Any,
+    var grossSpread: String,
     var id: String,
     var imgs: String,
     var number: Any,

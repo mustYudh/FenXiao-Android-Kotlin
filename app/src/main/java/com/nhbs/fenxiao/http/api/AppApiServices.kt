@@ -2,6 +2,7 @@ package com.nhbs.fenxiao.http.api
 
 import com.nhbs.fenxiao.data.UserProfile
 import com.nhbs.fenxiao.module.center.bean.GoodsTypeBean
+import com.nhbs.fenxiao.module.center.bean.ReleaseActivityResultBean
 import com.nhbs.fenxiao.module.center.bean.ReleaseAdesultBean
 import com.nhbs.fenxiao.module.home.bean.NimeInfoBean
 import com.nhbs.fenxiao.module.login.bean.LoginInfoBean
@@ -72,7 +73,7 @@ interface AppApiServices {
   @POST("/api/activity/insert")
   @Headers("Content-Type: application/json", "Accept: application/json")
   fun releaseActivity(@Body params: RequestBody, @Header(
-      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<Any>>
+      "token") token: String? = UserProfile.getInstance().appToken): Observable<ApiResult<ReleaseActivityResultBean>>
 
 
   @POST("/api/merchandise/findMerchandiseList")
@@ -181,6 +182,10 @@ interface AppApiServices {
 
   @NetMethod(Url = "/advertising/createAdvertisingOrder",ParameterNames = ["id","type"])
   fun getAdOrder(id: String,type: Int): Observable<PayInfo>
+
+
+  @NetMethod(Url = "/activity/createActivityOrder",ParameterNames = ["id","type"])
+  fun getActivityOrder(id: String,type: Int): Observable<PayInfo>
 }
 
 
