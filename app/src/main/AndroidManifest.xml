@@ -37,10 +37,11 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="label,allowBackup">
+        <activity android:name=".module.mine.activity.CommonProblemActivity">
+        </activity>
         <activity
             android:name=".module.home.activity.ProductSearchActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".module.order.activity.SearchOrderActivity"
             android:screenOrientation="portrait"/>
@@ -248,9 +249,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".module.store.activity.RedactStoreActivity"
+        <activity
+            android:name=".module.store.activity.RedactStoreActivity"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".module.store.activity.type.TypeAddGoodsActivity"
             android:screenOrientation="portrait"/>

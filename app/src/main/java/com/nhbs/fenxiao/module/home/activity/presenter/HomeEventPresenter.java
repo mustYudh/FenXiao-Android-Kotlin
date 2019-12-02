@@ -3,6 +3,7 @@ package com.nhbs.fenxiao.module.home.activity.presenter;
 import android.annotation.SuppressLint;
 
 import com.nhbs.fenxiao.http.api.OtherApiServices;
+import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber;
 import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber;
 import com.nhbs.fenxiao.module.home.bean.HomeFindActivtyListBean;
 import com.xuexiang.xhttp2.XHttpProxy;
@@ -23,6 +24,18 @@ public class HomeEventPresenter extends BaseViewPresenter<HomeEventViewer> {
                     protected void onSuccess(HomeFindActivtyListBean homeFindActivtyListBean) {
                         assert getViewer() != null;
                         getViewer().getFindActivtyListSuccess(homeFindActivtyListBean);
+                    }
+                });
+    }
+
+    public void insertActivty(String id) {
+        XHttpProxy.proxy(OtherApiServices.class)
+                .insertActivty(id)
+                .subscribeWith(new LoadingRequestSubscriber<Object>(getActivity(), false) {
+                    @Override
+                    protected void onSuccess(Object o) {
+                        assert getViewer() != null;
+                        getViewer().insertActivtySuccess();
                     }
                 });
     }

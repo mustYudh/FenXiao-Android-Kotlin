@@ -20,6 +20,7 @@ import com.nhbs.fenxiao.data.UserProfile;
 import com.nhbs.fenxiao.http.loading.NetLoadingDialog;
 import com.nhbs.fenxiao.module.home.StatusBarColorManager;
 import com.nhbs.fenxiao.module.mine.activity.BindAliPayActivity;
+import com.nhbs.fenxiao.module.mine.activity.CommonProblemActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineAddressListActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineGeneralizeActivity;
 import com.nhbs.fenxiao.module.mine.activity.MineOpinionActivity;
@@ -232,6 +233,8 @@ public class MineFragment extends BaseBarFragment
                 }
                 break;
             case 4:
+                //常见问题
+                getLaunchHelper().startActivity(CommonProblemActivity.class);
                 break;
             case 5:
                 //意见反馈
