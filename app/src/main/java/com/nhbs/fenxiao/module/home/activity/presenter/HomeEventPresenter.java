@@ -7,6 +7,7 @@ import com.nhbs.fenxiao.http.subscriber.LoadingRequestSubscriber;
 import com.nhbs.fenxiao.http.subscriber.TipRequestSubscriber;
 import com.nhbs.fenxiao.module.home.bean.HomeFindActivtyListBean;
 import com.xuexiang.xhttp2.XHttpProxy;
+import com.xuexiang.xhttp2.exception.ApiException;
 import com.yu.common.framework.BaseViewPresenter;
 
 @SuppressLint("CheckResult")
@@ -25,17 +26,23 @@ public class HomeEventPresenter extends BaseViewPresenter<HomeEventViewer> {
                         assert getViewer() != null;
                         getViewer().getFindActivtyListSuccess(homeFindActivtyListBean);
                     }
+
+                    @Override
+                    protected void onError(ApiException apiException) {
+                        assert getViewer() != null;
+                        getViewer().getFindActivtyListFail();
+                    }
                 });
     }
 
-    public void insertActivty(String id) {
+    public void insertActivty(String id,HomeFindActivtyListBean.RowsBean rowsBean) {
         XHttpProxy.proxy(OtherApiServices.class)
                 .insertActivty(id)
                 .subscribeWith(new LoadingRequestSubscriber<Object>(getActivity(), false) {
                     @Override
                     protected void onSuccess(Object o) {
                         assert getViewer() != null;
-                        getViewer().insertActivtySuccess();
+                        getViewer().insertActivtySuccess(rowsBean);
                     }
                 });
     }

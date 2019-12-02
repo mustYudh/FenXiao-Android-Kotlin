@@ -12,6 +12,9 @@ import com.nhbs.fenxiao.module.home.activity.presenter.HomeEventViewer;
 import com.nhbs.fenxiao.module.home.adapter.MineHomeEventRvAdapter;
 import com.nhbs.fenxiao.module.home.bean.HomeFindActivtyListBean;
 import com.nhbs.fenxiao.module.view.SpaceVerticalItemDecoration;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.yu.common.mvp.PresenterLifeCycle;
 import com.yu.common.toast.ToastUtils;
 import com.yu.common.utils.DensityUtil;
@@ -24,8 +27,9 @@ public class HomeEventActivity extends BaseBarActivity implements HomeEventViewe
     HomeEventPresenter mPresenter = new HomeEventPresenter(this);
     private RecyclerView rv_event;
     private int pageNum = 1;
-    private int pageSize = 10;
+    private int pageSize = 1000;
     private MineHomeEventRvAdapter adapter;
+    private SmartRefreshLayout refreshLayout;
 
     @Override
     protected void setView(@Nullable Bundle savedInstanceState) {
@@ -36,15 +40,28 @@ public class HomeEventActivity extends BaseBarActivity implements HomeEventViewe
     protected void loadData() {
         setTitle("活动列表");
         rv_event = bindView(R.id.rv_event);
+        refreshLayout = bindView(R.id.refresh);
         rv_event.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv_event.addItemDecoration(new SpaceVerticalItemDecoration(DensityUtil.dip2px(this, 8)));
         adapter = new MineHomeEventRvAdapter(R.layout.item_home_event, getActivity());
         rv_event.setAdapter(adapter);
         mPresenter.getFindActivtyList(pageNum, pageSize);
+        refreshLayout.setEnableLoadMoreWhenContentNotFull(false);
+        refreshLayout.setRefreshHeader(new ClassicsHeader(getActivity()).setSpinnerStyle(SpinnerStyle.Translate));
+        refreshLayout.setEnableOverScrollBounce(false);
+        refreshLayout.setEnableAutoLoadMore(true);
+        refreshLayout.setEnableLoadMore(false);
+        refreshLayout.setOnRefreshListener(refreshLayout12 -> {
+            pageNum = 1;
+            mPresenter.getFindActivtyList(pageNum, pageSize);
+        });
     }
 
     @Override
     public void getFindActivtyListSuccess(HomeFindActivtyListBean homeFindActivtyListBean) {
+        if (refreshLayout != null) {
+            refreshLayout.finishRefresh();
+        }
         if (homeFindActivtyListBean != null && homeFindActivtyListBean.rows != null && homeFindActivtyListBean.rows.size() != 0) {
             adapter.setNewData(homeFindActivtyListBean.rows);
             bindView(R.id.ll_empty, false);
@@ -53,7 +70,9 @@ public class HomeEventActivity extends BaseBarActivity implements HomeEventViewe
                 List<HomeFindActivtyListBean.RowsBean> data = adapter.getData();
                 HomeFindActivtyListBean.RowsBean rowsBean = data.get(position);
                 if (view.getId() == R.id.tv_do) {
-                    mPresenter.insertActivty(rowsBean.id);
+                    if (rowsBean.isJoinStatus != null && rowsBean.isJoinStatus == 0) {
+                        mPresenter.insertActivty(rowsBean.id, rowsBean);
+                    }
                 }
             });
         } else {
@@ -64,7 +83,16 @@ public class HomeEventActivity extends BaseBarActivity implements HomeEventViewe
     }
 
     @Override
-    public void insertActivtySuccess() {
+    public void getFindActivtyListFail() {
+        if (refreshLayout != null) {
+            refreshLayout.finishRefresh();
+        }
+    }
+
+    @Override
+    public void insertActivtySuccess(HomeFindActivtyListBean.RowsBean rowsBean) {
         ToastUtils.show("参加成功");
+        rowsBean.isJoinStatus = 1;
+        adapter.notifyDataSetChanged();
     }
 }

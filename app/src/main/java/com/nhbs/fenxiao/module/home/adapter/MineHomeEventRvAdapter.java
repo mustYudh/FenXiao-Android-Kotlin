@@ -53,7 +53,13 @@ public class MineHomeEventRvAdapter extends BaseQuickAdapter<HomeFindActivtyList
 
             LauncherHelper.from(context).startActivity(WebViewActivity.callIntent(context, "奖品详情", "http://app.novobus.cn/activitydetail?id=" + item.id));
         });
-
+        if (item.isJoinStatus != null && item.isJoinStatus == 1) {
+            //参加过
+            helper.setText(R.id.tv_do, "已参加");
+        } else {
+            //未参加
+            helper.setText(R.id.tv_do, "免费抽奖");
+        }
         helper.addOnClickListener(R.id.tv_do);
     }
 }

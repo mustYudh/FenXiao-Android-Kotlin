@@ -34,7 +34,7 @@ public class HomeFindActivtyListBean {
         public String firstPrizeImgs;
         public String firstPrizeNum;
         public String thirdPrizeNum;
-        public long drawTime;
+        public Long drawTime;
         public String grossSpread;
         public String thirdPrizeImgs;
         public String userId;
@@ -44,13 +44,14 @@ public class HomeFindActivtyListBean {
         public String accessitImgs;
         public String accessitNum;
         public String accessitName;
-        public long createTime;
+        public Long createTime;
         public String isGeneralize;
         public String lotteryWinner;
         public String aName;
         public String firstPrizeName;
         public String id;
         public String headerImage;
-        public int status;
+        public Integer status;
+        public Integer isJoinStatus;
     }
 }

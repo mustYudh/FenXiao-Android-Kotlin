@@ -7,5 +7,7 @@ import com.yu.common.mvp.Viewer;
 public interface HomeEventViewer extends Viewer {
     void getFindActivtyListSuccess(HomeFindActivtyListBean homeFindActivtyListBean);
 
-    void insertActivtySuccess();
+    void getFindActivtyListFail();
+    
+    void insertActivtySuccess(HomeFindActivtyListBean.RowsBean rowsBean);
 }
