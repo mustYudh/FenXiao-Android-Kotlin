@@ -2,6 +2,8 @@ package com.nhbs.fenxiao.module.mine.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+
 import com.nhbs.fenxiao.R;
 import com.nhbs.fenxiao.base.BaseBarActivity;
 import com.nhbs.fenxiao.module.mine.activity.presenter.MineSettingsPresenter;
@@ -29,9 +31,32 @@ public class MineSettingsActivity extends BaseBarActivity implements MineSetting
 
     @Override
     public void getUserAccountInfoSuccess(UserAccountInfo accountInfo) {
-//        if (accountInfo != null){
-//            bindText(R.id.tv_mobile,accountInfo.userMobile);
-//            if (accountInfo.aliStatus != null && accountInfo.aliStatus == )
-//        }
+        if (accountInfo != null) {
+            bindText(R.id.tv_mobile, accountInfo.userMobile);
+            if (accountInfo.winStatus != null && accountInfo.winStatus == 1) {
+                //已绑定
+                if (!TextUtils.isEmpty(accountInfo.winXinName)) {
+                    bindText(R.id.tv_wx_status, accountInfo.winXinName);
+                } else {
+                    //未绑定
+                    bindText(R.id.tv_wx_status, "未绑定");
+                }
+            } else {
+                //未绑定
+                bindText(R.id.tv_wx_status, "未绑定");
+            }
+
+            if (accountInfo.aliStatus != null && accountInfo.aliStatus == 1) {
+                //已绑定
+                if (!TextUtils.isEmpty(accountInfo.aliAccount)) {
+                    bindText(R.id.tv_ali_status, accountInfo.aliAccount);
+                } else {
+                    bindText(R.id.tv_ali_status, "未绑定");
+                }
+            } else {
+                //未绑定
+                bindText(R.id.tv_ali_status, "未绑定");
+            }
+        }
     }
 }
